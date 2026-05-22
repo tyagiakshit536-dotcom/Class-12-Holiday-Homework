@@ -1,0 +1,1584 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Class 12 Chemistry — Mega Formula Sheet | Akshit Tyagi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=Bebas+Neue&family=Pacifico&family=Noto+Sans+Math&display=swap" rel="stylesheet"/>
+<style>
+/* ── DESIGN TOKENS ─────────────────────────────────────────────────── */
+:root {
+  --bg:          #0d0c0a;
+  --bg2:         #13120e;
+  --bg3:         #1a1813;
+  --surface:     #1f1d17;
+  --surface2:    #27251e;
+  --border:      #2e2b22;
+  --gold:        #c9a84c;
+  --gold2:       #e4c36a;
+  --gold3:       #f5dfa0;
+  --red:         #c05a3a;
+  --teal:        #4a9b8e;
+  --blue:        #5a7fb5;
+  --text:        #e8e2d4;
+  --text2:       #b0a890;
+  --text3:       #706a56;
+  --white:       #faf8f2;
+  --shadow:      0 4px 32px rgba(0,0,0,.55);
+  --shadow2:     0 8px 64px rgba(0,0,0,.7);
+  --radius:      12px;
+  --radius2:     20px;
+  --formula-font:'Noto Sans Math', 'Cambria Math', 'STIX Two Math', 'Times New Roman', serif;
+  --accent-glow: 0 0 40px rgba(201,168,76,.18);
+}
+[data-theme="light"] {
+  --bg:          #f5f1e8;
+  --bg2:         #ede9dd;
+  --bg3:         #e4dfd0;
+  --surface:     #faf8f2;
+  --surface2:    #f0ece0;
+  --border:      #d4cdb8;
+  --gold:        #9a6e1e;
+  --gold2:       #b8880a;
+  --gold3:       #7a5512;
+  --red:         #b04030;
+  --teal:        #2e7a6e;
+  --blue:        #3a5f95;
+  --text:        #2a2620;
+  --text2:       #5c5540;
+  --text3:       #9a9280;
+  --white:       #2a2620;
+  --shadow:      0 4px 24px rgba(0,0,0,.12);
+  --shadow2:     0 8px 48px rgba(0,0,0,.18);
+  --accent-glow: 0 0 40px rgba(154,110,30,.15);
+}
+
+/* ── RESET & BASE ──────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+  cursor: none;
+}
+::selection { background: var(--gold); color: var(--bg); }
+
+/* ── NOISE OVERLAY ─────────────────────────────────────────────────── */
+body::before {
+  content: '';
+  position: fixed; inset: 0; pointer-events: none; z-index: 9999;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  opacity: .4;
+}
+
+/* ── PROGRESS BAR ──────────────────────────────────────────────────── */
+#progress-bar {
+  position: fixed; top: 0; left: 0; height: 3px; width: 0%;
+  background: linear-gradient(90deg, var(--gold), var(--gold2), var(--gold3));
+  z-index: 10001; transition: width .1s linear;
+  box-shadow: 0 0 12px var(--gold);
+}
+
+/* ── CUSTOM CURSOR ─────────────────────────────────────────────────── */
+#cursor {
+  position: fixed; width: 10px; height: 10px; border-radius: 50%;
+  background: var(--gold); pointer-events: none; z-index: 10002;
+  transform: translate(-50%,-50%); transition: transform .1s, background .2s;
+}
+#cursor-ring {
+  position: fixed; width: 36px; height: 36px; border-radius: 50%;
+  border: 1.5px solid var(--gold); pointer-events: none; z-index: 10001;
+  transform: translate(-50%,-50%); opacity: .6;
+  transition: all .18s cubic-bezier(.23,1,.32,1);
+}
+body.hovering #cursor { transform: translate(-50%,-50%) scale(2.2); }
+body.hovering #cursor-ring { width: 52px; height: 52px; opacity: .3; }
+
+/* ── FIXED NAV ─────────────────────────────────────────────────────── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 48px; height: 64px;
+  background: rgba(13,12,10,.75);
+  backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid var(--border);
+  transition: background .3s;
+}
+[data-theme="light"] nav { background: rgba(245,241,232,.82); }
+.nav-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.2rem; font-weight: 600; color: var(--gold2);
+  letter-spacing: .04em; text-decoration: none;
+}
+.nav-links { display: flex; gap: 32px; list-style: none; }
+.nav-links a {
+  font-size: .78rem; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--text2); text-decoration: none;
+  transition: color .2s;
+}
+.nav-links a:hover { color: var(--gold2); }
+.nav-right { display: flex; gap: 16px; align-items: center; }
+#theme-toggle {
+  width: 44px; height: 24px; border-radius: 12px;
+  background: var(--surface2); border: 1px solid var(--border);
+  cursor: pointer; position: relative; transition: background .3s;
+}
+#theme-toggle::after {
+  content: ''; position: absolute; top: 3px; left: 3px;
+  width: 18px; height: 18px; border-radius: 50%;
+  background: var(--gold); transition: transform .3s;
+}
+[data-theme="light"] #theme-toggle::after { transform: translateX(20px); }
+
+/* ── HERO ──────────────────────────────────────────────────────────── */
+#hero {
+  min-height: 100vh; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; text-align: center;
+  position: relative; overflow: hidden;
+  padding: 120px 24px 80px;
+}
+.hero-glow {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+  width: 700px; height: 700px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(201,168,76,.12) 0%, transparent 70%);
+  animation: pulse-glow 4s ease-in-out infinite;
+}
+@keyframes pulse-glow {
+  0%,100% { transform: translate(-50%,-50%) scale(1); opacity: 1; }
+  50% { transform: translate(-50%,-50%) scale(1.15); opacity: .6; }
+}
+.floating-letters {
+  position: absolute; inset: 0; pointer-events: none; overflow: hidden;
+}
+.fl {
+  position: absolute; font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(3rem,8vw,9rem); opacity: .04; color: var(--gold);
+  animation: float-letter 12s ease-in-out infinite;
+  user-select: none;
+}
+@keyframes float-letter {
+  0%,100% { transform: translateY(0) rotate(0deg); }
+  33% { transform: translateY(-20px) rotate(3deg); }
+  66% { transform: translateY(10px) rotate(-2deg); }
+}
+.hero-eyebrow {
+  font-size: .72rem; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 20px;
+  animation: fade-up .8s ease forwards; opacity: 0;
+}
+.hero-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.8rem,7vw,6.5rem); font-weight: 300; line-height: 1.08;
+  color: var(--white); margin-bottom: 8px;
+  animation: fade-up .9s .1s ease forwards; opacity: 0;
+}
+.hero-title span { color: var(--gold2); font-style: italic; }
+.hero-subtitle {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(1rem,2.5vw,1.6rem); letter-spacing: .15em;
+  color: var(--text2); margin-bottom: 40px;
+  animation: fade-up .9s .2s ease forwards; opacity: 0;
+}
+.hero-divider {
+  display: flex; align-items: center; gap: 16px;
+  margin-bottom: 40px;
+  animation: fade-up .9s .3s ease forwards; opacity: 0;
+}
+.hero-divider-line { flex: 1; height: 1px; max-width: 120px; background: linear-gradient(90deg, transparent, var(--gold)); }
+.hero-divider-line.r { background: linear-gradient(90deg, var(--gold), transparent); }
+.hero-gem {
+  width: 20px; height: 20px;
+  background: linear-gradient(135deg, var(--gold), var(--gold3));
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  animation: spin-gem 6s linear infinite;
+}
+@keyframes spin-gem { to { transform: rotate(360deg); } }
+.hero-meta {
+  display: flex; gap: 40px; align-items: center;
+  animation: fade-up .9s .4s ease forwards; opacity: 0;
+}
+.hero-meta-item { text-align: center; }
+.hero-meta-num {
+  font-family: 'Bebas Neue', sans-serif; font-size: 2.2rem;
+  color: var(--gold2); display: block; line-height: 1;
+}
+.hero-meta-label {
+  font-size: .68rem; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--text3); margin-top: 4px;
+}
+.hero-meta-sep { width: 1px; height: 40px; background: var(--border); }
+.hero-cta {
+  margin-top: 48px;
+  animation: fade-up .9s .5s ease forwards; opacity: 0;
+}
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 14px 32px; border-radius: 40px;
+  background: linear-gradient(135deg, var(--gold), var(--gold2));
+  color: var(--bg); font-weight: 500; font-size: .9rem;
+  text-decoration: none; letter-spacing: .06em;
+  transition: transform .2s, box-shadow .2s;
+  box-shadow: 0 4px 24px rgba(201,168,76,.3);
+}
+.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 32px rgba(201,168,76,.4); }
+.scroll-hint {
+  position: absolute; bottom: 40px; left: 50%;
+  transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  animation: fade-up .9s .8s ease forwards; opacity: 0;
+}
+.scroll-hint-line {
+  width: 1px; height: 48px;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+  animation: scroll-line 2s ease-in-out infinite;
+}
+@keyframes scroll-line {
+  0%,100% { transform: scaleY(1); opacity: 1; }
+  50% { transform: scaleY(.4); opacity: .4; }
+}
+.scroll-hint-text {
+  font-size: .65rem; letter-spacing: .16em; text-transform: uppercase;
+  color: var(--text3);
+}
+
+/* ── SECTION SKELETON ──────────────────────────────────────────────── */
+section { padding: 120px 0; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+.section-header {
+  position: relative; margin-bottom: 80px; text-align: center;
+}
+.section-number {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(6rem,12vw,14rem);
+  color: var(--surface2); position: absolute;
+  top: -40px; left: 50%; transform: translateX(-50%);
+  line-height: 1; pointer-events: none; z-index: 0;
+  white-space: nowrap;
+}
+.section-eyebrow {
+  font-size: .72rem; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 12px; position: relative; z-index: 1;
+}
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem,4vw,3.2rem); font-weight: 300;
+  color: var(--white); position: relative; z-index: 1;
+}
+.section-title em { color: var(--gold2); font-style: italic; }
+.section-divider {
+  display: flex; align-items: center; justify-content: center;
+  gap: 12px; margin-top: 20px; position: relative; z-index: 1;
+}
+.section-divider-line { width: 80px; height: 1px; background: var(--border); }
+.section-divider-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--gold);
+}
+
+/* ── CHAPTER BANNER ────────────────────────────────────────────────── */
+.chapter-banner {
+  position: relative; border-radius: var(--radius2); overflow: hidden;
+  margin-bottom: 48px; height: 220px;
+  cursor: pointer;
+}
+.chapter-banner img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform .6s cubic-bezier(.23,1,.32,1);
+}
+.chapter-banner:hover img { transform: scale(1.06); }
+.chapter-banner-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(13,12,10,.85) 0%, rgba(13,12,10,.4) 100%);
+  display: flex; align-items: flex-end; padding: 32px;
+}
+.chapter-banner-label {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.4rem; letter-spacing: .1em; color: var(--gold2);
+}
+.chapter-banner-sub {
+  font-size: .8rem; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--text2); margin-top: 4px;
+}
+
+/* ── FORMULA CARDS ─────────────────────────────────────────────────── */
+.formula-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 24px; margin-bottom: 48px;
+}
+.formula-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 28px 28px 24px;
+  position: relative; overflow: hidden;
+  transition: transform .25s, box-shadow .25s, border-color .25s;
+  opacity: 0; transform: translateY(20px);
+}
+.formula-card.visible { opacity: 1; transform: translateY(0); transition: opacity .5s, transform .5s; }
+.formula-card::before {
+  content: ''; position: absolute; top: 0; left: 0;
+  width: 3px; height: 0; background: var(--gold);
+  transition: height .3s; border-radius: 0 0 4px 0;
+}
+.formula-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); border-color: var(--gold); }
+.formula-card:hover::before { height: 100%; }
+.card-tag {
+  display: inline-block; font-size: .65rem; letter-spacing: .12em;
+  text-transform: uppercase; padding: 3px 10px; border-radius: 20px;
+  border: 1px solid var(--gold); color: var(--gold); margin-bottom: 12px;
+}
+.card-tag.teal { border-color: var(--teal); color: var(--teal); }
+.card-tag.red { border-color: var(--red); color: var(--red); }
+.card-tag.blue { border-color: var(--blue); color: var(--blue); }
+.card-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.25rem; font-weight: 600; color: var(--white);
+  margin-bottom: 14px;
+}
+.formula-block {
+  background: var(--bg); border-radius: 8px; padding: 14px 16px;
+  margin-bottom: 10px; font-family: var(--formula-font);
+  font-size: .84rem; color: var(--gold2); line-height: 1.7;
+  border: 1px solid var(--border); overflow-x: auto;
+  white-space: pre-wrap; word-break: break-all;
+}
+.formula-block sup,
+.formula-block sub,
+.hc-formula sup,
+.hc-formula sub,
+.glossary-sym sup,
+.glossary-sym sub,
+.formula-table td.mono sup,
+.formula-table td.mono sub,
+.formula-table td.accent sup,
+.formula-table td.accent sub {
+  font-size: .75em;
+  vertical-align: baseline;
+}
+.formula-block sup,
+.hc-formula sup,
+.glossary-sym sup,
+.formula-table td.mono sup,
+.formula-table td.accent sup { vertical-align: super; }
+.formula-block sub,
+.hc-formula sub,
+.glossary-sym sub,
+.formula-table td.mono sub,
+.formula-table td.accent sub { vertical-align: sub; }
+.card-note {
+  font-size: .78rem; color: var(--text3); line-height: 1.6;
+  margin-top: 10px; font-style: italic;
+}
+
+/* ── FULL-WIDTH FORMULA TABLE ─────────────────────────────────────── */
+.formula-table-wrap {
+  overflow-x: auto; margin-bottom: 48px;
+  border-radius: var(--radius); border: 1px solid var(--border);
+}
+.formula-table {
+  width: 100%; border-collapse: collapse;
+  font-size: .84rem;
+}
+.formula-table th {
+  background: var(--surface2); color: var(--gold2);
+  font-family: 'Bebas Neue', sans-serif; letter-spacing: .1em;
+  font-size: .9rem; padding: 14px 20px; text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+.formula-table td {
+  padding: 13px 20px; border-bottom: 1px solid var(--border);
+  color: var(--text); vertical-align: top;
+}
+.formula-table tr:last-child td { border-bottom: none; }
+.formula-table tr:hover td { background: var(--surface2); }
+.formula-table td.mono {
+  font-family: var(--formula-font); color: var(--gold2); font-size: .82rem;
+}
+.formula-table td.accent { color: var(--teal); }
+
+/* ── IMAGE + TEXT SPLIT ───────────────────────────────────────────── */
+.split-row {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 48px;
+  align-items: center; margin-bottom: 64px;
+}
+.split-row.reverse { direction: rtl; }
+.split-row.reverse > * { direction: ltr; }
+.split-img {
+  border-radius: var(--radius2); overflow: hidden;
+  aspect-ratio: 4/3;
+}
+.split-img img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform .5s;
+}
+.split-img:hover img { transform: scale(1.04); }
+.split-text h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.8rem; font-weight: 600; color: var(--gold2); margin-bottom: 14px;
+}
+.split-text p {
+  color: var(--text2); line-height: 1.8; font-size: .92rem; margin-bottom: 12px;
+}
+.split-text .formula-block { margin-top: 16px; }
+
+/* ── HIGHLIGHT CARDS (COLLIGATIVE) ───────────────────────────────── */
+.highlight-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;
+  margin-bottom: 48px;
+}
+.highlight-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 24px 20px; text-align: center;
+  transition: transform .25s, box-shadow .25s;
+  opacity: 0; transform: translateY(20px);
+}
+.highlight-card.visible { opacity: 1; transform: none; transition: opacity .5s, transform .5s; }
+.highlight-card:hover { transform: translateY(-6px); box-shadow: var(--accent-glow); }
+.hc-icon { font-size: 2rem; margin-bottom: 12px; }
+.hc-title {
+  font-family: 'Cormorant Garamond', serif; font-size: 1.1rem;
+  font-weight: 600; color: var(--white); margin-bottom: 8px;
+}
+.hc-formula {
+  font-family: var(--formula-font); font-size: .8rem;
+  color: var(--gold2); background: var(--bg); padding: 8px 10px;
+  border-radius: 6px; border: 1px solid var(--border);
+}
+.hc-note { font-size: .72rem; color: var(--text3); margin-top: 8px; }
+
+/* ── KINETICS SECTION ────────────────────────────────────────────── */
+.kinetics-hero-banner {
+  position: relative; border-radius: var(--radius2); overflow: hidden;
+  height: 280px; margin-bottom: 64px;
+}
+.kinetics-hero-banner img { width: 100%; height: 100%; object-fit: cover; }
+.kinetics-hero-banner-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(90deg, rgba(13,12,10,.9) 40%, rgba(13,12,10,.2) 100%);
+  display: flex; flex-direction: column; justify-content: center; padding: 48px;
+}
+.kinetics-hero-banner-overlay h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem,4vw,3.5rem); color: var(--white); margin-bottom: 8px;
+}
+.kinetics-hero-banner-overlay p {
+  color: var(--text2); font-size: .9rem; max-width: 480px;
+}
+
+/* ── ORDER TABS ──────────────────────────────────────────────────── */
+.order-tabs { display: flex; gap: 12px; margin-bottom: 28px; flex-wrap: wrap; }
+.order-tab {
+  padding: 8px 20px; border-radius: 24px; border: 1px solid var(--border);
+  background: var(--surface); color: var(--text2); font-size: .82rem;
+  cursor: pointer; transition: all .2s;
+}
+.order-tab.active, .order-tab:hover {
+  background: var(--gold); color: var(--bg); border-color: var(--gold);
+}
+.order-panel { display: none; }
+.order-panel.active { display: block; }
+
+/* ── ARRHENIUS VISUAL ─────────────────────────────────────────────── */
+.arrhenius-visual {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius2); padding: 40px; margin-bottom: 48px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;
+}
+.arrhenius-visual svg { width: 100%; height: auto; }
+.arrhenius-text h3 {
+  font-family: 'Cormorant Garamond', serif; font-size: 1.6rem;
+  color: var(--gold2); margin-bottom: 16px;
+}
+.arrhenius-text .formula-block { margin-bottom: 12px; }
+.arrhenius-text p { color: var(--text2); line-height: 1.8; font-size: .88rem; }
+
+/* ── TABLES ────────────────────────────────────────────────────────── */
+.tables-section { margin-bottom: 64px; }
+.table-title {
+  font-family: 'Cormorant Garamond', serif; font-size: 1.5rem;
+  color: var(--gold2); margin-bottom: 20px; display: flex;
+  align-items: center; gap: 12px;
+}
+.table-title::after {
+  content: ''; flex: 1; height: 1px; background: var(--border);
+}
+
+/* ── GLOSSARY GRID ────────────────────────────────────────────────── */
+.glossary-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 12px; margin-bottom: 48px;
+}
+.glossary-item {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 14px 16px;
+}
+.glossary-sym {
+  font-family: var(--formula-font); color: var(--gold2);
+  font-size: .9rem; margin-bottom: 4px;
+}
+.glossary-def { font-size: .78rem; color: var(--text2); line-height: 1.5; }
+
+/* ── TIPS SECTION ─────────────────────────────────────────────────── */
+.tips-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px; margin-bottom: 48px;
+}
+.tip-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 22px 22px 18px;
+  display: flex; gap: 16px;
+}
+.tip-num {
+  font-family: 'Bebas Neue', sans-serif; font-size: 2.2rem;
+  color: var(--surface2); line-height: 1; flex-shrink: 0; min-width: 36px;
+}
+.tip-text { font-size: .84rem; color: var(--text2); line-height: 1.7; }
+.tip-text strong { color: var(--gold2); }
+
+/* ── MAKER SECTION ────────────────────────────────────────────────── */
+#maker {
+  padding: 120px 0; text-align: center; position: relative; overflow: hidden;
+}
+.maker-glow {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+  width: 600px; height: 600px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(201,168,76,.1) 0%, transparent 65%);
+  animation: pulse-glow 5s ease-in-out infinite;
+}
+.maker-label {
+  font-size: .7rem; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--text3); margin-bottom: 40px; position: relative; z-index: 1;
+}
+.maker-image-wrap {
+  position: relative; display: inline-block; margin-bottom: 32px; z-index: 1;
+}
+.maker-image-wrap img {
+  width: 140px; height: 140px; border-radius: 50%; object-fit: cover;
+  border: 3px solid var(--gold);
+  box-shadow: 0 0 0 0 rgba(201,168,76,.4);
+  animation: ring-pulse 2.5s ease-out infinite;
+}
+@keyframes ring-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(201,168,76,.4); }
+  70% { box-shadow: 0 0 0 20px rgba(201,168,76,0); }
+  100% { box-shadow: 0 0 0 0 rgba(201,168,76,0); }
+}
+.maker-ring {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+  border-radius: 50%; border: 1px solid rgba(201,168,76,.2);
+  animation: expand-ring 2.5s ease-out infinite;
+}
+.maker-ring:nth-child(1) { width: 170px; height: 170px; animation-delay: 0s; }
+.maker-ring:nth-child(2) { width: 200px; height: 200px; animation-delay: .5s; }
+.maker-ring:nth-child(3) { width: 230px; height: 230px; animation-delay: 1s; }
+@keyframes expand-ring {
+  0% { opacity: .6; }
+  100% { opacity: 0; transform: translate(-50%,-50%) scale(1.15); }
+}
+.maker-name {
+  font-family: 'Pacifico', cursive;
+  font-size: clamp(2.5rem,6vw,5rem);
+  background: linear-gradient(90deg, var(--gold), var(--gold2), var(--gold3), var(--gold2), var(--gold));
+  background-size: 300% 100%;
+  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+  animation: shimmer 4s linear infinite; position: relative; z-index: 1;
+  margin-bottom: 12px;
+}
+@keyframes shimmer { to { background-position: -300% 0; } }
+.maker-title-text {
+  font-size: .82rem; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--text3); position: relative; z-index: 1;
+}
+.maker-divider {
+  display: flex; align-items: center; justify-content: center;
+  gap: 20px; margin: 24px 0; position: relative; z-index: 1;
+}
+.maker-divider-line { width: 100px; height: 1px; background: var(--border); }
+.maker-desc {
+  max-width: 520px; margin: 0 auto; color: var(--text2);
+  line-height: 1.8; font-size: .9rem; position: relative; z-index: 1;
+}
+
+/* ── FOOTER ───────────────────────────────────────────────────────── */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 28px 48px; display: flex;
+  align-items: center; justify-content: space-between;
+}
+.footer-left {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: .9rem; color: var(--text3);
+}
+.footer-right {
+  font-size: .7rem; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--text3);
+}
+
+/* ── ANIMATIONS ───────────────────────────────────────────────────── */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ── SEPARATORS ───────────────────────────────────────────────────── */
+.gradient-sep {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  margin: 80px 0;
+  opacity: .4;
+}
+
+/* ── RESPONSIVE ───────────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  nav { padding: 0 24px; }
+  .nav-links { display: none; }
+  .split-row { grid-template-columns: 1fr; }
+  .split-row.reverse { direction: ltr; }
+  .highlight-grid { grid-template-columns: repeat(2,1fr); }
+  .arrhenius-visual { grid-template-columns: 1fr; }
+  footer { flex-direction: column; gap: 10px; text-align: center; }
+}
+@media (max-width: 600px) {
+  .formula-grid { grid-template-columns: 1fr; }
+  .highlight-grid { grid-template-columns: 1fr; }
+  .hero-meta { flex-wrap: wrap; justify-content: center; gap: 24px; }
+  .hero-meta-sep { display: none; }
+  section { padding: 80px 0; }
+}
+</style>
+</head>
+<body>
+
+<!-- CURSOR -->
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+
+<!-- PROGRESS BAR -->
+<div id="progress-bar"></div>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#hero">⚗ Chem XII</a>
+  <ul class="nav-links">
+    <li><a href="#solutions">Solutions</a></li>
+    <li><a href="#kinetics">Kinetics</a></li>
+    <li><a href="#tables">Tables</a></li>
+    <li><a href="#glossary">Glossary</a></li>
+    <li><a href="#maker">About</a></li>
+  </ul>
+  <div class="nav-right">
+    <button id="theme-toggle" aria-label="Toggle theme"></button>
+  </div>
+</nav>
+
+<!-- ══════════════ HERO ══════════════ -->
+<section id="hero">
+  <div class="hero-glow"></div>
+  <div class="floating-letters" aria-hidden="true">
+    <span class="fl" style="top:10%;left:5%;animation-delay:0s">K</span>
+    <span class="fl" style="top:15%;right:8%;animation-delay:1.5s">π</span>
+    <span class="fl" style="top:65%;left:3%;animation-delay:3s">M</span>
+    <span class="fl" style="top:70%;right:5%;animation-delay:2s">Ea</span>
+    <span class="fl" style="top:40%;left:90%;animation-delay:.8s">χ</span>
+    <span class="fl" style="top:50%;left:2%;animation-delay:2.5s">ΔT</span>
+    <span class="fl" style="bottom:15%;left:20%;animation-delay:4s">k</span>
+    <span class="fl" style="bottom:20%;right:15%;animation-delay:1s">A</span>
+  </div>
+
+  <p class="hero-eyebrow">CBSE Board Exam 2026–27 · Class 12 Chemistry</p>
+  <h1 class="hero-title">Mega Formula<br/><span>Reference Sheet</span></h1>
+  <p class="hero-subtitle">Solutions &amp; Chemical Kinetics</p>
+
+  <div class="hero-divider">
+    <div class="hero-divider-line"></div>
+    <div class="hero-gem"></div>
+    <div class="hero-divider-line r"></div>
+  </div>
+
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-num">150+</span>
+      <div class="hero-meta-label">Formulas</div>
+    </div>
+    <div class="hero-meta-sep"></div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-num">2</span>
+      <div class="hero-meta-label">Chapters</div>
+    </div>
+    <div class="hero-meta-sep"></div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-num">7</span>
+      <div class="hero-meta-label">Quick Tables</div>
+    </div>
+    <div class="hero-meta-sep"></div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-num">10</span>
+      <div class="hero-meta-label">Mnemonics</div>
+    </div>
+  </div>
+
+  <div class="hero-cta">
+    <a href="#solutions" class="btn-primary">
+      ↓ &nbsp; Start Exploring
+    </a>
+  </div>
+
+  <div class="scroll-hint" aria-hidden="true">
+    <div class="scroll-hint-line"></div>
+    <span class="scroll-hint-text">Scroll</span>
+  </div>
+</section>
+
+<!-- ══════════════ SOLUTIONS ══════════════ -->
+<section id="solutions">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-number">01</div>
+      <p class="section-eyebrow">Unit I</p>
+      <h2 class="section-title">The Chemistry of <em>Solutions</em></h2>
+      <div class="section-divider">
+        <div class="section-divider-line"></div>
+        <div class="section-divider-dot"></div>
+        <div class="section-divider-line"></div>
+      </div>
+    </div>
+
+    <!-- Banner -->
+    <div class="chapter-banner">
+      <img src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=1400&q=80" alt="Chemistry solutions"/>
+      <div class="chapter-banner-overlay">
+        <div>
+          <div class="chapter-banner-label">CONCENTRATION EXPRESSIONS</div>
+          <div class="chapter-banner-sub">Mass%, Molarity, Molality, Normality &amp; More</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Concentration Cards -->
+    <div class="formula-grid" id="conc-grid">
+      <!-- injected by JS -->
+    </div>
+
+    <!-- Raoult / Henry Split -->
+    <div class="split-row">
+      <div class="split-img">
+        <img src="https://images.unsplash.com/photo-1614935151651-0bea6508db6b?w=800&q=80" alt="Vapour pressure laboratory"/>
+      </div>
+      <div class="split-text">
+        <h3>Raoult's Law &amp; Vapour Pressure</h3>
+        <p>Raoult's Law describes how the vapour pressure of an ideal solution depends on the mole fractions of its components. Solutions may exhibit positive or negative deviations from ideality.</p>
+        <div class="formula-block">p_A = p°_A × χ_A
+p_total = p°_A·χ_A + p°_B·χ_B
+(p° – p)/p° = χ_B  [RLVP]</div>
+        <p>Ideal: ΔH_mix = 0, ΔV_mix = 0<br/>+ve deviation: A–B weaker than A–A &amp; B–B<br/>–ve deviation: A–B stronger than A–A &amp; B–B</p>
+      </div>
+    </div>
+
+    <div class="split-row reverse">
+      <div class="split-img">
+        <img src="https://images.unsplash.com/photo-1567427018141-0584cfcbf1b8?w=800&q=80" alt="Dissolved gas bubbles"/>
+      </div>
+      <div class="split-text">
+        <h3>Henry's Law — Gas Solubility</h3>
+        <p>Henry's Law quantifies how gas dissolves in a liquid under pressure. Higher K_H means lower solubility at a given pressure. Gas solubility <strong>decreases</strong> with temperature as K_H increases.</p>
+        <div class="formula-block">p = K_H × χ
+K_H = p / χ
+
+S₁/S₂ = p₁/p₂  [at two pressures]</div>
+        <p>Applications: carbonated beverages, scuba diving physiology, dissolved oxygen in water bodies.</p>
+      </div>
+    </div>
+
+    <!-- Colligative Properties Highlights -->
+    <div class="gradient-sep"></div>
+    <div style="text-align:center;margin-bottom:40px;">
+      <p class="section-eyebrow">Colligative Properties</p>
+      <h3 style="font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--white)">Depend Only on <em style="color:var(--gold2)">Number of Particles</em></h3>
+    </div>
+
+    <div class="highlight-grid" id="colligative-grid">
+      <!-- injected by JS -->
+    </div>
+
+    <!-- Banner for Van't Hoff -->
+    <div class="chapter-banner" style="height:180px">
+      <img src="https://images.unsplash.com/photo-1506086679525-9a2203b62d04?w=1400&q=80" alt="Osmosis membrane"/>
+      <div class="chapter-banner-overlay">
+        <div>
+          <div class="chapter-banner-label">VAN'T HOFF FACTOR (i)</div>
+          <div class="chapter-banner-sub">Dissociation · Association · Modified Colligative Formulas</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Van't Hoff Cards -->
+    <div class="formula-grid" id="vanthoff-grid"></div>
+
+    <!-- Solubility & Azeotropes -->
+    <div class="split-row">
+      <div class="split-img">
+        <img src="https://images.unsplash.com/photo-1603126857599-f6e157fa2fe6?w=800&q=80" alt="Salt crystals solubility"/>
+      </div>
+      <div class="split-text">
+        <h3>Solubility Product (K<sub style="font-style:normal">sp</sub>)</h3>
+        <p>The solubility product links molar solubility to equilibrium concentrations of ions. Different ionic stoichiometries yield different expressions.</p>
+        <div class="formula-block">AB type:   Ksp = S²
+AB₂ type:  Ksp = 4S³
+A₂B₃ type: Ksp = 108S⁵
+A₃B₂ type: Ksp = 108S⁵</div>
+      </div>
+    </div>
+
+    <div class="split-row reverse">
+      <div class="split-img">
+        <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&q=80" alt="Distillation azeotrope"/>
+      </div>
+      <div class="split-text">
+        <h3>Azeotropes</h3>
+        <p>Azeotropes are constant-boiling mixtures that cannot be separated by simple distillation. Their type is linked to the nature of deviation from Raoult's Law.</p>
+        <div class="formula-block">Minimum Boiling Azeotrope:
+  +ve deviation (e.g., EtOH–H₂O 95.5%)
+  BP < both components
+
+Maximum Boiling Azeotrope:
+  –ve deviation (e.g., HNO₃–H₂O 68%)
+  BP > both components</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════ CHEMICAL KINETICS ══════════════ -->
+<section id="kinetics" style="background:var(--bg2)">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-number">02</div>
+      <p class="section-eyebrow">Unit II</p>
+      <h2 class="section-title"><em>Chemical</em> Kinetics</h2>
+      <div class="section-divider">
+        <div class="section-divider-line"></div>
+        <div class="section-divider-dot"></div>
+        <div class="section-divider-line"></div>
+      </div>
+    </div>
+
+    <!-- Kinetics Hero Banner -->
+    <div class="kinetics-hero-banner">
+      <img src="https://images.unsplash.com/photo-1628595351029-c2bf17511435?w=1400&q=80" alt="Reaction kinetics"/>
+      <div class="kinetics-hero-banner-overlay">
+        <h2>Rate Laws &amp; Reaction Orders</h2>
+        <p>From zero-order flat lines to exponential first-order decay — master every integrated rate equation and half-life formula.</p>
+      </div>
+    </div>
+
+    <!-- Rate Law Cards -->
+    <div class="formula-grid" id="ratelaw-grid"></div>
+
+    <!-- Integrated Rate Law Tabs -->
+    <div style="margin-bottom:48px">
+      <div class="table-title">Integrated Rate Equations</div>
+      <div class="order-tabs">
+        <div class="order-tab active" onclick="showOrder('zero',this)">Zero Order</div>
+        <div class="order-tab" onclick="showOrder('first',this)">First Order</div>
+        <div class="order-tab" onclick="showOrder('second',this)">Second Order</div>
+        <div class="order-tab" onclick="showOrder('pseudo',this)">Pseudo First Order</div>
+        <div class="order-tab" onclick="showOrder('nth',this)">nth Order</div>
+      </div>
+
+      <div id="panel-zero" class="order-panel active">
+        <div class="formula-card visible" style="max-width:100%">
+          <span class="card-tag">ZERO ORDER</span>
+          <div class="card-title">Zero Order Integrated Law</div>
+          <div class="formula-block">Rate = k[A]⁰ = k (constant)
+
+[A] = [A]₀ – kt
+
+k = ([A]₀ – [A]) / t
+
+t₁/₂ = [A]₀ / 2k          ← depends on [A]₀
+
+t_complete = [A]₀ / k     ← time for complete reaction
+
+Graph: [A] vs t  → straight line, slope = –k</div>
+          <p class="card-note">Units of k: mol L⁻¹ s⁻¹ (M·s⁻¹). Rate is constant regardless of concentration.</p>
+        </div>
+      </div>
+
+      <div id="panel-first" class="order-panel">
+        <div class="formula-card visible" style="max-width:100%">
+          <span class="card-tag teal">FIRST ORDER</span>
+          <div class="card-title">First Order Integrated Law</div>
+          <div class="formula-block">Rate = k[A]
+
+ln[A] = ln[A]₀ – kt
+[A] = [A]₀ · e^(–kt)
+
+k = (2.303/t) × log([A]₀/[A])
+
+t₁/₂ = 0.693/k = ln2/k    ← INDEPENDENT of [A]₀
+
+After n half-lives:
+  [A] = [A]₀ × (1/2)ⁿ
+  Fraction remaining = (1/2)ⁿ
+  Fraction decomposed = 1 – (1/2)ⁿ
+
+Key times:
+  t₅₀%  = 0.693/k
+  t₇₅%  = 2 × t₁/₂
+  t₉₀%  = 2.303/k
+  t₉₉%  = 4.606/k
+  t₉₉.₉% = 6.909/k
+
+Graphs:
+  [A] vs t      → exponential decay
+  ln[A] vs t   → slope = –k
+  log[A] vs t  → slope = –k/2.303</div>
+          <p class="card-note">Units of k: s⁻¹. Most important order for CBSE — radioactivity, hydrolysis, inversions.</p>
+        </div>
+      </div>
+
+      <div id="panel-second" class="order-panel">
+        <div class="formula-card visible" style="max-width:100%">
+          <span class="card-tag red">SECOND ORDER</span>
+          <div class="card-title">Second Order Integrated Law</div>
+          <div class="formula-block">Type I: 2A → Products
+  Rate = k[A]²
+  1/[A] = 1/[A]₀ + kt
+  t₁/₂ = 1/(k[A]₀)    ← depends on 1/[A]₀
+  Graph: 1/[A] vs t → slope = +k
+
+Type II: A + B → Products ([A]₀ ≠ [B]₀)
+  k = [2.303/t([A]₀–[B]₀)] × log([B]₀[A]/[A]₀[B])</div>
+          <p class="card-note">Units of k: L mol⁻¹ s⁻¹ (M⁻¹s⁻¹). Half-life inversely proportional to initial concentration.</p>
+        </div>
+      </div>
+
+      <div id="panel-pseudo" class="order-panel">
+        <div class="formula-card visible" style="max-width:100%">
+          <span class="card-tag blue">PSEUDO FIRST ORDER</span>
+          <div class="card-title">Pseudo First Order Reactions</div>
+          <div class="formula-block">For A + B → Products, where [B] >> [A]:
+
+  Rate = k[A][B] ≈ k′[A]
+
+  k′ = k[B]  (pseudo first order rate constant)
+
+Example:
+  CH₃COOC₂H₅ + H₂O → CH₃COOH + C₂H₅OH
+  Rate = k[ester][H₂O] ≈ k′[ester]
+  (since [H₂O] is in vast excess and stays constant)</div>
+          <p class="card-note">The reaction behaves as first order because one reactant concentration remains effectively constant.</p>
+        </div>
+      </div>
+
+      <div id="panel-nth" class="order-panel">
+        <div class="formula-card visible" style="max-width:100%">
+          <span class="card-tag">nth ORDER</span>
+          <div class="card-title">General nth Order Formula</div>
+          <div class="formula-block">1/[A]^(n–1) – 1/[A]₀^(n–1) = (n–1)kt   [n ≠ 1]
+
+t₁/₂ = (2^(n–1) – 1) / [(n–1) × k × [A]₀^(n–1)]
+
+t₁/₂ ∝ 1/[A]₀^(n–1)
+
+Summary:
+  Zero:   t₁/₂ ∝ [A]₀       k units: M·s⁻¹
+  First:  t₁/₂ = const       k units: s⁻¹
+  Second: t₁/₂ ∝ 1/[A]₀     k units: M⁻¹s⁻¹
+  nth:    k units: M^(1–n)s⁻¹</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Arrhenius Visual -->
+    <div class="arrhenius-visual">
+      <div>
+        <svg viewBox="0 0 380 260" xmlns="http://www.w3.org/2000/svg">
+          <!-- Axes -->
+          <line x1="50" y1="220" x2="350" y2="220" stroke="#706a56" stroke-width="1.5"/>
+          <line x1="50" y1="220" x2="50" y2="20" stroke="#706a56" stroke-width="1.5"/>
+          <!-- Axis labels -->
+          <text x="195" y="248" text-anchor="middle" fill="#9a9280" font-size="12" font-family="DM Sans">1/T →</text>
+          <text x="18" y="125" text-anchor="middle" fill="#9a9280" font-size="12" font-family="DM Sans" transform="rotate(-90,18,125)">log k →</text>
+          <!-- Grid lines -->
+          <line x1="50" y1="170" x2="350" y2="170" stroke="#2e2b22" stroke-width="1" stroke-dasharray="4,4"/>
+          <line x1="50" y1="120" x2="350" y2="120" stroke="#2e2b22" stroke-width="1" stroke-dasharray="4,4"/>
+          <line x1="50" y1="70" x2="350" y2="70" stroke="#2e2b22" stroke-width="1" stroke-dasharray="4,4"/>
+          <line x1="120" y1="20" x2="120" y2="220" stroke="#2e2b22" stroke-width="1" stroke-dasharray="4,4"/>
+          <line x1="200" y1="20" x2="200" y2="220" stroke="#2e2b22" stroke-width="1" stroke-dasharray="4,4"/>
+          <line x1="280" y1="20" x2="280" y2="220" stroke="#2e2b22" stroke-width="1" stroke-dasharray="4,4"/>
+          <!-- The Arrhenius line: log k = log A – Ea/(2.303R) × (1/T) -->
+          <line x1="70" y1="40" x2="340" y2="210" stroke="#c9a84c" stroke-width="2.5" stroke-linecap="round"/>
+          <!-- Slope annotation -->
+          <path d="M 240,140 L 310,140 L 310,190" stroke="#e4c36a" stroke-width="1" fill="none" stroke-dasharray="3,3"/>
+          <text x="265" y="136" fill="#e4c36a" font-size="10" font-family="Courier New">slope =</text>
+          <text x="252" y="148" fill="#e4c36a" font-size="10" font-family="Courier New">–Eₐ/2.303R</text>
+          <!-- Data points -->
+          <circle cx="100" cy="58" r="4" fill="#c9a84c"/>
+          <circle cx="160" cy="98" r="4" fill="#c9a84c"/>
+          <circle cx="220" cy="138" r="4" fill="#c9a84c"/>
+          <circle cx="280" cy="175" r="4" fill="#c9a84c"/>
+          <circle cx="320" cy="198" r="4" fill="#c9a84c"/>
+          <!-- Y-intercept annotation -->
+          <line x1="50" y1="20" x2="70" y2="38" stroke="#4a9b8e" stroke-width="1" stroke-dasharray="3,3"/>
+          <text x="54" y="16" fill="#4a9b8e" font-size="10" font-family="Courier New">y-int = log A</text>
+          <!-- Title -->
+          <text x="195" y="14" text-anchor="middle" fill="#b0a890" font-size="11" font-family="DM Sans">Arrhenius Plot: log k vs 1/T</text>
+        </svg>
+      </div>
+      <div class="arrhenius-text">
+        <h3>Arrhenius Equation</h3>
+        <div class="formula-block">k = A × e^(–Eₐ/RT)
+
+ln k  = ln A – Eₐ/RT
+log k = log A – Eₐ/(2.303RT)
+
+Two-temperature form:
+log(k₂/k₁) = Eₐ(T₂–T₁) / (2.303·R·T₁T₂)
+
+Eₐ = –2.303R × slope (from graph)</div>
+        <p>The Arrhenius plot (log k vs 1/T) is a straight line. Its slope gives activation energy; the y-intercept gives the pre-exponential factor A. A catalyst lowers Eₐ without changing ΔH or equilibrium.</p>
+      </div>
+    </div>
+
+    <!-- Kinetics more cards -->
+    <div class="formula-grid" id="kinetics-extra-grid"></div>
+
+  </div>
+</section>
+
+<!-- ══════════════ QUICK REFERENCE TABLES ══════════════ -->
+<section id="tables">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-number">03</div>
+      <p class="section-eyebrow">Quick Reference</p>
+      <h2 class="section-title"><em>Data</em> Tables</h2>
+      <div class="section-divider">
+        <div class="section-divider-line"></div>
+        <div class="section-divider-dot"></div>
+        <div class="section-divider-line"></div>
+      </div>
+    </div>
+
+    <!-- Banner -->
+    <div class="chapter-banner" style="height:160px">
+      <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=1400&q=80" alt="Reference data tables"/>
+      <div class="chapter-banner-overlay">
+        <div>
+          <div class="chapter-banner-label">CONSTANTS, K_f / K_b, HALF-LIVES</div>
+          <div class="chapter-banner-sub">All numerical data for CBSE numerical problems</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tables-section">
+      <!-- Table: Constants -->
+      <div class="table-title">TABLE 1 — Important Constants</div>
+      <div class="formula-table-wrap">
+        <table class="formula-table">
+          <tr><th>Constant</th><th>Symbol</th><th>Value</th></tr>
+          <tr><td>Universal Gas Constant</td><td class="mono">R</td><td class="mono">8.314 J mol⁻¹ K⁻¹ = 0.0821 L·atm·mol⁻¹·K⁻¹ = 2 cal mol⁻¹ K⁻¹</td></tr>
+          <tr><td>Avogadro's Number</td><td class="mono">N_A</td><td class="mono">6.022 × 10²³ mol⁻¹</td></tr>
+          <tr><td>Boltzmann Constant</td><td class="mono">k_B</td><td class="mono">1.38 × 10⁻²³ J K⁻¹</td></tr>
+          <tr><td>Planck's Constant</td><td class="mono">h</td><td class="mono">6.626 × 10⁻³⁴ J·s</td></tr>
+          <tr><td>Standard Atmosphere</td><td class="mono">1 atm</td><td class="mono">101325 Pa = 101.325 kPa</td></tr>
+        </table>
+      </div>
+
+      <!-- Table: Kf/Kb -->
+      <div class="table-title">TABLE 2 — Cryoscopic &amp; Ebullioscopic Constants</div>
+      <div class="formula-table-wrap">
+        <table class="formula-table">
+          <tr><th>Solvent</th><th>K_f (K·kg·mol⁻¹)</th><th>K_b (K·kg·mol⁻¹)</th><th>T_f (°C)</th><th>T_b (°C)</th></tr>
+          <tr><td>Water</td><td class="mono accent">1.86</td><td class="mono accent">0.52</td><td class="mono">0</td><td class="mono">100</td></tr>
+          <tr><td>Benzene</td><td class="mono">5.12</td><td class="mono">2.53</td><td class="mono">5.5</td><td class="mono">80.1</td></tr>
+          <tr><td>Chloroform</td><td class="mono">4.68</td><td class="mono">3.63</td><td class="mono">–63.5</td><td class="mono">61.2</td></tr>
+          <tr><td>Acetic Acid</td><td class="mono">3.90</td><td class="mono">3.07</td><td class="mono">16.6</td><td class="mono">118.1</td></tr>
+          <tr><td>Carbon Tetrachloride</td><td class="mono">29.8</td><td class="mono">5.03</td><td class="mono">–22.9</td><td class="mono">76.7</td></tr>
+          <tr><td>Camphor</td><td class="mono accent">40.0</td><td class="mono">5.61</td><td class="mono">178.4</td><td class="mono">207.4</td></tr>
+          <tr><td>Cyclohexane</td><td class="mono">20.0</td><td class="mono">2.79</td><td class="mono">6.5</td><td class="mono">80.7</td></tr>
+          <tr><td>Naphthalene</td><td class="mono">6.9</td><td class="mono">—</td><td class="mono">80.2</td><td class="mono">—</td></tr>
+          <tr><td>Nitrobenzene</td><td class="mono">7.0</td><td class="mono">5.24</td><td class="mono">5.7</td><td class="mono">210.8</td></tr>
+        </table>
+      </div>
+
+      <!-- Table: Integrated Rate -->
+      <div class="table-title">TABLE 3 — Integrated Rate Law Summary</div>
+      <div class="formula-table-wrap">
+        <table class="formula-table">
+          <tr><th>Order</th><th>Rate Law</th><th>Integrated Form</th><th>t₁/₂</th><th>Units of k</th></tr>
+          <tr><td>0</td><td class="mono">k</td><td class="mono">[A] = [A]₀ – kt</td><td class="mono">[A]₀/2k</td><td class="mono">M·s⁻¹</td></tr>
+          <tr><td>1</td><td class="mono">k[A]</td><td class="mono">ln[A] = ln[A]₀ – kt</td><td class="mono accent">0.693/k</td><td class="mono">s⁻¹</td></tr>
+          <tr><td>2</td><td class="mono">k[A]²</td><td class="mono">1/[A] = 1/[A]₀ + kt</td><td class="mono">1/(k[A]₀)</td><td class="mono">M⁻¹s⁻¹</td></tr>
+          <tr><td>n</td><td class="mono">k[A]ⁿ</td><td class="mono">Complex</td><td class="mono">(2^(n–1)–1)/[(n–1)k[A]₀^(n–1)]</td><td class="mono">M^(1–n)s⁻¹</td></tr>
+        </table>
+      </div>
+
+      <!-- Table: Van't Hoff -->
+      <div class="table-title">TABLE 4 — Van't Hoff Factor for Common Electrolytes</div>
+      <div class="formula-table-wrap">
+        <table class="formula-table">
+          <tr><th>Electrolyte</th><th>Type</th><th>Ions</th><th>Theoretical i (complete dissoc.)</th></tr>
+          <tr><td>NaCl</td><td>1:1</td><td>2</td><td class="mono accent">i = 2</td></tr>
+          <tr><td>CaCl₂</td><td>1:2</td><td>3</td><td class="mono accent">i = 3</td></tr>
+          <tr><td>Na₂SO₄</td><td>2:1</td><td>3</td><td class="mono accent">i = 3</td></tr>
+          <tr><td>AlCl₃</td><td>1:3</td><td>4</td><td class="mono accent">i = 4</td></tr>
+          <tr><td>Al₂(SO₄)₃</td><td>2:3</td><td>5</td><td class="mono accent">i = 5</td></tr>
+          <tr><td>CH₃COOH</td><td>Weak acid</td><td>—</td><td class="mono">1 &lt; i &lt; 2</td></tr>
+          <tr><td>Glucose</td><td>Non-electrolyte</td><td>—</td><td class="mono">i = 1</td></tr>
+          <tr><td>Acetic acid in benzene</td><td>Association</td><td>—</td><td class="mono">i &lt; 1</td></tr>
+        </table>
+      </div>
+
+      <!-- Table: 1st order times -->
+      <div class="table-title">TABLE 5 — % Completion for First Order Reactions</div>
+      <div class="formula-table-wrap">
+        <table class="formula-table">
+          <tr><th>% Completion</th><th>Fraction Remaining</th><th>Formula</th></tr>
+          <tr><td>50%</td><td class="mono">1/2</td><td class="mono">t = 0.693/k = t₁/₂</td></tr>
+          <tr><td>75%</td><td class="mono">1/4</td><td class="mono">t = 2 × t₁/₂</td></tr>
+          <tr><td>87.5%</td><td class="mono">1/8</td><td class="mono">t = 3 × t₁/₂</td></tr>
+          <tr><td>90%</td><td class="mono">1/10</td><td class="mono accent">t = 2.303/k</td></tr>
+          <tr><td>93.75%</td><td class="mono">1/16</td><td class="mono">t = 4 × t₁/₂</td></tr>
+          <tr><td>99%</td><td class="mono">1/100</td><td class="mono accent">t = 4.606/k</td></tr>
+          <tr><td>99.9%</td><td class="mono">1/1000</td><td class="mono">t = 6.909/k</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ GLOSSARY ══════════════ -->
+<section id="glossary" style="background:var(--bg2)">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-number">04</div>
+      <p class="section-eyebrow">Symbol Reference</p>
+      <h2 class="section-title">Master <em>Glossary</em></h2>
+      <div class="section-divider">
+        <div class="section-divider-line"></div>
+        <div class="section-divider-dot"></div>
+        <div class="section-divider-line"></div>
+      </div>
+    </div>
+
+    <div class="glossary-grid" id="glossary-grid"></div>
+
+    <div class="gradient-sep"></div>
+
+    <!-- Mnemonics / Tips -->
+    <div style="text-align:center;margin-bottom:40px;">
+      <p class="section-eyebrow">Memory Aids</p>
+      <h3 style="font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--white)">Tips &amp; <em style="color:var(--gold2)">Mnemonics</em></h3>
+    </div>
+    <div class="tips-grid" id="tips-grid"></div>
+  </div>
+</section>
+
+<!-- ══════════════ MAKER ══════════════ -->
+<section id="maker">
+  <div class="maker-glow"></div>
+  <div class="container" style="position:relative;z-index:1;">
+    <p class="maker-label">Formula Sheet Compiled by</p>
+    <div class="maker-image-wrap">
+      <div class="maker-ring"></div>
+      <div class="maker-ring"></div>
+      <div class="maker-ring"></div>
+      <img src="https://plain-apac-prod-public.komododecks.com/202605/22/nHDi45aen4uwI6zP8WGI/image.jpg" alt="Akshit Tyagi"/>
+    </div>
+    <h2 class="maker-name">Akshit Tyagi</h2>
+    <p class="maker-title-text">Class 12 · CBSE Chemistry · 2026–27</p>
+    <div class="maker-divider">
+      <div class="maker-divider-line"></div>
+      <div class="hero-gem"></div>
+      <div class="maker-divider-line"></div>
+    </div>
+    <p class="maker-desc">
+      This comprehensive formula sheet covers every major and minor formula from 
+      <strong style="color:var(--gold2)">Solutions</strong> and <strong style="color:var(--gold2)">Chemical Kinetics</strong> as per the CBSE 2026–27 syllabus — 
+      over 150 formulas, 7 quick-reference tables, symbol glossary, and 10 exam mnemonics. 
+      Designed to be your one-stop reference for board exam preparation.
+    </p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-left">Class XII Chemistry — Mega Formula Sheet · CBSE 2026–27</div>
+  <div class="footer-right">Made with ♥ by Akshit Tyagi</div>
+</footer>
+
+<!-- ══════════════════════ JAVASCRIPT ══════════════════════════════ -->
+<script>
+/* ── CURSOR ───────────────────────────────────────────────────────── */
+const cursor = document.getElementById('cursor');
+const ring   = document.getElementById('cursor-ring');
+let mx=0, my=0, rx=0, ry=0;
+document.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; });
+(function animCursor(){
+  rx += (mx-rx)*.18; ry += (my-ry)*.18;
+  cursor.style.left = mx+'px'; cursor.style.top = my+'px';
+  ring.style.left   = rx+'px'; ring.style.top  = ry+'px';
+  requestAnimationFrame(animCursor);
+})();
+document.querySelectorAll('a,button,.formula-card,.order-tab,.highlight-card,.tip-card')
+  .forEach(el => {
+    el.addEventListener('mouseenter', ()=>document.body.classList.add('hovering'));
+    el.addEventListener('mouseleave', ()=>document.body.classList.remove('hovering'));
+  });
+
+/* ── PROGRESS BAR ─────────────────────────────────────────────────── */
+const pb = document.getElementById('progress-bar');
+window.addEventListener('scroll', ()=>{
+  const s = document.documentElement.scrollTop;
+  const h = document.documentElement.scrollHeight - window.innerHeight;
+  pb.style.width = (s/h*100)+'%';
+});
+
+/* ── THEME TOGGLE ─────────────────────────────────────────────────── */
+document.getElementById('theme-toggle').addEventListener('click', ()=>{
+  const t = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+  document.documentElement.dataset.theme = t;
+});
+
+/* ── SCROLL REVEAL ────────────────────────────────────────────────── */
+const io = new IntersectionObserver(entries => {
+  entries.forEach((e,i) => {
+    if(e.isIntersecting){
+      setTimeout(()=>e.target.classList.add('visible'), i*80);
+    }
+  });
+}, { threshold: .12 });
+
+/* ── ORDER TABS ───────────────────────────────────────────────────── */
+function showOrder(name, el) {
+  document.querySelectorAll('.order-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.order-tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('panel-'+name).classList.add('active');
+  el.classList.add('active');
+}
+
+/* ── DATA INJECTION ───────────────────────────────────────────────── */
+
+/* Concentration */
+const concData = [
+  {
+    tag:'MASS %', title:'Mass Percentage (w/w %)',
+    formula:'w/w % = (Mass of Solute / Mass of Solution) × 100\n\nw/w % = [w_B / (w_A + w_B)] × 100',
+    note:'Example: 10 g NaCl in 90 g water → w/w% = (10/100)×100 = 10%'
+  },
+  {
+    tag:'MOLARITY', title:'Molarity (M)', tagClass:'teal',
+    formula:'M = n_solute / V_solution(L)\n\nM = (10 × d × w%) / M_solute\n    d = density(g/mL), w% = mass%\n\nDilution: M₁V₁ = M₂V₂\n\nMixing: M_f = (M₁V₁ + M₂V₂)/(V₁+V₂)',
+    note:'Units: mol L⁻¹. Depends on temperature (volume changes).'
+  },
+  {
+    tag:'MOLALITY', title:'Molality (m)', tagClass:'',
+    formula:'m = n_solute / w_solvent(kg)\n\nm = (1000 × w%) / [M_solute × (100 – w%)]\n\nRelation: m = (1000M) / (1000d – M·M_solute)',
+    note:'Units: mol kg⁻¹. Independent of temperature — preferred for colligative properties.'
+  },
+  {
+    tag:'MOLE FRACTION', title:'Mole Fraction (χ)', tagClass:'blue',
+    formula:'χ_A = n_A / (n_A + n_B)\nχ_B = n_B / (n_A + n_B)\nχ_A + χ_B = 1\n\nMulticomponent: χ_i = n_i / Σn_i',
+    note:'Dimensionless. Sum of all mole fractions = 1.'
+  },
+  {
+    tag:'NORMALITY', title:'Normality (N)', tagClass:'red',
+    formula:'N = Equiv. of Solute / V_solution(L)\nN = M × n-factor\nN₁V₁ = N₂V₂\n\nEquiv. Wt = Molar Mass / n-factor',
+    note:'n-factor: for acids = basicity; for bases = acidity; for redox = electrons transferred.'
+  },
+  {
+    tag:'PPM', title:'Parts Per Million (ppm)',
+    formula:'ppm = (Mass of component / Total mass) × 10⁶\nppb = (Mass of component / Total mass) × 10⁹\n\nMole fraction ppm:\nppm = (n_i / Σn) × 10⁶',
+    note:'Used for very dilute solutions, e.g. pollutants in water.'
+  },
+];
+
+/* Van't Hoff */
+const vhData = [
+  {
+    tag:"VAN'T HOFF", title:'Van\'t Hoff Factor (i)', tagClass:'teal',
+    formula:'i = Actual moles in solution / Moles dissolved\n\ni > 1  → dissociation (electrolytes)\ni = 1  → non-electrolyte\ni < 1  → association\n\nM_observed = M_formula / i',
+    note:''
+  },
+  {
+    tag:'DISSOCIATION', title:'Degree of Dissociation (α)', tagClass:'',
+    formula:'For Aₙ ⇌ nA:\n  i = 1 + (n–1)α\n  α = (i–1)/(n–1)\n\nModified colligative:\n  ΔT_b = i·K_b·m\n  ΔT_f = i·K_f·m\n  π    = i·C·R·T',
+    note:'For NaCl (n=2): i = 1 + α. For CaCl₂ (n=3): i = 1 + 2α.'
+  },
+  {
+    tag:'ASSOCIATION', title:'Degree of Association (α)', tagClass:'red',
+    formula:'For nA ⇌ Aₙ:\n  i = 1 – α + α/n\n    = 1 – α(1 – 1/n)\n  α = (1–i)/(1 – 1/n)\n\nExample: CH₃COOH in benzene → dimer\n  n = 2: i = 1 – α/2',
+    note:'i < 1 for associated solutes.'
+  },
+];
+
+/* Colligative highlights */
+const collData = [
+  { icon:'🌫️', title:'Relative Lowering of VP', formula:'(p°–p)/p° = χ_B\n= n_B/(n_A+n_B)', note:'Manometry' },
+  { icon:'🌡️', title:'Elevation of BP', formula:'ΔT_b = K_b × m\nK_b(H₂O) = 0.52', note:'Thermometry' },
+  { icon:'❄️', title:'Depression of FP', formula:'ΔT_f = K_f × m\nK_f(H₂O) = 1.86', note:'Thermometry' },
+  { icon:'💧', title:'Osmotic Pressure', formula:'π = CRT\nπ = (w_B/M_B·V)RT', note:'Osmometry — most sensitive' },
+];
+
+/* Kinetics extra */
+const kineticsExtra = [
+  {
+    tag:'COLLISION', title:'Collision Theory &amp; Rate',
+    formula:'Rate = Z_AB × P × e^(–Eₐ/RT)\n\nZ_AB = σ²_AB · N_A · N_B · √(8πRT/μ)\n\nP = steric (orientation) factor\nμ = reduced mass = m_A·m_B/(m_A+m_B)',
+    note:'Fraction of effective collisions: f = e^(–Eₐ/RT)'
+  },
+  {
+    tag:'RADIOACTIVITY', title:'Radioactive Decay (1st Order)', tagClass:'red',
+    formula:'N = N₀ · e^(–λt)\nt₁/₂ = 0.693/λ\nλ = 0.693/t₁/₂\n\nActivity A = λN\nA = A₀ · e^(–λt)\n\nCarbon dating:\nt = (t₁/₂/0.693) × ln(A₀/A)',
+    note:'λ is the decay constant (s⁻¹). Activity decreases exponentially.'
+  },
+  {
+    tag:'MECHANISM', title:'Steady State &amp; Pre-equilibrium', tagClass:'blue',
+    formula:'Steady State (d[I]/dt = 0):\n  [I] = k₁[A]/(k₋₁+k₂)\n  Rate = k₁k₂[A]/(k₋₁+k₂)\n\nPre-equilibrium:\n  K_eq = k₁/k₋₁ = [AB]/([A][B])\n  Rate = k₂·K_eq·[A][B]',
+    note:'Rate determining step: overall rate = rate of slowest elementary step.'
+  },
+  {
+    tag:'TEMPERATURE COEFF', title:'Temperature Coefficient (μ)', tagClass:'',
+    formula:'μ = k_(T+10)/k_T ≈ 2 to 3\n\nk₂/k₁ = μ^((T₂–T₁)/10)\n\nlog μ = Eₐ × 10 / (2.303R × T₁T₂)\n\nCatalyst: lowers Eₐ, raises k\n  Does NOT change ΔH or K_eq',
+    note:'Rate roughly doubles for every 10°C rise in temperature.'
+  },
+  {
+    tag:'GAS PHASE', title:'Reaction Rate from Pressure', tagClass:'teal',
+    formula:'For A(g) → nB(g):\n  p_A = p₀ – x\n  p_total = p₀ + (n–1)x\n  x = (p_total – p₀)/(n–1)\n  p_A = (np₀ – p_total)/(n–1)\n\n  k = (2.303/t) × log(p₀/p_A)',
+    note:'[A] = p_A/(RT). Use partial pressures in rate expressions for gases.'
+  },
+  {
+    tag:'SERIES/PARALLEL', title:'Complex Reaction Networks', tagClass:'red',
+    formula:'Consecutive (A → B → C):\n  [B]_max at t_max = ln(k₁/k₂)/(k₁–k₂)\n\nParallel (A→B k₁, A→C k₂):\n  k_total = k₁+k₂\n  [B]/[C] = k₁/k₂ (always)\n  Selectivity = k₁/(k₁+k₂)',
+    note:'In consecutive reactions, optimum time gives maximum intermediate concentration.'
+  },
+];
+
+/* Glossary */
+const glossData = [
+  {sym:'[A], [B]', def:'Molar concentration of A and B (mol L⁻¹)'},
+  {sym:'[A]₀', def:'Initial concentration of A'},
+  {sym:'χ_A, χ_B', def:'Mole fraction of A and B'},
+  {sym:'n_A, n_B', def:'Number of moles of A and B'},
+  {sym:'w_A, w_B', def:'Mass of A and B (grams)'},
+  {sym:'M_A, M_B', def:'Molar mass of A and B (g/mol)'},
+  {sym:'m', def:'Molality (mol/kg)'},
+  {sym:'M', def:'Molarity (mol/L)'},
+  {sym:'N', def:'Normality (equivalents/L)'},
+  {sym:'d', def:'Density (g/mL)'},
+  {sym:'p°_A', def:'Vapour pressure of pure A'},
+  {sym:'p_A', def:'Partial vapour pressure of A in mixture'},
+  {sym:'K_H', def:"Henry's law constant (increases with T)"},
+  {sym:'K_b', def:'Ebullioscopic constant (K·kg·mol⁻¹)'},
+  {sym:'K_f', def:'Cryoscopic constant (K·kg·mol⁻¹)'},
+  {sym:'ΔT_b', def:'Elevation of boiling point'},
+  {sym:'ΔT_f', def:'Depression of freezing point'},
+  {sym:'π', def:'Osmotic pressure (atm or Pa)'},
+  {sym:'i', def:"Van't Hoff factor"},
+  {sym:'α', def:'Degree of dissociation or association'},
+  {sym:'k', def:'Rate constant (specific rate constant)'},
+  {sym:'A', def:'Arrhenius frequency/pre-exponential factor'},
+  {sym:'Eₐ', def:'Activation energy (J/mol or kJ/mol)'},
+  {sym:'R', def:'Gas constant (8.314 J mol⁻¹ K⁻¹)'},
+  {sym:'T', def:'Absolute temperature (K)'},
+  {sym:'t₁/₂', def:'Half-life of a reaction'},
+  {sym:'N₀, N', def:'Initial and final atoms (radioactivity)'},
+  {sym:'λ', def:'Radioactive decay constant (s⁻¹)'},
+  {sym:'Z', def:'Collision frequency'},
+  {sym:'P', def:'Steric (probability/orientation) factor'},
+  {sym:'ΔG‡', def:'Gibbs energy of activation'},
+  {sym:'ΔH‡', def:'Enthalpy of activation'},
+  {sym:'ΔS‡', def:'Entropy of activation'},
+  {sym:'k_B', def:'Boltzmann constant (1.38×10⁻²³ J/K)'},
+  {sym:'h', def:"Planck's constant (6.626×10⁻³⁴ J·s)"},
+  {sym:'μ', def:'Reduced mass / Temperature coefficient'},
+  {sym:'Λ°_m', def:'Molar conductivity at infinite dilution'},
+  {sym:'ν₊, ν₋', def:'Stoichiometric numbers of cations/anions'},
+];
+
+/* Tips/Mnemonics */
+const tipsData = [
+  {num:'1', text:'<strong>"ROBE"</strong> — Raoult\'s law → Osmosis → Boiling → Elevation/depression. The four colligative properties in order of sensitivity.'},
+  {num:'2', text:'<strong>K_f > K_b always</strong> for the same solvent. For water: 1.86 > 0.52. Freezing point always changes more than boiling point.'},
+  {num:'3', text:'<strong>First order t₁/₂ = 0.693/k</strong> — "Six-Nine-Three over k". Independent of concentration — the defining feature of first order kinetics.'},
+  {num:'4', text:'<strong>Osmotic pressure</strong> is the most sensitive colligative property. Used for determination of molar mass of high MW biomolecules like proteins.'},
+  {num:'5', text:"<strong>Van't Hoff factor:</strong> i > 1 (dissociation), i = 1 (non-electrolyte), i < 1 (association). Rule of thumb: more particles → more effect."},
+  {num:'6', text:'<strong>Zero order</strong>: constant rate regardless of [A]. Rate = k. The integrated form is a straight line: [A] = [A]₀ – kt.'},
+  {num:'7', text:'<strong>Arrhenius slope</strong>: slope of log k vs 1/T graph = −Eₐ/2.303R. Always negative. Steeper slope = higher activation energy.'},
+  {num:'8', text:'<strong>Catalyst lowers Eₐ</strong>, increases BOTH forward and backward rate equally. Does NOT change ΔH, ΔG, or K_eq of the overall reaction.'},
+  {num:'9', text:'<strong>Order ≠ Molecularity</strong>. Order is experimentally determined; molecularity is theoretical for elementary steps only. Order can be 0, fraction, or even negative.'},
+  {num:'10', text:'<strong>Pseudo first order</strong>: one reactant in large excess → effective first order. Example: hydrolysis of ester in excess water. k′ = k[B] = effective k.'},
+];
+
+/* ── RENDER FUNCTIONS ─────────────────────────────────────────────── */
+function makeCard(data){
+  const d = document.createElement('div');
+  d.className = 'formula-card';
+  d.innerHTML = `
+    <span class="card-tag ${data.tagClass||''}">${data.tag}</span>
+    <div class="card-title">${data.title}</div>
+    <div class="formula-block">${data.formula}</div>
+    ${data.note ? `<p class="card-note">${data.note}</p>` : ''}
+  `;
+  return d;
+}
+
+function inject(id, arr, maker=makeCard){
+  const g = document.getElementById(id);
+  arr.forEach(d => g.appendChild(maker(d)));
+  g.querySelectorAll('.formula-card').forEach(c=>io.observe(c));
+}
+
+inject('conc-grid', concData);
+inject('vanthoff-grid', vhData);
+inject('ratelaw-grid', [
+  {
+    tag:'RATE OF REACTION', title:'Average &amp; Instantaneous Rate',
+    formula:'Avg Rate = –Δ[R]/Δt = +Δ[P]/Δt\n\nFor aA + bB → cC + dD:\nRate = –(1/a)d[A]/dt = –(1/b)d[B]/dt\n     = +(1/c)d[C]/dt = +(1/d)d[D]/dt\n\nInstantaneous = lim(Δt→0)[–Δ[R]/Δt]',
+    note:'Negative sign for reactants (consumed); positive for products (formed).'
+  },
+  {
+    tag:'RATE LAW', title:'Rate Law &amp; Rate Constant', tagClass:'teal',
+    formula:'Rate = k[A]^m [B]^n\n\nOverall order = m + n\n\nUnit of k: (mol L⁻¹)^(1–n) s⁻¹\n  n=0: M·s⁻¹\n  n=1: s⁻¹\n  n=2: M⁻¹s⁻¹\n  n=3: M⁻²s⁻¹',
+    note:'m and n are determined experimentally — not from stoichiometry (except for elementary reactions).'
+  },
+  {
+    tag:'ORDER METHODS', title:'Determining Reaction Order', tagClass:'blue',
+    formula:'Initial Rate Method:\n  m = log(r₁/r₂) / log([A]₁/[A]₂)\n\nHalf-Life Method:\n  n = 1 + [log(t½₁)–log(t½₂)] / [log[A]₂–log[A]₁]\n\nGraphical: plot [A], ln[A], 1/[A] vs t\n  Whichever is linear gives the order',
+    note:"Van't Hoff differential: plot log r vs log[A] → slope = n."
+  },
+]);
+inject('kinetics-extra-grid', kineticsExtra);
+
+/* Colligative highlights */
+const cg = document.getElementById('colligative-grid');
+collData.forEach((d,i) => {
+  const el = document.createElement('div');
+  el.className = 'highlight-card';
+  el.innerHTML = `
+    <div class="hc-icon">${d.icon}</div>
+    <div class="hc-title">${d.title}</div>
+    <div class="hc-formula">${d.formula}</div>
+    <div class="hc-note">${d.note}</div>
+  `;
+  cg.appendChild(el);
+  io.observe(el);
+});
+
+/* Glossary */
+const gg = document.getElementById('glossary-grid');
+glossData.forEach(g => {
+  const el = document.createElement('div');
+  el.className = 'glossary-item';
+  el.innerHTML = `<div class="glossary-sym">${g.sym}</div><div class="glossary-def">${g.def}</div>`;
+  gg.appendChild(el);
+});
+
+/* Tips */
+const tg = document.getElementById('tips-grid');
+tipsData.forEach(t => {
+  const el = document.createElement('div');
+  el.className = 'tip-card';
+  el.innerHTML = `<div class="tip-num">${t.num}</div><div class="tip-text">${t.text}</div>`;
+  tg.appendChild(el);
+});
+
+/* ── FORMULA FORMATTER ───────────────────────────────────────────── */
+function buildSubSupFragment(text) {
+  const frag = document.createDocumentFragment();
+  let i = 0;
+
+  while (i < text.length) {
+    const ch = text[i];
+    if ((ch === '_' || ch === '^') && i + 1 < text.length) {
+      const isSup = ch === '^';
+      let j = i + 1;
+      let content = '';
+
+      if (text[j] === '(') {
+        let depth = 0;
+        while (j < text.length) {
+          const c = text[j];
+          content += c;
+          if (c === '(') depth++;
+          if (c === ')') {
+            depth--;
+            if (depth === 0) { j++; break; }
+          }
+          j++;
+        }
+      } else {
+        while (j < text.length) {
+          const c = text[j];
+          if (/\s/.test(c) || c === '_' || c === '^') break;
+          if ('=+*/,'.includes(c) || '[]{}<>'.includes(c)) break;
+          content += c;
+          j++;
+        }
+      }
+
+      if (content.length) {
+        const node = document.createElement(isSup ? 'sup' : 'sub');
+        node.textContent = content;
+        frag.appendChild(node);
+        i = j;
+        continue;
+      }
+    }
+
+    frag.appendChild(document.createTextNode(ch));
+    i++;
+  }
+
+  return frag;
+}
+
+function formatTextNodes(root) {
+  const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+  const nodes = [];
+
+  while (walker.nextNode()) nodes.push(walker.currentNode);
+
+  nodes.forEach(node => {
+    const value = node.nodeValue || '';
+    if (!value.includes('_') && !value.includes('^')) return;
+    const frag = buildSubSupFragment(value);
+    node.parentNode.replaceChild(frag, node);
+  });
+}
+
+function formatFormulaElements() {
+  const selector = [
+    '.formula-block',
+    '.hc-formula',
+    '.glossary-sym',
+    '.formula-table td.mono',
+    '.formula-table td.accent',
+    '.split-text',
+    '.tip-text',
+    '.card-note',
+  ].join(', ');
+
+  document.querySelectorAll(selector).forEach(el => {
+    if (el.dataset.formatted === 'true') return;
+    formatTextNodes(el);
+    el.dataset.formatted = 'true';
+  });
+}
+
+formatFormulaElements();
+</script>
+</body>
+</html>

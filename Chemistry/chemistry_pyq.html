@@ -1,0 +1,2644 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Chemistry PYQ Solutions — Class 12 | Akshit Tyagi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Pacifico&display=swap" rel="stylesheet"/>
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(','\\)'],['$','$']], displayMath: [['\\[','\\]'],['$$','$$']], tags:'ams' },
+  options: { skipHtmlTags:['script','noscript','style','textarea','pre'] },
+  startup: { typeset: false }
+};
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-chtml.min.js" crossorigin="anonymous"></script>
+<style>
+/* ─── CSS VARIABLES ─── */
+:root {
+  --bg: #f5f0e8;
+  --bg2: #ede7d9;
+  --bg3: #e5dece;
+  --fg: #1a1510;
+  --fg2: #3a2f22;
+  --fg3: #6b5c45;
+  --accent: #b8963c;
+  --accent2: #d4af37;
+  --accent3: #8a6e25;
+  --border: rgba(184,150,60,0.25);
+  --border2: rgba(184,150,60,0.5);
+  --card: rgba(255,252,245,0.85);
+  --nav-bg: rgba(245,240,232,0.88);
+  --shadow: 0 8px 40px rgba(26,21,16,0.10);
+  --shadow-lg: 0 20px 80px rgba(26,21,16,0.15);
+  --noise: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  --radius: 16px;
+  --transition: 0.35s cubic-bezier(0.25,0.46,0.45,0.94);
+}
+[data-theme="dark"] {
+  --bg: #141210;
+  --bg2: #1e1a16;
+  --bg3: #272118;
+  --fg: #f0e8d8;
+  --fg2: #c8baa8;
+  --fg3: #8a7a68;
+  --accent: #d4a843;
+  --accent2: #e8c063;
+  --accent3: #c0922d;
+  --border: rgba(212,168,67,0.2);
+  --border2: rgba(212,168,67,0.45);
+  --card: rgba(30,26,22,0.92);
+  --nav-bg: rgba(20,18,16,0.90);
+  --shadow: 0 8px 40px rgba(0,0,0,0.35);
+  --shadow-lg: 0 20px 80px rgba(0,0,0,0.5);
+}
+
+/* ─── RESET & BASE ─── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{
+  font-family:'DM Sans',sans-serif;
+  background:var(--bg);
+  color:var(--fg);
+  line-height:1.7;
+  overflow-x:hidden;
+  position:relative;
+  cursor:none;
+}
+body::before{
+  content:'';position:fixed;inset:0;
+  background-image:var(--noise);
+  pointer-events:none;z-index:0;opacity:0.6;
+}
+a{color:var(--accent);text-decoration:none}
+strong{color:var(--fg);font-weight:600}
+mjx-container{overflow-x:auto;max-width:100%}
+
+/* ─── CURSOR ─── */
+.cursor{
+  position:fixed;width:8px;height:8px;border-radius:50%;
+  background:var(--accent);pointer-events:none;z-index:99999;
+  transform:translate(-50%,-50%);transition:width .15s,height .15s,background .15s;
+}
+.cursor-ring{
+  position:fixed;width:32px;height:32px;border-radius:50%;
+  border:1.5px solid var(--accent);pointer-events:none;z-index:99998;
+  transform:translate(-50%,-50%);transition:width .3s,height .3s,opacity .3s;
+  opacity:0.7;
+}
+body:has(a:hover) .cursor, body:has(button:hover) .cursor,
+body:has(.qa-card:hover) .cursor{width:14px;height:14px;background:var(--accent2)}
+body:has(a:hover) .cursor-ring, body:has(button:hover) .cursor-ring,
+body:has(.qa-card:hover) .cursor-ring{width:48px;height:48px}
+
+/* ─── PROGRESS BAR ─── */
+#progress{
+  position:fixed;top:0;left:0;height:2.5px;
+  background:linear-gradient(90deg,var(--accent3),var(--accent),var(--accent2));
+  z-index:10000;width:0%;transition:width .1s linear;
+  box-shadow:0 0 8px var(--accent);
+}
+
+/* ─── NAV ─── */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 max(40px,4vw);height:68px;
+  background:var(--nav-bg);
+  backdrop-filter:blur(20px) saturate(1.5);
+  border-bottom:1px solid var(--border);
+  transition:background var(--transition);
+}
+.nav-logo{
+  font-family:'Cormorant Garamond',serif;
+  font-weight:700;font-size:1.3rem;letter-spacing:0.02em;
+  color:var(--fg);white-space:nowrap;
+}
+.nav-logo span{color:var(--accent)}
+.nav-links{display:flex;gap:28px;align-items:center}
+.nav-links a{
+  font-size:0.78rem;letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--fg3);font-weight:500;transition:color var(--transition);
+}
+.nav-links a:hover{color:var(--accent)}
+.nav-right{display:flex;align-items:center;gap:16px}
+.theme-btn{
+  width:40px;height:40px;border-radius:50%;border:1px solid var(--border2);
+  background:transparent;cursor:none;color:var(--fg);font-size:1.1rem;
+  display:flex;align-items:center;justify-content:center;
+  transition:background var(--transition),border-color var(--transition);
+}
+.theme-btn:hover{background:var(--border);border-color:var(--accent)}
+
+/* ─── HERO ─── */
+.hero{
+  min-height:100vh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;text-align:center;
+  padding:100px max(40px,6vw) 80px;position:relative;overflow:hidden;
+  background:radial-gradient(ellipse 80% 60% at 50% 40%, var(--bg2) 0%, var(--bg) 100%);
+}
+.hero-glow{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:600px;height:600px;border-radius:50%;
+  background:radial-gradient(circle, rgba(184,150,60,0.12) 0%, transparent 70%);
+  animation:glowPulse 4s ease-in-out infinite;pointer-events:none;
+}
+@keyframes glowPulse{0%,100%{transform:translate(-50%,-50%) scale(1);opacity:0.8}50%{transform:translate(-50%,-50%) scale(1.12);opacity:1}}
+.hero-eyebrow{
+  font-size:0.72rem;letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:20px;font-weight:500;
+  animation:fadeUp 0.8s ease both;
+}
+.hero-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(3rem,8vw,7rem);font-weight:700;
+  line-height:1.0;letter-spacing:-0.01em;color:var(--fg);
+  animation:fadeUp 0.9s 0.1s ease both;margin-bottom:4px;
+}
+.hero-title span{
+  background:linear-gradient(135deg,var(--accent3),var(--accent),var(--accent2));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.hero-subtitle{
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:clamp(1.2rem,3vw,2rem);color:var(--fg3);
+  animation:fadeUp 1s 0.2s ease both;margin-bottom:32px;
+}
+.hero-divider{
+  width:200px;height:1px;background:linear-gradient(90deg,transparent,var(--accent),transparent);
+  margin:0 auto 28px;animation:fadeIn 1.2s 0.4s ease both;
+}
+.hero-meta{
+  display:flex;gap:40px;justify-content:center;flex-wrap:wrap;
+  animation:fadeUp 1.1s 0.5s ease both;
+}
+.hero-meta-item{display:flex;flex-direction:column;align-items:center;gap:4px}
+.hero-meta-num{
+  font-family:'Bebas Neue',sans-serif;font-size:2.2rem;
+  color:var(--accent);line-height:1;
+}
+.hero-meta-label{font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--fg3)}
+.hero-scroll-hint{
+  position:absolute;bottom:32px;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--fg3);
+  animation:fadeIn 1.5s 1s ease both;
+}
+.scroll-line{width:1px;height:40px;background:linear-gradient(180deg,var(--accent),transparent);animation:scrollDown 2s infinite}
+@keyframes scrollDown{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+.float-letter{
+  position:absolute;font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(80px,14vw,200px);font-weight:900;opacity:0.03;
+  color:var(--fg);pointer-events:none;user-select:none;
+  animation:floatLetter 8s ease-in-out infinite;
+}
+.fl1{top:-5%;left:-3%;animation-delay:0s}
+.fl2{top:60%;right:-2%;animation-delay:2s;font-size:clamp(60px,10vw,160px)}
+.fl3{bottom:-2%;left:30%;animation-delay:4s;font-size:clamp(50px,8vw,120px)}
+@keyframes floatLetter{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-20px) rotate(3deg)}}
+
+/* ─── SECTION LAYOUT ─── */
+.section{padding:80px max(30px,5vw);max-width:1300px;margin:0 auto}
+.chapter-banner{
+  position:relative;height:240px;border-radius:24px;overflow:hidden;
+  margin-bottom:60px;display:flex;align-items:flex-end;padding:32px 40px;
+  transition:transform var(--transition);
+}
+.chapter-banner:hover img{transform:scale(1.04)}
+.chapter-banner img{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  transition:transform 0.7s ease;
+}
+.chapter-banner-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(0,0,0,0.72) 0%,rgba(0,0,0,0.3) 100%);
+}
+.chapter-banner-content{position:relative;z-index:1}
+.chapter-num{
+  font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:0.2em;
+  color:var(--accent2);margin-bottom:4px;
+}
+.chapter-title-banner{
+  font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,4vw,3rem);
+  font-weight:700;color:#fff;line-height:1.1;
+}
+.section-header{
+  display:flex;align-items:center;gap:24px;margin-bottom:48px;position:relative;
+}
+.section-header-num{
+  font-family:'Bebas Neue',sans-serif;font-size:7rem;line-height:1;
+  color:var(--border2);position:absolute;left:-20px;top:-20px;z-index:0;
+  pointer-events:none;user-select:none;
+}
+.section-header-content{position:relative;z-index:1}
+.section-eyebrow{
+  font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:6px;font-weight:500;
+}
+.section-title{
+  font-family:'Cormorant Garamond',serif;font-size:clamp(1.6rem,3vw,2.4rem);
+  font-weight:700;color:var(--fg);
+}
+.section-line{
+  flex:1;height:1px;background:linear-gradient(90deg,var(--border2),transparent);
+  margin-left:20px;
+}
+.level-badge{
+  font-size:0.65rem;letter-spacing:0.18em;text-transform:uppercase;
+  font-weight:600;padding:5px 14px;border-radius:20px;border:1px solid;
+  display:inline-block;margin-bottom:28px;
+}
+.level-easy{color:#4a8c5c;border-color:rgba(74,140,92,0.4);background:rgba(74,140,92,0.08)}
+.level-hard{color:#b84c3c;border-color:rgba(184,76,60,0.4);background:rgba(184,76,60,0.08)}
+[data-theme="dark"] .level-easy{color:#72c98a;border-color:rgba(114,201,138,0.35)}
+[data-theme="dark"] .level-hard{color:#e87060;border-color:rgba(232,112,96,0.35)}
+
+/* ─── Q&A CARDS ─── */
+.qa-grid{display:flex;flex-direction:column;gap:12px;margin-bottom:48px}
+.qa-card{
+  border:1px solid var(--border);border-radius:var(--radius);
+  background:var(--card);backdrop-filter:blur(8px);
+  transition:transform var(--transition),box-shadow var(--transition),border-color var(--transition);
+  overflow:hidden;
+}
+.qa-card:hover{
+  transform:translateY(-2px);box-shadow:var(--shadow);
+  border-color:var(--border2);
+}
+.qa-card.open{border-color:var(--accent);box-shadow:0 0 0 1px var(--border2),var(--shadow)}
+.qa-header{
+  display:flex;align-items:flex-start;gap:16px;padding:20px 24px;cursor:none;
+}
+.qa-q-num{
+  font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:0.08em;
+  color:var(--accent);white-space:nowrap;margin-top:1px;flex-shrink:0;
+  min-width:40px;
+}
+.qa-q-text{flex:1;font-size:0.96rem;color:var(--fg2);font-weight:500;line-height:1.5}
+.qa-year{
+  font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;
+  color:var(--accent3);border:1px solid var(--border);border-radius:8px;
+  padding:3px 10px;white-space:nowrap;flex-shrink:0;align-self:flex-start;
+  margin-top:2px;
+}
+.qa-toggle{
+  width:28px;height:28px;border-radius:50%;border:1px solid var(--border2);
+  background:transparent;cursor:none;color:var(--accent);
+  font-size:1.2rem;line-height:1;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  transition:background var(--transition),transform var(--transition);
+  align-self:flex-start;margin-top:2px;
+}
+.qa-card.open .qa-toggle{transform:rotate(45deg);background:var(--accent);color:#fff}
+.qa-body{
+  max-height:0;
+  opacity:0;
+  transform:translateY(-6px);
+  overflow:hidden;
+  padding:0 24px 0;
+  border-top:1px solid transparent;
+  transition:max-height 0.45s ease, opacity 0.35s ease, transform 0.35s ease, padding 0.35s ease, border-color 0.35s ease;
+}
+.qa-card.open .qa-body{
+  max-height:5000px;
+  opacity:1;
+  transform:translateY(0);
+  padding:20px 24px 24px;
+  border-top-color:var(--border);
+}
+.qa-body p{margin-bottom:12px;font-size:0.93rem;line-height:1.75;color:var(--fg2)}
+.qa-body h4,.qa-body strong{color:var(--fg)}
+.qa-body blockquote{
+  border-left:3px solid var(--accent);padding:10px 16px;
+  background:rgba(184,150,60,0.06);border-radius:0 8px 8px 0;margin:16px 0;
+  font-style:italic;color:var(--fg3);
+}
+.qa-body table{
+  width:100%;border-collapse:collapse;margin:16px 0;font-size:0.86rem;
+}
+.qa-body th{
+  background:rgba(184,150,60,0.12);color:var(--fg);padding:8px 12px;
+  text-align:left;font-weight:600;border:1px solid var(--border);
+}
+.qa-body td{
+  padding:8px 12px;border:1px solid var(--border);color:var(--fg2);
+}
+.qa-body tr:nth-child(even) td{background:rgba(184,150,60,0.04)}
+.qa-body pre{
+  background:var(--bg2);border:1px solid var(--border);border-radius:8px;
+  padding:16px;font-size:0.82rem;overflow-x:auto;color:var(--fg2);
+  font-family:'Courier New',monospace;line-height:1.6;margin:12px 0;
+  white-space:pre-wrap;
+}
+.qa-body .formula-box{
+  background:rgba(184,150,60,0.08);border:1px solid var(--border2);
+  border-radius:12px;padding:16px 20px;margin:12px 0;text-align:center;
+}
+.qa-body ul,
+.qa-body ol{padding-left:20px;margin:8px 0}
+.qa-body li{margin-bottom:6px;font-size:0.93rem;color:var(--fg2)}
+.qa-body h3,.qa-body h4{
+  font-family:'Cormorant Garamond',serif;
+  color:var(--fg);margin:16px 0 8px;
+}
+.qa-body h4{font-size:1rem;font-weight:700}
+.answer-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  background:rgba(184,150,60,0.1);border:1px solid var(--border2);
+  border-radius:8px;padding:4px 12px;font-size:0.8rem;
+  color:var(--accent);margin-bottom:12px;font-weight:600;
+}
+
+/* ─── REFERENCE TABLES ─── */
+.tables-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-bottom:48px}
+.table-card{
+  border:1px solid var(--border);border-radius:var(--radius);
+  background:var(--card);padding:28px;
+  transition:transform var(--transition),box-shadow var(--transition);
+}
+.table-card:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+.table-card.full-width{grid-column:1/-1}
+.table-card-title{
+  font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:700;
+  color:var(--fg);margin-bottom:20px;display:flex;align-items:center;gap:10px;
+}
+.table-card-title::before{
+  content:'';display:block;width:3px;height:1.2em;
+  background:var(--accent);border-radius:2px;
+}
+.ref-table{width:100%;border-collapse:collapse;font-size:0.84rem}
+.ref-table th{
+  background:rgba(184,150,60,0.1);color:var(--fg);padding:8px 12px;
+  text-align:left;font-weight:600;border:1px solid var(--border);
+}
+.ref-table td{padding:7px 12px;border:1px solid var(--border);color:var(--fg2)}
+.ref-table tr:nth-child(even) td{background:rgba(184,150,60,0.03)}
+
+/* ─── GLOSSARY ─── */
+.glossary-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+  gap:10px;margin-bottom:40px;
+}
+.glossary-item{
+  display:flex;gap:12px;align-items:flex-start;
+  background:var(--card);border:1px solid var(--border);border-radius:10px;
+  padding:12px 16px;font-size:0.85rem;
+}
+.glossary-sym{
+  font-family:'Cormorant Garamond',serif;font-weight:700;
+  color:var(--accent);min-width:60px;font-size:0.95rem;white-space:nowrap;
+}
+.glossary-def{color:var(--fg2);line-height:1.4}
+
+/* ─── MNEMONICS ─── */
+.mnemonics-list{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:40px}
+.mnemonic-item{
+  background:var(--card);border:1px solid var(--border);border-radius:10px;
+  padding:16px 18px;font-size:0.88rem;color:var(--fg2);line-height:1.5;
+  border-left:3px solid var(--accent);
+}
+.mnemonic-num{
+  font-family:'Bebas Neue',sans-serif;font-size:1.3rem;color:var(--accent);
+  margin-bottom:4px;
+}
+
+/* ─── MAKER SECTION ─── */
+.maker-section{
+  padding:100px max(30px,6vw);text-align:center;
+  position:relative;overflow:hidden;
+  background:radial-gradient(ellipse 60% 50% at 50% 50%, var(--bg2) 0%, var(--bg) 100%);
+}
+.maker-glow{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:500px;height:500px;border-radius:50%;
+  background:radial-gradient(circle,rgba(184,150,60,0.15) 0%,transparent 70%);
+  animation:glowPulse 5s ease-in-out infinite;pointer-events:none;
+}
+.maker-rings{position:relative;width:200px;height:200px;margin:0 auto 32px}
+.maker-rings::before,.maker-rings::after{
+  content:'';position:absolute;border-radius:50%;border:1px solid var(--accent);
+  top:50%;left:50%;transform:translate(-50%,-50%);animation:ringPulse 3s ease-out infinite;
+}
+.maker-rings::before{width:160%;height:160%;animation-delay:0.5s;opacity:0.4}
+.maker-rings::after{width:200%;height:200%;animation-delay:1s;opacity:0.2}
+@keyframes ringPulse{0%{transform:translate(-50%,-50%) scale(0.8);opacity:0.6}100%{transform:translate(-50%,-50%) scale(1.2);opacity:0}}
+.maker-img{
+  width:200px;height:200px;border-radius:50%;object-fit:cover;
+  border:3px solid var(--accent);box-shadow:0 0 0 8px rgba(184,150,60,0.12),var(--shadow-lg);
+  position:relative;z-index:1;
+  transition:transform var(--transition),box-shadow var(--transition);
+}
+.maker-img:hover{transform:scale(1.04);box-shadow:0 0 0 12px rgba(184,150,60,0.18),var(--shadow-lg)}
+.maker-label{
+  font-size:0.7rem;letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--accent3);margin-bottom:8px;
+}
+.maker-name{
+  font-family:'Pacifico',cursive;font-size:clamp(2rem,5vw,3.5rem);
+  background:linear-gradient(135deg,var(--accent3),var(--accent),var(--accent2),var(--accent));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  background-size:200%;animation:shimmer 3s ease infinite;margin-bottom:12px;
+}
+@keyframes shimmer{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+.maker-desc{
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:1.1rem;color:var(--fg3);max-width:400px;margin:0 auto 24px;
+}
+.gem{
+  display:inline-block;font-size:1.8rem;animation:gemRotate 4s linear infinite;
+}
+@keyframes gemRotate{0%{transform:rotate(0deg) scale(1)}50%{transform:rotate(180deg) scale(1.2)}100%{transform:rotate(360deg) scale(1)}}
+
+/* ─── FOOTER ─── */
+footer{
+  padding:28px max(30px,6vw);border-top:1px solid var(--border);
+  text-align:center;background:var(--bg2);
+}
+footer p{
+  font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--fg3);
+}
+footer span{color:var(--accent)}
+
+/* ─── ANIMATIONS ─── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.65s ease,transform 0.65s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:900px){
+  .nav-links{display:none}
+  .tables-grid{grid-template-columns:1fr}
+  .mnemonics-list{grid-template-columns:1fr}
+}
+@media(max-width:600px){
+  .hero-meta{gap:24px}
+  .qa-header{flex-wrap:wrap}
+  .glossary-grid{grid-template-columns:1fr}
+  .qa-body table{font-size:0.75rem}
+}
+</style>
+</head>
+<body>
+
+<!-- CURSOR -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- PROGRESS BAR -->
+<div id="progress"></div>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-logo">Chem<span>PYQ</span> · Class XII</div>
+  <div class="nav-links">
+    <a href="#solutions">Solutions</a>
+    <a href="#kinetics">Chemical Kinetics</a>
+    <a href="#dfblock">d &amp; f Block</a>
+    <a href="#tables">Reference Tables</a>
+    <a href="#maker">Maker</a>
+  </div>
+  <div class="nav-right">
+    <button class="theme-btn" id="themeBtn" title="Toggle theme">☀</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-glow"></div>
+  <div class="float-letter fl1">Cₕ</div>
+  <div class="float-letter fl2">K</div>
+  <div class="float-letter fl3">π</div>
+  <div style="position:relative;z-index:1">
+    <div class="hero-eyebrow">CBSE Class XII · 2026–27 Session · Holiday Homework</div>
+    <h1 class="hero-title">Chemistry<br/><span>PYQ Solutions</span></h1>
+    <p class="hero-subtitle">Chapter — Solutions &amp; Chemical Kinetics &amp; d–f Block Elements</p>
+    <div class="hero-divider"></div>
+    <div class="hero-meta">
+      <div class="hero-meta-item"><div class="hero-meta-num">3</div><div class="hero-meta-label">Chapters</div></div>
+      <div class="hero-meta-item"><div class="hero-meta-num">117</div><div class="hero-meta-label">Questions</div></div>
+      <div class="hero-meta-item"><div class="hero-meta-num">150+</div><div class="hero-meta-label">Formulas</div></div>
+      <div class="hero-meta-item"><div class="hero-meta-num">7</div><div class="hero-meta-label">Ref Tables</div></div>
+    </div>
+  </div>
+  <div class="hero-scroll-hint">
+    <span>Scroll to Explore</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ━━━━━━━━━━━━━━ CHAPTER 1: SOLUTIONS ━━━━━━━━━━━━━━ -->
+<div id="solutions" style="padding-top:80px">
+<div class="section">
+
+<div class="chapter-banner reveal">
+  <img src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=1200&q=80" alt="Solutions Chemistry"/>
+  <div class="chapter-banner-overlay"></div>
+  <div class="chapter-banner-content">
+    <div class="chapter-num">CHAPTER · 01</div>
+    <div class="chapter-title-banner">Solutions</div>
+  </div>
+</div>
+
+<!-- EASY LEVEL -->
+<div class="section-header reveal">
+  <div class="section-header-num">01</div>
+  <div class="section-header-content">
+    <div class="section-eyebrow">Chapter 1 · Solutions</div>
+    <div class="section-title">Easy Level Questions</div>
+  </div>
+  <div class="section-line"></div>
+</div>
+<div class="level-badge level-easy reveal">Easy Level — Q1 to Q20</div>
+
+<div class="qa-grid">
+
+<div class="qa-card reveal">
+<div class="qa-header" onclick="toggleCard(this)">
+  <div class="qa-q-num">Q1</div>
+  <div class="qa-q-text">Define osmosis and osmotic pressure. Is osmotic pressure a colligative property? Justify.</div>
+  <div class="qa-year">2014</div>
+  <button class="qa-toggle" tabindex="-1">+</button>
+</div>
+<div class="qa-body">
+<div class="answer-badge">✦ Answer</div>
+<p><strong>Osmosis:</strong> Osmosis is the spontaneous flow of solvent molecules through a semipermeable membrane from a region of <strong>lower solute concentration (higher solvent concentration)</strong> to a region of <strong>higher solute concentration (lower solvent concentration)</strong>.</p>
+<p><strong>Osmotic Pressure (π):</strong> The excess pressure that must be applied on the solution side to just stop the flow of solvent through the semipermeable membrane is called <strong>osmotic pressure</strong>.</p>
+<div class="formula-box">$$\pi = CRT = \frac{n_B}{V} RT$$</div>
+<p>where: C = molar concentration of solute, R = gas constant = 0.0821 L atm K⁻¹ mol⁻¹, T = temperature in Kelvin, n_B = moles of solute, V = volume of solution.</p>
+<p><strong>Is osmotic pressure a colligative property? → YES</strong></p>
+<p><strong>Justification:</strong> Osmotic pressure depends only on the <strong>number of solute particles</strong> (moles of solute per unit volume) and NOT on the nature or identity of the solute. This is the defining characteristic of a <strong>colligative property</strong> — one that depends on the number of dissolved particles, not their type.</p>
+<blockquote>For example, 0.1 M glucose and 0.1 M sucrose exert the same osmotic pressure because they have the same molar concentration (same number of particles per litre).</blockquote>
+</div>
+</div>
+
+<div class="qa-card reveal">
+<div class="qa-header" onclick="toggleCard(this)">
+  <div class="qa-q-num">Q2</div>
+  <div class="qa-q-text">What do you understand by the term 'colligative properties'? Name the four colligative properties.</div>
+  <div class="qa-year">2014</div>
+  <button class="qa-toggle" tabindex="-1">+</button>
+</div>
+<div class="qa-body">
+<div class="answer-badge">✦ Answer</div>
+<p><strong>Colligative Properties:</strong> Properties of solutions that <strong>depend only on the number of solute particles</strong> dissolved in a definite amount of solvent, and NOT on the nature, size, or chemical identity of the solute particles.</p>
+<p>The word "colligative" comes from the Latin <em>colligatus</em> meaning "bound together", indicating that these properties are collectively determined by the number of particles.</p>
+<p><strong>Four Colligative Properties:</strong></p>
+<table>
+<tr><th>S.No.</th><th>Property</th><th>Symbol</th></tr>
+<tr><td>1</td><td><strong>Relative Lowering of Vapour Pressure</strong></td><td>ΔP/P°</td></tr>
+<tr><td>2</td><td><strong>Elevation of Boiling Point</strong></td><td>ΔT_b</td></tr>
+<tr><td>3</td><td><strong>Depression of Freezing Point</strong></td><td>ΔT_f</td></tr>
+<tr><td>4</td><td><strong>Osmotic Pressure</strong></td><td>π</td></tr>
+</table>
+<blockquote><strong>Key Point:</strong> Colligative properties are observed only for <strong>non-volatile solutes</strong> dissolved in volatile solvents (for vapour pressure related properties).</blockquote>
+</div>
+</div>
+
+<div class="qa-card reveal">
+<div class="qa-header" onclick="toggleCard(this)">
+  <div class="qa-q-num">Q3</div>
+  <div class="qa-q-text">What is meant by 'reverse osmosis'? State its one use. Mention the condition under which it occurs.</div>
+  <div class="qa-year">2015</div>
+  <button class="qa-toggle" tabindex="-1">+</button>
+</div>
+<div class="qa-body">
+<div class="answer-badge">✦ Answer</div>
+<p><strong>Reverse Osmosis:</strong> When a pressure <strong>greater than the osmotic pressure</strong> is applied on the solution side, the direction of solvent flow is <strong>reversed</strong> — solvent flows from the solution to the pure solvent side. This is called <strong>Reverse Osmosis (RO)</strong>.</p>
+<blockquote>Normal osmosis: Pure solvent → Solution<br/>Reverse osmosis: Solution → Pure solvent (when P &gt; π)</blockquote>
+<p><strong>Condition:</strong> The external pressure applied must be <strong>greater than the osmotic pressure</strong> of the solution: \(P_{applied} > \pi_{solution}\)</p>
+<p><strong>One Important Use:</strong> Reverse osmosis is used for the <strong>desalination of sea water</strong> to obtain pure, drinkable water. Sea water is passed through a RO membrane (made of polyamide) under very high pressure (~30 atm), and pure water filters through while dissolved salts are rejected.</p>
+</div>
+</div>
+
+<div class="qa-card reveal">
+<div class="qa-header" onclick="toggleCard(this)">
+  <div class="qa-q-num">Q4</div>
+  <div class="qa-q-text">State Henry's law. Effect of temperature on solubility of gas in liquid. Why do fish prefer cold water?</div>
+  <div class="qa-year">2015</div>
+  <button class="qa-toggle" tabindex="-1">+</button>
+</div>
+<div class="qa-body">
+<div class="answer-badge">✦ Answer</div>
+<p><strong>Henry's Law:</strong> At constant temperature, the <strong>partial pressure of a gas</strong> in the vapour phase is directly proportional to the <strong>mole fraction of the gas dissolved</strong> in the liquid.</p>
+<div class="formula-box">$$p = K_H \cdot x$$</div>
+<p>where p = partial pressure, x = mole fraction of gas in solution, K_H = Henry's law constant. Higher K_H → lower solubility at a given pressure.</p>
+<p><strong>Effect of Temperature:</strong> The solubility of a gas in a liquid <strong>decreases with increase in temperature</strong>. Dissolution of gas is exothermic: $$\text{Gas} + \text{Solvent} \rightleftharpoons \text{Solution} + \text{Heat}$$ By Le Chatelier's principle, increasing temperature shifts equilibrium backward → solubility decreases.</p>
+<p><strong>Why do fish prefer cold water?</strong></p>
+<ul>
+<li>Oxygen (O₂) is essential for survival of fish.</li>
+<li>Solubility of O₂ in water is <strong>higher at lower temperatures</strong>.</li>
+<li>Cold water contains more dissolved oxygen, making it easier for fish to breathe through gills.</li>
+<li>In warm water, O₂ content is lower, making survival difficult.</li>
+</ul>
+</div>
+</div>
+
+<div class="qa-card reveal">
+<div class="qa-header" onclick="toggleCard(this)">
+  <div class="qa-q-num">Q5</div>
+  <div class="qa-q-text">Define molality. Advantages of molality over molarity.</div>
+  <div class="qa-year">2015</div>
+  <button class="qa-toggle" tabindex="-1">+</button>
+</div>
+<div class="qa-body">
+<div class="answer-badge">✦ Answer</div>
+<p><strong>Molality (m):</strong> Number of moles of solute dissolved per kilogram (1000 g) of solvent.</p>
+<div class="formula-box">$$m = \frac{\text{Moles of solute}}{\text{Mass of solvent in kg}} = \frac{n_B}{W_A \text{(in kg)}}$$</div>
+<p>Units: mol kg⁻¹ (or molal)</p>
+<table>
+<tr><th>Molality</th><th>Molarity</th></tr>
+<tr><td>Does <strong>NOT change with temperature</strong> (involves mass of solvent)</td><td><strong>Changes with temperature</strong> (involves volume of solution)</td></tr>
+<tr><td>More <strong>accurate</strong> for colligative properties</td><td>Less accurate for colligative property calculations</td></tr>
+<tr><td>Involves <strong>mass</strong> (fundamental quantity)</td><td>Involves <strong>volume</strong> (temperature-dependent)</td></tr>
+</table>
+<blockquote><strong>Conclusion:</strong> Molality is preferred over molarity for colligative property calculations and thermodynamic studies because it is temperature-independent.</blockquote>
+</div>
+</div>
+
+<div class="qa-card reveal">
+<div class="qa-header" onclick="toggleCard(this)">
+  <div class="qa-q-num">Q6</div>
+  <div class="qa-q-text">Calculate the mole fraction of benzene in a 30% by mass solution in CCl₄.</div>
+  <div class="qa-year">2016</div>
+  <button class="qa-toggle" tabindex="-1">+</button>
+</div>
+<div class="qa-body">
+<div class="answer-badge">✦ Answer</div>
+<p>In 100 g of solution: Mass of benzene (C₆H₆) = 30 g, Mass of CCl₄ = 70 g. M(benzene) = 78 g/mol, M(CCl₄) = 154 g/mol</p>
+<p><strong>Step 1:</strong> \(n_{\text{benzene}} = \frac{30}{78} = 0.3846 \text{ mol}\)</p>
+<p><strong>Step 2:</strong> \(n_{\text{CCl}_4} = \frac{70}{154} = 0.4545 \text{ mol}\)</p>
+<p><strong>Step 3:</strong> \(n_{\text{total}} = 0.3846 + 0.4545 = 0.8391 \text{ mol}\)</p>
+<div class="formula-box">$$\chi_{\text{benzene}} = \frac{0.3846}{0.8391} = \boxed{0.459}$$</div>
+</div>
+</div>
+
+<div class="qa-card reveal">
+<div class="qa-header" onclick="toggleCard(this)">
+  <div class="qa-q-num">Q7</div>
+  <div class="qa-q-text">What is van't Hoff factor? How is it related to degree of dissociation and degree of association?</div>
+  <div class="qa-year">2016</div>
+  <button class="qa-toggle" tabindex="-1">+</button>
+</div>
+<div class="qa-body">
+<div class="answer-badge">✦ Answer</div>
+<p><strong>Van't Hoff Factor (i):</strong></p>
+<div class="formula-box">$$i = \frac{\text{Observed value of colligative property}}{\text{Theoretical value of colligative property}} = \frac{\text{Particles after dissociation/association}}{\text{Formula units initially dissolved}}$$</div>
+<p><strong>Relation with Degree of Dissociation (α):</strong> For electrolyte dissociating into n ions: $$i = 1 + (n - 1)\alpha \quad\therefore \alpha = \frac{i - 1}{n - 1}$$ Example: NaCl → Na⁺ + Cl⁻ → n = 2 → i = 1 + α</p>
+<p><strong>Relation with Degree of Association (α):</strong> For n molecules combining into 1: $$i = 1 - \alpha\left(1 - \frac{1}{n}\right) \quad\therefore \alpha = \frac{(1 - i)}{\left(1 - \frac{1}{n}\right)}$$ Example: Acetic acid dimerises in benzene (n = 2) → i = 1 − α/2</p>
+<blockquote><strong>Summary:</strong> i &gt; 1 for dissociation; i &lt; 1 for association; i = 1 for non-electrolytes.</blockquote>
+</div>
+</div>
+
+<div class="qa-card reveal">
+<div class="qa-header" onclick="toggleCard(this)">
+  <div class="qa-q-num">Q8</div>
+  <div class="qa-q-text">What type of deviation from Raoult's law is shown by phenol and aniline? Give reason.</div>
+  <div class="qa-year">2017</div>
+  <button class="qa-toggle" tabindex="-1">+</button>
+</div>
+<div class="qa-body">
+<div class="answer-badge">✦ Answer</div>
+<p><strong>Answer: Negative Deviation from Raoult's Law</strong></p>
+<p><strong>Reasoning:</strong> When phenol and aniline are mixed, a <strong>new and stronger intermolecular hydrogen bond</strong> is formed between the —OH group of phenol and the —NH₂ group of aniline: \(\text{C}_6\text{H}_5\text{—OH} \cdots \text{NH}_2\text{—C}_6\text{H}_5\). This interaction is <strong>stronger</strong> than interactions in either pure liquid.</p>
+<ul>
+<li>Tendency of molecules to escape from solution (vapour pressure) is <strong>reduced</strong></li>
+<li>\(P_{\text{total}} < \chi_A P_A^\circ + \chi_B P_B^\circ\)</li>
+<li>ΔH_mix &lt; 0 (exothermic mixing)</li>
+<li>ΔV_mix &lt; 0 (volume decreases on mixing)</li>
+</ul>
+</div>
+</div>
+
+<div class="qa-card reveal">
+<div class="qa-header" onclick="toggleCard(this)">
+  <div class="qa-q-num">Q9</div>
+  <div class="qa-q-text">Define: (i) Mole fraction (ii) Isotonic solutions. Give one example of each.</div>
+  <div class="qa-year">2017</div>
+  <button class="qa-toggle" tabindex="-1">+</button>
+</div>
+<div class="qa-body">
+<div class="answer-badge">✦ Answer</div>
+<p><strong>(i) Mole Fraction:</strong> The ratio of the number of moles of that component to the total number of moles of all components. $$\chi_B = \frac{n_B}{n_A + n_B}$$</p>
+<p><strong>Example:</strong> 1 mol NaCl in 9 mol water: \(\chi_{\text{NaCl}} = \frac{1}{10} = 0.1\). Note: Sum of all mole fractions = 1.</p>
+<p><strong>(ii) Isotonic Solutions:</strong> Two solutions are isotonic if they have the <strong>same osmotic pressure</strong> at the same temperature — equal molar concentrations. No net flow of solvent between them when separated by a semipermeable membrane. $$\pi_1 = \pi_2 \Rightarrow C_1 = C_2$$</p>
+<p><strong>Example:</strong> 0.9% (w/v) NaCl (normal saline) is isotonic with blood plasma — used in intravenous drips to avoid osmotic shock.</p>
+</div>
+</div>
+
+<div class="qa-card reveal">
+<div class="qa-header" onclick="toggleCard(this)">
+  <div class="qa-q-num">Q10</div>
+  <div class="qa-q-text">State Raoult's law for volatile components. Write two conditions for ideal behaviour.</div>
+  <div class="qa-year">2017</div>
+  <button class="qa-toggle" tabindex="-1">+</button>
+</div>
+<div class="qa-body">
+<div class="answer-badge">✦ Answer</div>
+<p><strong>Raoult's Law:</strong> The <strong>partial vapour pressure of each component</strong> is directly proportional to its <strong>mole fraction</strong> in the solution.</p>
+<div class="formula-box">$$p_A = \chi_A \cdot P_A^\circ \quad p_B = \chi_B \cdot P_B^\circ$$
+$$P_{\text{total}} = \chi_A P_A^\circ + \chi_B P_B^\circ$$</div>
+<p><strong>Two Conditions for Ideal Behaviour:</strong></p>
+<ol>
+<li><strong>Solute–Solvent interactions (A−B) must equal Solute–Solute (B−B) and Solvent–Solvent (A−A) interactions</strong> → ensures ΔH_mix = 0</li>
+<li><strong>Volume of solution = sum of volumes of pure components</strong> → ΔV_mix = 0 (no expansion or contraction)</li>
+</ol>
+<blockquote><strong>Examples of ideal solutions:</strong> Benzene + toluene; n-hexane + n-heptane; ethyl bromide + ethyl iodide.</blockquote>
+</div>
+</div>
+
+<div class="qa-card reveal">
+<div class="qa-header" onclick="toggleCard(this)">
+  <div class="qa-q-num">Q11</div>
+  <div class="qa-q-text">Positive and negative deviations from Raoult's law. How is ΔH_mix related?</div>
+  <div class="qa-year">2018</div>
+  <button class="qa-toggle" tabindex="-1">+</button>
+</div>
+<div class="qa-body">
+<div class="answer-badge">✦ Answer</div>
+<p><strong>Positive Deviation:</strong> \(P_{\text{observed}} > \chi_A P_A^\circ + \chi_B P_B^\circ\). A−B interactions are WEAKER than A−A and B−B. Molecules escape more easily → higher VP. <strong>ΔH_mix &gt; 0</strong> (endothermic), ΔV_mix &gt; 0. Example: Ethanol + Water, CCl₄ + Toluene.</p>
+<p><strong>Negative Deviation:</strong> \(P_{\text{observed}} < \chi_A P_A^\circ + \chi_B P_B^\circ\). A−B interactions are STRONGER. Molecules escape less easily → lower VP. <strong>ΔH_mix &lt; 0</strong> (exothermic), ΔV_mix &lt; 0. Example: Chloroform + Acetone, Phenol + Aniline.</p>
+<table>
+<tr><th>Property</th><th>Positive Deviation</th><th>Negative Deviation</th></tr>
+<tr><td>P_obs vs P_Raoult</td><td>P_obs &gt; P_Raoult</td><td>P_obs &lt; P_Raoult</td></tr>
+<tr><td>A−B interaction</td><td>Weaker</td><td>Stronger</td></tr>
+<tr><td>ΔH_mix</td><td>&gt; 0 (endothermic)</td><td>&lt; 0 (exothermic)</td></tr>
+<tr><td>ΔV_mix</td><td>&gt; 0</td><td>&lt; 0</td></tr>
+</table>
+</div>
+</div>
+
+<div class="qa-card reveal">
+<div class="qa-header" onclick="toggleCard(this)">
+  <div class="qa-q-num">Q12</div>
+  <div class="qa-q-text">A solution of 1.8g glucose in 100g water. Calculate (i) molality (ii) mole fraction of glucose.</div>
+  <div class="qa-year">2018</div>
+  <button class="qa-toggle" tabindex="-1">+</button>
+</div>
+<div class="qa-body">
+<div class="answer-badge">✦ Answer</div>
+<p>M(glucose, C₆H₁₂O₆) = 180 g/mol, Mass of water = 100 g</p>
+<p>\(n_{\text{glucose}} = \frac{1.8}{180} = 0.01 \text{ mol}\), \(n_{\text{water}} = \frac{100}{18} = 5.556 \text{ mol}\)</p>
+<div class="formula-box">$$m = \frac{0.01}{0.1\text{ kg}} = \boxed{0.1 \text{ mol kg}^{-1}}$$
+$$\chi_{\text{glucose}} = \frac{0.01}{0.01 + 5.556} = \boxed{1.8 \times 10^{-3}}$$</div>
+</div>
+</div>
+
+<div class="qa-card reveal">
+<div class="qa-header" onclick="toggleCard(this)">
+  <div class="qa-q-num">Q13</div>
+  <div class="qa-q-text">Type of deviation shown by ethanol and acetone. Reason. Intermolecular forces broken and formed.</div>
+  <div class="qa-year">2018</div>
+  <button class="qa-toggle" tabindex="-1">+</button>
+</div>
+<div class="qa-body">
+<div class="answer-badge">✦ Answer</div>
+<p><strong>Answer: Positive Deviation from Raoult's Law</strong></p>
+<p><strong>Reason:</strong> In pure ethanol: strong <strong>hydrogen bonds</strong> (−OH group). In pure acetone: <strong>dipole–dipole interactions</strong> (C=O group). When mixed: the −OH of ethanol interacts with C=O of acetone, but this new interaction is <strong>weaker</strong> than original H-bonds in pure ethanol → higher vapour pressure → positive deviation.</p>
+<p><strong>Intermolecular Forces:</strong></p>
+<ul>
+<li><strong>Broken:</strong> H-bonds between ethanol molecules; dipole–dipole between acetone molecules</li>
+<li><strong>Formed:</strong> Weaker dipole–dipole/H-bond interactions between ethanol and acetone (O−H···O=C)</li>
+</ul>
+<blockquote>Forces broken &gt; forces formed (in strength): ΔH_mix &gt; 0 (endothermic)</blockquote>
+</div>
+</div>
+
+<div class="qa-card reveal">
+<div class="qa-header" onclick="toggleCard(this)">
+  <div class="qa-q-num">Q14</div>
+  <div class="qa-q-text">Define 'ideal solution'. Give one example. State two conditions.</div>
+  <div class="qa-year">2019</div>
+  <button class="qa-toggle" tabindex="-1">+</button>
+</div>
+<div class="qa-body">
+<div class="answer-badge">✦ Answer</div>
+<p><strong>Ideal Solution:</strong> A solution that obeys <strong>Raoult's law exactly</strong> over the entire range of concentrations and at all temperatures. ΔH_mix = 0, ΔV_mix = 0.</p>
+<p><strong>Examples:</strong> Benzene and toluene; n-hexane and n-heptane; Ethyl bromide and ethyl iodide.</p>
+<p><strong>Two Conditions:</strong></p>
+<ol>
+<li>The <strong>intermolecular interactions between A−B molecules</strong> must be similar in magnitude to A−A and B−B interactions (same type of forces) → ΔH_mix = 0.</li>
+<li>The components must be <strong>chemically similar</strong> (similar structure, polarity, size) → ΔV_mix = 0.</li>
+</ol>
+</div>
+</div>
+
+<div class="qa-card reveal">
+<div class="qa-header" onclick="toggleCard(this)">
+  <div class="qa-q-num">Q15</div>
+  <div class="qa-q-text">Why does HCl in benzene show positive deviation, while CHCl₃ + acetone shows negative deviation?</div>
+  <div class="qa-year">2019</div>
+  <button class="qa-toggle" tabindex="-1">+</button>
+</div>
+<div class="qa-body">
+<div class="answer-badge">✦ Answer</div>
+<p><strong>HCl in Benzene → Positive Deviation:</strong> Benzene has London dispersion forces (weak); HCl has dipole–dipole (stronger). When mixed, HCl + benzene interaction (weak induced dipole) is <strong>weaker</strong> than both originals → higher VP → positive deviation.</p>
+<p><strong>Chloroform + Acetone → Negative Deviation:</strong> H atom of CHCl₃ (δ+) forms a <strong>hydrogen bond</strong> with O of acetone (δ−): CHCl₃···O=C(CH₃)₂. This new interaction is <strong>stronger</strong> than original interactions → reduced VP → negative deviation.</p>
+</div>
+</div>
+
+<div class="qa-card reveal">
+<div class="qa-header" onclick="toggleCard(this)">
+  <div class="qa-q-num">Q16</div>
+  <div class="qa-q-text">(a) Aquatic life more comfortable in cold water. (b) Osmotic pressure preferred for determining molar mass of polymers.</div>
+  <div class="qa-year">2020</div>
+  <button class="qa-toggle" tabindex="-1">+</button>
+</div>
+<div class="qa-body">
+<div class="answer-badge">✦ Answer</div>
+<p><strong>(a) Aquatic life in cold water:</strong> Solubility of O₂ is governed by Henry's law. At lower temperatures, K_H is smaller → higher solubility of O₂. Cold water contains more dissolved O₂, essential for respiration of aquatic life. As water warms, O₂ content drops → aquatic life is stressed.</p>
+<p><strong>(b) Osmotic pressure preferred for high molecular mass polymers:</strong></p>
+<ul>
+<li><strong>Sensitivity:</strong> π = CRT → even a very small concentration gives a measurable pressure.</li>
+<li><strong>Room temperature</strong> measurements are possible (no need to heat/cool) → no decomposition of thermally sensitive polymers.</li>
+<li>ΔT_b and ΔT_f are extremely small for high MW solutes (too small to measure accurately), but π remains practically measurable.</li>
+</ul>
+</div>
+</div>
+
+<div class="qa-card reveal">
+<div class="qa-header" onclick="toggleCard(this)">
+  <div class="qa-q-num">Q17</div>
+  <div class="qa-q-text">Solution of 25g urea (M=60) per 500g water. Calculate boiling point. Kb = 0.52 K kg mol⁻¹.</div>
+  <div class="qa-year">2020</div>
+  <button class="qa-toggle" tabindex="-1">+</button>
+</div>
+<div class="qa-body">
+<div class="answer-badge">✦ Answer</div>
+<p>\(n_{\text{urea}} = \frac{25}{60} = 0.4167 \text{ mol}\), mass of water = 0.5 kg</p>
+<p>Molality: \(m = \frac{0.4167}{0.5} = 0.8333 \text{ mol kg}^{-1}\)</p>
+<p>Elevation: \(\Delta T_b = K_b \times m = 0.52 \times 0.8333 = 0.4333 \text{ K}\)</p>
+<div class="formula-box">$$T_b = 100 + 0.4333 = \boxed{100.43°C}$$</div>
+</div>
+</div>
+
+<div class="qa-card reveal">
+<div class="qa-header" onclick="toggleCard(this)">
+  <div class="qa-q-num">Q18</div>
+  <div class="qa-q-text">What is an azeotropic mixture? Distinguish between minimum and maximum boiling azeotropes.</div>
+  <div class="qa-year">2021</div>
+  <button class="qa-toggle" tabindex="-1">+</button>
+</div>
+<div class="qa-body">
+<div class="answer-badge">✦ Answer</div>
+<p><strong>Azeotrope:</strong> A mixture of two liquids with a <strong>constant boiling point</strong> and <strong>constant composition</strong> throughout distillation — both liquid and vapour phases have identical compositions. Cannot be separated by simple fractional distillation.</p>
+<p><strong>Minimum Boiling Azeotrope:</strong> Formed by solutions showing <strong>positive deviation</strong>. B.P. is <strong>lower</strong> than both pure components. Example: Ethanol (b.p. 78.5°C) + Water (b.p. 100°C) → Azeotrope at 78.1°C (95.5% ethanol).</p>
+<p><strong>Maximum Boiling Azeotrope:</strong> Formed by solutions showing <strong>negative deviation</strong>. B.P. is <strong>higher</strong> than both pure components. Example: HNO₃ (b.p. 86°C) + Water (b.p. 100°C) → Azeotrope at 120.5°C (68% HNO₃).</p>
+<table>
+<tr><th>Property</th><th>Minimum Boiling</th><th>Maximum Boiling</th></tr>
+<tr><td>Deviation</td><td>Positive</td><td>Negative</td></tr>
+<tr><td>B.P.</td><td>Lower than both components</td><td>Higher than both components</td></tr>
+<tr><td>Vapour pressure</td><td>Higher than ideal</td><td>Lower than ideal</td></tr>
+<tr><td>Example</td><td>Ethanol + Water</td><td>HNO₃ + Water</td></tr>
+</table>
+</div>
+</div>
+
+<div class="qa-card reveal">
+<div class="qa-header" onclick="toggleCard(this)">
+  <div class="qa-q-num">Q19</div>
+  <div class="qa-q-text">Molality of ethanol–water with mole fraction of ethanol = 0.040. Molarity if density = 0.997 g/mL.</div>
+  <div class="qa-year">2021</div>
+  <button class="qa-toggle" tabindex="-1">+</button>
+</div>
+<div class="qa-body">
+<div class="answer-badge">✦ Answer</div>
+<p>χ_ethanol = 0.040, χ_water = 0.960. Consider 1 mol of solution: n_ethanol = 0.040 mol, n_water = 0.960 mol.</p>
+<p>Mass of water = 0.960 × 18 = 17.28 g = 0.01728 kg</p>
+<div class="formula-box">$$m = \frac{0.040}{0.01728} = \boxed{2.314 \text{ mol kg}^{-1}}$$</div>
+<p>Mass of solution = (0.040 × 46) + (0.960 × 18) = 19.12 g; V = 19.12/0.997 = 19.18 mL = 0.01918 L</p>
+<div class="formula-box">$$M = \frac{0.040}{0.01918} = \boxed{2.085 \text{ mol L}^{-1} \approx 2.09\text{ M}}$$</div>
+</div>
+</div>
+
+<div class="qa-card reveal">
+<div class="qa-header" onclick="toggleCard(this)">
+  <div class="qa-q-num">Q20</div>
+  <div class="qa-q-text">Abnormal molar mass and van't Hoff factor. When is i &lt; 1 and when is i &gt; 1?</div>
+  <div class="qa-year">2022</div>
+  <button class="qa-toggle" tabindex="-1">+</button>
+</div>
+<div class="qa-body">
+<div class="answer-badge">✦ Answer</div>
+<p><strong>Abnormal Molar Mass:</strong> When experimentally determined molar mass using colligative properties <strong>differs</strong> from the expected (theoretical) molar mass. Occurs when solute undergoes <strong>dissociation</strong> or <strong>association</strong>. $$M_{\text{observed}} = \frac{M_{\text{theoretical}}}{i}$$</p>
+<p><strong>Van't Hoff Factor (i):</strong> $$i = \frac{\text{Observed colligative property}}{\text{Theoretical colligative property}} = \frac{M_{\text{theoretical}}}{M_{\text{observed}}}$$</p>
+<p><strong>When i &gt; 1:</strong> Solute <strong>dissociates</strong> → more particles → higher colligative property. Example: NaCl → Na⁺ + Cl⁻ → i ≈ 2.</p>
+<p><strong>When i &lt; 1:</strong> Solute undergoes <strong>association</strong> (molecules cluster). Example: CH₃COOH dimerises in benzene: 2CH₃COOH ⇌ (CH₃COOH)₂ → fewer particles → i &lt; 1.</p>
+</div>
+</div>
+
+</div><!-- end qa-grid easy -->
+
+<!-- HARD LEVEL -->
+<div class="section-header reveal" style="margin-top:60px">
+  <div class="section-header-content">
+    <div class="section-eyebrow">Chapter 1 · Solutions</div>
+    <div class="section-title">Hard Level — Numerical Problems</div>
+  </div>
+  <div class="section-line"></div>
+</div>
+<div class="level-badge level-hard reveal">Hard Level — Q21 to Q40</div>
+
+<div class="qa-grid">
+
+<div class="qa-card reveal">
+<div class="qa-header" onclick="toggleCard(this)">
+  <div class="qa-q-num">Q21</div>
+  <div class="qa-q-text">5% sucrose freezes at 271 K. Find F.P. of 5% glucose. Kf = 1.86 K kg mol⁻¹.</div>
+  <div class="qa-year">2014</div>
+  <button class="qa-toggle" tabindex="-1">+</button>
+</div>
+<div class="qa-body">
+<div class="answer-badge">✦ Answer</div>
+<p>Given: 5% sucrose (M = 342) freezes at 271 K → ΔT_f(sucrose) = 273.15 − 271 = 2.15 K. Kf = 1.86 K kg mol⁻¹.</p>
+<p><strong>Molality of 5% glucose:</strong> In 100 g solution: 5 g glucose, 95 g water = 0.095 kg.</p>
+<p>\(m_{\text{glucose}} = \frac{5/180}{0.095} = \frac{0.02778}{0.095} = 0.2924 \text{ mol/kg}\)</p>
+<p><strong>ΔT_f for glucose:</strong> \(\Delta T_f = K_f \times m = 1.86 \times 0.2924 = 0.5439 \text{ K}\)</p>
+<div class="formula-box">$$T_f = 273.15 - 0.5439 = \boxed{272.61 \text{ K} \approx 272.6 \text{ K}}$$</div>
+</div>
+</div>
+
+<div class="qa-card reveal">
+<div class="qa-header" onclick="toggleCard(this)">
+  <div class="qa-q-num">Q22</div>
+  <div class="qa-q-text">18g glucose in 1 kg water. At what temperature will water boil at 1.013 bar? Kb = 0.52 K kg mol⁻¹.</div>
+  <div class="qa-year">2014</div>
+  <button class="qa-toggle" tabindex="-1">+</button>
+</div>
+<div class="qa-body">
+<div class="answer-badge">✦ Answer</div>
+<p>\(n = \frac{18}{180} = 0.1 \text{ mol}\), m = 0.1/1 = 0.1 mol/kg</p>
+<p>\(\Delta T_b = 0.52 \times 0.1 = 0.052 \text{ K}\)</p>
+<div class="formula-box">$$T_b = 100.0 + 0.052 = \boxed{100.052°C}$$</div>
+</div>
+</div>
+
+<div class="qa-card reveal">
+<div class="qa-header" onclick="toggleCard(this)">
+  <div class="qa-q-num">Q23</div>
+  <div class="qa-q-text">Find amount of KNO₃ to be dissolved in 1 kg water for ΔTf = 2 K. Kf = 1.86 K kg mol⁻¹.</div>
+  <div class="qa-year">2015</div>
+  <button class="qa-toggle" tabindex="-1">+</button>
+</div>
+<div class="qa-body">
+<div class="answer-badge">✦ Answer</div>
+<p>KNO₃ → K⁺ + NO₃⁻ → i = 2, M(KNO₃) = 101 g/mol.</p>
+<p>Using \(\Delta T_f = i \times K_f \times m\): \(2 = 2 \times 1.86 \times m \Rightarrow m = \frac{2}{3.72} = 0.5376 \text{ mol/kg}\)</p>
+<div class="formula-box">$$W = 0.5376 \times 101 = \boxed{54.30 \text{ g of KNO}_3}$$</div>
+</div>
+</div>
+
+<div class="qa-card reveal">
+<div class="qa-header" onclick="toggleCard(this)">
+  <div class="qa-q-num">Q24</div>
+  <div class="qa-q-text">Vapour pressures at 400 K: A = 450 mmHg, B = 700 mmHg. P_total = 600 mmHg. Find liquid and vapour compositions.</div>
+  <div class="qa-year">2015</div>
+  <button class="qa-toggle" tabindex="-1">+</button>
+</div>
+<div class="qa-body">
+<div class="answer-badge">✦ Answer</div>
+<p>Using Raoult's Law: \(600 = \chi_A \times 450 + (1 - \chi_A) \times 700\)</p>
+<p>\(600 = 450\chi_A + 700 - 700\chi_A \Rightarrow -100 = -250\chi_A \Rightarrow \chi_A = 0.4, \chi_B = 0.6\)</p>
+<p><strong>Liquid phase:</strong> χ_A = 0.4, χ_B = 0.6</p>
+<p>Partial pressures: p_A = 0.4 × 450 = 180 mmHg; p_B = 0.6 × 700 = 420 mmHg</p>
+<div class="formula-box">$$y_A = \frac{180}{600} = 0.3, \quad y_B = \frac{420}{600} = 0.7$$</div>
+<p><strong>Vapour phase:</strong> y_A = 0.3, y_B = 0.7</p>
+</div>
+</div>
+
+<div class="qa-card reveal">
+<div class="qa-header" onclick="toggleCard(this)">
+  <div class="qa-q-num">Q25</div>
+  <div class="qa-q-text">Find mass of non-volatile solute (M=40) to reduce vapour pressure of 114g octane to 80%.</div>
+  <div class="qa-year">2016</div>
+  <button class="qa-toggle" tabindex="-1">+</button>
+</div>
+<div class="qa-body">
+<div class="answer-badge">✦ Answer</div>
+<p>P = 0.80 P° → \(\frac{P^\circ - P}{P^\circ} = 0.20 = \chi_{\text{solute}}\). n_octane = 114/114 = 1 mol.</p>
+<p>\(\frac{n_s}{n_s + 1} = 0.20 \Rightarrow n_s = 0.25 \text{ mol}\)</p>
+<div class="formula-box">$$W = 0.25 \times 40 = \boxed{10 \text{ g}}$$</div>
+</div>
+</div>
+
+<div class="qa-card reveal">
+<div class="qa-header" onclick="toggleCard(this)">
+  <div class="qa-q-num">Q26</div>
+  <div class="qa-q-text">Glycerol (M=92) in 500g water, b.p. = 100.42°C. Find mass of glycerol. Kb = 0.512 K kg mol⁻¹.</div>
+  <div class="qa-year">2016</div>
+  <button class="qa-toggle" tabindex="-1">+</button>
+</div>
+<div class="qa-body">
+<div class="answer-badge">✦ Answer</div>
+<p>ΔT_b = 0.42 K, W_water = 0.5 kg.</p>
+<p>m = 0.42/0.512 = 0.8203 mol/kg; n = 0.8203 × 0.5 = 0.4102 mol</p>
+<div class="formula-box">$$W = 0.4102 \times 92 = \boxed{37.73 \text{ g} \approx 37.8 \text{ g}}$$</div>
+</div>
+</div>
+
+<div class="qa-card reveal">
+<div class="qa-header" onclick="toggleCard(this)">
+  <div class="qa-q-num">Q27</div>
+  <div class="qa-q-text">1.00 molal CCl₃COOH boils at 100.18°C. Find degree of association (dimerisation). Kb = 0.512.</div>
+  <div class="qa-year">2017</div>
+  <button class="qa-toggle" tabindex="-1">+</button>
+</div>
+<div class="qa-body">
+<div class="answer-badge">✦ Answer</div>
+<p>ΔT_b (observed) = 0.18°C. \(m_{\text{obs}} = \frac{0.18}{0.512} = 0.3516 \text{ mol/kg}\)</p>
+<p>Van't Hoff factor: \(i = \frac{0.3516}{1.00} = 0.3516\)</p>
+<p>For dimerisation (n=2): \(i = 1 - \frac{\alpha}{2} \Rightarrow \alpha = 2(1-i) = 2(1-0.3516) = 2 \times 0.6484\)</p>
+<div class="formula-box">$$\alpha \approx 0.65 \text{ (65%)}$$</div>
+<blockquote><strong>Note:</strong> The standard CBSE answer gives degree of association ≈ 64.8% ≈ 65%.</blockquote>
+</div>
+</div>
+
+<div class="qa-card reveal">
+<div class="qa-header" onclick="toggleCard(this)">
+  <div class="qa-q-num">Q28</div>
+  <div class="qa-q-text">Osmotic pressure: 1.0g polymer (M=185000) in 450 mL water at 37°C.</div>
+  <div class="qa-year">2017</div>
+  <button class="qa-toggle" tabindex="-1">+</button>
+</div>
+<div class="qa-body">
+<div class="answer-badge">✦ Answer</div>
+<p>n = 1.0/185000 = 5.405 × 10⁻⁶ mol; V = 4.5 × 10⁻⁴ m³; T = 310 K.</p>
+<p>C = 5.405×10⁻⁶ / 4.5×10⁻⁴ = 1.201×10⁻² mol m⁻³</p>
+<div class="formula-box">$$\pi = CRT = 1.201 \times 10^{-2} \times 8.314 \times 310 = \boxed{30.94 \text{ Pa} \approx 30.9 \text{ Pa}}$$</div>
+</div>
+</div>
+
+<div class="qa-card reveal">
+<div class="qa-header" onclick="toggleCard(this)">
+  <div class="qa-q-num">Q29</div>
+  <div class="qa-q-text">Vapour pressure of pure water = 23.8 mmHg. Find vapour pressure and relative lowering when 10g glucose in 90g water.</div>
+  <div class="qa-year">2018</div>
+  <button class="qa-toggle" tabindex="-1">+</button>
+</div>
+<div class="qa-body">
+<div class="answer-badge">✦ Answer</div>
+<p>n_glucose = 10/180 = 0.0556 mol; n_water = 90/18 = 5 mol.</p>
+<p>\(\chi_{\text{glucose}} = \frac{0.0556}{5.0556} = 0.011\)</p>
+<div class="formula-box">$$\frac{\Delta P}{P^\circ} = \boxed{0.011}$$
+$$P = 23.8 \times (1 - 0.011) = \boxed{23.54 \text{ mm Hg}}$$</div>
+</div>
+</div>
+
+<div class="qa-card reveal">
+<div class="qa-header" onclick="toggleCard(this)">
+  <div class="qa-q-num">Q30</div>
+  <div class="qa-q-text">5g non-electrolyte in 500 cm³ water. Osmotic pressure at 27°C = 4.26 bar. Find molar mass.</div>
+  <div class="qa-year">2018</div>
+  <button class="qa-toggle" tabindex="-1">+</button>
+</div>
+<div class="qa-body">
+<div class="answer-badge">✦ Answer</div>
+<p>W = 5 g; V = 0.5 L; π = 4.26 bar; T = 300 K. Using π = (W/MV)RT:</p>
+<div class="formula-box">$$M = \frac{WRT}{\pi V} = \frac{5 \times 0.083 \times 300}{4.26 \times 0.5} = \boxed{58.45 \approx 58.5 \text{ g/mol}}$$</div>
+</div>
+</div>
+
+<div class="qa-card reveal">
+<div class="qa-header" onclick="toggleCard(this)">
+  <div class="qa-q-num">Q37</div>
+  <div class="qa-q-text">KH for CO₂ = 1.67×10⁸ Pa. Find CO₂ dissolved in 500 mL soda water at 2.5 atm.</div>
+  <div class="qa-year">2022</div>
+  <button class="qa-toggle" tabindex="-1">+</button>
+</div>
+<div class="qa-body">
+<div class="answer-badge">✦ Answer</div>
+<p>P(CO₂) = 2.5 × 101325 = 2.533 × 10⁵ Pa. n_water = 500/18 = 27.78 mol.</p>
+<p>\(\chi_{\text{CO}_2} = \frac{p}{K_H} = \frac{2.533 \times 10^5}{1.67 \times 10^8} = 1.517 \times 10^{-3}\)</p>
+<p>\(n_{\text{CO}_2} \approx \chi_{\text{CO}_2} \times n_{\text{water}} = 1.517 \times 10^{-3} \times 27.78 = 0.04214 \text{ mol}\)</p>
+<div class="formula-box">$$W = 0.04214 \times 44 = \boxed{1.854 \text{ g} \approx 1.85 \text{ g}}$$</div>
+</div>
+</div>
+
+<div class="qa-card reveal">
+<div class="qa-header" onclick="toggleCard(this)">
+  <div class="qa-q-num">Q38</div>
+  <div class="qa-q-text">Sucrose (68.5g in 1000g water). F.P. = −0.372°C. Find (a) Kf (b) Osmotic pressure at 300K.</div>
+  <div class="qa-year">2022</div>
+  <button class="qa-toggle" tabindex="-1">+</button>
+</div>
+<div class="qa-body">
+<div class="answer-badge">✦ Answer</div>
+<p>m = (68.5/342)/1 = 0.2002 mol/kg.</p>
+<div class="formula-box">$$K_f = \frac{\Delta T_f}{m} = \frac{0.372}{0.2002} = \boxed{1.858 \approx 1.86 \text{ K kg mol}^{-1}}$$</div>
+<p>C = 0.2002/1.0685 = 0.1874 mol/L; π = 0.1874 × 0.0821 × 300 = 4.615 atm.</p>
+<div class="formula-box">$$\pi \approx \boxed{4.615 \text{ atm} \approx 4.68 \times 10^5 \text{ Pa}}$$</div>
+</div>
+</div>
+
+<div class="qa-card reveal">
+<div class="qa-header" onclick="toggleCard(this)">
+  <div class="qa-q-num">Q39</div>
+  <div class="qa-q-text">Explain both types of non-ideal solution deviations from Raoult's law with molecular-level reasoning.</div>
+  <div class="qa-year">2022</div>
+  <button class="qa-toggle" tabindex="-1">+</button>
+</div>
+<div class="qa-body">
+<div class="answer-badge">✦ Answer</div>
+<p><strong>TYPE 1: Positive Deviation</strong> — P_observed &gt; P_Raoult. A−B interactions are <strong>weaker</strong> than A−A and B−B. Molecules are held less tightly → escape more easily → higher VP. ΔH_mix &gt; 0 (endothermic), ΔV_mix &gt; 0.</p>
+<p>Examples: (1) <em>Ethanol + Water:</em> When mixed, H-bonds between unlike molecules are weaker → positive deviation. (2) <em>CCl₄ + Toluene:</em> Unlike molecules have weaker interactions. (3) <em>Acetone + CS₂.</em></p>
+<p><strong>TYPE 2: Negative Deviation</strong> — P_observed &lt; P_Raoult. A−B interactions are <strong>stronger</strong> than A−A and B−B. Molecules held more tightly → lower VP. ΔH_mix &lt; 0 (exothermic), ΔV_mix &lt; 0.</p>
+<p>Examples: (1) <em>Chloroform + Acetone:</em> CHCl₃ (δ+ H) H-bonds with C=O of acetone. (2) <em>Phenol + Aniline:</em> O−H of phenol H-bonds with N−H of aniline. (3) <em>HNO₃ + Water:</em> Strong acid–base interaction → exothermic.</p>
+</div>
+</div>
+
+<div class="qa-card reveal">
+<div class="qa-header" onclick="toggleCard(this)">
+  <div class="qa-q-num">Q40</div>
+  <div class="qa-q-text">Osmotic pressure of K₂SO₄: 0.025g in 2L at 25°C. R = 0.0821; M(K₂SO₄) = 174.</div>
+  <div class="qa-year">2021</div>
+  <button class="qa-toggle" tabindex="-1">+</button>
+</div>
+<div class="qa-body">
+<div class="answer-badge">✦ Answer</div>
+<p>K₂SO₄ → 2K⁺ + SO₄²⁻ → i = 3. n = 0.025/174 = 1.437×10⁻⁴ mol; C = 7.184×10⁻⁵ mol/L.</p>
+<div class="formula-box">$$\pi = i \times CRT = 3 \times 7.184\times10^{-5} \times 0.0821 \times 298 = \boxed{5.274 \times 10^{-3} \text{ atm} \approx 534 \text{ Pa}}$$</div>
+</div>
+</div>
+
+</div><!-- end hard qa-grid solutions -->
+</div><!-- end section -->
+
+<!-- ━━━━━━━━━━━━━━ CHAPTER 2: CHEMICAL KINETICS ━━━━━━━━━━━━━━ -->
+<div id="kinetics" style="padding-top:80px">
+<div class="section">
+
+<div class="chapter-banner reveal">
+  <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=1200&q=80" alt="Chemical Kinetics"/>
+  <div class="chapter-banner-overlay"></div>
+  <div class="chapter-banner-content">
+    <div class="chapter-num">CHAPTER · 02</div>
+    <div class="chapter-title-banner">Chemical Kinetics</div>
+  </div>
+</div>
+
+<div class="section-header reveal">
+  <div class="section-header-num">02</div>
+  <div class="section-header-content">
+    <div class="section-eyebrow">Chapter 2 · Chemical Kinetics</div>
+    <div class="section-title">Easy Level Questions</div>
+  </div>
+  <div class="section-line"></div>
+</div>
+<div class="level-badge level-easy reveal">Easy Level — Q41 to Q60</div>
+
+<div class="qa-grid">
+
+<div class="qa-card reveal">
+<div class="qa-header" onclick="toggleCard(this)">
+  <div class="qa-q-num">Q41</div>
+  <div class="qa-q-text">Define activation energy. How does catalyst affect it? Explain with potential energy diagram.</div>
+  <div class="qa-year">2014</div>
+  <button class="qa-toggle" tabindex="-1">+</button>
+</div>
+<div class="qa-body">
+<div class="answer-badge">✦ Answer</div>
+<p><strong>Activation Energy (Ea):</strong> The <strong>minimum extra amount of energy</strong> that reactant molecules must possess over their average energy to collide successfully and form products — to overcome the energy barrier. Units: kJ mol⁻¹. $$E_a = \text{Energy of activated complex} - \text{Average energy of reactants}$$</p>
+<p><strong>Effect of Catalyst:</strong> A catalyst provides an <strong>alternative reaction pathway</strong> with a <strong>lower activation energy</strong>. It does NOT change the energies of reactants or products (ΔH remains the same), but lowers the "hill" of the energy barrier.</p>
+<pre>Energy
+  |           ‡ (without catalyst)
+  |          /\
+  |         /  \
+  |        /    \  ‡ (with catalyst)
+  |       /      \/\
+  |      /          \
+  | R   /            \
+  |----/              \----  P
+  |________________________ Reaction coordinate</pre>
+<blockquote>A catalyst lowers Ea but does NOT change ΔH, equilibrium constant, or yield of product.</blockquote>
+</div>
+</div>
+
+<div class="qa-card reveal">
+<div class="qa-header" onclick="toggleCard(this)">
+  <div class="qa-q-num">Q42</div>
+  <div class="qa-q-text">Effect of temperature on rate constant. Arrhenius equation. Define pre-exponential factor A.</div>
+  <div class="qa-year">2014</div>
+  <button class="qa-toggle" tabindex="-1">+</button>
+</div>
+<div class="qa-body">
+<div class="answer-badge">✦ Answer</div>
+<p><strong>Effect of Temperature:</strong> As temperature increases, the <strong>rate constant (k) increases</strong>. For every 10°C rise, k approximately doubles (temperature coefficient ≈ 2).</p>
+<div class="formula-box">$$k = A \cdot e^{-E_a/RT}$$
+$$\log k = \log A - \frac{E_a}{2.303 RT}$$</div>
+<p><strong>Graphical form:</strong> Plot of log k vs 1/T gives a straight line with slope = −Ea/2.303R, intercept = log A.</p>
+<p><strong>Pre-exponential Factor (A):</strong> Also called the <strong>frequency factor</strong> or <strong>Arrhenius factor</strong>. Represents: (1) total frequency of collisions per unit volume per second, (2) accounts for orientation factor (probability of correct geometric orientation). Units: same as k.</p>
+</div>
+</div>
+
+<div class="qa-card reveal">
+<div class="qa-header" onclick="toggleCard(this)">
+  <div class="qa-q-num">Q43</div>
+  <div class="qa-q-text">Define order of reaction. Write rate law for first order in A, second order in B.</div>
+  <div class="qa-year">2015</div>
+  <button class="qa-toggle" tabindex="-1">+</button>
+</div>
+<div class="qa-body">
+<div class="answer-badge">✦ Answer</div>
+<p><strong>Order of Reaction:</strong> The <strong>power (exponent) of the concentration</strong> of a reactant in the experimentally determined rate law. The <strong>overall order</strong> is the sum of all exponents.</p>
+<div class="formula-box">$$r = k[A]^1[B]^2$$</div>
+<ul>
+<li>Order w.r.t. A = 1</li>
+<li>Order w.r.t. B = 2</li>
+<li><strong>Overall order = 1 + 2 = 3 (Third order reaction)</strong></li>
+</ul>
+<p>Key Points: Order is determined <strong>experimentally</strong>. Can be zero, fractional, or negative. Units of k for third order: mol⁻² L² s⁻¹.</p>
+</div>
+</div>
+
+<div class="qa-card reveal">
+<div class="qa-header" onclick="toggleCard(this)">
+  <div class="qa-q-num">Q44</div>
+  <div class="qa-q-text">Half-life of first order reaction = 60 min. Find rate constant. Fraction remaining after 4 hours.</div>
+  <div class="qa-year">2015</div>
+  <button class="qa-toggle" tabindex="-1">+</button>
+</div>
+<div class="qa-body">
+<div class="answer-badge">✦ Answer</div>
+<div class="formula-box">$$k = \frac{0.693}{t_{1/2}} = \frac{0.693}{60} = \boxed{1.155 \times 10^{-2} \text{ min}^{-1}}$$</div>
+<p>4 hours = 240 min. Number of half-lives = 240/60 = <strong>4</strong>.</p>
+<div class="formula-box">$$\frac{[A]_t}{[A]_0} = \left(\frac{1}{2}\right)^4 = \frac{1}{16} = \boxed{0.0625 \text{ (6.25%)}}$$</div>
+</div>
+</div>
+
+<div class="qa-card reveal">
+<div class="qa-header" onclick="toggleCard(this)">
+  <div class="qa-q-num">Q45</div>
+  <div class="qa-q-text">Define rate of reaction. Differentiate between instantaneous rate and average rate.</div>
+  <div class="qa-year">2016</div>
+  <button class="qa-toggle" tabindex="-1">+</button>
+</div>
+<div class="qa-body">
+<div class="answer-badge">✦ Answer</div>
+<p><strong>Rate of Reaction:</strong> Change in concentration of a reactant or product per unit time.</p>
+<div class="formula-box">$$r = -\frac{1}{a}\frac{d[A]}{dt} = -\frac{1}{b}\frac{d[B]}{dt} = +\frac{1}{c}\frac{d[C]}{dt}$$</div>
+<p>Units: mol L⁻¹ s⁻¹</p>
+<p><strong>Average Rate:</strong> \(r_{\text{avg}} = -\frac{\Delta[A]}{\Delta t}\) — measured over a <strong>finite time interval</strong>. Slope of the chord joining two points on the concentration–time graph.</p>
+<p><strong>Instantaneous Rate:</strong> \(r_{\text{inst}} = -\frac{d[A]}{dt} = \lim_{\Delta t \to 0} \frac{\Delta[A]}{\Delta t}\) — rate at a <strong>specific instant</strong>. Slope of the tangent to the concentration–time curve at that point. More accurate.</p>
+</div>
+</div>
+
+<div class="qa-card reveal">
+<div class="qa-header" onclick="toggleCard(this)">
+  <div class="qa-q-num">Q46</div>
+  <div class="qa-q-text">Distinguish between order and molecularity. Give one example each of zero order and first order.</div>
+  <div class="qa-year">2016</div>
+  <button class="qa-toggle" tabindex="-1">+</button>
+</div>
+<div class="qa-body">
+<div class="answer-badge">✦ Answer</div>
+<table>
+<tr><th>Feature</th><th>Order</th><th>Molecularity</th></tr>
+<tr><td>Definition</td><td>Sum of powers in rate law</td><td>Number of reactant species in elementary step</td></tr>
+<tr><td>Determination</td><td>Experimentally determined</td><td>Theoretical; from mechanism</td></tr>
+<tr><td>Value</td><td>0, 1, 2, fractions, negative</td><td>Always positive whole number (1, 2, 3)</td></tr>
+<tr><td>Applicability</td><td>Overall + elementary reactions</td><td>Only elementary (single-step) reactions</td></tr>
+</table>
+<p><strong>Zero Order:</strong> Decomposition of NH₃ on Pt: 2NH₃ → N₂ + 3H₂. Rate = k.</p>
+<p><strong>First Order:</strong> Radioactive decay: ²²⁶Ra → ²²²Rn + ⁴He. Decomposition of N₂O₅: Rate = k[N₂O₅].</p>
+</div>
+</div>
+
+<div class="qa-card reveal">
+<div class="qa-header" onclick="toggleCard(this)">
+  <div class="qa-q-num">Q47</div>
+  <div class="qa-q-text">Rate = k[A]². If [A] doubled, how does rate change? If halved?</div>
+  <div class="qa-year">2017</div>
+  <button class="qa-toggle" tabindex="-1">+</button>
+</div>
+<div class="qa-body">
+<div class="answer-badge">✦ Answer</div>
+<p><strong>Case 1: [A] doubled:</strong> \(r' = k[2A]^2 = 4k[A]^2\)</p>
+<div class="formula-box">$$\boxed{\text{Rate becomes 4 times}}$$</div>
+<p><strong>Case 2: [A] halved:</strong> \(r' = k\left[\frac{A}{2}\right]^2 = \frac{k[A]^2}{4}\)</p>
+<div class="formula-box">$$\boxed{\text{Rate becomes 1/4th}}$$</div>
+<blockquote>General Rule: For nth order, if [A] is multiplied by x, rate is multiplied by xⁿ.</blockquote>
+</div>
+</div>
+
+<div class="qa-card reveal">
+<div class="qa-header" onclick="toggleCard(this)">
+  <div class="qa-q-num">Q48</div>
+  <div class="qa-q-text">Define threshold energy and activation energy. Explain role of activated complex.</div>
+  <div class="qa-year">2017</div>
+  <button class="qa-toggle" tabindex="-1">+</button>
+</div>
+<div class="qa-body">
+<div class="answer-badge">✦ Answer</div>
+<p><strong>Threshold Energy:</strong> The <strong>minimum energy</strong> that colliding reactant molecules must possess for the collision to be <strong>effective</strong> = Energy of activated complex.</p>
+<p><strong>Activation Energy (Ea):</strong> The <strong>extra energy</strong> above average energy of reactants that molecules must have to reach threshold energy. \(E_a = E_{\text{threshold}} - E_{\text{average reactants}}\)</p>
+<p><strong>Activated Complex (Transition State):</strong> An <strong>unstable, high-energy intermediate</strong> formed when reactant molecules with sufficient energy collide with proper orientation. Characteristics:</p>
+<ul>
+<li>Exists at the <strong>top of the energy barrier</strong></li>
+<li>Bonds from reactants are <strong>partially broken</strong>; product bonds are <strong>partially formed</strong></li>
+<li>Can go forward (products) or backward (reactants)</li>
+<li>Cannot be isolated or detected</li>
+</ul>
+<p><strong>Example:</strong> For H₂ + I₂ → 2HI: activated complex = [H···H···I···I]</p>
+</div>
+</div>
+
+<div class="qa-card reveal">
+<div class="qa-header" onclick="toggleCard(this)">
+  <div class="qa-q-num">Q49</div>
+  <div class="qa-q-text">Write Arrhenius equation. Define each term. Significance of slope of log k vs 1/T.</div>
+  <div class="qa-year">2018</div>
+  <button class="qa-toggle" tabindex="-1">+</button>
+</div>
+<div class="qa-body">
+<div class="answer-badge">✦ Answer</div>
+<div class="formula-box">$$k = A \cdot e^{-E_a/RT} \quad \Rightarrow \quad \log k = \log A - \frac{E_a}{2.303RT}$$</div>
+<p>Terms: k = rate constant; A = frequency factor; Ea = activation energy (J/mol); R = 8.314 J mol⁻¹ K⁻¹; T = temperature (K).</p>
+<p><strong>Significance of Slope (log k vs 1/T):</strong></p>
+<div class="formula-box">$$\text{Slope} = -\frac{E_a}{2.303R} \quad \therefore E_a = -\text{Slope} \times 2.303R$$</div>
+<ul>
+<li>Slope is <strong>negative</strong> (log k decreases as 1/T increases)</li>
+<li>Steeper slope → higher Ea → more temperature sensitive</li>
+<li>From slope, Ea can be calculated precisely</li>
+</ul>
+</div>
+</div>
+
+<div class="qa-card reveal">
+<div class="qa-header" onclick="toggleCard(this)">
+  <div class="qa-q-num">Q51</div>
+  <div class="qa-q-text">Define pseudo-first order reaction. Give one example. Why is it considered first order?</div>
+  <div class="qa-year">2018</div>
+  <button class="qa-toggle" tabindex="-1">+</button>
+</div>
+<div class="qa-body">
+<div class="answer-badge">✦ Answer</div>
+<p><strong>Pseudo-First Order Reaction:</strong> A reaction of higher order that <strong>behaves as first order</strong> because one reactant is in very large excess and remains essentially constant.</p>
+<p>For A + B → Products with [B] &gt;&gt; [A]: \(r = k[A][B] \approx k'[A]\) where k' = k[B]₀ = pseudo first order rate constant.</p>
+<p><strong>Example: Hydrolysis of Ethyl Acetate (excess water):</strong> $$CH_3COOC_2H_5 + H_2O \xrightarrow{H^+} CH_3COOH + C_2H_5OH$$ Water is the solvent (huge excess) → [H₂O] constant → Rate = k'[CH₃COOC₂H₅] → pseudo-first order.</p>
+<p><strong>Why considered first order?</strong> Concentration of one reactant (in excess) is constant, absorbed into rate constant → only one variable concentration term → kinetics appear first-order.</p>
+</div>
+</div>
+
+<div class="qa-card reveal">
+<div class="qa-header" onclick="toggleCard(this)">
+  <div class="qa-q-num">Q52</div>
+  <div class="qa-q-text">First order reaction, 30% decomposition in 40 min. Calculate half-life. [log 1.43 = 0.1553]</div>
+  <div class="qa-year">2019</div>
+  <button class="qa-toggle" tabindex="-1">+</button>
+</div>
+<div class="qa-body">
+<div class="answer-badge">✦ Answer</div>
+<p>30% decomposition → 70% remaining. \(k = \frac{2.303}{40}\log\frac{100}{70} = \frac{2.303}{40}\log(1.4286) = \frac{2.303 \times 0.1549}{40} = 8.918 \times 10^{-3} \text{ min}^{-1}\)</p>
+<div class="formula-box">$$t_{1/2} = \frac{0.693}{8.918 \times 10^{-3}} = \boxed{77.7 \text{ min}}$$</div>
+</div>
+</div>
+
+<div class="qa-card reveal">
+<div class="qa-header" onclick="toggleCard(this)">
+  <div class="qa-q-num">Q53</div>
+  <div class="qa-q-text">Write integrated rate equation for first order reaction. Half-life and its significance.</div>
+  <div class="qa-year">2019</div>
+  <button class="qa-toggle" tabindex="-1">+</button>
+</div>
+<div class="qa-body">
+<div class="answer-badge">✦ Answer</div>
+<p><strong>Integrated Rate Equation (First Order):</strong></p>
+<div class="formula-box">$$\ln[A]_t = \ln[A]_0 - kt \quad \text{or} \quad k = \frac{2.303}{t}\log\frac{[A]_0}{[A]_t}$$</div>
+<p><strong>Half-life (t₁/₂):</strong> Time for concentration to become half of its initial value. At t = t₁/₂: [A]_t = [A]₀/2.</p>
+<div class="formula-box">$$t_{1/2} = \frac{0.693}{k}$$</div>
+<p><strong>Significance:</strong> Half-life is <strong>constant</strong> for first order reactions (independent of initial concentration). After n half-lives, fraction remaining = (1/2)ⁿ. Used to characterize radioactive decay and drug metabolism.</p>
+</div>
+</div>
+
+<div class="qa-card reveal">
+<div class="qa-header" onclick="toggleCard(this)">
+  <div class="qa-q-num">Q54</div>
+  <div class="qa-q-text">Explain collision theory of chemical reactions. What is effective collision?</div>
+  <div class="qa-year">2020</div>
+  <button class="qa-toggle" tabindex="-1">+</button>
+</div>
+<div class="qa-body">
+<div class="answer-badge">✦ Answer</div>
+<p><strong>Collision Theory:</strong> A reaction occurs when reactant molecules <strong>collide</strong> with each other. However, not all collisions lead to products.</p>
+<p><strong>Rate of reaction:</strong> Rate = Z_AB × f × P</p>
+<ul>
+<li>Z_AB = collision frequency (number of collisions per unit volume per second)</li>
+<li>f = fraction of molecules with energy ≥ Ea = e^(−Ea/RT)</li>
+<li>P = steric/probability factor (fraction of collisions with correct orientation)</li>
+</ul>
+<p><strong>Effective Collision:</strong> A collision that actually leads to product formation. Two conditions must be met:</p>
+<ol>
+<li>Colliding molecules must have energy ≥ Ea (threshold energy)</li>
+<li>Molecules must have proper orientation at the time of collision</li>
+</ol>
+<blockquote>Most collisions are ineffective because they lack sufficient energy or correct orientation. Only effective collisions produce reactions.</blockquote>
+</div>
+</div>
+
+<div class="qa-card reveal">
+<div class="qa-header" onclick="toggleCard(this)">
+  <div class="qa-q-num">Q55</div>
+  <div class="qa-q-text">What is meant by rate constant? Write units of rate constant for zero, first and second order reactions.</div>
+  <div class="qa-year">2020</div>
+  <button class="qa-toggle" tabindex="-1">+</button>
+</div>
+<div class="qa-body">
+<div class="answer-badge">✦ Answer</div>
+<p><strong>Rate Constant (k):</strong> The proportionality constant in the rate law. Numerically equal to the rate of the reaction when all concentrations are unity (1 mol/L). It is specific to a particular reaction at a given temperature.</p>
+<table>
+<tr><th>Order</th><th>Rate Law</th><th>Units of k</th></tr>
+<tr><td>Zero</td><td>r = k</td><td>mol L⁻¹ s⁻¹</td></tr>
+<tr><td>First</td><td>r = k[A]</td><td>s⁻¹</td></tr>
+<tr><td>Second</td><td>r = k[A]²</td><td>mol⁻¹ L s⁻¹</td></tr>
+</table>
+<p>General formula for units: mol^(1−n) L^(n−1) s⁻¹, where n = order.</p>
+</div>
+</div>
+
+<div class="qa-card reveal">
+<div class="qa-header" onclick="toggleCard(this)">
+  <div class="qa-q-num">Q56</div>
+  <div class="qa-q-text">Explain the effect of concentration on rate of reaction with the help of rate law.</div>
+  <div class="qa-year">2020</div>
+  <button class="qa-toggle" tabindex="-1">+</button>
+</div>
+<div class="qa-body">
+<div class="answer-badge">✦ Answer</div>
+<p><strong>Rate Law:</strong> r = k[A]^m[B]^n where m and n are experimentally determined orders.</p>
+<p><strong>Effect of concentration on rate:</strong></p>
+<ul>
+<li>As concentration of reactants increases, the number of molecules per unit volume increases → more collisions per unit time → higher rate.</li>
+<li>The exact relationship is given by the rate law; for a first order reaction, doubling [A] doubles the rate.</li>
+<li>For a second order reaction, doubling [A] quadruples the rate.</li>
+<li>For zero order reactions, rate is independent of concentration.</li>
+</ul>
+<p>As the reaction proceeds, reactant concentrations decrease → rate decreases progressively (for positive orders).</p>
+</div>
+</div>
+
+<div class="qa-card reveal">
+<div class="qa-header" onclick="toggleCard(this)">
+  <div class="qa-q-num">Q57</div>
+  <div class="qa-q-text">What are the factors affecting rate of reaction? Explain each briefly.</div>
+  <div class="qa-year">2021</div>
+  <button class="qa-toggle" tabindex="-1">+</button>
+</div>
+<div class="qa-body">
+<div class="answer-badge">✦ Answer</div>
+<p><strong>Factors affecting rate of reaction:</strong></p>
+<ol>
+<li><strong>Concentration of reactants:</strong> Higher concentration → more collisions per unit time → faster rate (rate ∝ [reactant]^n).</li>
+<li><strong>Temperature:</strong> Increasing temperature increases fraction of molecules with E ≥ Ea and increases collision frequency → rate increases exponentially (Arrhenius equation).</li>
+<li><strong>Surface area:</strong> For heterogeneous reactions, greater surface area of solid reactant → more contact → faster rate (e.g., powdered reactants react faster).</li>
+<li><strong>Nature of reactants:</strong> Reactions involving ionic species in solution are fast; covalent bond breaking is slower.</li>
+<li><strong>Presence of catalyst:</strong> Catalyst provides alternate pathway with lower Ea → dramatically increases rate without being consumed.</li>
+<li><strong>Light (radiation):</strong> For photochemical reactions, light provides energy for activation (e.g., H₂ + Cl₂ → 2HCl in presence of light).</li>
+</ol>
+</div>
+</div>
+
+<div class="qa-card reveal">
+<div class="qa-header" onclick="toggleCard(this)">
+  <div class="qa-q-num">Q58</div>
+  <div class="qa-q-text">Explain how you can determine order of reaction from the concentration-time graph.</div>
+  <div class="qa-year">2021</div>
+  <button class="qa-toggle" tabindex="-1">+</button>
+</div>
+<div class="qa-body">
+<div class="answer-badge">✦ Answer</div>
+<ul>
+<li><strong>Zero order:</strong> Plot of [A] vs t gives a straight line. Slope = −k. If [A] vs t is linear, reaction is zero order.</li>
+<li><strong>First order:</strong> Plot of ln[A] vs t gives a straight line. Slope = −k. If ln[A] vs t is linear, reaction is first order.</li>
+<li><strong>Second order:</strong> Plot of 1/[A] vs t gives a straight line. Slope = k. If 1/[A] vs t is linear, reaction is second order.</li>
+</ul>
+<p>The half-life method can also be used: for first order, t₁/₂ is constant (independent of [A]₀); for zero order, t₁/₂ = [A]₀/2k; for second order, t₁/₂ = 1/(k[A]₀).</p>
+</div>
+</div>
+
+<div class="qa-card reveal">
+<div class="qa-header" onclick="toggleCard(this)">
+  <div class="qa-q-num">Q59</div>
+  <div class="qa-q-text">What is temperature coefficient of a reaction? What is its typical value and significance?</div>
+  <div class="qa-year">2022</div>
+  <button class="qa-toggle" tabindex="-1">+</button>
+</div>
+<div class="qa-body">
+<div class="answer-badge">✦ Answer</div>
+<p><strong>Temperature Coefficient (μ):</strong> The ratio of rate constants of a reaction at two temperatures differing by 10°C. $$\mu = \frac{k_{T+10}}{k_T}$$</p>
+<p><strong>Typical value:</strong> For most chemical reactions, μ ≈ 2 to 3 (i.e., rate approximately doubles or triples for every 10°C rise in temperature).</p>
+<p><strong>Significance:</strong></p>
+<ul>
+<li>Indicates how sensitive the reaction is to temperature changes.</li>
+<li>Reactions with higher Ea have larger temperature coefficients.</li>
+<li>Biological reactions have high temperature sensitivity (μ ≈ 2–3), which is why fever affects metabolic processes.</li>
+<li>It quantifies the rule of thumb: "rate doubles every 10°C."</li>
+</ul>
+</div>
+</div>
+
+<div class="qa-card reveal">
+<div class="qa-header" onclick="toggleCard(this)">
+  <div class="qa-q-num">Q60</div>
+  <div class="qa-q-text">Integrated rate equation for zero order reaction. Write expression for half-life.</div>
+  <div class="qa-year">2022</div>
+  <button class="qa-toggle" tabindex="-1">+</button>
+</div>
+<div class="qa-body">
+<div class="answer-badge">✦ Answer</div>
+<p><strong>Zero Order Reaction:</strong> Rate = k (independent of concentration).</p>
+<div class="formula-box">$$[A] = [A]_0 - kt \quad \Rightarrow \quad k = \frac{[A]_0 - [A]}{t}$$</div>
+<p>Plot of [A] vs t is a straight line with slope = −k.</p>
+<div class="formula-box">$$t_{1/2} = \frac{[A]_0}{2k}$$</div>
+<p>Note: Half-life for zero order is <strong>not constant</strong> — it depends on initial concentration [A]₀. Examples: Decomposition of NH₃ on Pt surface.</p>
+</div>
+</div>
+
+</div><!-- end easy kinetics -->
+
+<!-- HARD LEVEL KINETICS -->
+<div class="section-header reveal" style="margin-top:60px">
+  <div class="section-header-content">
+    <div class="section-eyebrow">Chapter 2 · Chemical Kinetics</div>
+    <div class="section-title">Hard Level — Numerical Problems</div>
+  </div>
+  <div class="section-line"></div>
+</div>
+<div class="level-badge level-hard reveal">Hard Level — Q61 to Q80</div>
+
+<div class="qa-grid">
+
+<div class="qa-card reveal">
+<div class="qa-header" onclick="toggleCard(this)">
+  <div class="qa-q-num">Q61</div>
+  <div class="qa-q-text">k at 500K = 0.02 s⁻¹, k at 700K = 0.07 s⁻¹. Find Ea and A.</div>
+  <div class="qa-year">2014</div>
+  <button class="qa-toggle" tabindex="-1">+</button>
+</div>
+<div class="qa-body">
+<div class="answer-badge">✦ Answer</div>
+<p>Using: \(\log \frac{k_2}{k_1} = \frac{E_a}{2.303R} \cdot \frac{T_2 - T_1}{T_1 T_2}\)</p>
+<p>\(\log \frac{0.07}{0.02} = \frac{E_a}{19.147} \times \frac{200}{350000}\)</p>
+<p>\(0.5441 = E_a \times 2.985 \times 10^{-5}\)</p>
+<div class="formula-box">$$E_a = \boxed{18.23 \text{ kJ mol}^{-1}}$$</div>
+<p>At T₁ = 500K: log A = log(0.02) + 18229/(2.303 × 8.314 × 500) = −1.699 + 1.904 = 0.205</p>
+<div class="formula-box">$$A = 10^{0.205} = \boxed{1.6 \text{ s}^{-1}}$$</div>
+</div>
+</div>
+
+<div class="qa-card reveal">
+<div class="qa-header" onclick="toggleCard(this)">
+  <div class="qa-q-num">Q62</div>
+  <div class="qa-q-text">Decomposition of NH₃ on Pt — zero order. k = 2.5×10⁻⁴ mol L⁻¹ s⁻¹. Find rates of N₂ and H₂.</div>
+  <div class="qa-year">2014</div>
+  <button class="qa-toggle" tabindex="-1">+</button>
+</div>
+<div class="qa-body">
+<div class="answer-badge">✦ Answer</div>
+<p>Reaction: 2NH₃(g) → N₂(g) + 3H₂(g). Rate of reaction = k = 2.5 × 10⁻⁴ mol L⁻¹ s⁻¹.</p>
+<p>By stoichiometry: \(-\frac{1}{2}\frac{d[NH_3]}{dt} = +\frac{d[N_2]}{dt} = +\frac{1}{3}\frac{d[H_2]}{dt}\)</p>
+<div class="formula-box">$$\text{Rate of N}_2 = \boxed{2.5 \times 10^{-4} \text{ mol L}^{-1} \text{s}^{-1}}$$
+$$\text{Rate of H}_2 = 3k = \boxed{7.5 \times 10^{-4} \text{ mol L}^{-1} \text{s}^{-1}}$$</div>
+</div>
+</div>
+
+<div class="qa-card reveal">
+<div class="qa-header" onclick="toggleCard(this)">
+  <div class="qa-q-num">Q63</div>
+  <div class="qa-q-text">First order: 20% complete in 10 min. Find time for 75% completion.</div>
+  <div class="qa-year">2015</div>
+  <button class="qa-toggle" tabindex="-1">+</button>
+</div>
+<div class="qa-body">
+<div class="answer-badge">✦ Answer</div>
+<p>20% complete → 80% remaining. \(k = \frac{2.303}{10}\log\frac{100}{80} = \frac{2.303 \times 0.0969}{10} = 0.02232 \text{ min}^{-1}\)</p>
+<p>For 75% completion → 25% remaining: \(t = \frac{2.303}{0.02232}\log\frac{100}{25} = 103.15 \times 0.6021\)</p>
+<div class="formula-box">$$t = \boxed{62.1 \text{ min}}$$</div>
+</div>
+</div>
+
+<div class="qa-card reveal">
+<div class="qa-header" onclick="toggleCard(this)">
+  <div class="qa-q-num">Q64</div>
+  <div class="qa-q-text">k at 700K = 0.011 M⁻¹s⁻¹; k at 760K = 0.105 M⁻¹s⁻¹. Find Ea.</div>
+  <div class="qa-year">2015</div>
+  <button class="qa-toggle" tabindex="-1">+</button>
+</div>
+<div class="qa-body">
+<div class="answer-badge">✦ Answer</div>
+<p>\(\log\frac{0.105}{0.011} = \frac{E_a}{19.147} \times \frac{60}{700 \times 760}\)</p>
+<p>\(0.9798 = E_a \times 5.892 \times 10^{-6}\)</p>
+<div class="formula-box">$$E_a = \boxed{166.28 \text{ kJ mol}^{-1}}$$</div>
+</div>
+</div>
+
+<div class="qa-card reveal">
+<div class="qa-header" onclick="toggleCard(this)">
+  <div class="qa-q-num">Q65</div>
+  <div class="qa-q-text">SO₂Cl₂(g) → SO₂(g) + Cl₂(g). t=0: P=0.5 atm; t=100s: P=0.6 atm. Find k.</div>
+  <div class="qa-year">2016</div>
+  <button class="qa-toggle" tabindex="-1">+</button>
+</div>
+<div class="qa-body">
+<div class="answer-badge">✦ Answer</div>
+<table>
+<tr><th></th><th>SO₂Cl₂</th><th>SO₂</th><th>Cl₂</th><th>Total</th></tr>
+<tr><td>t=0</td><td>0.5</td><td>0</td><td>0</td><td>0.5</td></tr>
+<tr><td>t=100s</td><td>0.5−x</td><td>x</td><td>x</td><td>0.5+x = 0.6</td></tr>
+</table>
+<p>x = 0.1 atm; P(SO₂Cl₂) at t=100s = 0.4 atm.</p>
+<div class="formula-box">$$k = \frac{2.303}{100}\log\frac{0.5}{0.4} = \frac{2.303 \times 0.09691}{100} = \boxed{2.232 \times 10^{-3} \text{ s}^{-1}}$$</div>
+</div>
+</div>
+
+<div class="qa-card reveal">
+<div class="qa-header" onclick="toggleCard(this)">
+  <div class="qa-q-num">Q66</div>
+  <div class="qa-q-text">A + B → Products. Determine order w.r.t. A and B and calculate k from experimental data.</div>
+  <div class="qa-year">2016</div>
+  <button class="qa-toggle" tabindex="-1">+</button>
+</div>
+<div class="qa-body">
+<div class="answer-badge">✦ Answer</div>
+<table>
+<tr><th>Exp</th><th>[A] (M)</th><th>[B] (M)</th><th>Rate (mol L⁻¹ s⁻¹)</th></tr>
+<tr><td>1</td><td>0.1</td><td>0.1</td><td>2×10⁻³</td></tr>
+<tr><td>2</td><td>0.2</td><td>0.1</td><td>4×10⁻³</td></tr>
+<tr><td>3</td><td>0.1</td><td>0.2</td><td>2×10⁻³</td></tr>
+</table>
+<p>Order w.r.t. A (Exp 1 vs 2): r₂/r₁ = 2 = (0.2/0.1)^m → m = 1.</p>
+<p>Order w.r.t. B (Exp 1 vs 3): r₃/r₁ = 1 = (0.2/0.1)^n → n = 0.</p>
+<p>Rate Law: r = k[A]. k = 2×10⁻³/0.1 = <strong>2×10⁻² s⁻¹</strong>. Overall order = First order.</p>
+</div>
+</div>
+
+<div class="qa-card reveal">
+<div class="qa-header" onclick="toggleCard(this)">
+  <div class="qa-q-num">Q67</div>
+  <div class="qa-q-text">k for N₂O₅ = 6.2×10⁻⁴ s⁻¹. Find (a) half-life (b) time for 90% completion.</div>
+  <div class="qa-year">2017</div>
+  <button class="qa-toggle" tabindex="-1">+</button>
+</div>
+<div class="qa-body">
+<div class="answer-badge">✦ Answer</div>
+<div class="formula-box">$$t_{1/2} = \frac{0.693}{6.2 \times 10^{-4}} = \boxed{1117.7 \text{ s} \approx 18.63 \text{ min}}$$</div>
+<p>For 90% completion (10% remaining): \(t = \frac{2.303}{6.2 \times 10^{-4}} \log\frac{100}{10} = \frac{2.303}{6.2 \times 10^{-4}} \times 1\)</p>
+<div class="formula-box">$$t = \boxed{3714.5 \text{ s} \approx 61.9 \text{ min}}$$</div>
+</div>
+</div>
+
+<div class="qa-card reveal">
+<div class="qa-header" onclick="toggleCard(this)">
+  <div class="qa-q-num">Q68</div>
+  <div class="qa-q-text">Rate quadruples from 293 K to 313 K. Calculate activation energy.</div>
+  <div class="qa-year">2017</div>
+  <button class="qa-toggle" tabindex="-1">+</button>
+</div>
+<div class="qa-body">
+<div class="answer-badge">✦ Answer</div>
+<p>k₂/k₁ = 4; T₁ = 293 K; T₂ = 313 K.</p>
+<p>\(\log 4 = \frac{E_a}{19.147} \times \frac{20}{293 \times 313}\)</p>
+<p>\(0.6021 = E_a \times 1.139 \times 10^{-5}\)</p>
+<div class="formula-box">$$E_a = \boxed{52.86 \text{ kJ mol}^{-1}}$$</div>
+</div>
+</div>
+
+<div class="qa-card reveal">
+<div class="qa-header" onclick="toggleCard(this)">
+  <div class="qa-q-num">Q77</div>
+  <div class="qa-q-text">For 2A + B → Products. Find orders, overall order, and k from experimental data.</div>
+  <div class="qa-year">2021</div>
+  <button class="qa-toggle" tabindex="-1">+</button>
+</div>
+<div class="qa-body">
+<div class="answer-badge">✦ Answer</div>
+<table>
+<tr><th>Exp</th><th>[A]</th><th>[B]</th><th>Rate</th></tr>
+<tr><td>1</td><td>1×10⁻²</td><td>2×10⁻²</td><td>1.5×10⁻⁵</td></tr>
+<tr><td>2</td><td>1×10⁻²</td><td>4×10⁻²</td><td>3.0×10⁻⁵</td></tr>
+<tr><td>3</td><td>2×10⁻²</td><td>2×10⁻²</td><td>6.0×10⁻⁵</td></tr>
+</table>
+<p>Order w.r.t. B (Exp 1 vs 2): 3.0/1.5 = (4/2)^n → n = 1. Order w.r.t. A (Exp 1 vs 3): 6.0/1.5 = (2/1)^m → m = 2.</p>
+<p>Rate Law: Rate = k[A]²[B]. Overall order = 3.</p>
+<div class="formula-box">$$k = \frac{1.5 \times 10^{-5}}{(10^{-2})^2 \times (2 \times 10^{-2})} = \boxed{7.5 \text{ mol}^{-2} \text{L}^2 \text{s}^{-1}}$$</div>
+</div>
+</div>
+
+<div class="qa-card reveal">
+<div class="qa-header" onclick="toggleCard(this)">
+  <div class="qa-q-num">Q78</div>
+  <div class="qa-q-text">Ea = 50 kJ/mol. Fraction of molecules with E ≥ Ea at 300 K. [R=8.314; e=2.718]</div>
+  <div class="qa-year">2022</div>
+  <button class="qa-toggle" tabindex="-1">+</button>
+</div>
+<div class="qa-body">
+<div class="answer-badge">✦ Answer</div>
+<p>\(\frac{E_a}{RT} = \frac{50000}{8.314 \times 300} = 20.05\). \(f = e^{-20.05}\)</p>
+<p>log f = −20.05 × log(2.718) = −20.05 × 0.4343 = −8.708</p>
+<div class="formula-box">$$f = 10^{-8.708} = \boxed{1.96 \times 10^{-9}}$$</div>
+<p>Only about 2 in a billion molecules have sufficient energy at 300 K.</p>
+</div>
+</div>
+
+<div class="qa-card reveal">
+<div class="qa-header" onclick="toggleCard(this)">
+  <div class="qa-q-num">Q79</div>
+  <div class="qa-q-text">H₂O₂ decomposition: t₁/₂ = 360 min. Find k and time for 75% decomposition.</div>
+  <div class="qa-year">2022</div>
+  <button class="qa-toggle" tabindex="-1">+</button>
+</div>
+<div class="qa-body">
+<div class="answer-badge">✦ Answer</div>
+<div class="formula-box">$$k = \frac{0.693}{360} = \boxed{1.925 \times 10^{-3} \text{ min}^{-1}}$$</div>
+<p>75% decomposition (25% remaining): \(t = \frac{2.303}{k}\log 4 = \frac{2.303}{1.925 \times 10^{-3}} \times 2 \times 0.3010 = 720\)</p>
+<div class="formula-box">$$t = \boxed{720 \text{ min} = 2 \times t_{1/2}}$$</div>
+</div>
+</div>
+
+<div class="qa-card reveal">
+<div class="qa-header" onclick="toggleCard(this)">
+  <div class="qa-q-num">Q80</div>
+  <div class="qa-q-text">k increases by factor of 10 when T rises from 300 K to 350 K. Find Ea.</div>
+  <div class="qa-year">2022</div>
+  <button class="qa-toggle" tabindex="-1">+</button>
+</div>
+<div class="qa-body">
+<div class="answer-badge">✦ Answer</div>
+<p>\(\log 10 = \frac{E_a}{19.147} \times \frac{50}{300 \times 350}\)</p>
+<p>\(1 = E_a \times 2.487 \times 10^{-5}\)</p>
+<div class="formula-box">$$E_a = \boxed{40.21 \text{ kJ mol}^{-1}}$$</div>
+</div>
+</div>
+
+</div><!-- end hard kinetics -->
+</div><!-- end section -->
+
+<!-- ━━━━━━━━━━━━━━ CHAPTER 3: d AND f BLOCK ━━━━━━━━━━━━━━ -->
+<div id="dfblock" style="padding-top:80px">
+<div class="section">
+
+<div class="chapter-banner reveal">
+  <img src="https://images.unsplash.com/photo-1628863353691-0071c8c1874c?w=1200&q=80" alt="d and f Block Elements"/>
+  <div class="chapter-banner-overlay"></div>
+  <div class="chapter-banner-content">
+    <div class="chapter-num">CHAPTER · 03</div>
+    <div class="chapter-title-banner">d &amp; f Block Elements</div>
+  </div>
+</div>
+
+<div class="section-header reveal">
+  <div class="section-header-num">03</div>
+  <div class="section-header-content">
+    <div class="section-eyebrow">Chapter 3 · d &amp; f Block Elements</div>
+    <div class="section-title">Easy Level Questions</div>
+  </div>
+  <div class="section-line"></div>
+</div>
+<div class="level-badge level-easy reveal">Easy Level — Q81 to Q101</div>
+
+<div class="qa-grid">
+
+<div class="qa-card reveal">
+<div class="qa-header" onclick="toggleCard(this)">
+  <div class="qa-q-num">Q81</div>
+  <div class="qa-q-text">'Spin-only' magnetic moment. Calculate for Fe³⁺. Paramagnetic or diamagnetic?</div>
+  <div class="qa-year">2014</div>
+  <button class="qa-toggle" tabindex="-1">+</button>
+</div>
+<div class="qa-body">
+<div class="answer-badge">✦ Answer</div>
+<div class="formula-box">$$\mu_s = \sqrt{n(n+2)} \text{ B.M. (Bohr Magnetons)}$$</div>
+<p>where n = number of unpaired electrons.</p>
+<p><strong>Fe³⁺ configuration:</strong> Fe: [Ar] 3d⁶ 4s². Fe³⁺ (loses 2 from 4s, 1 from 3d): <strong>[Ar] 3d⁵</strong>. All 5 d-orbitals singly occupied (Hund's rule) → n = 5.</p>
+<div class="formula-box">$$\mu_s = \sqrt{5(5+2)} = \sqrt{35} = \boxed{5.92 \text{ B.M.}}$$</div>
+<p><strong>Fe³⁺ is paramagnetic</strong> (5 unpaired electrons; attracted by magnetic fields).</p>
+</div>
+</div>
+
+<div class="qa-card reveal">
+<div class="qa-header" onclick="toggleCard(this)">
+  <div class="qa-q-num">Q82</div>
+  <div class="qa-q-text">Electronic configurations of Cr (Z=24) and Cu (Z=29). Why different from Aufbau?</div>
+  <div class="qa-year">2014</div>
+  <button class="qa-toggle" tabindex="-1">+</button>
+</div>
+<div class="qa-body">
+<div class="answer-badge">✦ Answer</div>
+<table>
+<tr><th>Element</th><th>Expected (Aufbau)</th><th>Actual</th></tr>
+<tr><td>Cr (Z=24)</td><td>[Ar] 3d⁴ 4s²</td><td><strong>[Ar] 3d⁵ 4s¹</strong></td></tr>
+<tr><td>Cu (Z=29)</td><td>[Ar] 3d⁹ 4s²</td><td><strong>[Ar] 3d¹⁰ 4s¹</strong></td></tr>
+</table>
+<p><strong>Reason — Extra Stability of Half-filled (d⁵) and Completely-filled (d¹⁰) d-orbitals:</strong></p>
+<ul>
+<li>Half-filled d-orbital (d⁵): High symmetry and high exchange energy → extra stable. Energy gained from exchange energy of d⁵ &gt; energy needed to promote one e⁻ from 4s to 3d.</li>
+<li>Completely-filled d-orbital (d¹⁰): Maximum symmetry and exchange energy → highly stable.</li>
+</ul>
+</div>
+</div>
+
+<div class="qa-card reveal">
+<div class="qa-header" onclick="toggleCard(this)">
+  <div class="qa-q-num">Q83</div>
+  <div class="qa-q-text">Why do transition metals show variable oxidation states? Examples with three elements.</div>
+  <div class="qa-year">2015</div>
+  <button class="qa-toggle" tabindex="-1">+</button>
+</div>
+<div class="qa-body">
+<div class="answer-badge">✦ Answer</div>
+<p><strong>Reason:</strong> The 3d and 4s electrons have very similar energies → electrons from <strong>both 3d and 4s</strong> can be involved in bond formation/ionization → multiple oxidation states.</p>
+<p><strong>1. Iron (Fe, Z=26): [Ar] 3d⁶ 4s²</strong> — Fe²⁺ (FeSO₄), Fe³⁺ (Fe₂O₃, extra stable—half filled 3d⁵), Fe⁶⁺ (ferrates, rare).</p>
+<p><strong>2. Manganese (Mn, Z=25): [Ar] 3d⁵ 4s²</strong> — Mn²⁺ (most stable, d⁵), Mn³⁺, Mn⁴⁺ (MnO₂), Mn⁶⁺ (K₂MnO₄), Mn⁷⁺ (KMnO₄).</p>
+<p><strong>3. Vanadium (V, Z=23): [Ar] 3d³ 4s²</strong> — V²⁺, V³⁺, V⁴⁺ (VO₂⁺), V⁵⁺ (V₂O₅, highest).</p>
+</div>
+</div>
+
+<div class="qa-card reveal">
+<div class="qa-header" onclick="toggleCard(this)">
+  <div class="qa-q-num">Q84</div>
+  <div class="qa-q-text">What are interstitial compounds? Two general properties. One example.</div>
+  <div class="qa-year">2015</div>
+  <button class="qa-toggle" tabindex="-1">+</button>
+</div>
+<div class="qa-body">
+<div class="answer-badge">✦ Answer</div>
+<p><strong>Interstitial Compounds:</strong> Compounds formed when small atoms (like H, C, N, B) are trapped in the <strong>interstitial voids (gaps) of the crystal lattice</strong> of transition metals without forming true ionic or covalent bonds. Also called non-stoichiometric compounds.</p>
+<p><strong>Two General Properties:</strong></p>
+<ol>
+<li><strong>High hardness:</strong> Interstitial compounds are much harder than the parent metals (e.g., steel is harder than pure iron; TiC is extremely hard).</li>
+<li><strong>High melting points:</strong> Have higher melting points than the parent metals due to additional bonding forces.</li>
+</ol>
+<p><strong>Additional properties:</strong> They are chemically inert, retain metallic conductivity, and have fixed or variable composition.</p>
+<p><strong>Example:</strong> TiC (titanium carbide) — C atoms occupy interstitial voids of Ti lattice; Fe₃C (cementite in steel).</p>
+</div>
+</div>
+
+<div class="qa-card reveal">
+<div class="qa-header" onclick="toggleCard(this)">
+  <div class="qa-q-num">Q85</div>
+  <div class="qa-q-text">Why do transition metals and their compounds act as good catalysts? Give examples.</div>
+  <div class="qa-year">2016</div>
+  <button class="qa-toggle" tabindex="-1">+</button>
+</div>
+<div class="qa-body">
+<div class="answer-badge">✦ Answer</div>
+<p><strong>Reasons:</strong></p>
+<ol>
+<li><strong>Variable oxidation states:</strong> Allow formation of unstable intermediate compounds that can decompose to release products and regenerate catalyst. Provides alternative reaction pathways with lower Ea.</li>
+<li><strong>Large surface area and ability to adsorb gases:</strong> Transition metals and their compounds can adsorb reactant molecules on their surface (chemisorption via d-orbitals) → increase local concentration → facilitate bond breaking/forming → speed up reaction.</li>
+</ol>
+<table>
+<tr><th>Catalyst</th><th>Reaction</th></tr>
+<tr><td>Fe (with Mo promoter)</td><td>Haber's process: N₂ + 3H₂ → 2NH₃</td></tr>
+<tr><td>V₂O₅</td><td>Contact process: 2SO₂ + O₂ → 2SO₃</td></tr>
+<tr><td>Ni</td><td>Hydrogenation of oils: C=C + H₂ → C−C</td></tr>
+<tr><td>Pt/Pd</td><td>Catalytic converters (CO, NOₓ → CO₂, N₂)</td></tr>
+<tr><td>MnO₂</td><td>Decomposition of KClO₃ → KCl + O₂</td></tr>
+</table>
+</div>
+</div>
+
+<div class="qa-card reveal">
+<div class="qa-header" onclick="toggleCard(this)">
+  <div class="qa-q-num">Q86</div>
+  <div class="qa-q-text">Why transition metals show paramagnetism? How does magnetic moment relate to number of unpaired electrons?</div>
+  <div class="qa-year">2016</div>
+  <button class="qa-toggle" tabindex="-1">+</button>
+</div>
+<div class="qa-body">
+<div class="answer-badge">✦ Answer</div>
+<p><strong>Paramagnetism in Transition Metals:</strong> Transition metals have <strong>partially filled d-subshells</strong> (1 to 9 d-electrons). According to Hund's rule, these electrons are distributed with maximum number of unpaired electrons. Each unpaired electron acts as a tiny magnet (due to electron spin and orbital motion). These magnetic moments don't cancel → net magnetic moment → paramagnetism (attraction to magnetic field).</p>
+<div class="formula-box">$$\mu_s = \sqrt{n(n+2)} \text{ B.M.}$$</div>
+<p>More unpaired electrons → higher n → higher magnetic moment → stronger paramagnetism.</p>
+<table>
+<tr><th>Ion</th><th>Config.</th><th>Unpaired e⁻</th><th>μ (B.M.)</th></tr>
+<tr><td>Sc³⁺</td><td>3d⁰</td><td>0</td><td>0 (diamagnetic)</td></tr>
+<tr><td>Ti³⁺</td><td>3d¹</td><td>1</td><td>1.73</td></tr>
+<tr><td>Cr³⁺</td><td>3d³</td><td>3</td><td>3.87</td></tr>
+<tr><td>Mn²⁺/Fe³⁺</td><td>3d⁵</td><td>5</td><td>5.92</td></tr>
+</table>
+</div>
+</div>
+
+<div class="qa-card reveal">
+<div class="qa-header" onclick="toggleCard(this)">
+  <div class="qa-q-num">Q87</div>
+  <div class="qa-q-text">What are alloys? Why do transition metals form alloys easily? Give two examples.</div>
+  <div class="qa-year">2017</div>
+  <button class="qa-toggle" tabindex="-1">+</button>
+</div>
+<div class="qa-body">
+<div class="answer-badge">✦ Answer</div>
+<p><strong>Alloys:</strong> Homogeneous mixtures of two or more metals (or a metal and a non-metal like C) where the constituent atoms are approximately of similar radii — one metal atom substitutes for another in the crystal lattice.</p>
+<p><strong>Why transition metals form alloys easily:</strong></p>
+<ol>
+<li><strong>Similar atomic radii:</strong> Transition metals have nearly similar atomic sizes → easy substitution of one metal atom for another in the crystal lattice without significant distortion.</li>
+<li><strong>Similar electronic configurations:</strong> Similar valence shell configurations allow mutual solubility in the solid state.</li>
+</ol>
+<p><strong>Examples:</strong></p>
+<ul>
+<li><strong>Steel:</strong> Fe + C (0.1–1.5%) — much harder and stronger than pure iron.</li>
+<li><strong>Brass:</strong> Cu + Zn — harder than either pure metal, corrosion resistant.</li>
+<li><strong>Bronze:</strong> Cu + Sn — used in statues, bells, coins.</li>
+<li><strong>Nichrome:</strong> Ni + Cr — high electrical resistance, used in heaters.</li>
+</ul>
+</div>
+</div>
+
+<div class="qa-card reveal">
+<div class="qa-header" onclick="toggleCard(this)">
+  <div class="qa-q-num">Q88</div>
+  <div class="qa-q-text">Why do transition metals have higher melting points than alkali and alkaline earth metals?</div>
+  <div class="qa-year">2017</div>
+  <button class="qa-toggle" tabindex="-1">+</button>
+</div>
+<div class="qa-body">
+<div class="answer-badge">✦ Answer</div>
+<p><strong>Reason:</strong> In transition metals, both <strong>outer (n)s electrons AND inner (n-1)d electrons</strong> participate in metallic bonding. The d-electrons allow for stronger d-d orbital overlaps between adjacent atoms, creating a much stronger metallic bond network.</p>
+<ul>
+<li>Alkali metals: only 1 s-electron per atom in metallic bonding → weak metallic bond → low m.p. (Li: 181°C, Na: 98°C, K: 64°C)</li>
+<li>Transition metals: 2 s-electrons + several d-electrons → very strong metallic bonding → high m.p. (Fe: 1535°C, W: 3422°C — highest m.p. of any metal)</li>
+</ul>
+<p>The more the number of unpaired d-electrons available for bonding, the stronger the metallic lattice and the higher the melting point (up to Cr, W group).</p>
+</div>
+</div>
+
+<div class="qa-card reveal">
+<div class="qa-header" onclick="toggleCard(this)">
+  <div class="qa-q-num">Q89</div>
+  <div class="qa-q-text">Define lanthanoid contraction. What are its consequences?</div>
+  <div class="qa-year">2018</div>
+  <button class="qa-toggle" tabindex="-1">+</button>
+</div>
+<div class="qa-body">
+<div class="answer-badge">✦ Answer</div>
+<p><strong>Lanthanoid Contraction:</strong> The steady, gradual decrease in the <strong>ionic radii of Ln³⁺ ions</strong> and atomic radii from La³⁺ to Lu³⁺ with increasing atomic number.</p>
+<p><strong>Cause:</strong> 4f orbitals have <strong>very poor shielding efficiency</strong>. As 4f electrons are added (La to Lu), nuclear charge increases by 14 units but shielding by 4f electrons is poor → increasing Z_eff → outer electrons pulled closer → radius decreases progressively.</p>
+<p><strong>Consequences:</strong></p>
+<ol>
+<li><strong>Similarity of 4d and 5d transition elements:</strong> After lanthanoids, 5d elements (Hf onwards) have nearly the same atomic radii as corresponding 4d elements (Zr, etc.) → extremely similar chemistry → very difficult to separate (Zr/Hf, Nb/Ta, Mo/W).</li>
+<li><strong>Decrease in basicity of Ln(OH)₃:</strong> As ionic radius decreases La→Lu, charge density increases → stronger M-OH bond → less ionization → basicity decreases: La(OH)₃ (strongest) → Lu(OH)₃ (weakest).</li>
+</ol>
+</div>
+</div>
+
+<div class="qa-card reveal">
+<div class="qa-header" onclick="toggleCard(this)">
+  <div class="qa-q-num">Q90</div>
+  <div class="qa-q-text">Why do transition metal compounds show characteristic colours? Give three examples.</div>
+  <div class="qa-year">2018</div>
+  <button class="qa-toggle" tabindex="-1">+</button>
+</div>
+<div class="qa-body">
+<div class="answer-badge">✦ Answer</div>
+<p><strong>Cause of Colour — d–d Transitions:</strong> When ligands surround a transition metal ion, they split the degenerate d-orbitals into groups of different energy (crystal field splitting, Δ). White light is absorbed and electrons are excited from lower to higher d-orbitals (d–d transition). The <strong>complementary colour</strong> is observed. $$E_{absorbed} = h\nu = \Delta_o$$</p>
+<p><strong>Condition:</strong> Metal ion must have <strong>partially filled d-orbitals</strong> (1–9 d electrons). Sc³⁺ (d⁰) and Zn²⁺ (d¹⁰) are colourless.</p>
+<table>
+<tr><th>Compound</th><th>Colour</th><th>Absorbed</th></tr>
+<tr><td>CuSO₄·5H₂O ([Cu(H₂O)₄]²⁺)</td><td>Blue</td><td>Red/Orange</td></tr>
+<tr><td>KMnO₄ (MnO₄⁻)</td><td>Purple/Violet</td><td>Yellow-green</td></tr>
+<tr><td>K₂Cr₂O₇ (Cr₂O₇²⁻)</td><td>Orange</td><td>Blue</td></tr>
+</table>
+</div>
+</div>
+
+<div class="qa-card reveal">
+<div class="qa-header" onclick="toggleCard(this)">
+  <div class="qa-q-num">Q92</div>
+  <div class="qa-q-text">(a) E° for Mn³⁺/Mn²⁺ &gt;&gt; Fe³⁺/Fe²⁺. (b) Cr²⁺ is strong reducing agent; Mn³⁺ is strong oxidizing agent.</div>
+  <div class="qa-year">2019</div>
+  <button class="qa-toggle" tabindex="-1">+</button>
+</div>
+<div class="qa-body">
+<div class="answer-badge">✦ Answer</div>
+<p><strong>(a) E°(Mn³⁺/Mn²⁺) = +1.57 V &gt;&gt; E°(Fe³⁺/Fe²⁺) = +0.77 V:</strong></p>
+<ul>
+<li>Mn²⁺: [Ar] 3d⁵ (half-filled, extra stable) → very stable, reluctant to be oxidized.</li>
+<li>Mn³⁺: [Ar] 3d⁴ → unstable, <strong>strongly prefers to gain one electron</strong> to reach d⁵ → very high E°.</li>
+<li>Fe²⁺: [Ar] 3d⁶ (no special stability); Fe³⁺: [Ar] 3d⁵ (half-filled stable) → moderate tendency to be reduced → moderate E°.</li>
+</ul>
+<p><strong>(b) Cr²⁺ reducing agent; Mn³⁺ oxidizing agent:</strong></p>
+<ul>
+<li><strong>Cr²⁺</strong> [3d⁴]: Readily loses e⁻ to become <strong>Cr³⁺</strong> [3d³] (half-filled t₂g — extra stable) → eager to oxidize itself → strong <strong>reducing agent</strong>.</li>
+<li><strong>Mn³⁺</strong> [3d⁴]: Readily gains e⁻ to become <strong>Mn²⁺</strong> [3d⁵] (half-filled, extra stable) → strongly tends to be reduced → strong <strong>oxidizing agent</strong>.</li>
+</ul>
+<blockquote>Both driven by exceptional stability of half-filled d/t₂g subshells.</blockquote>
+</div>
+</div>
+
+<div class="qa-card reveal">
+<div class="qa-header" onclick="toggleCard(this)">
+  <div class="qa-q-num">Q93</div>
+  <div class="qa-q-text">Role of KMnO₄ in (a) acidic medium (b) neutral/alkaline medium. Half-reactions.</div>
+  <div class="qa-year">2020</div>
+  <button class="qa-toggle" tabindex="-1">+</button>
+</div>
+<div class="qa-body">
+<div class="answer-badge">✦ Answer</div>
+<p><strong>(a) In Acidic Medium (H₂SO₄):</strong> KMnO₄ reduced to Mn²⁺ (pale pink). Mn: +7 → +2.</p>
+<div class="formula-box">$$MnO_4^- + 8H^+ + 5e^- \rightarrow Mn^{2+} + 4H_2O \quad (E° = +1.51\text{ V})$$</div>
+<p>Example: \(2KMnO_4 + 5H_2C_2O_4 + 3H_2SO_4 \rightarrow 2MnSO_4 + K_2SO_4 + 10CO_2 + 8H_2O\)</p>
+<p><strong>(b) In Neutral/Alkaline Medium:</strong> KMnO₄ reduced to MnO₂ (brown ppt). Mn: +7 → +4.</p>
+<div class="formula-box">$$MnO_4^- + 2H_2O + 3e^- \rightarrow MnO_2 + 4OH^-$$</div>
+<p>Used to oxidize organic compounds; less powerful than in acidic medium.</p>
+</div>
+</div>
+
+<div class="qa-card reveal">
+<div class="qa-header" onclick="toggleCard(this)">
+  <div class="qa-q-num">Q94</div>
+  <div class="qa-q-text">(a) Actinoids show greater range of oxidation states. (b) Chemistry of actinoids more complex than lanthanoids.</div>
+  <div class="qa-year">2020</div>
+  <button class="qa-toggle" tabindex="-1">+</button>
+</div>
+<div class="qa-body">
+<div class="answer-badge">✦ Answer</div>
+<p><strong>(a) Actinoids — Greater range of oxidation states:</strong></p>
+<ul>
+<li><strong>Lanthanoids (4f):</strong> 4f orbitals deeply embedded → large energy gap between 4f, 5d, 6s → only 6s (and sometimes 5d) electrons easily lost → predominantly <strong>+3 oxidation state</strong>.</li>
+<li><strong>Actinoids (5f):</strong> 5f orbitals more <strong>diffuse and spatially extended</strong> → smaller energy gap between 5f, 6d, 7s → electrons from all three subshells can participate → show <strong>+2 to +7</strong> oxidation states (e.g., U: +3,+4,+5,+6; Np/Pu: +3 to +7).</li>
+</ul>
+<p><strong>(b) Chemistry of actinoids more complex:</strong></p>
+<ol>
+<li><strong>Radioactivity:</strong> All actinoids are radioactive → difficult to study.</li>
+<li><strong>Multiple oxidation states:</strong> Multiple stable states coexist in solution → difficult separation.</li>
+<li><strong>Complex speciation:</strong> Form hydroxides, carbonates, sulphates, complexes simultaneously.</li>
+<li><strong>Relativistic effects:</strong> Heavy nuclei → relativistic contraction of inner orbitals affects energetics.</li>
+<li><strong>5f orbital involvement in bonding:</strong> Unlike 4f in lanthanoids → more covalent character → varied coordination chemistry.</li>
+</ol>
+</div>
+</div>
+
+<div class="qa-card reveal">
+<div class="qa-header" onclick="toggleCard(this)">
+  <div class="qa-q-num">Q95</div>
+  <div class="qa-q-text">IUPAC names of K₂Cr₂O₇ and KMnO₄. Two important reactions of each as oxidizing agents.</div>
+  <div class="qa-year">2021</div>
+  <button class="qa-toggle" tabindex="-1">+</button>
+</div>
+<div class="qa-body">
+<div class="answer-badge">✦ Answer</div>
+<p><strong>K₂Cr₂O₇:</strong> IUPAC Name: <strong>Potassium dichromate(VI)</strong> (Cr is in +6 state). Reactions as oxidizing agent (acidic medium):</p>
+<div class="formula-box">$$K_2Cr_2O_7 + 6FeSO_4 + 7H_2SO_4 \rightarrow K_2SO_4 + Cr_2(SO_4)_3 + 3Fe_2(SO_4)_3 + 7H_2O$$
+$$K_2Cr_2O_7 + 6KI + 7H_2SO_4 \rightarrow K_2SO_4 + Cr_2(SO_4)_3 + 3I_2 + 7H_2O$$</div>
+<p><strong>KMnO₄:</strong> IUPAC Name: <strong>Potassium manganate(VII)</strong> (Mn in +7 state). Reactions as oxidizing agent (acidic medium):</p>
+<div class="formula-box">$$2KMnO_4 + 5H_2C_2O_4 + 3H_2SO_4 \rightarrow 2MnSO_4 + K_2SO_4 + 10CO_2 + 8H_2O$$
+$$2KMnO_4 + 5H_2S + 3H_2SO_4 \rightarrow 2MnSO_4 + K_2SO_4 + 5S + 8H_2O$$</div>
+</div>
+</div>
+
+<div class="qa-card reveal">
+<div class="qa-header" onclick="toggleCard(this)">
+  <div class="qa-q-num">Q96</div>
+  <div class="qa-q-text">Why is 5th ionization energy of Cr extremely high? Calculate spin-only magnetic moment of Cr³⁺.</div>
+  <div class="qa-year">2021</div>
+  <button class="qa-toggle" tabindex="-1">+</button>
+</div>
+<div class="qa-body">
+<div class="answer-badge">✦ Answer</div>
+<p>Cr: [Ar] 3d⁵ 4s¹. Ionization sequence: Cr⁺ [3d⁵] → Cr²⁺ [3d⁴] → Cr³⁺ [3d³] → Cr⁴⁺ [3d²] → Cr⁵⁺ [3d¹].</p>
+<p><strong>5th IE is extremely high:</strong> After 4th ionization, Cr⁴⁺ has [Ar] 3d². The next electron must be removed from the 3d subshell when nuclear charge-to-electron ratio is already very high → 3d electrons are much more tightly bound due to high effective nuclear charge → 5th IE is very high.</p>
+<p><strong>Cr³⁺: [Ar] 3d³</strong> — 3 unpaired electrons.</p>
+<div class="formula-box">$$\mu_s = \sqrt{3(3+2)} = \sqrt{15} = \boxed{3.87 \text{ B.M.}}$$</div>
+</div>
+</div>
+
+<div class="qa-card reveal">
+<div class="qa-header" onclick="toggleCard(this)">
+  <div class="qa-q-num">Q97</div>
+  <div class="qa-q-text">(a) Transition metals form coloured compounds. (b) Act as catalysts. (c) Form complex compounds.</div>
+  <div class="qa-year">2022</div>
+  <button class="qa-toggle" tabindex="-1">+</button>
+</div>
+<div class="qa-body">
+<div class="answer-badge">✦ Answer</div>
+<p><strong>(a) Coloured Compounds:</strong> Partially filled d-orbitals (1–9 e⁻). Ligands create crystal field splitting (Δ). Visible light absorbed → d–d electronic transition → complementary colour observed. Sc³⁺ (d⁰) and Zn²⁺ (d¹⁰) are colourless.</p>
+<p><strong>(b) Catalytic Activity:</strong></p>
+<ol>
+<li>Variable oxidation states → formation and decomposition of intermediate compounds → alternative low-Ea pathways.</li>
+<li>Large surface area → adsorb reactants (d-orbitals assist in chemisorption) → facilitate reactions.</li>
+</ol>
+<p>Examples: Fe (Haber's process), V₂O₅ (Contact process), Ni (hydrogenation), Pt/Pd (catalytic converters).</p>
+<p><strong>(c) Complex Compound Formation:</strong></p>
+<ol>
+<li>Small ionic size → can accommodate ligands closely.</li>
+<li>Vacant d-orbitals → accept lone pairs from ligands (Lewis acid behaviour).</li>
+<li>Appropriate size and charge for coordinate bonds.</li>
+</ol>
+<p>Examples: [Fe(CN)₆]⁴⁻, [Cu(NH₃)₄]²⁺, K₂[PtCl₄].</p>
+</div>
+</div>
+
+<div class="qa-card reveal">
+<div class="qa-header" onclick="toggleCard(this)">
+  <div class="qa-q-num">Q98</div>
+  <div class="qa-q-text">Preparation of KMnO₄ from MnO₂. Two uses as oxidizing agent.</div>
+  <div class="qa-year">2022</div>
+  <button class="qa-toggle" tabindex="-1">+</button>
+</div>
+<div class="qa-body">
+<div class="answer-badge">✦ Answer</div>
+<p><strong>Step 1:</strong> Fusion of MnO₂ with KOH to form potassium manganate (K₂MnO₄):</p>
+<div class="formula-box">$$2MnO_2 + 4KOH + O_2 \xrightarrow{\Delta} 2K_2MnO_4 + 2H_2O \quad \text{(Mn: +4 → +6)}$$</div>
+<p><strong>Step 2:</strong> Oxidation of K₂MnO₄ to KMnO₄:</p>
+<div class="formula-box">$$2K_2MnO_4 + Cl_2 \rightarrow 2KMnO_4 + 2KCl \quad \text{(Mn: +6 → +7)}$$
+$$2K_2MnO_4 + 2H_2O \xrightarrow{\text{electrolysis}} 2KMnO_4 + 2KOH + H_2 \uparrow$$</div>
+<p><strong>Two important uses:</strong></p>
+<ol>
+<li>Oxidation of oxalic acid: \(2KMnO_4 + 5H_2C_2O_4 + 3H_2SO_4 \rightarrow 2MnSO_4 + K_2SO_4 + 10CO_2 + 8H_2O\)</li>
+<li>Oxidation of iron(II): \(2KMnO_4 + 10FeSO_4 + 8H_2SO_4 \rightarrow 2MnSO_4 + 5Fe_2(SO_4)_3 + K_2SO_4 + 8H_2O\)</li>
+</ol>
+</div>
+</div>
+
+<div class="qa-card reveal">
+<div class="qa-header" onclick="toggleCard(this)">
+  <div class="qa-q-num">Q100</div>
+  <div class="qa-q-text">Compare lanthanoids and actinoids: (i) electronic configuration (ii) oxidation states.</div>
+  <div class="qa-year">2019</div>
+  <button class="qa-toggle" tabindex="-1">+</button>
+</div>
+<div class="qa-body">
+<div class="answer-badge">✦ Answer</div>
+<p><strong>(i) Electronic Configurations:</strong></p>
+<table>
+<tr><th>Series</th><th>General Configuration</th><th>f-subshell</th></tr>
+<tr><td>Lanthanoids (Ce to Lu, Z=58–71)</td><td>[Xe] 4f¹⁻¹⁴ 5d⁰⁻¹ 6s²</td><td>4f (inner, deep)</td></tr>
+<tr><td>Actinoids (Th to Lr, Z=90–103)</td><td>[Rn] 5f¹⁻¹⁴ 6d⁰⁻¹ 7s²</td><td>5f (more diffuse)</td></tr>
+</table>
+<p><strong>(ii) Oxidation States:</strong></p>
+<table>
+<tr><th></th><th>Lanthanoids</th><th>Actinoids</th></tr>
+<tr><td>Common</td><td>+3 predominates</td><td>+3, +4, +5, +6 (wide range)</td></tr>
+<tr><td>Stability</td><td>+3 most stable; few show +2 (Eu, Sm, Yb) or +4 (Ce, Pr, Tb)</td><td>Multiple stable states; U shows +3,+4,+5,+6</td></tr>
+<tr><td>Reason</td><td>4f deeply embedded; +3 strongly stabilized</td><td>5f accessible; small 5f/6d/7s gap → more e⁻ for bonding</td></tr>
+<tr><td>Highest OS</td><td>+4 (Ce, Pr, Tb)</td><td>+6 (U, Np, Pu), even +7 (Np, Pu)</td></tr>
+</table>
+</div>
+</div>
+
+<div class="qa-card reveal">
+<div class="qa-header" onclick="toggleCard(this)">
+  <div class="qa-q-num">Q101</div>
+  <div class="qa-q-text">What are lanthanoids? Explain lanthanoid contraction. State two consequences.</div>
+  <div class="qa-year">2022</div>
+  <button class="qa-toggle" tabindex="-1">+</button>
+</div>
+<div class="qa-body">
+<div class="answer-badge">✦ Answer</div>
+<p><strong>Lanthanoids:</strong> The 14 elements following lanthanum (La), from Cerium (Ce, Z=58) to Lutetium (Lu, Z=71), in which the 4f subshell is progressively filled (4f¹ to 4f¹⁴). Configuration: [Xe] 4f¹⁻¹⁴ 5d⁰⁻¹ 6s².</p>
+<p><strong>Lanthanoid Contraction:</strong> The steady, gradual decrease in ionic radii of Ln³⁺ ions from La³⁺ to Lu³⁺ with increasing Z. Total contraction: ~20 pm (La³⁺: 106 pm → Lu³⁺: 85 pm).</p>
+<p><strong>Mechanism:</strong> As 14 electrons are added to 4f orbitals, Z increases by 14. But 4f electrons have <strong>very poor shielding efficiency</strong> → increasing Z_eff → outer 6s² and 5d electrons pulled closer → radius decreases.</p>
+<p><strong>Two Consequences:</strong></p>
+<ol>
+<li><strong>Similarity of 4d and 5d elements:</strong> 5d elements (Hf onwards) have nearly the same radii as corresponding 4d elements → similar properties → Zr/Hf, Nb/Ta, Mo/W are extremely difficult to separate.</li>
+<li><strong>Decrease in basicity of Ln(OH)₃:</strong> Smaller Ln³⁺ → higher charge density → stronger M-OH bond → less OH⁻ released → La(OH)₃ (strongest base) → Lu(OH)₃ (weakest base).</li>
+</ol>
+</div>
+</div>
+
+</div><!-- end easy dfblock -->
+
+<!-- HARD LEVEL d & f BLOCK -->
+<div class="section-header reveal" style="margin-top:60px">
+  <div class="section-header-content">
+    <div class="section-eyebrow">Chapter 3 · d &amp; f Block</div>
+    <div class="section-title">Hard Level Questions</div>
+  </div>
+  <div class="section-line"></div>
+</div>
+<div class="level-badge level-hard reveal">Hard Level — Q102 to Q117</div>
+
+<div class="qa-grid">
+
+<div class="qa-card reveal">
+<div class="qa-header" onclick="toggleCard(this)">
+  <div class="qa-q-num">Q102</div>
+  <div class="qa-q-text">Colour of transition metal compounds and d-d transitions. Role of Δ (crystal field splitting).</div>
+  <div class="qa-year">2014</div>
+  <button class="qa-toggle" tabindex="-1">+</button>
+</div>
+<div class="qa-body">
+<div class="answer-badge">✦ Answer</div>
+<p>In free ions, d-orbitals are degenerate. Ligands create an electric field (crystal field) that splits d-orbitals: in octahedral field → 3 lower (t₂g: d_xy, d_xz, d_yz) + 2 higher (e_g: d_x²−y², d_z²). Energy gap = <strong>Δ₀</strong>.</p>
+<p><strong>Mechanism:</strong> Photons with energy = Δ are absorbed → electron excited from t₂g to e_g (d–d transition) → complementary colour observed. $$E_{absorbed} = h\nu = \Delta_o = \frac{hc}{\lambda}$$</p>
+<p><strong>Example:</strong> [Ti(H₂O)₆]³⁺ (Ti³⁺: 3d¹) absorbs ~500 nm (green/yellow) → appears purple/violet.</p>
+<p><strong>Role of Δ:</strong></p>
+<ul>
+<li>Larger Δ → higher energy absorbed → blue/violet (shorter λ)</li>
+<li>Smaller Δ → lower energy absorbed → red/orange (longer λ)</li>
+<li>Δ depends on: nature and oxidation state of metal ion, nature of ligands (spectrochemical series: I⁻ &lt; Br⁻ &lt; Cl⁻ &lt; F⁻ &lt; OH⁻ &lt; en &lt; CN⁻)</li>
+<li>Strong field ligands (CN⁻) → large Δ; weak field ligands (I⁻) → small Δ</li>
+</ul>
+</div>
+</div>
+
+<div class="qa-card reveal">
+<div class="qa-header" onclick="toggleCard(this)">
+  <div class="qa-q-num">Q112</div>
+  <div class="qa-q-text">Preparation of K₂Cr₂O₇ from chromite ore. Oxidizing properties. Reaction with KI.</div>
+  <div class="qa-year">2019</div>
+  <button class="qa-toggle" tabindex="-1">+</button>
+</div>
+<div class="qa-body">
+<div class="answer-badge">✦ Answer</div>
+<p><strong>Preparation from chromite ore (FeCr₂O₄):</strong></p>
+<div class="formula-box">$$4FeCr_2O_4 + 8Na_2CO_3 + 7O_2 \rightarrow 8Na_2CrO_4 + 2Fe_2O_3 + 8CO_2$$
+$$2Na_2CrO_4 + H_2SO_4 \rightarrow Na_2Cr_2O_7 + Na_2SO_4 + H_2O$$
+$$Na_2Cr_2O_7 + 2KCl \rightarrow K_2Cr_2O_7 + 2NaCl$$</div>
+<p><strong>Oxidizing properties:</strong> Strong oxidizing agent in acidic medium (E° = +1.33 V). Cr: +6 → +3 (gains 3e⁻ per Cr, 6e⁻ per Cr₂O₇²⁻). Oxidizes Fe²⁺, H₂S, I⁻, SO₂.</p>
+<p><strong>Reaction with KI (acidic medium):</strong></p>
+<div class="formula-box">$$Cr_2O_7^{2-} + 6I^- + 14H^+ \rightarrow 2Cr^{3+} + 3I_2 + 7H_2O$$</div>
+<p>(Orange → Green; I⁻ oxidized to I₂)</p>
+</div>
+</div>
+
+<div class="qa-card reveal">
+<div class="qa-header" onclick="toggleCard(this)">
+  <div class="qa-q-num">Q114</div>
+  <div class="qa-q-text">Lanthanoid contraction. Effects on (a) 5d elements' radii (b) basicity of Ln(OH)₃.</div>
+  <div class="qa-year">2020</div>
+  <button class="qa-toggle" tabindex="-1">+</button>
+</div>
+<div class="qa-body">
+<div class="answer-badge">✦ Answer</div>
+<p><strong>(a) Effect on atomic radii of 5d elements:</strong> After lanthanoids, the 5d series starts with Hf (Z=72). Due to lanthanoid contraction, Hf has almost the <strong>same atomic radius as Zr</strong> (4d series), whereas normally radius should increase going down a group. The radius increase from 4d to 5d is almost completely cancelled.</p>
+<table>
+<tr><th>Pair</th><th>4d element radius</th><th>5d element radius</th></tr>
+<tr><td>Zr / Hf</td><td>160 pm</td><td>159 pm</td></tr>
+<tr><td>Nb / Ta</td><td>146 pm</td><td>146 pm</td></tr>
+</table>
+<p><strong>(b) Basicity of Ln(OH)₃:</strong> As Ln³⁺ radius decreases La→Lu, charge density (ionic potential) increases → greater polarization of M-OH bond → O-H breaks less easily → less OH⁻ released → <strong>lower basicity</strong>. La(OH)₃ (strongest base) → Lu(OH)₃ (weakest).</p>
+</div>
+</div>
+
+<div class="qa-card reveal">
+<div class="qa-header" onclick="toggleCard(this)">
+  <div class="qa-q-num">Q115</div>
+  <div class="qa-q-text">Electronic configurations and oxidation states of actinoids. Differences from lanthanoids.</div>
+  <div class="qa-year">2020</div>
+  <button class="qa-toggle" tabindex="-1">+</button>
+</div>
+<div class="qa-body">
+<div class="answer-badge">✦ Answer</div>
+<p>General configuration: [Rn] 5f¹⁻¹⁴ 6d⁰⁻² 7s²</p>
+<p>Oxidation states: Th: +4; Pa: +5; U: +3,+4,+5,+6; Np: +3 to +7; Pu: +3 to +7.</p>
+<table>
+<tr><th>Property</th><th>Lanthanoids</th><th>Actinoids</th></tr>
+<tr><td>Chemical reactivity</td><td>Moderate</td><td>More reactive — dissolve in acids, react with nonmetals</td></tr>
+<tr><td>Complex formation</td><td>Poor (4f buried, large size)</td><td>Better — 5f accessible, more covalent</td></tr>
+<tr><td>Colour</td><td>Many Ln³⁺ coloured (f-f transitions)</td><td>Intensely coloured (f-f + charge-transfer)</td></tr>
+<tr><td>Radioactivity</td><td>Mostly non-radioactive (except ¹⁴⁷Pm)</td><td>All radioactive</td></tr>
+</table>
+</div>
+</div>
+
+<div class="qa-card reveal">
+<div class="qa-header" onclick="toggleCard(this)">
+  <div class="qa-q-num">Q116</div>
+  <div class="qa-q-text">(a) Sc³⁺ diamagnetic, Cr³⁺ paramagnetic. (b) E° Mn³⁺/Mn²⁺ &gt; Fe³⁺/Fe²⁺. (c) Cu shows +1 and +2.</div>
+  <div class="qa-year">2021</div>
+  <button class="qa-toggle" tabindex="-1">+</button>
+</div>
+<div class="qa-body">
+<div class="answer-badge">✦ Answer</div>
+<p><strong>(a)</strong> Sc³⁺: [Ar] 3d⁰ → no unpaired electrons → <strong>diamagnetic</strong>. Cr³⁺: [Ar] 3d³ → 3 unpaired electrons → <strong>paramagnetic</strong>. μ(Cr³⁺) = √15 = 3.87 B.M.</p>
+<p><strong>(b)</strong> Mn²⁺ has extra stable 3d⁵ (half-filled) → Mn³⁺ strongly tends to gain one electron to reach Mn²⁺ → very high E°. Fe³⁺ is 3d⁵ (stable) but Fe²⁺ is less special → moderate E°.</p>
+<p><strong>(c) Cu shows both +1 and +2:</strong></p>
+<ul>
+<li><strong>Cu⁺ [3d¹⁰]:</strong> Stable in solid state (fully filled d — extra stable). Found in CuCl, Cu₂O, CuI.</li>
+<li><strong>Cu²⁺ [3d⁹]:</strong> Stable in aqueous solution due to very high hydration enthalpy. Found in CuSO₄, CuCl₂.</li>
+<li>In aqueous solution: Cu⁺ disproportionates: 2Cu⁺ → Cu + Cu²⁺</li>
+</ul>
+</div>
+</div>
+
+<div class="qa-card reveal">
+<div class="qa-header" onclick="toggleCard(this)">
+  <div class="qa-q-num">Q99</div>
+  <div class="qa-q-text">Why is highest oxidation state shown only in oxides and fluorides? Two examples.</div>
+  <div class="qa-year">2021</div>
+  <button class="qa-toggle" tabindex="-1">+</button>
+</div>
+<div class="qa-body">
+<div class="answer-badge">✦ Answer</div>
+<p><strong>Reason:</strong></p>
+<ol>
+<li><strong>Fluorine (F):</strong> Highest electronegativity → very powerful oxidizer → forces metal into highest oxidation state. Very small size → accommodates around metal without steric repulsion. Stabilizes high OS through strong ionic interactions.</li>
+<li><strong>Oxygen (O):</strong> Second highest electronegativity → forms strong oxo-bonds. Can form multiply-bonded (M=O) interactions, stabilizing high OS further.</li>
+<li><strong>Other halogens:</strong> Larger and less electronegative → less effective at stabilizing very high OS. At high OS, metal would oxidize larger halides (e.g., MnCl₄ would decompose, Mn⁴⁺ oxidizes Cl⁻ to Cl₂).</li>
+</ol>
+<table>
+<tr><th>Compound</th><th>Element</th><th>OS</th><th>Remarks</th></tr>
+<tr><td>MnO₄⁻ / Mn₂O₇</td><td>Mn</td><td>+7</td><td>MnF₇ doesn't exist; MnCl₂ only</td></tr>
+<tr><td>OsO₄</td><td>Os</td><td>+8</td><td>Highest known OS of any element</td></tr>
+<tr><td>VF₅</td><td>V</td><td>+5</td><td>VCl₅ unstable; VBr₅ doesn't exist</td></tr>
+<tr><td>CrO₃</td><td>Cr</td><td>+6</td><td>CrF₆ exists; CrCl₆ does not</td></tr>
+</table>
+</div>
+</div>
+
+</div><!-- end hard dfblock -->
+</div><!-- end section -->
+
+<!-- ━━━━━━━━━━━━━━ REFERENCE TABLES ━━━━━━━━━━━━━━ -->
+<div id="tables" style="padding-top:80px">
+<div class="section">
+
+<div class="section-header reveal">
+  <div class="section-header-num">04</div>
+  <div class="section-header-content">
+    <div class="section-eyebrow">Reference Material</div>
+    <div class="section-title">Quick Reference Tables &amp; Formulas</div>
+  </div>
+  <div class="section-line"></div>
+</div>
+
+<div class="tables-grid">
+
+<div class="table-card reveal">
+<div class="table-card-title">TABLE 1 — Important Constants</div>
+<table class="ref-table">
+<tr><th>Constant</th><th>Value</th></tr>
+<tr><td>R (Universal Gas Constant)</td><td>8.314 J mol⁻¹ K⁻¹ = 0.0821 L atm mol⁻¹ K⁻¹</td></tr>
+<tr><td>N_A (Avogadro's number)</td><td>6.022 × 10²³ mol⁻¹</td></tr>
+<tr><td>k_B (Boltzmann constant)</td><td>1.38 × 10⁻²³ J K⁻¹</td></tr>
+<tr><td>h (Planck's constant)</td><td>6.626 × 10⁻³⁴ J·s</td></tr>
+<tr><td>1 atm</td><td>101325 Pa = 101.325 kPa</td></tr>
+</table>
+</div>
+
+<div class="table-card reveal">
+<div class="table-card-title">TABLE 2 — Cryoscopic &amp; Ebullioscopic Constants</div>
+<table class="ref-table">
+<tr><th>Solvent</th><th>K_f (K·kg·mol⁻¹)</th><th>K_b (K·kg·mol⁻¹)</th><th>T_f (°C)</th><th>T_b (°C)</th></tr>
+<tr><td>Water</td><td>1.86</td><td>0.52</td><td>0</td><td>100</td></tr>
+<tr><td>Benzene</td><td>5.12</td><td>2.53</td><td>5.5</td><td>80.1</td></tr>
+<tr><td>Chloroform</td><td>4.68</td><td>3.63</td><td>-63.5</td><td>61.2</td></tr>
+<tr><td>Acetic acid</td><td>3.90</td><td>3.07</td><td>16.6</td><td>118.1</td></tr>
+<tr><td>CCl₄</td><td>29.8</td><td>5.03</td><td>-22.9</td><td>76.7</td></tr>
+<tr><td>Camphor</td><td>40.0</td><td>5.61</td><td>178.4</td><td>207.4</td></tr>
+<tr><td>Cyclohexane</td><td>20.0</td><td>2.79</td><td>6.5</td><td>80.7</td></tr>
+<tr><td>Naphthalene</td><td>6.9</td><td>—</td><td>80.2</td><td>—</td></tr>
+</table>
+</div>
+
+<div class="table-card full-width reveal">
+<div class="table-card-title">TABLE 3 — Integrated Rate Law Summary</div>
+<table class="ref-table">
+<tr><th>Order</th><th>Rate Law</th><th>Integrated Form</th><th>t₁/₂</th><th>Units of k</th></tr>
+<tr><td>0</td><td>k</td><td>[A] = [A]₀ − kt</td><td>[A]₀/2k</td><td>M·s⁻¹</td></tr>
+<tr><td>1</td><td>k[A]</td><td>ln[A] = ln[A]₀ − kt</td><td>0.693/k</td><td>s⁻¹</td></tr>
+<tr><td>2</td><td>k[A]²</td><td>1/[A] = 1/[A]₀ + kt</td><td>1/(k[A]₀)</td><td>M⁻¹s⁻¹</td></tr>
+</table>
+</div>
+
+<div class="table-card reveal">
+<div class="table-card-title">TABLE 4 — Colligative Properties Comparison</div>
+<table class="ref-table">
+<tr><th>Property</th><th>Formula</th><th>Depends on</th></tr>
+<tr><td>Relative Lowering of VP</td><td>(p°−p)/p° = χ_B</td><td># of particles</td></tr>
+<tr><td>Elevation of BP</td><td>ΔT_b = K_b × m</td><td># of particles</td></tr>
+<tr><td>Depression of FP</td><td>ΔT_f = K_f × m</td><td># of particles</td></tr>
+<tr><td>Osmotic Pressure</td><td>π = CRT</td><td># of particles</td></tr>
+</table>
+</div>
+
+<div class="table-card reveal">
+<div class="table-card-title">TABLE 5 — Van't Hoff Factor for Common Electrolytes</div>
+<table class="ref-table">
+<tr><th>Electrolyte</th><th>Type</th><th>Ions</th><th>Theoretical i</th></tr>
+<tr><td>NaCl</td><td>1:1</td><td>2</td><td>i = 2</td></tr>
+<tr><td>CaCl₂</td><td>1:2</td><td>3</td><td>i = 3</td></tr>
+<tr><td>Na₂SO₄</td><td>2:1</td><td>3</td><td>i = 3</td></tr>
+<tr><td>AlCl₃</td><td>1:3</td><td>4</td><td>i = 4</td></tr>
+<tr><td>Al₂(SO₄)₃</td><td>2:3</td><td>5</td><td>i = 5</td></tr>
+<tr><td>CH₃COOH</td><td>weak acid</td><td>—</td><td>1 &lt; i &lt; 2</td></tr>
+<tr><td>Glucose</td><td>non-electrolyte</td><td>—</td><td>i = 1</td></tr>
+<tr><td>Acetic acid in benzene</td><td>association</td><td>—</td><td>i &lt; 1</td></tr>
+</table>
+</div>
+
+<div class="table-card reveal">
+<div class="table-card-title">TABLE 6 — Common First-Order Reactions</div>
+<table class="ref-table">
+<tr><th>Reaction</th><th>Ea (kJ/mol approx.)</th></tr>
+<tr><td>Decomposition of N₂O₅</td><td>103</td></tr>
+<tr><td>Hydrolysis of sucrose</td><td>107</td></tr>
+<tr><td>Inversion of sucrose</td><td>107</td></tr>
+<tr><td>Decomposition of H₂O₂</td><td>75</td></tr>
+<tr><td>Radioactive decay</td><td>varies</td></tr>
+</table>
+</div>
+
+<div class="table-card reveal">
+<div class="table-card-title">TABLE 7 — Time for Various % Completion (First Order)</div>
+<table class="ref-table">
+<tr><th>% Completion</th><th>Fraction remaining</th><th>Formula</th></tr>
+<tr><td>50%</td><td>1/2</td><td>t = 0.693/k = t₁/₂</td></tr>
+<tr><td>75%</td><td>1/4</td><td>t = 2 × t₁/₂</td></tr>
+<tr><td>87.5%</td><td>1/8</td><td>t = 3 × t₁/₂</td></tr>
+<tr><td>93.75%</td><td>1/16</td><td>t = 4 × t₁/₂</td></tr>
+<tr><td>90%</td><td>1/10</td><td>t = 2.303/k</td></tr>
+<tr><td>99%</td><td>1/100</td><td>t = 4.606/k</td></tr>
+<tr><td>99.9%</td><td>1/1000</td><td>t = 6.909/k</td></tr>
+</table>
+</div>
+
+</div><!-- end tables-grid -->
+
+<!-- SYMBOL GLOSSARY -->
+<div class="section-header reveal" style="margin-top:60px">
+  <div class="section-header-content">
+    <div class="section-eyebrow">Reference Material</div>
+    <div class="section-title">Master Symbol Glossary</div>
+  </div>
+  <div class="section-line"></div>
+</div>
+
+<div class="glossary-grid">
+<div class="glossary-item reveal"><div class="glossary-sym">[A], [B]</div><div class="glossary-def">Molar concentration of A and B (mol L⁻¹)</div></div>
+<div class="glossary-item reveal"><div class="glossary-sym">[A]₀</div><div class="glossary-def">Initial concentration of A</div></div>
+<div class="glossary-item reveal"><div class="glossary-sym">χ_A, χ_B</div><div class="glossary-def">Mole fraction of A and B</div></div>
+<div class="glossary-item reveal"><div class="glossary-sym">n_A, n_B</div><div class="glossary-def">Number of moles of A and B</div></div>
+<div class="glossary-item reveal"><div class="glossary-sym">w_A, w_B</div><div class="glossary-def">Mass of A and B (grams)</div></div>
+<div class="glossary-item reveal"><div class="glossary-sym">M_A, M_B</div><div class="glossary-def">Molar mass of A and B (g/mol)</div></div>
+<div class="glossary-item reveal"><div class="glossary-sym">m</div><div class="glossary-def">Molality (mol/kg)</div></div>
+<div class="glossary-item reveal"><div class="glossary-sym">M</div><div class="glossary-def">Molarity (mol/L)</div></div>
+<div class="glossary-item reveal"><div class="glossary-sym">N</div><div class="glossary-def">Normality (equivalents/L)</div></div>
+<div class="glossary-item reveal"><div class="glossary-sym">d</div><div class="glossary-def">Density (g/mL)</div></div>
+<div class="glossary-item reveal"><div class="glossary-sym">p°_A</div><div class="glossary-def">Vapour pressure of pure A</div></div>
+<div class="glossary-item reveal"><div class="glossary-sym">p_A</div><div class="glossary-def">Partial vapour pressure of A in mixture</div></div>
+<div class="glossary-item reveal"><div class="glossary-sym">K_H</div><div class="glossary-def">Henry's law constant</div></div>
+<div class="glossary-item reveal"><div class="glossary-sym">K_b</div><div class="glossary-def">Ebullioscopic constant (K·kg·mol⁻¹)</div></div>
+<div class="glossary-item reveal"><div class="glossary-sym">K_f</div><div class="glossary-def">Cryoscopic constant (K·kg·mol⁻¹)</div></div>
+<div class="glossary-item reveal"><div class="glossary-sym">ΔT_b</div><div class="glossary-def">Elevation of boiling point</div></div>
+<div class="glossary-item reveal"><div class="glossary-sym">ΔT_f</div><div class="glossary-def">Depression of freezing point</div></div>
+<div class="glossary-item reveal"><div class="glossary-sym">π</div><div class="glossary-def">Osmotic pressure</div></div>
+<div class="glossary-item reveal"><div class="glossary-sym">i</div><div class="glossary-def">Van't Hoff factor</div></div>
+<div class="glossary-item reveal"><div class="glossary-sym">α</div><div class="glossary-def">Degree of dissociation or association</div></div>
+<div class="glossary-item reveal"><div class="glossary-sym">k</div><div class="glossary-def">Rate constant</div></div>
+<div class="glossary-item reveal"><div class="glossary-sym">A</div><div class="glossary-def">Arrhenius frequency factor (pre-exponential factor)</div></div>
+<div class="glossary-item reveal"><div class="glossary-sym">Ea</div><div class="glossary-def">Activation energy (J/mol or kJ/mol)</div></div>
+<div class="glossary-item reveal"><div class="glossary-sym">R</div><div class="glossary-def">Gas constant (8.314 J mol⁻¹ K⁻¹)</div></div>
+<div class="glossary-item reveal"><div class="glossary-sym">T</div><div class="glossary-def">Absolute temperature (K)</div></div>
+<div class="glossary-item reveal"><div class="glossary-sym">t₁/₂</div><div class="glossary-def">Half-life</div></div>
+<div class="glossary-item reveal"><div class="glossary-sym">N₀, N</div><div class="glossary-def">Initial and final number of atoms (radioactivity)</div></div>
+<div class="glossary-item reveal"><div class="glossary-sym">λ</div><div class="glossary-def">Radioactive decay constant</div></div>
+<div class="glossary-item reveal"><div class="glossary-sym">Z</div><div class="glossary-def">Collision frequency</div></div>
+<div class="glossary-item reveal"><div class="glossary-sym">P</div><div class="glossary-def">Steric (probability) factor</div></div>
+<div class="glossary-item reveal"><div class="glossary-sym">ΔG‡, ΔH‡, ΔS‡</div><div class="glossary-def">Gibbs energy, enthalpy, entropy of activation</div></div>
+<div class="glossary-item reveal"><div class="glossary-sym">k_B</div><div class="glossary-def">Boltzmann constant (1.38 × 10⁻²³ J K⁻¹)</div></div>
+<div class="glossary-item reveal"><div class="glossary-sym">h</div><div class="glossary-def">Planck's constant (6.626 × 10⁻³⁴ J·s)</div></div>
+<div class="glossary-item reveal"><div class="glossary-sym">μ</div><div class="glossary-def">Reduced mass / Temperature coefficient</div></div>
+<div class="glossary-item reveal"><div class="glossary-sym">Λ°_m</div><div class="glossary-def">Molar conductivity at infinite dilution</div></div>
+</div>
+
+<!-- MNEMONICS -->
+<div class="section-header reveal" style="margin-top:60px">
+  <div class="section-header-content">
+    <div class="section-eyebrow">Study Aid</div>
+    <div class="section-title">Important Tips &amp; Mnemonics</div>
+  </div>
+  <div class="section-line"></div>
+</div>
+
+<div class="mnemonics-list">
+<div class="mnemonic-item reveal"><div class="mnemonic-num">01</div><strong>"ROBE"</strong> — Raoult's law → Osmosis → Boiling → Elevation/depression (colligative properties)</div>
+<div class="mnemonic-item reveal"><div class="mnemonic-num">02</div><strong>K_f &gt; K_b always</strong> (for water: 1.86 &gt; 0.52)</div>
+<div class="mnemonic-item reveal"><div class="mnemonic-num">03</div><strong>First order: t₁/₂ = 0.693/k</strong> — "Six-Nine-Three over k"</div>
+<div class="mnemonic-item reveal"><div class="mnemonic-num">04</div>Osmotic pressure most sensitive colligative property → used for high MW biomolecules</div>
+<div class="mnemonic-item reveal"><div class="mnemonic-num">05</div><strong>Van't Hoff factor:</strong> i &gt; 1 (dissociation), i = 1 (non-electrolyte), i &lt; 1 (association)</div>
+<div class="mnemonic-item reveal"><div class="mnemonic-num">06</div><strong>Zero order:</strong> constant rate regardless of [A]</div>
+<div class="mnemonic-item reveal"><div class="mnemonic-num">07</div><strong>Arrhenius:</strong> slope of log k vs 1/T graph = −Ea/2.303R</div>
+<div class="mnemonic-item reveal"><div class="mnemonic-num">08</div><strong>Catalyst:</strong> lowers Ea, increases both forward and backward rate equally</div>
+<div class="mnemonic-item reveal"><div class="mnemonic-num">09</div><strong>Order ≠ Molecularity</strong> (order is experimental; molecularity is theoretical/elementary)</div>
+<div class="mnemonic-item reveal"><div class="mnemonic-num">10</div><strong>Pseudo first order:</strong> one reactant in large excess → effective first order</div>
+</div>
+
+<!-- FORMULA SHEET SUMMARY -->
+<div class="section-header reveal" style="margin-top:60px">
+  <div class="section-header-content">
+    <div class="section-eyebrow">Formula Sheet</div>
+    <div class="section-title">Transition State Theory (Eyring Equation)</div>
+  </div>
+  <div class="section-line"></div>
+</div>
+<div class="table-card full-width reveal">
+<div class="table-card-title">Eyring / Transition State Theory</div>
+<pre style="font-size:0.88rem;color:var(--fg2);line-height:1.8">
+k = (k_B T / h) × e^(-ΔG‡/RT)
+
+k = (k_B T / h) × e^(ΔS‡/R) × e^(-ΔH‡/RT)
+
+ΔG‡ = ΔH‡ - TΔS‡
+
+ln k = ln(k_B T / h) + ΔS‡/R - ΔH‡/RT
+
+where:
+k_B = Boltzmann constant = 1.38 × 10⁻²³ J/K
+h   = Planck's constant = 6.626 × 10⁻³⁴ J·s
+ΔG‡ = Gibbs energy of activation
+ΔH‡ = Enthalpy of activation
+ΔS‡ = Entropy of activation
+</pre>
+</div>
+
+<div style="text-align:center;padding:24px 0;color:var(--fg3);font-size:0.78rem;letter-spacing:0.15em;text-transform:uppercase">
+  ✦ End of Formula Sheet &nbsp;·&nbsp; Total Formulas: 150+ &nbsp;·&nbsp; Prepared for CBSE Class 12, 2026–27 Session ✦
+</div>
+
+</div><!-- end section -->
+
+<!-- ━━━━━━━━━━━━━━ MAKER SECTION ━━━━━━━━━━━━━━ -->
+<section id="maker" class="maker-section">
+  <div class="maker-glow"></div>
+  <div style="position:relative;z-index:1">
+    <div class="maker-label">Crafted With Dedication By</div>
+    <div class="maker-rings">
+      <img src="https://plain-apac-prod-public.komododecks.com/202605/22/nHDi45aen4uwI6zP8WGI/image.jpg" alt="Akshit Tyagi" class="maker-img"/>
+    </div>
+    <h2 class="maker-name">Akshit Tyagi</h2>
+    <p class="maker-desc">Class XII student &amp; the dedicated mind behind this comprehensive Chemistry PYQ solution compendium</p>
+    <div class="gem">💎</div>
+    <div style="margin-top:28px;font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--fg3)">
+      CBSE Class XII · Chemistry · 2026–27 Session
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>Chemistry PYQ Solutions — Class 12 &nbsp;·&nbsp; <span>Solutions · Chemical Kinetics · d &amp; f Block Elements</span> &nbsp;·&nbsp; Made by <span>Akshit Tyagi</span></p>
+</footer>
+
+<script>
+/* ─── CURSOR ─── */
+const cursor = document.getElementById('cursor');
+const cursorRing = document.getElementById('cursorRing');
+let mx=0, my=0, rx=0, ry=0;
+document.addEventListener('mousemove', e => {
+  mx = e.clientX; my = e.clientY;
+  cursor.style.left = mx + 'px';
+  cursor.style.top = my + 'px';
+});
+function animateCursor() {
+  rx += (mx - rx) * 0.12;
+  ry += (my - ry) * 0.12;
+  cursorRing.style.left = rx + 'px';
+  cursorRing.style.top = ry + 'px';
+  requestAnimationFrame(animateCursor);
+}
+animateCursor();
+
+/* ─── PROGRESS BAR ─── */
+const progressBar = document.getElementById('progress');
+window.addEventListener('scroll', () => {
+  const scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+  progressBar.style.width = scrolled + '%';
+});
+
+/* ─── THEME TOGGLE ─── */
+const themeBtn = document.getElementById('themeBtn');
+themeBtn.addEventListener('click', () => {
+  const html = document.documentElement;
+  if (html.getAttribute('data-theme') === 'light') {
+    html.setAttribute('data-theme', 'dark');
+    themeBtn.textContent = '☾';
+  } else {
+    html.setAttribute('data-theme', 'light');
+    themeBtn.textContent = '☀';
+  }
+});
+
+/* ─── Q&A ACCORDION ─── */
+function toggleCard(header) {
+  const card = header.closest('.qa-card');
+  const isOpen = card.classList.contains('open');
+  card.classList.toggle('open', !isOpen);
+}
+
+/* ─── INTERSECTION OBSERVER ─── */
+const revealItems = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('visible'), i * 40);
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+revealItems.forEach(el => observer.observe(el));
+
+/* ─── MATHJAX ─── */
+window.addEventListener('load', () => {
+  if (window.MathJax && MathJax.startup) {
+    MathJax.startup.promise.then(() => {
+      MathJax.typesetPromise();
+    });
+  }
+});
+</script>
+</body>
+</html>
