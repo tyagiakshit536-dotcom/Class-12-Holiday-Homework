@@ -1,0 +1,1290 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>When the Palace Opened Its Doors — Dr. A.P.J. Abdul Kalam</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Pacifico&display=swap" rel="stylesheet" />
+<style>
+/* ============================================================
+   CSS VARIABLES & THEME
+   ============================================================ */
+:root {
+  --bg: #faf6ef;
+  --bg2: #f2ece0;
+  --bg3: #e8dfc9;
+  --text: #1a1410;
+  --text2: #3d3020;
+  --text3: #6b5a3e;
+  --accent: #b8860b;
+  --accent2: #d4a017;
+  --accent3: #f0c040;
+  --border: rgba(184,134,11,0.25);
+  --card-bg: rgba(250,246,239,0.85);
+  --nav-bg: rgba(250,246,239,0.88);
+  --shadow: rgba(26,20,16,0.12);
+  --noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+}
+[data-theme="dark"] {
+  --bg: #0f0d0a;
+  --bg2: #1a1710;
+  --bg3: #242018;
+  --text: #f0e8d8;
+  --text2: #c8b89a;
+  --text3: #8a7a5a;
+  --accent: #d4a017;
+  --accent2: #f0c040;
+  --accent3: #ffe080;
+  --border: rgba(212,160,23,0.3);
+  --card-bg: rgba(26,23,16,0.88);
+  --nav-bg: rgba(15,13,10,0.9);
+  --shadow: rgba(0,0,0,0.4);
+}
+
+/* ============================================================
+   RESET & BASE
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.75;
+  overflow-x: hidden;
+  cursor: none;
+}
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: var(--noise);
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.6;
+}
+::selection { background: var(--accent); color: #fff; }
+
+/* ============================================================
+   CUSTOM CURSOR
+   ============================================================ */
+#cursor {
+  position: fixed;
+  width: 10px; height: 10px;
+  background: var(--accent);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99999;
+  transform: translate(-50%,-50%);
+  transition: transform 0.08s ease, width 0.2s, height 0.2s, background 0.2s;
+  mix-blend-mode: multiply;
+}
+#cursor-ring {
+  position: fixed;
+  width: 36px; height: 36px;
+  border: 1.5px solid var(--accent);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99998;
+  transform: translate(-50%,-50%);
+  transition: transform 0.18s ease, width 0.25s, height 0.25s, opacity 0.25s;
+  opacity: 0.6;
+}
+body.cursor-hover #cursor { width: 18px; height: 18px; background: var(--accent2); }
+body.cursor-hover #cursor-ring { width: 56px; height: 56px; opacity: 0.3; }
+
+/* ============================================================
+   SCROLL PROGRESS BAR
+   ============================================================ */
+#progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--accent3));
+  z-index: 10000;
+  width: 0%;
+  transition: width 0.1s linear;
+  box-shadow: 0 0 12px var(--accent2);
+}
+
+/* ============================================================
+   NAV
+   ============================================================ */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  backdrop-filter: blur(16px);
+  background: var(--nav-bg);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 48px;
+  height: 68px;
+}
+.nav-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--accent);
+  letter-spacing: 0.06em;
+  text-decoration: none;
+}
+.nav-links {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+}
+.nav-links a {
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text2);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--accent); }
+.theme-toggle {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--text2);
+  cursor: pointer;
+  padding: 6px 14px;
+  border-radius: 100px;
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  font-family: 'DM Sans', sans-serif;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+.theme-toggle:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 120px 32px 80px;
+  position: relative;
+  overflow: hidden;
+}
+.hero-glow {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+  width: 700px; height: 700px;
+  background: radial-gradient(ellipse, rgba(212,160,23,0.18) 0%, transparent 70%);
+  animation: pulse-glow 4s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+@keyframes pulse-glow {
+  from { transform: translate(-50%,-50%) scale(0.9); opacity: 0.7; }
+  to { transform: translate(-50%,-50%) scale(1.15); opacity: 1; }
+}
+.hero-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  animation: expand-ring 6s ease-in-out infinite;
+  pointer-events: none;
+}
+.hero-ring:nth-child(1) { width: 400px; height: 400px; top:50%; left:50%; transform:translate(-50%,-50%); animation-delay: 0s; }
+.hero-ring:nth-child(2) { width: 600px; height: 600px; top:50%; left:50%; transform:translate(-50%,-50%); animation-delay: 1.5s; }
+.hero-ring:nth-child(3) { width: 800px; height: 800px; top:50%; left:50%; transform:translate(-50%,-50%); animation-delay: 3s; }
+@keyframes expand-ring {
+  0%, 100% { opacity: 0; transform: translate(-50%,-50%) scale(0.95); }
+  50% { opacity: 0.5; transform: translate(-50%,-50%) scale(1.05); }
+}
+.floating-letters {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.fl {
+  position: absolute;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(3rem, 8vw, 7rem);
+  font-weight: 700;
+  color: var(--accent);
+  opacity: 0.04;
+  animation: float-letter 12s ease-in-out infinite;
+  user-select: none;
+}
+@keyframes float-letter {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  33% { transform: translateY(-30px) rotate(5deg); }
+  66% { transform: translateY(20px) rotate(-3deg); }
+}
+.hero-eyebrow {
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 24px;
+  opacity: 0;
+  animation: fade-up 0.9s 0.3s forwards;
+}
+.hero-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.8rem, 7vw, 6.5rem);
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  max-width: 900px;
+  margin: 0 auto 24px;
+  opacity: 0;
+  animation: fade-up 0.9s 0.5s forwards;
+}
+.hero-subtitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.1rem, 2.2vw, 1.55rem);
+  font-weight: 400;
+  font-style: italic;
+  color: var(--text2);
+  max-width: 680px;
+  margin: 0 auto 40px;
+  opacity: 0;
+  animation: fade-up 0.9s 0.7s forwards;
+}
+.hero-divider {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  justify-content: center;
+  margin: 0 auto 40px;
+  opacity: 0;
+  animation: fade-up 0.9s 0.9s forwards;
+}
+.hero-divider span { width: 80px; height: 1px; background: var(--border); }
+.hero-gem {
+  width: 14px; height: 14px;
+  background: var(--accent);
+  transform: rotate(45deg);
+  animation: spin-gem 8s linear infinite;
+  box-shadow: 0 0 20px var(--accent2);
+}
+@keyframes spin-gem { to { transform: rotate(405deg); } }
+.hero-meta {
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+  flex-wrap: wrap;
+  opacity: 0;
+  animation: fade-up 0.9s 1.1s forwards;
+}
+.meta-item {
+  text-align: center;
+}
+.meta-label {
+  font-size: 0.68rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text3);
+  display: block;
+  margin-bottom: 4px;
+}
+.meta-value {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 1.1rem;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+}
+.scroll-hint {
+  position: absolute;
+  bottom: 36px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  opacity: 0;
+  animation: fade-in 1s 2s forwards;
+}
+.scroll-hint span {
+  font-size: 0.65rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--text3);
+}
+.scroll-line {
+  width: 1px;
+  height: 50px;
+  background: linear-gradient(to bottom, var(--accent), transparent);
+  animation: scroll-pulse 2s ease-in-out infinite;
+}
+@keyframes scroll-pulse {
+  0%, 100% { transform: scaleY(0.6) translateY(-10px); opacity: 0.4; }
+  50% { transform: scaleY(1) translateY(0); opacity: 1; }
+}
+
+/* ============================================================
+   HERO IMAGE BANNER
+   ============================================================ */
+.hero-banner {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+  height: 480px;
+  border-radius: 4px;
+}
+.hero-banner img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 8s ease;
+  filter: sepia(20%) brightness(0.88) contrast(1.1);
+}
+.hero-banner:hover img { transform: scale(1.05); }
+.hero-banner-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(10,8,4,0.75) 0%, transparent 60%);
+}
+.hero-banner-caption {
+  position: absolute;
+  bottom: 28px;
+  left: 36px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem;
+  font-style: italic;
+  color: rgba(255,255,255,0.7);
+  letter-spacing: 0.04em;
+}
+
+/* ============================================================
+   SECTION WRAPPER
+   ============================================================ */
+.section-wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 48px;
+}
+
+/* ============================================================
+   SECTION HEADER
+   ============================================================ */
+.section-header {
+  display: flex;
+  align-items: flex-end;
+  gap: 24px;
+  margin-bottom: 64px;
+  position: relative;
+}
+.section-num {
+  font-family: 'Bebas Neue', cursive;
+  font-size: clamp(6rem, 12vw, 10rem);
+  line-height: 0.8;
+  color: var(--accent);
+  opacity: 0.1;
+  user-select: none;
+  flex-shrink: 0;
+}
+.section-title-block { flex: 1; }
+.section-eyebrow {
+  font-size: 0.68rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 8px;
+  display: block;
+}
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 4vw, 3.4rem);
+  font-weight: 600;
+  line-height: 1.1;
+  color: var(--text);
+}
+.section-line {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(to right, var(--accent), transparent);
+  margin-top: 48px;
+  margin-bottom: 80px;
+}
+
+/* ============================================================
+   STORY PARTS SECTION
+   ============================================================ */
+.story-section { padding: 100px 0; }
+
+.part-block {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  margin-bottom: 120px;
+  align-items: start;
+}
+.part-block.reverse { direction: rtl; }
+.part-block.reverse > * { direction: ltr; }
+.part-block.full-width {
+  grid-template-columns: 1fr;
+}
+.part-img-wrap {
+  position: relative;
+  overflow: hidden;
+  border-radius: 3px;
+}
+.part-img-wrap img {
+  width: 100%;
+  height: 360px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.7s ease;
+  filter: sepia(15%) brightness(0.9) contrast(1.05);
+}
+.part-img-wrap:hover img { transform: scale(1.06); }
+.part-img-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(184,134,11,0.12) 0%, transparent 60%);
+  pointer-events: none;
+}
+.part-img-label {
+  position: absolute;
+  bottom: 16px; right: 16px;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.6);
+  font-style: italic;
+}
+.part-content {}
+.part-tag {
+  display: inline-block;
+  font-family: 'Bebas Neue', cursive;
+  font-size: 0.7rem;
+  letter-spacing: 0.35em;
+  color: var(--accent);
+  border: 1px solid var(--border);
+  padding: 4px 14px;
+  border-radius: 100px;
+  margin-bottom: 20px;
+}
+.part-heading {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-weight: 600;
+  line-height: 1.15;
+  color: var(--text);
+  margin-bottom: 24px;
+}
+.part-text {
+  font-size: 1rem;
+  color: var(--text2);
+  line-height: 1.85;
+  margin-bottom: 16px;
+}
+.part-text:last-child { margin-bottom: 0; }
+.part-quote {
+  border-left: 3px solid var(--accent);
+  padding: 16px 24px;
+  margin: 28px 0;
+  background: var(--bg2);
+  border-radius: 0 4px 4px 0;
+}
+.part-quote p {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.25rem;
+  font-style: italic;
+  font-weight: 500;
+  color: var(--text);
+  line-height: 1.6;
+}
+.part-quote cite {
+  display: block;
+  margin-top: 10px;
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+/* ============================================================
+   FULL-BLEED QUOTE STRIP
+   ============================================================ */
+.quote-strip {
+  background: var(--bg3);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 80px 48px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.quote-strip::before {
+  content: '"';
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22rem;
+  color: var(--accent);
+  opacity: 0.05;
+  position: absolute;
+  top: -40px; left: 32px;
+  line-height: 1;
+  user-select: none;
+  pointer-events: none;
+}
+.quote-strip blockquote {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.5rem, 3.5vw, 2.6rem);
+  font-weight: 500;
+  font-style: italic;
+  color: var(--text);
+  max-width: 860px;
+  margin: 0 auto 24px;
+  line-height: 1.45;
+}
+.quote-strip cite {
+  font-size: 0.78rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-style: normal;
+}
+
+/* ============================================================
+   GALLERY STRIP
+   ============================================================ */
+.gallery-section { padding: 80px 0; background: var(--bg2); }
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 3px;
+  cursor: none;
+}
+.gallery-item:first-child { grid-row: span 2; }
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  min-height: 220px;
+  transition: transform 0.6s ease, filter 0.4s ease;
+  filter: sepia(10%) brightness(0.88) contrast(1.08);
+}
+.gallery-item:hover img { transform: scale(1.08); filter: sepia(0%) brightness(1) contrast(1.05); }
+.gallery-item-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(10,8,4,0.6) 0%, transparent 50%);
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+.gallery-item:hover .gallery-item-overlay { opacity: 1; }
+.gallery-item-caption {
+  position: absolute;
+  bottom: 16px; left: 16px;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.85);
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+.gallery-item:hover .gallery-item-caption { opacity: 1; }
+
+/* ============================================================
+   EPILOGUE SECTION
+   ============================================================ */
+.epilogue-section { padding: 100px 0; }
+.epilogue-text {
+  max-width: 760px;
+  margin: 0 auto;
+  font-size: 1.1rem;
+  color: var(--text2);
+  line-height: 1.9;
+}
+.epilogue-text p { margin-bottom: 20px; }
+.epilogue-highlight {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.6rem;
+  font-weight: 500;
+  font-style: italic;
+  color: var(--text);
+  display: block;
+  text-align: center;
+  margin: 48px auto;
+  max-width: 680px;
+  line-height: 1.5;
+  padding: 40px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  position: relative;
+}
+.epilogue-highlight::before, .epilogue-highlight::after {
+  content: '';
+  position: absolute;
+  width: 20px; height: 20px;
+  border: 2px solid var(--accent);
+}
+.epilogue-highlight::before { top: -1px; left: -1px; border-right: none; border-bottom: none; }
+.epilogue-highlight::after { bottom: -1px; right: -1px; border-left: none; border-top: none; }
+
+/* ============================================================
+   FINAL QUOTE
+   ============================================================ */
+.final-quote-section {
+  padding: 80px 48px;
+  text-align: center;
+  background: var(--bg3);
+  border-top: 1px solid var(--border);
+}
+.final-quote-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.8rem, 4vw, 3.2rem);
+  font-style: italic;
+  font-weight: 600;
+  color: var(--accent);
+  max-width: 700px;
+  margin: 0 auto 20px;
+  line-height: 1.3;
+}
+.final-quote-attr {
+  font-size: 0.78rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--text3);
+}
+
+/* ============================================================
+   MAKER SECTION
+   ============================================================ */
+.maker-section {
+  padding: 120px 48px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.maker-glow {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+  width: 500px; height: 500px;
+  background: radial-gradient(ellipse, rgba(212,160,23,0.14) 0%, transparent 70%);
+  animation: pulse-glow 5s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+.maker-eyebrow {
+  font-size: 0.68rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 40px;
+  display: block;
+}
+.maker-img-wrap {
+  display: inline-block;
+  position: relative;
+  margin-bottom: 32px;
+}
+.maker-ring-1, .maker-ring-2, .maker-ring-3 {
+  position: absolute;
+  top: 50%; left: 50%;
+  border-radius: 50%;
+  border: 1px solid var(--accent);
+  transform: translate(-50%,-50%);
+  animation: pulse-ring 3s ease-in-out infinite;
+  pointer-events: none;
+}
+.maker-ring-1 { width: 160px; height: 160px; animation-delay: 0s; opacity: 0.5; }
+.maker-ring-2 { width: 200px; height: 200px; animation-delay: 0.8s; opacity: 0.3; }
+.maker-ring-3 { width: 244px; height: 244px; animation-delay: 1.6s; opacity: 0.15; }
+@keyframes pulse-ring {
+  0%, 100% { transform: translate(-50%,-50%) scale(0.95); opacity: 0.4; }
+  50% { transform: translate(-50%,-50%) scale(1.05); opacity: 0.8; }
+}
+.maker-img {
+  width: 130px; height: 130px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--accent);
+  display: block;
+  box-shadow: 0 0 40px rgba(212,160,23,0.3);
+  position: relative;
+  z-index: 2;
+}
+.maker-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text3);
+  display: block;
+  margin-bottom: 8px;
+}
+.maker-name {
+  font-family: 'Pacifico', cursive;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  background: linear-gradient(120deg, var(--accent), var(--accent3), var(--accent));
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 3s linear infinite;
+  display: block;
+  margin-bottom: 16px;
+}
+@keyframes shimmer {
+  to { background-position: 200% center; }
+}
+.maker-tagline {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  font-style: italic;
+  color: var(--text3);
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 32px 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.footer-copy {
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  color: var(--text3);
+}
+.footer-tribute {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.9rem;
+  font-style: italic;
+  color: var(--accent);
+}
+
+/* ============================================================
+   REVEAL ANIMATION
+   ============================================================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.75s ease, transform 0.75s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 900px) {
+  .nav-links { display: none; }
+  nav { padding: 0 24px; }
+  .section-wrap { padding: 0 24px; }
+  .part-block { grid-template-columns: 1fr; gap: 36px; }
+  .part-block.reverse { direction: ltr; }
+  .gallery-grid { grid-template-columns: 1fr 1fr; }
+  .gallery-item:first-child { grid-row: span 1; }
+  footer { flex-direction: column; text-align: center; }
+}
+@media (max-width: 600px) {
+  .hero-meta { gap: 20px; }
+  .gallery-grid { grid-template-columns: 1fr; }
+  .quote-strip, .final-quote-section, .maker-section { padding: 60px 24px; }
+}
+</style>
+</head>
+<body>
+
+<!-- Custom Cursor -->
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+
+<!-- Progress Bar -->
+<div id="progress-bar"></div>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">Kalam · A Legacy</a>
+  <ul class="nav-links">
+    <li><a href="#story">The Story</a></li>
+    <li><a href="#feast">The Feast</a></li>
+    <li><a href="#legacy">Legacy</a></li>
+    <li><a href="#maker">Creator</a></li>
+  </ul>
+  <button class="theme-toggle" onclick="toggleTheme()">☀ / ☾</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-glow"></div>
+  <div class="hero-ring"></div>
+  <div class="hero-ring"></div>
+  <div class="hero-ring"></div>
+  <div class="floating-letters">
+    <span class="fl" style="top:8%;left:4%;animation-delay:0s;">K</span>
+    <span class="fl" style="top:15%;right:6%;animation-delay:2s;">A</span>
+    <span class="fl" style="bottom:20%;left:8%;animation-delay:4s;">L</span>
+    <span class="fl" style="bottom:12%;right:10%;animation-delay:1.5s;">A</span>
+    <span class="fl" style="top:55%;left:2%;animation-delay:3s;">M</span>
+    <span class="fl" style="top:40%;right:3%;animation-delay:5s;">✦</span>
+  </div>
+  <p class="hero-eyebrow">A True Story of Love, Dignity &amp; India</p>
+  <h1 class="hero-title">When the Palace Opened Its Doors for the Children of India</h1>
+  <p class="hero-subtitle">The Unforgettable Day Dr. A.P.J. Abdul Kalam Made Every Child a King and Queen</p>
+  <div class="hero-divider">
+    <span></span>
+    <div class="hero-gem"></div>
+    <span></span>
+  </div>
+  <div class="hero-meta">
+    <div class="meta-item">
+      <span class="meta-label">Date</span>
+      <span class="meta-value">15 August 2003</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Location</span>
+      <span class="meta-value">Rashtrapati Bhavan</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Children Hosted</span>
+      <span class="meta-value">500 VIP Guests</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">President</span>
+      <span class="meta-value">Dr. A.P.J. Abdul Kalam</span>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- HERO IMAGE BANNER -->
+<div class="section-wrap" style="padding-top:0;padding-bottom:80px;">
+  <div class="hero-banner reveal">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Rashtrapati_Bhavan_Central_dome.jpg/1280px-Rashtrapati_Bhavan_Central_dome.jpg"
+         onerror="this.src='https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=1200&q=80'"
+         alt="Rashtrapati Bhavan" loading="lazy" />
+    <div class="hero-banner-overlay"></div>
+    <span class="hero-banner-caption">Rashtrapati Bhavan, Raisina Hill, New Delhi — The Palace That Opened Its Heart</span>
+  </div>
+</div>
+
+<!-- PROLOGUE -->
+<section id="story" class="story-section">
+  <div class="section-wrap">
+    <div class="section-header reveal">
+      <div class="section-num">01</div>
+      <div class="section-title-block">
+        <span class="section-eyebrow">Prologue</span>
+        <h2 class="section-title">A President Unlike Any Other</h2>
+      </div>
+    </div>
+
+    <div class="part-block reveal">
+      <div class="part-img-wrap">
+           <img src="https://2.bp.blogspot.com/-asla8MTZf8Y/T2xCNgZJy2I/AAAAAAAAK2U/MzeS-zB1fvw/s1600/abdulkalam1.jpg"
+             onerror="this.src='https://2.bp.blogspot.com/-asla8MTZf8Y/T2xCNgZJy2I/AAAAAAAAK2U/MzeS-zB1fvw/s1600/abdulkalam1.jpg'"
+             alt="Dr Kalam inspiration" loading="lazy" />
+        <div class="part-img-overlay"></div>
+        <span class="part-img-label">Rameswaram · Tamil Nadu</span>
+      </div>
+      <div class="part-content">
+        <span class="part-tag">Prologue</span>
+        <h3 class="part-heading">The Boy from Rameswaram</h3>
+        <p class="part-text">There is a particular kind of greatness that does not announce itself with trumpets. It arrives quietly, in the middle of the night, with worn-out sandals, a crumpled notebook, and a heart so full of love for humanity that it simply cannot contain itself within the walls of protocol and prestige.</p>
+        <p class="part-text">Dr. Avul Pakir Jainulabdeen Abdul Kalam — scientist, dreamer, poet, and the 11th President of the Republic of India — was exactly that kind of man.</p>
+        <p class="part-text">From the moment he stepped into Rashtrapati Bhavan on <strong>25th July 2002</strong>, having been sworn in as the President of India, the people of this great nation knew something had changed. Not just politically, not just symbolically — but spiritually.</p>
+        <div class="part-quote">
+          <p>For the first time in the history of free India, the highest office in the land was occupied not by a politician, not by a general, not by a dynasty's heir — but by a boy who had once sold newspapers on the streets of Rameswaram, Tamil Nadu, just to help his family survive.</p>
+          <cite>— The People's President</cite>
+        </div>
+        <p class="part-text">He had risen. And he had never — not once — forgotten where he had come from.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FULL-BLEED QUOTE -->
+<div class="quote-strip">
+  <blockquote>"This is the story of one extraordinary day. A day that became legend. A day when the most powerful address in India — Rashtrapati Bhavan, New Delhi — was turned, entirely and joyfully, over to the children."</blockquote>
+  <cite>15th August, 2003 — Independence Day</cite>
+</div>
+
+<!-- PART ONE -->
+<section class="story-section" style="padding-top:100px;">
+  <div class="section-wrap">
+    <div class="section-header reveal">
+      <div class="section-num">02</div>
+      <div class="section-title-block">
+        <span class="section-eyebrow">Part One</span>
+        <h2 class="section-title">The Idea That Changed Everything</h2>
+      </div>
+    </div>
+
+    <div class="part-block reverse reveal">
+      <div class="part-img-wrap">
+        <img src="https://images.unsplash.com/photo-1567016432779-094069958ea5?w=800&q=80"
+             alt="Indian children studying" loading="lazy" />
+        <div class="part-img-overlay"></div>
+        <span class="part-img-label">India's Invisible Millions</span>
+      </div>
+      <div class="part-content">
+        <span class="part-tag">Part One</span>
+        <h3 class="part-heading">A Dream Born in the Quiet of Dawn</h3>
+        <p class="part-text">It was the summer leading up to <strong>15th August 2003</strong> — India's 57th Independence Day. All across the country, preparations were underway. Flags were being ironed, speeches were being rehearsed, and government offices were buzzing with the usual pomp and formality that accompanies the nation's greatest annual celebration.</p>
+        <p class="part-text">Inside the grand corridors of Rashtrapati Bhavan — that magnificent 340-room palace spread across 130 hectares on Raisina Hill, designed by the legendary British architect Sir Edwin Lutyens — staff members were busy preparing for the traditional Independence Day protocols. Foreign dignitaries were to be received. Senior government officials would attend.</p>
+        <p class="part-text">But Dr. Kalam had a different idea entirely.</p>
+        <p class="part-text">He had been thinking, as he often did in the quiet of the early morning — about the children of India. He thought about the children in the villages of Bihar who had never owned a pair of shoes. He thought about the little girls in the slums of Mumbai who studied under streetlights because their homes had no electricity. He thought about the boys in the tribal belts of Jharkhand and Chhattisgarh who had never once seen a building taller than two floors.</p>
+        <div class="part-quote">
+          <p>"I want to invite the children. Bring them here. Treat them as our most important guests. Make them feel like they own this country — because they do."</p>
+          <cite>— Dr. A.P.J. Abdul Kalam</cite>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY STRIP -->
+<section class="gallery-section" id="feast">
+  <div class="section-wrap">
+    <div class="section-header reveal">
+      <div class="section-num">03</div>
+      <div class="section-title-block">
+        <span class="section-eyebrow">Part Two &amp; Three</span>
+        <h2 class="section-title">The Invitation & The Morning of 15th August</h2>
+      </div>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item reveal reveal-delay-1">
+        <img src="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=800&q=80"
+             alt="New Delhi" loading="lazy" />
+        <div class="gallery-item-overlay"></div>
+        <span class="gallery-item-caption">The Grand Gates of Rashtrapati Bhavan</span>
+      </div>
+      <div class="gallery-item reveal reveal-delay-2">
+        <img src="https://images.unsplash.com/photo-1594377157309-5e5f7b3f9099?w=800&q=80"
+             onerror="this.src='https://images.unsplash.com/photo-1587474260584-136574528ed5?w=800&q=80'"
+             alt="Indian children" loading="lazy" />
+        <div class="gallery-item-overlay"></div>
+        <span class="gallery-item-caption">Children Arriving from Across India</span>
+      </div>
+      <div class="gallery-item reveal reveal-delay-3">
+        <img src="https://images.unsplash.com/photo-1466442929976-97f336a657be?w=800&q=80"
+             alt="Mughal Gardens" loading="lazy" />
+        <div class="gallery-item-overlay"></div>
+        <span class="gallery-item-caption">The Magnificent Mughal Gardens</span>
+      </div>
+      <div class="gallery-item reveal reveal-delay-4">
+        <img src="https://images.unsplash.com/photo-1532375810709-75b1da00537c?w=800&q=80"
+             onerror="this.src='https://images.unsplash.com/photo-1596272875729-ed2e4b06f4bc?w=800&q=80'"
+             alt="India independence day" loading="lazy" />
+        <div class="gallery-item-overlay"></div>
+        <span class="gallery-item-caption">Independence Day, 15th August 2003</span>
+      </div>
+    </div>
+
+    <!-- Part Two text -->
+    <div class="part-block reveal" style="margin-top:80px;">
+      <div class="part-content" style="grid-column: 1/-1; max-width: 800px;">
+        <span class="part-tag">Part Two</span>
+        <h3 class="part-heading">The Invitation Goes Out</h3>
+        <p class="part-text">Word spread rapidly. Across states, across districts, across government schools and NGO-run centres, a quiet but electrifying message went out: <strong>Dr. Kalam had personally invited children to Rashtrapati Bhavan as VIP guests on Independence Day.</strong></p>
+        <p class="part-text">The invitations were specifically directed towards children from underprivileged backgrounds — children of daily-wage labourers, farmers, auto-rickshaw drivers, construction workers, domestic helpers, and small-time vendors. Children who had never once imagined that a place like Rashtrapati Bhavan existed for someone like them.</p>
+        <p class="part-text">Approximately <strong>500 children</strong> were selected from various parts of India, with special focus on children from economically weaker sections, rural areas, tribal communities, and government-run schools. They ranged in age from roughly <strong>8 to 16 years</strong>. Many had never visited New Delhi before. Many had never traveled on a train for more than a few hours. A significant number had never in their lives worn anything other than hand-me-down clothes.</p>
+        <p class="part-text">On <strong>14th August 2003</strong>, the children began arriving in New Delhi. There were children from <strong>Uttar Pradesh, Rajasthan, Madhya Pradesh, Bihar, Tamil Nadu, Kerala, Odisha, Assam, Jharkhand, and Maharashtra</strong> — a living mosaic of India's incredible, breathtaking diversity.</p>
+        <p class="part-text">Their eyes were wide. Their steps were uncertain. Some whispered to each other in their native tongues. Some simply stared in silence at the grand buildings of New Delhi, trying to process a world that felt entirely beyond anything they had ever known.</p>
+      </div>
+    </div>
+
+    <!-- Part Three text -->
+    <div class="part-block reveal" style="margin-top:0;">
+      <div class="part-img-wrap">
+        <img src="https://images.unsplash.com/photo-1585418490984-95cba7246f29?w=800&q=80"
+             onerror="this.src='https://images.unsplash.com/photo-1600607686527-6fb886090705?w=800&q=80'"
+             alt="Garden flowers" loading="lazy" />
+        <div class="part-img-overlay"></div>
+        <span class="part-img-label">The Mughal Gardens — 15 Acres of Wonder</span>
+      </div>
+      <div class="part-content">
+        <span class="part-tag">Part Three</span>
+        <h3 class="part-heading">The Morning of 15th August 2003</h3>
+        <p class="part-text">The morning of Independence Day, 15th August 2003, rose golden and warm over Raisina Hill. The gates of Rashtrapati Bhavan — those enormous, magnificent iron gates that stood as one of the most recognizable symbols of state power in all of Asia — swung open.</p>
+        <p class="part-text">And through those gates walked not ambassadors, not ministers, not foreign dignitaries in their tailored suits. Through those gates walked the children. Laughing, nervous, awestruck, clutching each other's hands, some of them already crying softly without quite knowing why.</p>
+        <p class="part-text">The security staff — normally stone-faced and formal — had been specifically briefed by Dr. Kalam himself: <em>"Treat every single child as you would treat a visiting Head of State."</em></p>
+        <p class="part-text">The children moved through the Mughal Gardens — those breathtaking, perfectly manicured gardens spanning <strong>15 acres</strong>, filled with fountains, rows of roses, seasonal flowers from every corner of the subcontinent.</p>
+        <div class="part-quote">
+          <p>One little girl from a village in Bundelkhand, Uttar Pradesh — who had walked nearly three kilometres every day just to attend school — knelt down beside a rose bush and touched a petal so gently, as though she was afraid it might disappear.</p>
+          <cite>— A Moment of Pure Wonder</cite>
+        </div>
+        <p class="part-text">She did not know that the most incredible part of the day was yet to come.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THE FEAST -->
+<section class="story-section">
+  <div class="section-wrap">
+    <div class="section-header reveal">
+      <div class="section-num">04</div>
+      <div class="section-title-block">
+        <span class="section-eyebrow">Part Four</span>
+        <h2 class="section-title">The Royal Feast</h2>
+      </div>
+    </div>
+
+    <div class="part-block reverse reveal">
+      <div class="part-img-wrap">
+        <img src="https://images.unsplash.com/photo-1567529692333-de9fd6772897?w=800&q=80"
+             alt="Royal banquet table" loading="lazy" />
+        <div class="part-img-overlay"></div>
+        <span class="part-img-label">The Banquet Hall — Where Kings Had Dined</span>
+      </div>
+      <div class="part-content">
+        <span class="part-tag">Part Four</span>
+        <h3 class="part-heading">A Table Fit for Every Child</h3>
+        <p class="part-text">The <strong>Banquet Hall of Rashtrapati Bhavan</strong> is a room of extraordinary grandeur. Its soaring ceilings, grand chandeliers, immense polished dining tables, and elegant silverware have hosted the most powerful human beings on Earth. Presidents of the United States, Prime Ministers of Great Britain, Emperors, Kings, Queens — all have sat at this table.</p>
+        <p class="part-text">On <strong>15th August 2003</strong>, it was the children's turn.</p>
+        <p class="part-text">The tables had been set with the same meticulous care that was reserved for state banquets. Fresh flowers adorned the centre of each table. Crystal glasses sparkled in the light of the chandeliers. White linen tablecloths — so bright and clean they seemed to glow — were laid out across the length of the hall.</p>
+        <p class="part-text">Course after course of food arrived — prepared by the finest chefs of Rashtrapati Bhavan. There were rich curries, fragrant biryanis, fresh breads, sweets and mithai of every kind — <strong>laddoos, kheer, gulab jamun, jalebi</strong> — piled generously on every plate. There were cold drinks and fresh juices, fruits arranged in ornate bowls, and desserts that some of these children had perhaps only ever seen in pictures.</p>
+        <div class="part-quote">
+          <p>For many of these 500 children, this was — without any exaggeration — the most elaborate, most generous, most beautiful meal of their entire lives. But the food was not the most important thing on the table. The most important thing was the <strong>dignity</strong> with which it was served.</p>
+          <cite>— The Greatest Feast</cite>
+        </div>
+        <p class="part-text">No child was made to feel out of place. No child was looked down upon. No child was reminded — not even subtly, not even accidentally — of the gap between their world and this one.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THE MAN HIMSELF -->
+<section class="story-section" style="padding-top:0; padding-bottom:40px;">
+  <div class="section-wrap">
+    <div class="section-header reveal">
+      <div class="section-num">05</div>
+      <div class="section-title-block">
+        <span class="section-eyebrow">Part Five</span>
+        <h2 class="section-title">The Man Himself</h2>
+      </div>
+    </div>
+
+    <div class="part-block reveal">
+      <div class="part-img-wrap">
+        <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&q=80"
+             alt="Teacher with children" loading="lazy" />
+        <div class="part-img-overlay"></div>
+        <span class="part-img-label">Dr. Kalam — The People's President</span>
+      </div>
+      <div class="part-content">
+        <span class="part-tag">Part Five</span>
+        <h3 class="part-heading">He Sat With Them</h3>
+        <p class="part-text">And then Dr. Kalam walked in. There are moments in history that are difficult to describe in the flat, ordinary language of words. This was one of them.</p>
+        <p class="part-text">He did not walk in with bodyguards forming a tight wall around him. He did not come in to the sound of formal announcements. He walked in — this small, gentle man with his white hair swept back and his warm, crinkled eyes — and he went directly to the children.</p>
+        <p class="part-text">He sat with them. He pulled up a chair and sat down among them, at their level, as if there were nowhere in the world he would rather be. He asked their names. He asked where they were from. He asked what they wanted to be when they grew up. He listened — not the way politicians listen, with half their mind on the next meeting — but really, truly listened, his eyes alive with genuine interest.</p>
+        <div class="part-quote">
+          <p>A young boy from Darbhanga, Bihar — perhaps 11 years old — told Dr. Kalam that he wanted to become a scientist someday. Dr. Kalam's face lit up like a child's on a festival morning. He clasped the boy's hands in both of his and said, with absolute conviction, "You will. If you dream it and you work for it, you absolutely will."</p>
+          <cite>— A Moment That Lives Forever</cite>
+        </div>
+        <p class="part-text">He spent time with child after child, group after group. He spoke to them in Hindi, in Tamil, in simple English — whatever felt most natural, most warm, most human. He told them stories — stories of his own childhood in Rameswaram, of selling newspapers at the crack of dawn, of dreaming of aeroplanes when he could barely afford his school books.</p>
+        <div class="part-quote">
+          <p>"Don't ever think this place is not for you. This is your home. India is your home. And India needs you."</p>
+          <cite>— Dr. A.P.J. Abdul Kalam</cite>
+        </div>
+        <p class="part-text">Several children, and more than a few of the accompanying adults, quietly wiped their eyes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AFTERNOON SECTION -->
+<section class="story-section" style="padding-top:60px;">
+  <div class="section-wrap">
+    <div class="section-header reveal">
+      <div class="section-num">06</div>
+      <div class="section-title-block">
+        <span class="section-eyebrow">Part Six</span>
+        <h2 class="section-title">The Afternoon, the Photographs, and the Farewell</h2>
+      </div>
+    </div>
+
+    <div class="part-block reverse reveal">
+      <div class="part-img-wrap">
+        <img src="https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?w=800&q=80"
+             alt="Indian architecture corridor" loading="lazy" />
+        <div class="part-img-overlay"></div>
+        <span class="part-img-label">Walking the Corridors of History</span>
+      </div>
+      <div class="part-content">
+        <span class="part-tag">Part Six</span>
+        <h3 class="part-heading">A Day Stored in the Soul</h3>
+        <p class="part-text">The celebrations continued through the afternoon. The children were taken on a guided tour of parts of Rashtrapati Bhavan — its grand hallways, its historical rooms, its gleaming architecture that told the story of India's long, complex, layered past. They walked through the same corridors that Jawaharlal Nehru and Sardar Vallabhbhai Patel had once walked through, breathing the same air, touching the same walls.</p>
+        <p class="part-text">Photographs were taken — group photographs, individual photographs, photographs with Dr. Kalam that each child would carry home as the greatest treasure of their young lives. Many of those photographs would end up framed on the walls of humble homes in villages and small towns across India, placed beside images of gods and ancestors — because for these families, this day was nothing short of sacred.</p>
+        <p class="part-text">As the sun began to descend over New Delhi and the golden hour light fell in slanting shafts across the Mughal Gardens, the children slowly began to say their goodbyes. Some of them didn't want to leave. A few sat very still, as if trying to absorb every last detail of the place through their skin — the smell of the flowers, the coolness of the marble, the sound of fountains — storing it somewhere deep inside themselves so they could return to it later, on hard days, and remember.</p>
+        <p class="part-text">Dr. Kalam stood at the gates to see each group off. He shook hands. He blessed the children, placing his hand gently on their heads. He whispered encouragements. He waved until the last group had disappeared from sight.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EPILOGUE -->
+<section class="epilogue-section" id="legacy">
+  <div class="section-wrap">
+    <div class="section-header reveal">
+      <div class="section-num">07</div>
+      <div class="section-title-block">
+        <span class="section-eyebrow">Epilogue</span>
+        <h2 class="section-title">Why This Day Will Never Be Forgotten</h2>
+      </div>
+    </div>
+    <div class="epilogue-text reveal">
+      <p>Historians and biographers who have studied the life of Dr. Kalam often point to this day — <strong>15th August 2003</strong> — as one of the most quietly powerful acts of his presidency. Not because of any policy it changed or any law it amended. But because of what it <em>meant.</em></p>
+      <p>In a country that had spent centuries — millennia, in many ways — conditioning people to know their place, to stay in their lane, to not reach for things that were deemed beyond their station, Dr. Kalam had done something profoundly, almost radically democratic. He had taken the single most powerful symbol of the Indian State and placed it at the feet of its most powerless people. He had set a table in a palace and invited the children who were never supposed to sit there.</p>
+      <p>He had looked at 500 children — poor children, ordinary children, children with calluses on their hands and dust in their hair — and said:</p>
+
+      <span class="epilogue-highlight reveal">You matter. You are important. You are not invisible. You are the reason this country exists.</span>
+
+      <p>That is not a small thing. That is, in fact, everything.</p>
+      <p>Dr. A.P.J. Abdul Kalam passed away on <strong>27th July 2015</strong>, doing what he loved most — speaking to young students at the Indian Institute of Management in Shillong, Meghalaya. He collapsed while delivering a lecture, and died shortly after. He was 83 years old.</p>
+      <p>But the boy from Rameswaram who sold newspapers, who dreamed beneath the stars, who built rockets for his country and then threw open the doors of the highest palace in the land for its most forgotten children — that boy never really died.</p>
+      <p>He lives in every child who ever looked up at a sky too big and too beautiful for fear, and decided — despite everything — to dream anyway.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL QUOTE -->
+<section class="final-quote-section">
+  <p class="final-quote-text reveal">"You have to dream before your dreams can come true."</p>
+  <p class="final-quote-attr reveal">— Dr. A.P.J. Abdul Kalam · Bharat Ratna · 15 October 1931 – 27 July 2015</p>
+</section>
+
+<!-- MAKER SECTION -->
+<section class="maker-section" id="maker">
+  <div class="maker-glow"></div>
+  <span class="maker-eyebrow reveal">This tribute was crafted by</span>
+  <div class="maker-img-wrap reveal">
+    <div class="maker-ring-1"></div>
+    <div class="maker-ring-2"></div>
+    <div class="maker-ring-3"></div>
+    <img
+      class="maker-img"
+      src="https://plain-apac-prod-public.komododecks.com/202605/22/nHDi45aen4uwI6zP8WGI/image.jpg"
+      alt="Akshit Tyagi"
+      onerror="this.style.background='var(--accent)'"
+    />
+  </div>
+  <span class="maker-label reveal">Made By</span>
+  <span class="maker-name reveal">Akshit Tyagi</span>
+  <p class="maker-tagline reveal">Dedicated to the People's President — and to every child who dares to dream.</p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-copy">© 2024 · A Tribute to Dr. A.P.J. Abdul Kalam · All Rights Reserved</span>
+  <span class="footer-tribute">Missile Man · Scientist · President · People's Friend</span>
+</footer>
+
+<script>
+// ============================================================
+// CURSOR
+// ============================================================
+const cursor = document.getElementById('cursor');
+const cursorRing = document.getElementById('cursor-ring');
+let mouseX = 0, mouseY = 0;
+let ringX = 0, ringY = 0;
+
+document.addEventListener('mousemove', e => {
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+  cursor.style.left = mouseX + 'px';
+  cursor.style.top = mouseY + 'px';
+});
+
+function animateCursorRing() {
+  ringX += (mouseX - ringX) * 0.12;
+  ringY += (mouseY - ringY) * 0.12;
+  cursorRing.style.left = ringX + 'px';
+  cursorRing.style.top = ringY + 'px';
+  requestAnimationFrame(animateCursorRing);
+}
+animateCursorRing();
+
+document.querySelectorAll('a, button, .gallery-item, .part-img-wrap, .maker-img-wrap').forEach(el => {
+  el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+  el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+});
+
+// ============================================================
+// PROGRESS BAR
+// ============================================================
+const progressBar = document.getElementById('progress-bar');
+window.addEventListener('scroll', () => {
+  const scrollTop = window.scrollY;
+  const docHeight = document.body.scrollHeight - window.innerHeight;
+  const pct = (scrollTop / docHeight) * 100;
+  progressBar.style.width = pct + '%';
+});
+
+// ============================================================
+// THEME TOGGLE
+// ============================================================
+function toggleTheme() {
+  const current = document.documentElement.getAttribute('data-theme');
+  document.documentElement.setAttribute('data-theme', current === 'dark' ? 'light' : 'dark');
+}
+
+// ============================================================
+// INTERSECTION OBSERVER — REVEAL
+// ============================================================
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.12 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// ============================================================
+// PARALLAX on hero
+// ============================================================
+window.addEventListener('scroll', () => {
+  const y = window.scrollY;
+  const heroGlow = document.querySelector('.hero-glow');
+  if (heroGlow) heroGlow.style.transform = `translate(-50%, calc(-50% + ${y * 0.3}px))`;
+});
+</script>
+</body>
+</html>

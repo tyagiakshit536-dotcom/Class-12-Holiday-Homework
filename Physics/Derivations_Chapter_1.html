@@ -1,0 +1,1654 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Electrostatics Derivations · Class XII · Akshit Tyagi</title>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false})"></script>
+
+<style>
+/* ===== DESIGN TOKENS ===== */
+:root {
+  --bg:          #FEFBF3;
+  --paper:       #FFF9EC;
+  --paper-2:     #FFF4DC;
+  --text:        #1A1208;
+  --text-muted:  #6B5540;
+  --accent:      #B07D10;
+  --accent-2:    #C05A12;
+  --accent-3:    #27AE60;
+  --line:        #DDD0B0;
+  --line-2:      #EDE0C4;
+  --highlight:   rgba(176,125,16,.1);
+  --highlight-2: rgba(176,125,16,.06);
+  --shadow:      rgba(100,60,10,.13);
+  --shadow-lg:   rgba(100,60,10,.22);
+  --nav-bg:      rgba(254,251,243,.94);
+  --ruled:       rgba(180,148,100,.18);
+  --margin:      rgba(200,100,80,.18);
+  --diagram-bg:  #FAFAF5;
+  --c-red:       #C0392B;
+  --c-blue:      #1E5BA8;
+  --c-green:     #1E8A50;
+  --c-gold:      #B07D10;
+  --c-purple:    #7D3C98;
+  --c-ink:       #1A1208;
+}
+[data-theme="dark"] {
+  --bg:          #100E0A;
+  --paper:       #1A1710;
+  --paper-2:     #221E14;
+  --text:        #EDE0C8;
+  --text-muted:  #A89070;
+  --accent:      #D4A820;
+  --accent-2:    #E8783A;
+  --accent-3:    #2ECC71;
+  --line:        #3A2E1A;
+  --line-2:      #2A2416;
+  --highlight:   rgba(212,168,32,.1);
+  --highlight-2: rgba(212,168,32,.055);
+  --shadow:      rgba(0,0,0,.4);
+  --shadow-lg:   rgba(0,0,0,.6);
+  --nav-bg:      rgba(16,14,10,.95);
+  --ruled:       rgba(212,168,32,.07);
+  --margin:      rgba(220,120,100,.12);
+  --diagram-bg:  #181510;
+  --c-red:       #E74C3C;
+  --c-blue:      #5B9BD5;
+  --c-green:     #2ECC71;
+  --c-gold:      #D4A820;
+  --c-purple:    #AF7AC5;
+  --c-ink:       #EDE0C8;
+}
+
+/* ===== RESET & BASE ===== */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;font-size:16px}
+body{
+  font-family:'Crimson Pro',Georgia,serif;
+  background:var(--bg);color:var(--text);
+  line-height:1.85;font-size:1.1rem;
+  transition:background .45s ease,color .45s ease;
+  overflow-x:hidden;
+}
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--accent);border-radius:3px}
+a{color:inherit;text-decoration:none}
+
+/* ===== PROGRESS BAR ===== */
+#progress{
+  position:fixed;top:0;left:0;height:3px;width:0%;
+  background:linear-gradient(90deg,var(--accent),var(--accent-2),var(--accent-3));
+  z-index:999;transition:width .08s linear;
+  box-shadow:0 0 8px var(--accent);
+}
+
+/* ===== NAVIGATION ===== */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:var(--nav-bg);backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--line);
+  padding:.7rem 2rem;
+  display:flex;align-items:center;justify-content:space-between;
+  transform:translateY(-110%);
+  transition:transform .45s cubic-bezier(.25,.8,.25,1),background .45s ease;
+}
+.nav.show{transform:translateY(0)}
+.nav-brand{
+  font-family:'Caveat',cursive;font-size:1.25rem;
+  font-weight:700;color:var(--accent);letter-spacing:.02em;
+}
+.nav-links{
+  display:flex;gap:.3rem;list-style:none;flex-wrap:wrap;
+}
+.nav-links a{
+  font-family:'Caveat',cursive;font-size:.88rem;color:var(--text-muted);
+  padding:.2rem .55rem;border-radius:6px;
+  transition:color .2s,background .2s;
+}
+.nav-links a:hover{color:var(--accent);background:var(--highlight)}
+.nav-right{display:flex;align-items:center;gap:.75rem}
+
+/* Theme Toggle */
+.toggle{
+  width:46px;height:25px;
+  background:var(--line);border:none;border-radius:100px;
+  cursor:pointer;position:relative;
+  transition:background .3s;
+}
+.toggle::after{
+  content:'';position:absolute;top:3px;left:3px;
+  width:19px;height:19px;border-radius:50%;
+  background:var(--accent);
+  transition:transform .35s cubic-bezier(.4,0,.2,1);
+}
+[data-theme="dark"] .toggle::after{transform:translateX(21px)}
+.toggle-icon{
+  font-size:.7rem;position:absolute;
+  top:50%;transform:translateY(-50%);
+  transition:opacity .3s;pointer-events:none;
+}
+.icon-sun{left:5px;opacity:1}
+.icon-moon{right:5px;opacity:.5}
+[data-theme="dark"] .icon-sun{opacity:.5}
+[data-theme="dark"] .icon-moon{opacity:1}
+
+/* ===== HERO ===== */
+.hero{
+  min-height:100vh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  text-align:center;padding:5rem 2rem 6rem;
+  position:relative;overflow:hidden;
+  background:var(--paper);
+}
+/* Notebook ruled lines */
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background:repeating-linear-gradient(
+    transparent,transparent 39px,
+    var(--ruled) 39px,var(--ruled) 40px
+  );pointer-events:none;
+}
+/* Margin red line */
+.hero::after{
+  content:'';position:absolute;
+  top:0;left:88px;width:1.5px;height:100%;
+  background:var(--margin);pointer-events:none;
+}
+
+/* Ink-drop orbs in hero */
+.ink-orb{
+  position:absolute;border-radius:50%;pointer-events:none;
+  animation:floatOrb var(--dur,12s) ease-in-out infinite;
+  opacity:.055;filter:blur(60px);
+}
+@keyframes floatOrb{
+  0%,100%{transform:translate(0,0) scale(1)}
+  33%{transform:translate(30px,-40px) scale(1.1)}
+  66%{transform:translate(-20px,25px) scale(.9)}
+}
+
+.hero-eyebrow{
+  font-family:'Caveat',cursive;font-size:1rem;
+  color:var(--accent);letter-spacing:.18em;text-transform:uppercase;
+  margin-bottom:1rem;
+  opacity:0;animation:riseUp .8s ease .2s forwards;
+  position:relative;z-index:2;
+}
+.hero-title{
+  font-family:'Caveat',cursive;
+  font-size:clamp(3.2rem,8.5vw,6.5rem);
+  font-weight:700;line-height:1.05;
+  color:var(--text);margin-bottom:.6rem;
+  opacity:0;animation:riseUp .9s ease .38s forwards;
+  position:relative;z-index:2;
+}
+.hero-title span{color:var(--accent)}
+.hero-sub{
+  font-size:1.15rem;color:var(--text-muted);
+  font-style:italic;margin-bottom:3rem;
+  opacity:0;animation:riseUp .9s ease .55s forwards;
+  position:relative;z-index:2;
+}
+
+/* Author card */
+.author-card{
+  display:flex;align-items:center;gap:1.8rem;
+  background:var(--paper-2);
+  border:1.5px solid var(--line);border-radius:24px;
+  padding:1.6rem 2.8rem;
+  box-shadow:0 12px 50px var(--shadow);
+  margin-bottom:2.2rem;
+  opacity:0;animation:riseUp 1s ease .72s forwards;
+  position:relative;z-index:2;
+  animation-fill-mode:both;
+  /* float */
+  animation-name:riseUp,cardFloat;
+  animation-duration:1s,6s;
+  animation-delay:.72s,1.8s;
+  animation-timing-function:ease,ease-in-out;
+  animation-iteration-count:1,infinite;
+  animation-fill-mode:forwards,none;
+}
+@keyframes cardFloat{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-8px)}
+}
+.author-photo{
+  width:88px;height:88px;border-radius:50%;object-fit:cover;
+  border:3px solid var(--accent);
+  box-shadow:0 0 0 5px var(--highlight),0 8px 24px var(--shadow);
+  transition:transform .4s ease;flex-shrink:0;
+}
+.author-photo:hover{transform:scale(1.06) rotate(2deg)}
+.author-info{text-align:left}
+.author-label{
+  font-family:'Caveat',cursive;font-size:.78rem;
+  color:var(--text-muted);letter-spacing:.12em;text-transform:uppercase;
+}
+.author-name{
+  font-family:'Caveat',cursive;font-size:2.8rem;
+  font-weight:700;color:var(--text);line-height:1;
+  background:linear-gradient(135deg,var(--accent),var(--accent-2));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.author-desc{
+  font-size:.9rem;color:var(--text-muted);font-style:italic;
+}
+
+/* Chapter chips */
+.chips{
+  display:flex;flex-wrap:wrap;gap:.6rem;justify-content:center;
+  opacity:0;animation:riseUp 1s ease .9s forwards;
+  position:relative;z-index:2;
+}
+.chip{
+  font-family:'Caveat',cursive;font-size:.9rem;
+  color:var(--accent);
+  border:1px solid var(--accent);
+  background:var(--highlight);
+  padding:.28rem .85rem;border-radius:100px;
+  cursor:pointer;
+  transition:all .3s cubic-bezier(.25,.8,.25,1);
+  position:relative;overflow:hidden;
+}
+.chip::before{
+  content:'';position:absolute;inset:0;
+  background:var(--accent);transform:scaleX(0);
+  transform-origin:left;transition:transform .3s ease;
+  border-radius:inherit;z-index:-1;
+}
+.chip:hover::before{transform:scaleX(1)}
+.chip:hover{color:var(--bg);border-color:var(--accent)}
+
+/* Scroll cue */
+.scroll-cue{
+  position:absolute;bottom:2.2rem;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:.5rem;
+  opacity:0;animation:fadeIn 1s ease 1.4s forwards;z-index:2;
+}
+.scroll-cue span{
+  font-family:'Caveat',cursive;font-size:.8rem;
+  color:var(--text-muted);letter-spacing:.1em;
+}
+.scroll-arrow{
+  width:20px;height:20px;
+  border-right:2px solid var(--accent);
+  border-bottom:2px solid var(--accent);
+  transform:rotate(45deg);
+  animation:arrowBounce 1.6s ease infinite;
+}
+
+/* ===== MAIN LAYOUT ===== */
+.container{
+  max-width:880px;margin:0 auto;
+  padding:4rem 2rem 2rem;
+}
+
+/* ===== SECTION ===== */
+.section{
+  margin-bottom:5.5rem;
+  opacity:0;transform:translateY(44px);
+  transition:opacity .75s ease,transform .75s cubic-bezier(.25,.8,.25,1);
+}
+.section.reveal{opacity:1;transform:translateY(0)}
+.section:nth-child(2){transition-delay:.05s}
+.section:nth-child(3){transition-delay:.1s}
+
+.section-header{
+  display:flex;align-items:flex-start;gap:1.4rem;
+  margin-bottom:2rem;
+  padding-bottom:1rem;
+  border-bottom:2px solid var(--accent);
+}
+.s-num{
+  font-family:'Caveat',cursive;font-size:4.5rem;
+  font-weight:700;color:var(--accent);opacity:.22;
+  line-height:1;min-width:58px;
+  position:relative;top:-.25rem;
+}
+.s-meta{}
+.s-title{
+  font-family:'Caveat',cursive;font-size:2.1rem;
+  font-weight:700;color:var(--text);line-height:1.2;
+}
+.s-tag{
+  display:inline-block;margin-top:.35rem;
+  font-family:'Caveat',cursive;font-size:.78rem;
+  color:var(--accent-2);border:1px solid var(--accent-2);
+  padding:.12rem .55rem;border-radius:100px;
+}
+
+/* ===== CARDS ===== */
+.paper{
+  background:var(--paper);
+  border:1px solid var(--line);border-radius:18px;
+  padding:2rem 2.4rem;
+  position:relative;overflow:hidden;
+  box-shadow:0 5px 28px var(--shadow);
+  margin-bottom:1.4rem;
+  transition:box-shadow .3s ease;
+}
+.paper:hover{box-shadow:0 10px 48px var(--shadow-lg)}
+/* ruled lines on paper */
+.paper::before{
+  content:'';position:absolute;inset:0;
+  background:repeating-linear-gradient(
+    transparent,transparent 27px,
+    var(--ruled) 27px,var(--ruled) 28px
+  );pointer-events:none;
+}
+/* margin line */
+.paper.margin::after{
+  content:'';position:absolute;top:0;left:44px;
+  width:1.5px;height:100%;background:var(--margin);
+  pointer-events:none;
+}
+
+.theory-block{
+  background:var(--highlight);
+  border-left:3.5px solid var(--accent);
+  border-radius:0 12px 12px 0;
+  padding:1rem 1.4rem;
+  margin-bottom:1.6rem;
+  font-style:italic;font-size:1rem;
+  color:var(--text-muted);
+  position:relative;z-index:1;
+}
+
+/* ===== LABELS ===== */
+.lbl{
+  display:inline-block;
+  font-family:'Caveat',cursive;font-size:.82rem;
+  font-weight:700;color:var(--accent);
+  letter-spacing:.12em;text-transform:uppercase;
+  margin-bottom:.6rem;position:relative;z-index:1;
+}
+
+/* ===== STEPS ===== */
+.step{
+  display:flex;gap:.9rem;margin-bottom:.9rem;
+  position:relative;z-index:1;
+}
+.step-n{
+  font-family:'Caveat',cursive;font-size:.85rem;
+  color:var(--accent);font-weight:700;
+  min-width:22px;padding-top:.1rem;flex-shrink:0;
+}
+.step-c{font-size:1rem;flex:1;color:var(--text)}
+
+/* ===== FORMULA BOXES ===== */
+.fbox{
+  background:var(--paper-2);
+  border:1.5px solid var(--line);
+  border-radius:12px;padding:1rem 1.8rem;
+  text-align:center;margin:1.3rem 0;
+  position:relative;z-index:1;
+  overflow-x:auto;
+}
+.fbox.result{
+  border-color:var(--accent);border-width:2px;
+  background:linear-gradient(135deg,var(--highlight),var(--paper-2));
+  box-shadow:0 2px 18px rgba(176,125,16,.12);
+  animation:shimmer 4s ease-in-out infinite;
+}
+@keyframes shimmer{
+  0%,100%{box-shadow:0 2px 18px rgba(176,125,16,.12)}
+  50%{box-shadow:0 4px 32px rgba(176,125,16,.28)}
+}
+.result-tag{
+  position:absolute;top:-.65rem;right:1rem;
+  font-family:'Caveat',cursive;font-size:.75rem;
+  color:var(--accent);background:var(--paper);
+  padding:.05rem .45rem;border:1px solid var(--accent);
+  border-radius:100px;
+}
+
+/* ===== NOTE ===== */
+.note{
+  background:var(--highlight-2);
+  border:1px dashed var(--accent);
+  border-radius:9px;padding:.75rem 1.2rem;
+  margin:1rem 0;font-family:'Caveat',cursive;
+  font-size:1.05rem;color:var(--text-muted);
+  position:relative;z-index:1;
+}
+.note strong{color:var(--accent)}
+
+/* ===== DIAGRAMS ===== */
+.diagram-wrap{
+  background:var(--diagram-bg);
+  border:1px solid var(--line-2);
+  border-radius:16px;padding:1.6rem;
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;margin:1.4rem 0;
+  box-shadow:inset 0 2px 10px rgba(0,0,0,.04);
+}
+.diagram-wrap svg{max-width:100%;height:auto;display:block}
+.diagram-cap{
+  text-align:center;
+  font-family:'Caveat',cursive;font-size:.88rem;
+  color:var(--text-muted);margin-top:-.5rem;margin-bottom:1.2rem;
+  font-style:italic;
+}
+
+/* SVG animated paths */
+.dp{
+  stroke-dasharray:900;stroke-dashoffset:900;
+  animation:drawPath 1.4s ease forwards;
+  animation-play-state:paused;
+}
+.section.reveal .dp{animation-play-state:running}
+.dp2{animation-delay:.3s}
+.dp3{animation-delay:.6s}
+.dp4{animation-delay:.9s}
+
+/* Sub-title */
+.sub-title{
+  font-family:'Caveat',cursive;font-size:1.5rem;
+  font-weight:600;color:var(--accent-2);
+  display:flex;align-items:center;gap:.5rem;
+  margin-bottom:1rem;margin-top:2.2rem;
+}
+.sub-title::before{content:'→';font-size:1.2rem;color:var(--accent)}
+
+/* ===== 2-COL GRID ===== */
+.two{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:1.4rem;margin:1.4rem 0;
+}
+@media(max-width:620px){
+  .two{grid-template-columns:1fr}
+  .nav-links{display:none}
+  .hero::after{left:42px}
+  .author-card{flex-direction:column;text-align:center;padding:1.4rem}
+  .author-info{text-align:center}
+}
+
+/* App cards */
+.app-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:1.4rem;margin:1.4rem 0;
+}
+.app-card{
+  background:var(--paper);border:1px solid var(--line);
+  border-radius:18px;padding:1.5rem;
+  box-shadow:0 4px 20px var(--shadow);
+  transition:transform .35s cubic-bezier(.25,.8,.25,1),box-shadow .35s ease;
+}
+.app-card:hover{transform:translateY(-5px);box-shadow:0 14px 40px var(--shadow-lg)}
+.app-card-title{
+  font-family:'Caveat',cursive;font-size:1.35rem;
+  font-weight:700;color:var(--accent);margin-bottom:.6rem;
+}
+
+/* ===== DIVIDER ===== */
+.divider{
+  display:flex;align-items:center;gap:1rem;
+  margin:3.5rem 0;opacity:.45;
+}
+.divider::before,.divider::after{
+  content:'';flex:1;height:1px;background:var(--accent);
+}
+.divider span{
+  font-family:'Caveat',cursive;color:var(--accent);font-size:1.4rem;
+}
+
+/* ===== FOOTER ===== */
+.footer{
+  text-align:center;padding:3rem 2rem;
+  border-top:1px solid var(--line);
+  font-family:'Caveat',cursive;font-size:1.1rem;
+  color:var(--text-muted);
+}
+.footer span{color:var(--accent)}
+
+/* ===== INLINE UTILS ===== */
+p{position:relative;z-index:1;margin-bottom:.7rem}
+strong{color:var(--accent);font-weight:600}
+em{color:var(--text-muted)}
+small{font-size:.88rem}
+
+/* ===== KEYFRAMES ===== */
+@keyframes riseUp{
+  from{opacity:0;transform:translateY(32px)}
+  to{opacity:1;transform:translateY(0)}
+}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes arrowBounce{
+  0%,100%{transform:rotate(45deg) translateY(0)}
+  50%{transform:rotate(45deg) translateY(7px)}
+}
+@keyframes drawPath{
+  from{stroke-dashoffset:900}
+  to{stroke-dashoffset:0}
+}
+@keyframes popIn{
+  0%{transform:scale(.85);opacity:0}
+  100%{transform:scale(1);opacity:1}
+}
+
+/* KaTeX overrides */
+.katex-display{padding:.4rem 0;overflow-x:auto}
+.katex{font-size:1.08em}
+</style>
+</head>
+<body>
+
+<!-- PROGRESS -->
+<div id="progress"></div>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="nav-brand">⚡ Electrostatics · XII</div>
+  <ul class="nav-links">
+    <li><a href="#s1">Coulomb's Law</a></li>
+    <li><a href="#s2">Dipole Field</a></li>
+    <li><a href="#s3">Torque</a></li>
+    <li><a href="#s4">Gauss's Theorem</a></li>
+    <li><a href="#s5">Applications</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="toggle" id="themeToggle" aria-label="Toggle theme">
+      <span class="toggle-icon icon-sun">☀</span>
+      <span class="toggle-icon icon-moon">☾</span>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <!-- Ink orbs -->
+  <div class="ink-orb" style="width:420px;height:420px;background:var(--accent);top:-120px;right:-100px;--dur:14s"></div>
+  <div class="ink-orb" style="width:300px;height:300px;background:var(--accent-2);bottom:-80px;left:-60px;--dur:11s;animation-delay:-4s"></div>
+  <div class="ink-orb" style="width:200px;height:200px;background:var(--accent-3);bottom:20%;left:15%;--dur:16s;animation-delay:-7s"></div>
+
+  <div class="hero-eyebrow">Class XII · Physics · Chapter 1 · Electrostatics</div>
+
+  <h1 class="hero-title">
+    Electrostatics<br>
+    <span>Derivations</span>
+  </h1>
+
+  <p class="hero-sub">A fair notebook — written clearly, for every student ✏️</p>
+
+  <div class="author-card">
+    <img
+      src="https://plain-apac-prod-public.komododecks.com/202605/22/nHDi45aen4uwI6zP8WGI/image.jpg"
+      alt="Akshit Tyagi"
+      class="author-photo"
+      onerror="this.style.display='none'">
+    <div class="author-info">
+      <div class="author-label">Made with ♥ by</div>
+      <div class="author-name">Akshit Tyagi</div>
+      <div class="author-desc">Class XII · Physics Fair Notes</div>
+    </div>
+  </div>
+
+  <div class="chips">
+    <a class="chip" href="#s1">01 · Coulomb's Law</a>
+    <a class="chip" href="#s2">02 · Dipole Field</a>
+    <a class="chip" href="#s3">03 · Torque</a>
+    <a class="chip" href="#s4">04 · Gauss's Theorem</a>
+    <a class="chip" href="#s5">05 · Applications</a>
+  </div>
+
+  <div class="scroll-cue">
+    <span>Begin</span>
+    <div class="scroll-arrow"></div>
+  </div>
+</section>
+
+<!-- =================== MAIN =================== -->
+<div class="container">
+
+<!-- ====================================================
+     SECTION 1 — COULOMB'S LAW
+===================================================== -->
+<section class="section" id="s1">
+  <div class="section-header">
+    <div class="s-num">01</div>
+    <div class="s-meta">
+      <div class="s-title">Coulomb's Law — Vector Form</div>
+      <span class="s-tag">Force between two point charges</span>
+    </div>
+  </div>
+
+  <div class="theory-block">
+    The force between two point charges is directly proportional to the product of their magnitudes and inversely proportional to the square of the distance between them — acting along the line joining them.
+  </div>
+
+  <!-- Diagram 1 -->
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 580 175" xmlns="http://www.w3.org/2000/svg" width="580" height="175">
+      <defs>
+        <marker id="aR" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+          <path d="M0,0 L0,6 L8,3z" style="fill:var(--c-blue)"/></marker>
+        <marker id="aL" markerWidth="8" markerHeight="8" refX="2" refY="3" orient="auto-start-reverse">
+          <path d="M0,0 L0,6 L8,3z" style="fill:var(--c-blue)"/></marker>
+        <marker id="aGold" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+          <path d="M0,0 L0,6 L8,3z" style="fill:var(--c-gold)"/></marker>
+        <marker id="aGoldR" markerWidth="8" markerHeight="8" refX="2" refY="3" orient="auto-start-reverse">
+          <path d="M0,0 L0,6 L8,3z" style="fill:var(--c-gold)"/></marker>
+      </defs>
+
+      <!-- Dashed connector -->
+      <line x1="148" y1="87" x2="432" y2="87" style="stroke:#aaa;stroke-width:1.5;stroke-dasharray:6 4" class="dp"/>
+
+      <!-- q1 -->
+      <circle cx="128" cy="87" r="30" style="fill:var(--c-red);opacity:.88"/>
+      <text x="128" y="93" text-anchor="middle"
+        style="font-family:Crimson Pro,serif;font-size:17px;fill:white;font-weight:600">+q₁</text>
+
+      <!-- q2 -->
+      <circle cx="452" cy="87" r="30" style="fill:var(--c-blue);opacity:.88"/>
+      <text x="452" y="93" text-anchor="middle"
+        style="font-family:Crimson Pro,serif;font-size:17px;fill:white;font-weight:600">+q₂</text>
+
+      <!-- F12 (right) -->
+      <line x1="484" y1="87" x2="552" y2="87" style="stroke:var(--c-blue);stroke-width:2.5" marker-end="url(#aR)" class="dp dp2"/>
+      <text x="520" y="76" text-anchor="middle"
+        style="font-family:Crimson Pro,serif;font-style:italic;font-size:14px;fill:var(--c-blue)">F⃗₁₂</text>
+
+      <!-- F21 (left) -->
+      <line x1="96" y1="87" x2="28" y2="87" style="stroke:var(--c-blue);stroke-width:2.5" marker-end="url(#aL)" class="dp dp2"/>
+      <text x="60" y="76" text-anchor="middle"
+        style="font-family:Crimson Pro,serif;font-style:italic;font-size:14px;fill:var(--c-blue)">F⃗₂₁</text>
+
+      <!-- r12 measurement -->
+      <line x1="148" y1="126" x2="432" y2="126"
+        style="stroke:var(--c-gold);stroke-width:1.5"
+        marker-end="url(#aGold)" marker-start="url(#aGoldR)" class="dp dp3"/>
+      <text x="290" y="148" text-anchor="middle"
+        style="font-family:Crimson Pro,serif;font-style:italic;font-size:15px;fill:var(--c-gold)">r₁₂</text>
+
+      <!-- r-hat label -->
+      <text x="290" y="66" text-anchor="middle"
+        style="font-family:Crimson Pro,serif;font-style:italic;font-size:13px;fill:#999">r̂₁₂  (unit vector from q₁ to q₂)</text>
+
+      <!-- Position labels -->
+      <text x="128" y="150" text-anchor="middle"
+        style="font-family:Caveat,cursive;font-size:12px;fill:#999">r⃗₁</text>
+      <text x="452" y="150" text-anchor="middle"
+        style="font-family:Caveat,cursive;font-size:12px;fill:#999">r⃗₂</text>
+    </svg>
+  </div>
+  <p class="diagram-cap">Fig 1.1 — Like charges repel; F₁₂ = force on q₂ due to q₁</p>
+
+  <div class="paper margin">
+    <div class="lbl">Derivation</div>
+
+    <p>Let charges $q_1$ and $q_2$ be at positions $\vec{r}_1$ and $\vec{r}_2$. The vector pointing from $q_1$ to $q_2$ is:</p>
+    <div class="fbox">$$\vec{r}_{12} = \vec{r}_2 - \vec{r}_1, \qquad |\vec{r}_{12}| = r$$</div>
+
+    <p>The unit vector $\hat{r}_{12}$ from $q_1$ toward $q_2$:</p>
+    <div class="fbox">$$\hat{r}_{12} = \frac{\vec{r}_{12}}{r} = \frac{\vec{r}_2-\vec{r}_1}{|\vec{r}_2-\vec{r}_1|}$$</div>
+
+    <div class="step">
+      <span class="step-n">①</span>
+      <div class="step-c">
+        By Coulomb's law the magnitude of force is $F = k\dfrac{|q_1||q_2|}{r^2}$, where $k = \dfrac{1}{4\pi\varepsilon_0} \approx 9\times10^9\;\text{N\,m}^2\text{C}^{-2}$.
+      </div>
+    </div>
+
+    <div class="step">
+      <span class="step-n">②</span>
+      <div class="step-c">
+        In vector form, the force on $q_2$ due to $q_1$ (along $\hat{r}_{12}$):
+        $$\vec{F}_{12} = \frac{1}{4\pi\varepsilon_0}\frac{q_1 q_2}{r^2}\,\hat{r}_{12}$$
+      </div>
+    </div>
+
+    <div class="step">
+      <span class="step-n">③</span>
+      <div class="step-c">
+        Substituting $\hat{r}_{12} = \dfrac{\vec{r}_2-\vec{r}_1}{r}$:
+      </div>
+    </div>
+
+    <div class="fbox result">
+      <span class="result-tag">★ Result</span>
+      $$\vec{F}_{12} = \frac{1}{4\pi\varepsilon_0}\frac{q_1 q_2}{r^3}\,(\vec{r}_2-\vec{r}_1)$$
+    </div>
+
+    <div class="note">
+      <strong>Newton's 3rd Law:</strong> $\vec{F}_{21} = -\vec{F}_{12}$ always. &nbsp;|&nbsp;
+      <strong>Sign rule:</strong> $q_1 q_2 > 0$ → repulsive; $q_1 q_2 < 0$ → attractive.
+    </div>
+  </div>
+</section>
+
+<div class="divider"><span>✦</span></div>
+
+<!-- ====================================================
+     SECTION 2 — ELECTRIC DIPOLE FIELD
+===================================================== -->
+<section class="section" id="s2">
+  <div class="section-header">
+    <div class="s-num">02</div>
+    <div class="s-meta">
+      <div class="s-title">Electric Field due to an Electric Dipole</div>
+      <span class="s-tag">Axial Point &amp; Equatorial Point</span>
+    </div>
+  </div>
+
+  <div class="theory-block">
+    An <strong>electric dipole</strong> is a pair of equal and opposite charges ($+q$ and $-q$) separated by distance $2a$. Dipole moment: $\vec{p} = q\cdot2a$, directed from $-q$ to $+q$.
+  </div>
+
+  <!-- CASE I: AXIAL -->
+  <div class="sub-title">Case I — Axial Point (End-on)</div>
+
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 600 195" xmlns="http://www.w3.org/2000/svg" width="600" height="195">
+      <defs>
+        <marker id="a1" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+          <path d="M0,0L0,7L7,3.5z" style="fill:var(--c-gold)"/></marker>
+        <marker id="a2" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+          <path d="M0,0L0,7L7,3.5z" style="fill:var(--c-blue)"/></marker>
+        <marker id="a3" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+          <path d="M0,0L0,7L7,3.5z" style="fill:var(--c-red)"/></marker>
+        <marker id="a4" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+          <path d="M0,0L0,7L7,3.5z" style="fill:var(--c-green)"/></marker>
+        <marker id="a4L" markerWidth="7" markerHeight="7" refX="2" refY="3.5" orient="auto-start-reverse">
+          <path d="M0,0L0,7L7,3.5z" style="fill:var(--c-green)"/></marker>
+      </defs>
+
+      <!-- Axis -->
+      <line x1="30" y1="97" x2="570" y2="97" style="stroke:#bbb;stroke-width:1;stroke-dasharray:5 4"/>
+      <text x="560" y="90" style="font-family:Caveat,cursive;font-size:12px;fill:#aaa">axis</text>
+
+      <!-- Centre O -->
+      <circle cx="255" cy="97" r="4" style="fill:var(--c-gold)"/>
+      <text x="255" y="122" text-anchor="middle"
+        style="font-family:Caveat,cursive;font-size:13px;fill:var(--c-gold)">O</text>
+
+      <!-- -q -->
+      <circle cx="148" cy="97" r="26" style="fill:var(--c-red);opacity:.88"/>
+      <text x="148" y="103" text-anchor="middle"
+        style="font-family:Crimson Pro,serif;font-size:17px;fill:white;font-weight:600">−q</text>
+
+      <!-- +q -->
+      <circle cx="362" cy="97" r="26" style="fill:var(--c-blue);opacity:.88"/>
+      <text x="362" y="103" text-anchor="middle"
+        style="font-family:Crimson Pro,serif;font-size:17px;fill:white;font-weight:600">+q</text>
+
+      <!-- P -->
+      <circle cx="502" cy="97" r="6" style="fill:var(--c-gold)"/>
+      <text x="502" y="83" text-anchor="middle"
+        style="font-family:Caveat,cursive;font-size:16px;fill:var(--c-gold);font-weight:bold">P</text>
+
+      <!-- a labels -->
+      <line x1="148" y1="148" x2="255" y2="148" style="stroke:#aaa;stroke-width:1" marker-end="url(#a1)" marker-start="url(#a4L)" class="dp dp2"/>
+      <text x="201" y="165" text-anchor="middle"
+        style="font-family:Crimson Pro,serif;font-style:italic;font-size:14px;fill:#999">a</text>
+
+      <line x1="255" y1="148" x2="362" y2="148" style="stroke:#aaa;stroke-width:1" marker-end="url(#a1)" marker-start="url(#a4L)" class="dp dp2"/>
+      <text x="308" y="165" text-anchor="middle"
+        style="font-family:Crimson Pro,serif;font-style:italic;font-size:14px;fill:#999">a</text>
+
+      <!-- r -->
+      <line x1="255" y1="172" x2="498" y2="172" style="stroke:var(--c-gold);stroke-width:1.5" marker-end="url(#a1)" class="dp dp3"/>
+      <text x="376" y="190" text-anchor="middle"
+        style="font-family:Crimson Pro,serif;font-style:italic;font-size:15px;fill:var(--c-gold)">r (from centre)</text>
+
+      <!-- E+ at P (rightward) -->
+      <line x1="513" y1="75" x2="565" y2="75" style="stroke:var(--c-blue);stroke-width:2.5" marker-end="url(#a2)" class="dp dp3"/>
+      <text x="542" y="64" text-anchor="middle"
+        style="font-family:Crimson Pro,serif;font-style:italic;font-size:13px;fill:var(--c-blue)">E₊</text>
+
+      <!-- E- at P (leftward) -->
+      <line x1="502" y1="118" x2="454" y2="118" style="stroke:var(--c-red);stroke-width:2.5" marker-end="url(#a3)" class="dp dp3"/>
+      <text x="480" y="138" text-anchor="middle"
+        style="font-family:Crimson Pro,serif;font-style:italic;font-size:13px;fill:var(--c-red)">E₋</text>
+
+      <!-- p vector -->
+      <line x1="160" y1="56" x2="348" y2="56" style="stroke:var(--c-gold);stroke-width:2" marker-end="url(#a1)" class="dp"/>
+      <text x="255" y="46" text-anchor="middle"
+        style="font-family:Crimson Pro,serif;font-style:italic;font-size:14px;fill:var(--c-gold)">p⃗ (dipole moment)</text>
+    </svg>
+  </div>
+  <p class="diagram-cap">Fig 2.1 — Point P on axial line, distance r from centre O</p>
+
+  <div class="paper margin">
+    <div class="lbl">Derivation — Axial</div>
+    <p>Distance from $+q$ to P = $(r-a)$; from $-q$ to P = $(r+a)$.</p>
+
+    <div class="step">
+      <span class="step-n">①</span>
+      <div class="step-c">Field at P due to $+q$ (along $+\hat{p}$):
+        $\displaystyle E_+ = \frac{q}{4\pi\varepsilon_0(r-a)^2}$</div>
+    </div>
+    <div class="step">
+      <span class="step-n">②</span>
+      <div class="step-c">Field at P due to $-q$ (along $-\hat{p}$):
+        $\displaystyle E_- = \frac{q}{4\pi\varepsilon_0(r+a)^2}$</div>
+    </div>
+    <div class="step">
+      <span class="step-n">③</span>
+      <div class="step-c">Net field $E_{ax} = E_+ - E_-$:
+        $$\frac{q}{4\pi\varepsilon_0}\!\left[\frac{1}{(r-a)^2}-\frac{1}{(r+a)^2}\right]
+        =\frac{q}{4\pi\varepsilon_0}\cdot\frac{4ar}{(r^2-a^2)^2}$$
+      </div>
+    </div>
+
+    <div class="fbox result">
+      <span class="result-tag">★ Result</span>
+      $$\vec{E}_{axial} = \frac{1}{4\pi\varepsilon_0}\cdot\frac{2pr}{(r^2-a^2)^2}\;\hat{p}$$
+    </div>
+    <div class="note">
+      <strong>For $r\gg a$:</strong> &nbsp;$E_{axial} \approx \dfrac{2p}{4\pi\varepsilon_0 r^3}$
+    </div>
+  </div>
+
+  <!-- CASE II: EQUATORIAL -->
+  <div class="sub-title">Case II — Equatorial Point (Broad-side on)</div>
+
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 520 280" xmlns="http://www.w3.org/2000/svg" width="520" height="280">
+      <defs>
+        <marker id="e1" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+          <path d="M0,0L0,7L7,3.5z" style="fill:var(--c-red)"/></marker>
+        <marker id="e2" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+          <path d="M0,0L0,7L7,3.5z" style="fill:var(--c-blue)"/></marker>
+        <marker id="e3" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+          <path d="M0,0L0,7L7,3.5z" style="fill:var(--c-green)"/></marker>
+        <marker id="e4" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+          <path d="M0,0L0,7L7,3.5z" style="fill:var(--c-gold)"/></marker>
+        <marker id="e4L" markerWidth="7" markerHeight="7" refX="2" refY="3.5" orient="auto-start-reverse">
+          <path d="M0,0L0,7L7,3.5z" style="fill:var(--c-gold)"/></marker>
+      </defs>
+
+      <!-- Dipole axis -->
+      <line x1="55" y1="205" x2="460" y2="205" style="stroke:#bbb;stroke-width:1;stroke-dasharray:5 4"/>
+
+      <!-- O -->
+      <circle cx="258" cy="205" r="4" style="fill:var(--c-gold)"/>
+      <text x="270" y="224" style="font-family:Caveat,cursive;font-size:13px;fill:var(--c-gold)">O</text>
+
+      <!-- -q -->
+      <circle cx="148" cy="205" r="26" style="fill:var(--c-red);opacity:.88"/>
+      <text x="148" y="211" text-anchor="middle"
+        style="font-family:Crimson Pro,serif;font-size:17px;fill:white;font-weight:600">−q</text>
+
+      <!-- +q -->
+      <circle cx="368" cy="205" r="26" style="fill:var(--c-blue);opacity:.88"/>
+      <text x="368" y="211" text-anchor="middle"
+        style="font-family:Crimson Pro,serif;font-size:17px;fill:white;font-weight:600">+q</text>
+
+      <!-- P (above O) -->
+      <circle cx="258" cy="65" r="6" style="fill:var(--c-gold)"/>
+      <text x="272" y="70" style="font-family:Caveat,cursive;font-size:16px;fill:var(--c-gold);font-weight:bold">P</text>
+
+      <!-- Perpendicular dashed -->
+      <line x1="258" y1="205" x2="258" y2="76" style="stroke:#bbb;stroke-width:1;stroke-dasharray:4 3"/>
+
+      <!-- Slant from charges to P -->
+      <line x1="170" y1="192" x2="251" y2="77" style="stroke:var(--c-red);stroke-width:1.5;stroke-dasharray:5 3" class="dp"/>
+      <line x1="345" y1="192" x2="265" y2="77" style="stroke:var(--c-blue);stroke-width:1.5;stroke-dasharray:5 3" class="dp dp2"/>
+
+      <!-- E+ at P (upper-left) -->
+      <line x1="258" y1="65" x2="192" y2="38" style="stroke:var(--c-blue);stroke-width:2.5" marker-end="url(#e2)" class="dp dp3"/>
+      <text x="200" y="24" style="font-family:Crimson Pro,serif;font-style:italic;font-size:14px;fill:var(--c-blue)">E₊</text>
+
+      <!-- E- at P (lower-left) -->
+      <line x1="258" y1="65" x2="192" y2="92" style="stroke:var(--c-red);stroke-width:2.5" marker-end="url(#e1)" class="dp dp3"/>
+      <text x="192" y="112" style="font-family:Crimson Pro,serif;font-style:italic;font-size:14px;fill:var(--c-red)">E₋</text>
+
+      <!-- E_eq resultant (leftward, antiparallel to p) -->
+      <line x1="258" y1="65" x2="140" y2="65" style="stroke:var(--c-green);stroke-width:3" marker-end="url(#e3)" class="dp dp4"/>
+      <text x="190" y="53" style="font-family:Crimson Pro,serif;font-style:italic;font-size:15px;fill:var(--c-green)">E⃗_eq</text>
+
+      <!-- r label (vertical) -->
+      <line x1="232" y1="200" x2="232" y2="70" style="stroke:var(--c-gold);stroke-width:1.5" marker-end="url(#e4)" class="dp dp2"/>
+      <text x="214" y="140" style="font-family:Crimson Pro,serif;font-style:italic;font-size:14px;fill:var(--c-gold)">r</text>
+
+      <!-- a label -->
+      <line x1="258" y1="240" x2="368" y2="240" style="stroke:#aaa;stroke-width:1" marker-end="url(#e4)" marker-start="url(#e4L)"/>
+      <text x="313" y="256" text-anchor="middle"
+        style="font-family:Crimson Pro,serif;font-style:italic;font-size:14px;fill:#999">a</text>
+
+      <!-- p vector -->
+      <line x1="150" y1="178" x2="344" y2="178" style="stroke:var(--c-gold);stroke-width:2" marker-end="url(#e4)" class="dp"/>
+      <text x="248" y="168" text-anchor="middle"
+        style="font-family:Crimson Pro,serif;font-style:italic;font-size:14px;fill:var(--c-gold)">p⃗</text>
+
+      <!-- Note on direction -->
+      <text x="130" y="52" style="font-family:Caveat,cursive;font-size:11px;fill:var(--c-green)">(antiparallel to p⃗)</text>
+    </svg>
+  </div>
+  <p class="diagram-cap">Fig 2.2 — Point P on perpendicular bisector. ⊥ components cancel; axial components add.</p>
+
+  <div class="paper margin">
+    <div class="lbl">Derivation — Equatorial</div>
+    <p>Distance from either charge to P: $r_1 = \sqrt{r^2+a^2}$</p>
+    <div class="step">
+      <span class="step-n">①</span>
+      <div class="step-c">
+        By symmetry, $|E_+| = |E_-| = \dfrac{q}{4\pi\varepsilon_0(r^2+a^2)}$
+      </div>
+    </div>
+    <div class="step">
+      <span class="step-n">②</span>
+      <div class="step-c">
+        Components perpendicular to dipole axis cancel. Components along the axis (opposite to $\vec{p}$) add up. Each has a factor $\cos\theta = \dfrac{a}{\sqrt{r^2+a^2}}$.
+      </div>
+    </div>
+    <div class="step">
+      <span class="step-n">③</span>
+      <div class="step-c">
+        $$E_{eq} = 2E_+\cdot\frac{a}{\sqrt{r^2+a^2}} = \frac{2qa}{4\pi\varepsilon_0(r^2+a^2)^{3/2}}$$
+      </div>
+    </div>
+
+    <div class="fbox result">
+      <span class="result-tag">★ Result</span>
+      $$\vec{E}_{eq} = \frac{1}{4\pi\varepsilon_0}\cdot\frac{p}{(r^2+a^2)^{3/2}}\;\;(-\hat{p})$$
+    </div>
+    <div class="note">
+      <strong>For $r\gg a$:</strong> &nbsp;$E_{eq} \approx \dfrac{p}{4\pi\varepsilon_0 r^3}$ &nbsp;— exactly <em>half</em> of $E_{axial}$.
+      Direction is <strong>opposite</strong> to $\vec{p}$.
+    </div>
+  </div>
+</section>
+
+<div class="divider"><span>✦</span></div>
+
+<!-- ====================================================
+     SECTION 3 — TORQUE
+===================================================== -->
+<section class="section" id="s3">
+  <div class="section-header">
+    <div class="s-num">03</div>
+    <div class="s-meta">
+      <div class="s-title">Torque on an Electric Dipole</div>
+      <span class="s-tag">In a Uniform Electric Field</span>
+    </div>
+  </div>
+
+  <div class="theory-block">
+    In a uniform electric field, the net force on a dipole is zero (equal and opposite forces). But the forces form a <strong>couple</strong> which produces a torque that tends to align the dipole along $\vec{E}$.
+  </div>
+
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 560 270" xmlns="http://www.w3.org/2000/svg" width="560" height="270">
+      <defs>
+        <marker id="t1" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+          <path d="M0,0L0,7L7,3.5z" style="fill:var(--c-blue)"/></marker>
+        <marker id="t2" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+          <path d="M0,0L0,7L7,3.5z" style="fill:var(--c-red)"/></marker>
+        <marker id="t3" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+          <path d="M0,0L0,7L7,3.5z" style="fill:var(--c-gold)"/></marker>
+        <marker id="t4" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+          <path d="M0,0L0,7L7,3.5z" style="fill:var(--c-green)"/></marker>
+      </defs>
+
+      <!-- Uniform E field lines (vertical downward = +y dir) -->
+      <g style="opacity:.28">
+        <line x1="50"  y1="15" x2="50"  y2="255" style="stroke:var(--c-blue);stroke-width:1.2" marker-end="url(#t1)" class="dp"/>
+        <line x1="120" y1="15" x2="120" y2="255" style="stroke:var(--c-blue);stroke-width:1.2" marker-end="url(#t1)" class="dp"/>
+        <line x1="190" y1="15" x2="190" y2="255" style="stroke:var(--c-blue);stroke-width:1.2" marker-end="url(#t1)" class="dp"/>
+        <line x1="380" y1="15" x2="380" y2="255" style="stroke:var(--c-blue);stroke-width:1.2" marker-end="url(#t1)" class="dp"/>
+        <line x1="450" y1="15" x2="450" y2="255" style="stroke:var(--c-blue);stroke-width:1.2" marker-end="url(#t1)" class="dp"/>
+        <line x1="520" y1="15" x2="520" y2="255" style="stroke:var(--c-blue);stroke-width:1.2" marker-end="url(#t1)" class="dp"/>
+      </g>
+      <text x="535" y="48" style="font-family:Crimson Pro,serif;font-style:italic;font-size:15px;fill:var(--c-blue);opacity:.65">E⃗</text>
+
+      <!-- Dipole: -q at (205,175), +q at (340,95) — tilted ~33° -->
+      <line x1="205" y1="175" x2="340" y2="95"
+        style="stroke:var(--c-gold);stroke-width:3;stroke-linecap:round" class="dp"/>
+
+      <!-- -q -->
+      <circle cx="205" cy="175" r="24" style="fill:var(--c-red);opacity:.9"/>
+      <text x="205" y="181" text-anchor="middle"
+        style="font-family:Crimson Pro,serif;font-size:15px;fill:white;font-weight:600">−q</text>
+
+      <!-- +q -->
+      <circle cx="340" cy="95" r="24" style="fill:var(--c-blue);opacity:.9"/>
+      <text x="340" y="101" text-anchor="middle"
+        style="font-family:Crimson Pro,serif;font-size:15px;fill:white;font-weight:600">+q</text>
+
+      <!-- Force qE upward on +q -->
+      <line x1="340" y1="71" x2="340" y2="18"
+        style="stroke:var(--c-blue);stroke-width:3" marker-end="url(#t1)" class="dp dp2"/>
+      <text x="356" y="42" style="font-family:Crimson Pro,serif;font-style:italic;font-size:14px;fill:var(--c-blue)">qE⃗</text>
+
+      <!-- Force qE downward on -q -->
+      <line x1="205" y1="200" x2="205" y2="252"
+        style="stroke:var(--c-red);stroke-width:3" marker-end="url(#t2)" class="dp dp2"/>
+      <text x="220" y="244" style="font-family:Crimson Pro,serif;font-style:italic;font-size:14px;fill:var(--c-red)">qE⃗</text>
+
+      <!-- Centre point -->
+      <circle cx="272" cy="135" r="4" style="fill:var(--c-gold)"/>
+
+      <!-- p vector along dipole -->
+      <line x1="218" y1="166" x2="326" y2="104"
+        style="stroke:var(--c-gold);stroke-width:2.2" marker-end="url(#t3)" class="dp dp3"/>
+      <text x="260" y="127" style="font-family:Crimson Pro,serif;font-style:italic;font-size:14px;fill:var(--c-gold)">p⃗</text>
+
+      <!-- θ angle arc -->
+      <path d="M 272 110 A 25 25 0 0 1 285 135"
+        style="stroke:var(--c-gold);stroke-width:1.8;fill:none"/>
+      <text x="286" y="115" style="font-family:Crimson Pro,serif;font-style:italic;font-size:16px;fill:var(--c-gold)">θ</text>
+
+      <!-- Vertical reference from centre (for θ) -->
+      <line x1="272" y1="135" x2="272" y2="95"
+        style="stroke:#bbb;stroke-width:1;stroke-dasharray:3 3"/>
+
+      <!-- Perpendicular distance d = 2a sinθ -->
+      <line x1="204" y1="175" x2="204" y2="250" style="stroke:#bbb;stroke-width:0.8;stroke-dasharray:2 3" opacity=".5"/>
+      <line x1="340" y1="95" x2="340" y2="20" style="stroke:#bbb;stroke-width:0.8;stroke-dasharray:2 3" opacity=".5"/>
+
+      <!-- ⊥ distance label -->
+      <line x1="205" y1="260" x2="340" y2="260"
+        style="stroke:#aaa;stroke-width:1.2"/>
+      <text x="272" y="274" text-anchor="middle"
+        style="font-family:Crimson Pro,serif;font-style:italic;font-size:13px;fill:#999">d = 2a sinθ</text>
+
+      <!-- 2a label on dipole -->
+      <text x="292" y="152" style="font-family:Crimson Pro,serif;font-style:italic;font-size:13px;fill:#999">2a</text>
+
+      <!-- Torque curved arrow -->
+      <path d="M 308 74 Q 368 74 360 118"
+        style="stroke:var(--c-green);stroke-width:2.2;fill:none" marker-end="url(#t4)" class="dp dp4"/>
+      <text x="372" y="88" style="font-family:Caveat,cursive;font-size:16px;fill:var(--c-green);font-weight:700">τ</text>
+    </svg>
+  </div>
+  <p class="diagram-cap">Fig 3.1 — Dipole at angle θ in uniform E; forces form a couple of torque τ = pE sinθ</p>
+
+  <div class="paper margin">
+    <div class="lbl">Derivation</div>
+
+    <div class="step">
+      <span class="step-n">①</span>
+      <div class="step-c">
+        Force on $+q$: $\vec{F}_+ = q\vec{E}$ (along $\vec{E}$). &nbsp;&nbsp;
+        Force on $-q$: $\vec{F}_- = -q\vec{E}$ (opposite to $\vec{E}$).
+      </div>
+    </div>
+
+    <div class="step">
+      <span class="step-n">②</span>
+      <div class="step-c">
+        Net force $= q\vec{E} - q\vec{E} = \vec{0}$ &nbsp;→&nbsp; <em>No translation.</em>
+        But the two forces form a couple → rotational effect (torque).
+      </div>
+    </div>
+
+    <div class="step">
+      <span class="step-n">③</span>
+      <div class="step-c">
+        Torque = Force × perpendicular distance between forces:
+        $$\tau = qE \times d = qE \times 2a\sin\theta$$
+      </div>
+    </div>
+
+    <div class="step">
+      <span class="step-n">④</span>
+      <div class="step-c">
+        Since $p = q \times 2a$ (dipole moment):
+        $$\tau = pE\sin\theta$$
+      </div>
+    </div>
+
+    <div class="fbox result">
+      <span class="result-tag">★ Result</span>
+      $$\vec{\tau} = \vec{p}\times\vec{E}$$
+      $$\text{Magnitude: }\tau = pE\sin\theta$$
+    </div>
+
+    <div class="note">
+      <strong>Stable eq. ($\theta=0°$):</strong> $\tau=0$, dipole aligned with $\vec{E}$. &nbsp;|&nbsp;
+      <strong>Unstable eq. ($\theta=180°$):</strong> $\tau=0$, antiparallel to $\vec{E}$.
+    </div>
+  </div>
+</section>
+
+<div class="divider"><span>✦</span></div>
+
+<!-- ====================================================
+     SECTION 4 — GAUSS'S THEOREM
+===================================================== -->
+<section class="section" id="s4">
+  <div class="section-header">
+    <div class="s-num">04</div>
+    <div class="s-meta">
+      <div class="s-title">Gauss's Theorem — with Proof</div>
+      <span class="s-tag">Electric flux · Closed surface · Enclosed charge</span>
+    </div>
+  </div>
+
+  <div class="theory-block">
+    <strong>Statement:</strong> The total electric flux through any closed surface is equal to the net charge enclosed inside it divided by $\varepsilon_0$, regardless of the shape of the surface.
+  </div>
+
+  <div class="fbox result" style="margin-bottom:1.4rem;">
+    <span class="result-tag">★ Gauss's Law</span>
+    $$\oint_S \vec{E}\cdot d\vec{A} = \frac{q_{enc}}{\varepsilon_0}$$
+  </div>
+
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 520 290" xmlns="http://www.w3.org/2000/svg" width="520" height="290">
+      <defs>
+        <marker id="g1" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+          <path d="M0,0L0,7L7,3.5z" style="fill:var(--c-red)"/></marker>
+        <marker id="g2" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+          <path d="M0,0L0,7L7,3.5z" style="fill:var(--c-gold)"/></marker>
+        <radialGradient id="sphGrad" cx="40%" cy="35%">
+          <stop offset="0%" stop-color="#B07D10" stop-opacity=".12"/>
+          <stop offset="100%" stop-color="#B07D10" stop-opacity=".03"/>
+        </radialGradient>
+      </defs>
+
+      <!-- Gaussian sphere -->
+      <ellipse cx="260" cy="145" rx="148" ry="138"
+        style="fill:url(#sphGrad);stroke:var(--c-gold);stroke-width:2;stroke-dasharray:12 6;opacity:.95"
+        class="dp"/>
+
+      <!-- Equatorial ellipse (depth) -->
+      <ellipse cx="260" cy="145" rx="148" ry="32"
+        style="fill:none;stroke:var(--c-gold);stroke-width:1;stroke-dasharray:7 5;opacity:.3"/>
+
+      <!-- Point charge at center -->
+      <circle cx="260" cy="145" r="20" style="fill:var(--c-red);opacity:.92"/>
+      <text x="260" y="151" text-anchor="middle"
+        style="font-family:Crimson Pro,serif;font-size:15px;fill:white;font-weight:700">+q</text>
+
+      <!-- Radial E field vectors -->
+      <line x1="260" y1="125" x2="260" y2="24" style="stroke:var(--c-red);stroke-width:2.2" marker-end="url(#g1)" class="dp dp2"/>
+      <line x1="260" y1="165" x2="260" y2="265" style="stroke:var(--c-red);stroke-width:2.2" marker-end="url(#g1)" class="dp dp2"/>
+      <line x1="240" y1="145" x2="112" y2="145" style="stroke:var(--c-red);stroke-width:2.2" marker-end="url(#g1)" class="dp dp2"/>
+      <line x1="280" y1="145" x2="408" y2="145" style="stroke:var(--c-red);stroke-width:2.2" marker-end="url(#g1)" class="dp dp2"/>
+      <line x1="248" y1="132" x2="162" y2="62" style="stroke:var(--c-red);stroke-width:1.8" marker-end="url(#g1)" class="dp dp3"/>
+      <line x1="272" y1="132" x2="356" y2="61" style="stroke:var(--c-red);stroke-width:1.8" marker-end="url(#g1)" class="dp dp3"/>
+      <line x1="248" y1="158" x2="162" y2="226" style="stroke:var(--c-red);stroke-width:1.8" marker-end="url(#g1)" class="dp dp3"/>
+      <line x1="272" y1="158" x2="356" y2="228" style="stroke:var(--c-red);stroke-width:1.8" marker-end="url(#g1)" class="dp dp3"/>
+
+      <!-- r label -->
+      <line x1="260" y1="145" x2="408" y2="145"
+        style="stroke:var(--c-gold);stroke-width:1.8;stroke-dasharray:4 3"/>
+      <text x="338" y="132"
+        style="font-family:Crimson Pro,serif;font-style:italic;font-size:16px;fill:var(--c-gold)">r</text>
+
+      <!-- dA element on surface -->
+      <ellipse cx="355" cy="80" rx="20" ry="11"
+        style="fill:var(--c-gold);opacity:.22;transform-origin:355px 80px;transform:rotate(-28deg)"/>
+      <text x="376" y="62"
+        style="font-family:Crimson Pro,serif;font-style:italic;font-size:13px;fill:var(--c-gold)">dA⃗</text>
+
+      <!-- Labels -->
+      <text x="260" y="18" text-anchor="middle"
+        style="font-family:Caveat,cursive;font-size:13px;fill:var(--c-gold);opacity:.8">Gaussian Surface (S)</text>
+      <text x="260" y="286" text-anchor="middle"
+        style="font-family:Caveat,cursive;font-size:12px;fill:#999">E⃗ ∥ dA⃗ everywhere on sphere → E·dA = E dA</text>
+    </svg>
+  </div>
+  <p class="diagram-cap">Fig 4.1 — Spherical Gaussian surface of radius r centred on +q</p>
+
+  <div class="paper margin">
+    <div class="lbl">Proof (Point Charge)</div>
+
+    <div class="step">
+      <span class="step-n">①</span>
+      <div class="step-c">
+        Consider point charge $+q$ at origin. Choose a Gaussian sphere of radius $r$.
+        Electric field at any surface point: $E = \dfrac{q}{4\pi\varepsilon_0 r^2}$ (radially outward).
+      </div>
+    </div>
+
+    <div class="step">
+      <span class="step-n">②</span>
+      <div class="step-c">
+        At every point on the sphere, $\vec{E}$ is radially outward and $d\vec{A}$ is also radially outward.
+        So $\vec{E}\cdot d\vec{A} = E\,dA$ (angle between them = 0°).
+      </div>
+    </div>
+
+    <div class="step">
+      <span class="step-n">③</span>
+      <div class="step-c">
+        Total flux:
+        $$\Phi = \oint \vec{E}\cdot d\vec{A} = E\oint dA = \frac{q}{4\pi\varepsilon_0 r^2}\times 4\pi r^2$$
+      </div>
+    </div>
+
+    <div class="fbox result">
+      <span class="result-tag">★ Proved</span>
+      $$\Phi = \oint \vec{E}\cdot d\vec{A} = \frac{q}{\varepsilon_0}$$
+    </div>
+
+    <div class="note">
+      <strong>Key insight:</strong> Result is independent of radius $r$. The theorem holds for <em>any closed surface</em> of any shape — the Gaussian surface is just a mathematical tool.
+    </div>
+  </div>
+</section>
+
+<div class="divider"><span>✦</span></div>
+
+<!-- ====================================================
+     SECTION 5 — APPLICATIONS
+===================================================== -->
+<section class="section" id="s5">
+  <div class="section-header">
+    <div class="s-num">05</div>
+    <div class="s-meta">
+      <div class="s-title">Applications of Gauss's Theorem</div>
+      <span class="s-tag">Line Charge · Plane Sheet · Spherical Shell</span>
+    </div>
+  </div>
+
+  <div class="theory-block">
+    Gauss's theorem is most powerful when charge distribution has <strong>symmetry</strong>. We choose a Gaussian surface matching that symmetry so $\vec{E}$ is constant and parallel to $d\vec{A}$ — making the surface integral trivial.
+  </div>
+
+  <div class="app-grid">
+
+    <!-- APPLICATION 1: LINE CHARGE -->
+    <div class="app-card">
+      <div class="app-card-title">① Infinite Line Charge</div>
+
+      <div class="diagram-wrap" style="padding:1.2rem">
+        <svg viewBox="0 0 230 210" xmlns="http://www.w3.org/2000/svg" width="230" height="210">
+          <defs>
+            <marker id="l1" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+              <path d="M0,0L0,6L6,3z" style="fill:var(--c-red)"/></marker>
+          </defs>
+
+          <!-- Line charge -->
+          <line x1="115" y1="8" x2="115" y2="202"
+            style="stroke:var(--c-red);stroke-width:4.5;stroke-linecap:round;opacity:.85" class="dp"/>
+          <text x="126" y="20" style="font-family:Caveat,cursive;font-size:13px;fill:var(--c-red)">λ C/m</text>
+
+          <!-- Cylinder top ellipse -->
+          <ellipse cx="115" cy="45" rx="58" ry="15"
+            style="fill:none;stroke:var(--c-gold);stroke-width:1.5;stroke-dasharray:5 3" class="dp dp2"/>
+          <!-- Cylinder bottom ellipse -->
+          <ellipse cx="115" cy="170" rx="58" ry="15"
+            style="fill:none;stroke:var(--c-gold);stroke-width:1.5" class="dp dp2"/>
+          <!-- Cylinder sides -->
+          <line x1="57" y1="45" x2="57" y2="170"
+            style="stroke:var(--c-gold);stroke-width:1.5;stroke-dasharray:5 3" class="dp dp2"/>
+          <line x1="173" y1="45" x2="173" y2="170"
+            style="stroke:var(--c-gold);stroke-width:1.5" class="dp dp2"/>
+
+          <!-- Gaussian label -->
+          <text x="115" y="195" text-anchor="middle"
+            style="font-family:Caveat,cursive;font-size:11px;fill:var(--c-gold)">Gaussian cylinder</text>
+
+          <!-- E vectors radially -->
+          <line x1="173" y1="107" x2="215" y2="107"
+            style="stroke:var(--c-red);stroke-width:2.5" marker-end="url(#l1)" class="dp dp3"/>
+          <line x1="57" y1="107" x2="15" y2="107"
+            style="stroke:var(--c-red);stroke-width:2.5" marker-end="url(#l1)" class="dp dp3"/>
+          <text x="194" y="98" style="font-family:Crimson Pro,serif;font-style:italic;font-size:14px;fill:var(--c-red)">E⃗</text>
+
+          <!-- r label -->
+          <line x1="115" y1="107" x2="173" y2="107"
+            style="stroke:#aaa;stroke-width:1;stroke-dasharray:3 2"/>
+          <text x="146" y="100" style="font-family:Crimson Pro,serif;font-style:italic;font-size:13px;fill:#999">r</text>
+
+          <!-- L label -->
+          <line x1="188" y1="45" x2="188" y2="170"
+            style="stroke:#aaa;stroke-width:1"/>
+          <text x="196" y="112" style="font-family:Crimson Pro,serif;font-style:italic;font-size:13px;fill:#999">L</text>
+        </svg>
+      </div>
+
+      <p style="font-size:.95rem;position:relative;z-index:1;margin-bottom:.6rem">
+        <strong>Gaussian surface:</strong> Cylinder of radius $r$, length $L$, coaxial with line charge $\lambda$.
+      </p>
+      <p style="font-size:.95rem;position:relative;z-index:1">
+        Flux through flat ends = 0 ($\vec{E}\perp d\vec{A}$). Flux through curved surface:
+      </p>
+      $$E\cdot 2\pi rL = \frac{\lambda L}{\varepsilon_0}$$
+      <div class="fbox result" style="margin-top:.8rem">
+        <span class="result-tag">★</span>
+        $$E = \frac{\lambda}{2\pi\varepsilon_0 r}$$
+      </div>
+      <div class="note" style="font-size:.9rem">
+        <strong>Note:</strong> $E \propto \dfrac{1}{r}$ for a line charge.
+      </div>
+    </div>
+
+    <!-- APPLICATION 2: PLANE SHEET -->
+    <div class="app-card">
+      <div class="app-card-title">② Infinite Plane Sheet</div>
+
+      <div class="diagram-wrap" style="padding:1.2rem">
+        <svg viewBox="0 0 230 210" xmlns="http://www.w3.org/2000/svg" width="230" height="210">
+          <defs>
+            <marker id="p1" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+              <path d="M0,0L0,6L6,3z" style="fill:var(--c-blue)"/></marker>
+          </defs>
+
+          <!-- Plane sheet -->
+          <rect x="68" y="45" width="94" height="120"
+            style="fill:var(--c-blue);opacity:.1;rx:4"/>
+          <line x1="115" y1="45" x2="115" y2="165"
+            style="stroke:var(--c-blue);stroke-width:3.5;opacity:.7" class="dp"/>
+          <line x1="68" y1="45" x2="68" y2="165"
+            style="stroke:var(--c-blue);stroke-width:2;opacity:.4"/>
+          <line x1="162" y1="45" x2="162" y2="165"
+            style="stroke:var(--c-blue);stroke-width:2;opacity:.4"/>
+          <line x1="68" y1="45" x2="162" y2="45"
+            style="stroke:var(--c-blue);stroke-width:2;opacity:.4"/>
+          <line x1="68" y1="165" x2="162" y2="165"
+            style="stroke:var(--c-blue);stroke-width:2;opacity:.4"/>
+          <text x="115" y="34" text-anchor="middle"
+            style="font-family:Caveat,cursive;font-size:13px;fill:var(--c-blue)">σ C/m²</text>
+
+          <!-- Pillbox Gaussian surface -->
+          <ellipse cx="115" cy="80" rx="30" ry="9"
+            style="fill:none;stroke:var(--c-gold);stroke-width:1.5;stroke-dasharray:4 3" class="dp dp2"/>
+          <ellipse cx="115" cy="130" rx="30" ry="9"
+            style="fill:none;stroke:var(--c-gold);stroke-width:1.5" class="dp dp2"/>
+          <line x1="85" y1="80" x2="85" y2="130"
+            style="stroke:var(--c-gold);stroke-width:1.5;stroke-dasharray:4 3" class="dp dp2"/>
+          <line x1="145" y1="80" x2="145" y2="130"
+            style="stroke:var(--c-gold);stroke-width:1.5" class="dp dp2"/>
+
+          <!-- E vectors perpendicular -->
+          <line x1="115" y1="71" x2="115" y2="22"
+            style="stroke:var(--c-blue);stroke-width:2.5" marker-end="url(#p1)" class="dp dp3"/>
+          <line x1="115" y1="139" x2="115" y2="188"
+            style="stroke:var(--c-blue);stroke-width:2.5" marker-end="url(#p1)" class="dp dp3"/>
+          <text x="126" y="42" style="font-family:Crimson Pro,serif;font-style:italic;font-size:14px;fill:var(--c-blue)">E⃗</text>
+          <text x="126" y="180" style="font-family:Crimson Pro,serif;font-style:italic;font-size:14px;fill:var(--c-blue)">E⃗</text>
+
+          <!-- A cap label -->
+          <text x="60" y="78" style="font-family:Crimson Pro,serif;font-style:italic;font-size:12px;fill:var(--c-gold)">A</text>
+          <text x="60" y="132" style="font-family:Crimson Pro,serif;font-style:italic;font-size:12px;fill:var(--c-gold)">A</text>
+          <text x="128" y="108" style="font-family:Caveat,cursive;font-size:11px;fill:var(--c-gold)">Pillbox</text>
+        </svg>
+      </div>
+
+      <p style="font-size:.95rem;position:relative;z-index:1;margin-bottom:.6rem">
+        <strong>Gaussian surface:</strong> Pillbox (cylinder) with flat caps of area $A$ parallel to sheet.
+      </p>
+      <p style="font-size:.95rem;position:relative;z-index:1">
+        Flux through curved surface = 0. Flux through both caps:
+      </p>
+      $$2E\cdot A = \frac{\sigma A}{\varepsilon_0}$$
+      <div class="fbox result" style="margin-top:.8rem">
+        <span class="result-tag">★</span>
+        $$E = \frac{\sigma}{2\varepsilon_0}$$
+      </div>
+      <div class="note" style="font-size:.9rem">
+        <strong>Note:</strong> $E$ is uniform and independent of distance from sheet.
+      </div>
+    </div>
+
+  </div><!-- end app-grid -->
+
+  <!-- APPLICATION 3: SPHERICAL SHELL -->
+  <div class="app-card" style="margin-top:0">
+    <div class="app-card-title">③ Uniformly Charged Spherical Shell</div>
+
+    <div class="two">
+      <!-- Diagram -->
+      <div>
+        <div class="diagram-wrap">
+          <svg viewBox="0 0 290 250" xmlns="http://www.w3.org/2000/svg" width="290" height="250">
+            <defs>
+              <marker id="s1" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+                <path d="M0,0L0,7L7,3.5z" style="fill:var(--c-red)"/></marker>
+              <marker id="s2" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+                <path d="M0,0L0,7L7,3.5z" style="fill:var(--c-gold)"/></marker>
+            </defs>
+
+            <!-- Shell -->
+            <circle cx="145" cy="125" r="82"
+              style="fill:none;stroke:var(--c-green);stroke-width:3.5;opacity:.75" class="dp"/>
+            <circle cx="145" cy="125" r="82"
+              style="fill:var(--c-green);opacity:.05"/>
+
+            <!-- Shell label -->
+            <text x="145" y="30" text-anchor="middle"
+              style="font-family:Caveat,cursive;font-size:12px;fill:var(--c-green)">Shell (total charge Q)</text>
+
+            <!-- Outer Gaussian sphere (r > R) -->
+            <circle cx="145" cy="125" r="116"
+              style="fill:none;stroke:var(--c-gold);stroke-width:1.5;stroke-dasharray:9 5;opacity:.75" class="dp dp2"/>
+
+            <!-- E vectors outside -->
+            <line x1="145" y1="9" x2="145" y2="-20"
+              style="stroke:var(--c-red);stroke-width:2" marker-end="url(#s1)" class="dp dp3"/>
+            <text x="158" y="8"
+              style="font-family:Crimson Pro,serif;font-style:italic;font-size:13px;fill:var(--c-red)">E⃗</text>
+
+            <!-- Inner Gaussian sphere (r < R) -->
+            <circle cx="145" cy="125" r="46"
+              style="fill:none;stroke:var(--c-gold);stroke-width:1.5;stroke-dasharray:5 3;opacity:.55" class="dp dp3"/>
+
+            <!-- E = 0 inside -->
+            <text x="145" y="120" text-anchor="middle"
+              style="font-family:Caveat,cursive;font-size:16px;fill:var(--c-green);font-weight:700">E = 0</text>
+            <text x="145" y="138" text-anchor="middle"
+              style="font-family:Caveat,cursive;font-size:10px;fill:#999">(inside shell)</text>
+
+            <!-- R label -->
+            <line x1="145" y1="125" x2="227" y2="125"
+              style="stroke:var(--c-green);stroke-width:1.8"/>
+            <text x="190" y="116"
+              style="font-family:Crimson Pro,serif;font-style:italic;font-size:15px;fill:var(--c-green)">R</text>
+
+            <!-- r label to outer -->
+            <line x1="145" y1="125" x2="261" y2="125"
+              style="stroke:var(--c-gold);stroke-width:1.2;stroke-dasharray:4 3;opacity:.7"/>
+            <text x="210" y="142"
+              style="font-family:Crimson Pro,serif;font-style:italic;font-size:14px;fill:var(--c-gold)">r</text>
+
+            <!-- More E vectors outside radially -->
+            <line x1="145" y1="241" x2="145" y2="268"
+              style="stroke:var(--c-red);stroke-width:2" marker-end="url(#s1)" class="dp dp3"/>
+            <line x1="29" y1="125" x2="2" y2="125"
+              style="stroke:var(--c-red);stroke-width:2" marker-end="url(#s1)" class="dp dp3"/>
+            <line x1="261" y1="125" x2="288" y2="125"
+              style="stroke:var(--c-red);stroke-width:2" marker-end="url(#s1)" class="dp dp3"/>
+          </svg>
+        </div>
+        <p class="diagram-cap">Fig 5.3 — Inner &amp; outer Gaussian surfaces for shell</p>
+      </div>
+
+      <!-- E vs r GRAPH -->
+      <div>
+        <div class="diagram-wrap">
+          <svg viewBox="0 0 270 225" xmlns="http://www.w3.org/2000/svg" width="270" height="225">
+            <defs>
+              <marker id="gr1" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+                <path d="M0,0L0,7L7,3.5z" style="fill:var(--c-ink)"/></marker>
+            </defs>
+
+            <!-- Axes -->
+            <line x1="38" y1="185" x2="245" y2="185"
+              style="stroke:var(--c-ink);stroke-width:1.8" marker-end="url(#gr1)"/>
+            <line x1="38" y1="185" x2="38" y2="18"
+              style="stroke:var(--c-ink);stroke-width:1.8" marker-end="url(#gr1)"/>
+
+            <!-- Axis labels -->
+            <text x="250" y="190"
+              style="font-family:Crimson Pro,serif;font-style:italic;font-size:15px;fill:var(--c-ink)">r</text>
+            <text x="24" y="14"
+              style="font-family:Crimson Pro,serif;font-style:italic;font-size:15px;fill:var(--c-ink)">E</text>
+            <text x="22" y="195"
+              style="font-family:Caveat,cursive;font-size:12px;fill:var(--c-ink)">O</text>
+
+            <!-- R marker -->
+            <line x1="105" y1="180" x2="105" y2="190"
+              style="stroke:var(--c-ink);stroke-width:1.5"/>
+            <text x="105" y="204" text-anchor="middle"
+              style="font-family:Crimson Pro,serif;font-style:italic;font-size:14px;fill:var(--c-ink)">R</text>
+
+            <!-- E=0 inside (thick green line from O to R) -->
+            <line x1="38" y1="185" x2="105" y2="185"
+              style="stroke:var(--c-green);stroke-width:3" class="dp"/>
+
+            <!-- Peak circle at r=R -->
+            <circle cx="105" cy="52" r="5" style="fill:var(--c-red)"/>
+
+            <!-- E=kQ/r² outside curve -->
+            <path d="M 105 52 C 130 80 158 108 195 138 S 230 162 242 172"
+              style="stroke:var(--c-red);stroke-width:3;fill:none" class="dp dp2"/>
+
+            <!-- Dashed vertical at R -->
+            <line x1="105" y1="185" x2="105" y2="52"
+              style="stroke:#aaa;stroke-width:1;stroke-dasharray:4 3"/>
+
+            <!-- Curve label -->
+            <text x="165" y="102"
+              style="font-family:Crimson Pro,serif;font-style:italic;font-size:12px;fill:var(--c-red)">E = kQ/r²</text>
+            <text x="42" y="178"
+              style="font-family:Caveat,cursive;font-size:12px;fill:var(--c-green)">E = 0</text>
+
+            <!-- Max value label -->
+            <text x="40" y="55"
+              style="font-family:Crimson Pro,serif;font-style:italic;font-size:11px;fill:var(--c-red)">kQ/R²</text>
+            <line x1="38" y1="52" x2="105" y2="52"
+              style="stroke:#ddd;stroke-width:1;stroke-dasharray:3 3"/>
+
+            <!-- Graph title -->
+            <text x="145" y="218" text-anchor="middle"
+              style="font-family:Caveat,cursive;font-size:12px;fill:#999">E vs r (spherical shell)</text>
+          </svg>
+        </div>
+        <p class="diagram-cap">Fig 5.4 — E jumps at r = R, then falls as 1/r²</p>
+      </div>
+    </div><!-- end two -->
+
+    <div class="paper margin">
+      <div class="lbl">Derivation</div>
+      <div class="two">
+        <div>
+          <strong>Case 1: Outside shell ($r > R$)</strong>
+          <p style="font-size:.95rem">
+            Gaussian sphere of radius $r$ encloses total charge $Q$.
+          </p>
+          $$E\cdot 4\pi r^2 = \frac{Q}{\varepsilon_0}$$
+          <div class="fbox result" style="margin-top:.7rem">
+            <span class="result-tag">★</span>
+            $$E = \frac{Q}{4\pi\varepsilon_0 r^2} = \frac{kQ}{r^2}$$
+            <small style="color:var(--text-muted)">Acts like a point charge</small>
+          </div>
+        </div>
+
+        <div>
+          <strong>Case 2: Inside shell ($r &lt; R$)</strong>
+          <p style="font-size:.95rem">
+            Gaussian sphere of radius $r$ encloses <em>no charge</em> ($q_{enc}=0$).
+          </p>
+          $$\oint\vec{E}\cdot d\vec{A} = \frac{0}{\varepsilon_0} = 0$$
+          <div class="fbox result" style="margin-top:.7rem">
+            <span class="result-tag">★</span>
+            $$E = 0 \text{ inside the shell}$$
+            <small style="color:var(--text-muted)">Remarkable result!</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="note">
+        <strong>At the surface ($r = R$):</strong> &nbsp;$E_{max} = \dfrac{Q}{4\pi\varepsilon_0 R^2}$ &nbsp; — highest field value.
+        The field is discontinuous at the surface.
+      </div>
+    </div>
+  </div><!-- end app-card -->
+
+</section>
+
+</div><!-- end container -->
+
+<!-- FOOTER -->
+<footer class="footer">
+  <p>✏️ Made with ♥ by <span>Akshit Tyagi</span> &nbsp;·&nbsp; Class XII Physics · Electrostatics</p>
+  <p style="font-size:.82rem;margin-top:.4rem;opacity:.55">NCERT Physics Part I · Chapter 1 · Derivations &amp; Diagrams</p>
+</footer>
+
+<script>
+/* ── Progress bar ── */
+const bar = document.getElementById('progress');
+const nav = document.getElementById('nav');
+const heroH = document.querySelector('.hero').offsetHeight;
+
+window.addEventListener('scroll', () => {
+  const s = window.scrollY;
+  const h = document.body.scrollHeight - window.innerHeight;
+  bar.style.width = (s / h * 100) + '%';
+  nav.classList.toggle('show', s > heroH * 0.55);
+}, { passive: true });
+
+/* ── Scroll reveal ── */
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('reveal'); });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.section').forEach(el => observer.observe(el));
+
+/* ── App cards reveal ── */
+const cardObs = new IntersectionObserver(entries => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }, 100);
+    }
+  });
+}, { threshold: 0.08 });
+
+document.querySelectorAll('.app-card').forEach((c, i) => {
+  c.style.opacity = '0';
+  c.style.transform = 'translateY(30px)';
+  c.style.transition = `opacity .65s ease ${i * 0.12}s, transform .65s ease ${i * 0.12}s`;
+  cardObs.observe(c);
+});
+
+/* ── Theme toggle ── */
+const toggle = document.getElementById('themeToggle');
+let dark = false;
+toggle.addEventListener('click', () => {
+  dark = !dark;
+  document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+});
+
+/* ── KaTeX re-render fallback ── */
+document.addEventListener('DOMContentLoaded', () => {
+  if (typeof renderMathInElement !== 'undefined') {
+    renderMathInElement(document.body, {
+      delimiters: [
+        { left: '$$', right: '$$', display: true },
+        { left: '$',  right: '$',  display: false }
+      ],
+      throwOnError: false
+    });
+  }
+});
+
+/* ── Chip ripple ── */
+document.querySelectorAll('.chip').forEach(chip => {
+  chip.addEventListener('click', function(e) {
+    const ripple = document.createElement('span');
+    ripple.style.cssText = `
+      position:absolute;width:8px;height:8px;border-radius:50%;
+      background:rgba(255,255,255,.6);pointer-events:none;
+      transform:scale(0);animation:ripple .5s ease;
+      left:${e.offsetX - 4}px;top:${e.offsetY - 4}px;
+    `;
+    this.style.position = 'relative';
+    this.appendChild(ripple);
+    setTimeout(() => ripple.remove(), 500);
+  });
+});
+
+/* inject ripple keyframe */
+const style = document.createElement('style');
+style.textContent = '@keyframes ripple{to{transform:scale(18);opacity:0}}';
+document.head.appendChild(style);
+</script>
+</body>
+</html>

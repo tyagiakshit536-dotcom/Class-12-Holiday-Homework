@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RS Aggarwal — Class 12 Solved Examples</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,800;1,400;1,600&family=DM+Sans:wght@300;400;500;600&family=Space+Mono&display=swap" rel="stylesheet">
+<style>
+/* ===== VARIABLES ===== */
+:root {
+  --bg: #f8f7f4;
+  --bg2: #ffffff;
+  --surface: #ffffff;
+  --surface2: #f0ede8;
+  --text: #1a1714;
+  --text2: #5a5550;
+  --accent: #c4762a;
+  --accent2: #8b4513;
+  --accent-glow: rgba(196,118,42,0.25);
+  --border: rgba(26,23,20,0.1);
+  --shadow: rgba(26,23,20,0.12);
+  --card-bg: #ffffff;
+  --ch1: #8b4513;
+  --ch2: #1a4a6e;
+  --ch3: #2d6a4f;
+  --overlay: rgba(10,8,6,0.88);
+  --nav-bg: rgba(248,247,244,0.92);
+  --hero-text: #1a1714;
+  --badge-bg: rgba(196,118,42,0.12);
+  --number-color: rgba(196,118,42,0.08);
+  --transition: 0.4s cubic-bezier(0.4,0,0.2,1);
+}
+[data-theme="dark"] {
+  --bg: #0e0c0a;
+  --bg2: #161310;
+  --surface: #1e1a16;
+  --surface2: #252118;
+  --text: #f0ede8;
+  --text2: #9a9088;
+  --accent: #e8963c;
+  --accent2: #c4762a;
+  --accent-glow: rgba(232,150,60,0.2);
+  --border: rgba(240,237,232,0.08);
+  --shadow: rgba(0,0,0,0.4);
+  --card-bg: #1e1a16;
+  --ch1: #e8963c;
+  --ch2: #5ba3d9;
+  --ch3: #56c498;
+  --overlay: rgba(5,3,2,0.92);
+  --nav-bg: rgba(14,12,10,0.94);
+  --hero-text: #f0ede8;
+  --badge-bg: rgba(232,150,60,0.12);
+  --number-color: rgba(232,150,60,0.06);
+}
+
+/* ===== RESET & BASE ===== */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;font-size:16px;}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:'DM Sans',sans-serif;
+  font-weight:400;
+  line-height:1.6;
+  overflow-x:hidden;
+  transition:background var(--transition),color var(--transition);
+}
+::selection{background:var(--accent);color:#fff;}
+img{display:block;max-width:100%;}
+a{color:inherit;text-decoration:none;}
+
+/* ===== LOADER ===== */
+#loader{
+  position:fixed;inset:0;z-index:9999;
+  background:var(--bg);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px;
+  transition:opacity 0.6s ease,visibility 0.6s ease;
+}
+#loader.hidden{opacity:0;visibility:hidden;}
+.loader-ring{
+  width:64px;height:64px;
+  border:3px solid var(--border);
+  border-top-color:var(--accent);
+  border-radius:50%;
+  animation:spin 0.9s linear infinite;
+}
+.loader-text{
+  font-family:'Playfair Display',serif;
+  font-size:1.1rem;letter-spacing:.15em;
+  color:var(--text2);
+  animation:pulse2 1.4s ease infinite;
+}
+@keyframes spin{to{transform:rotate(360deg);}}
+@keyframes pulse2{0%,100%{opacity:.5;}50%{opacity:1;}}
+
+/* ===== SCROLL PROGRESS ===== */
+#progress-bar{
+  position:fixed;top:0;left:0;z-index:9998;
+  height:3px;width:0%;
+  background:linear-gradient(90deg,var(--accent),var(--accent2));
+  transition:width 0.1s linear;
+  box-shadow:0 0 8px var(--accent-glow);
+}
+
+/* ===== NAVBAR ===== */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:900;
+  background:var(--nav-bg);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+  padding:0 2rem;
+  height:64px;
+  display:flex;align-items:center;justify-content:space-between;
+  animation:slideDown 0.6s 0.2s both;
+}
+@keyframes slideDown{from{transform:translateY(-100%);opacity:0;}to{transform:translateY(0);opacity:1;}}
+.nav-brand{
+  font-family:'Playfair Display',serif;
+  font-size:1.1rem;font-weight:600;
+  display:flex;align-items:center;gap:8px;
+}
+.nav-brand span{color:var(--accent);}
+.nav-links{
+  display:flex;align-items:center;gap:4px;
+  list-style:none;
+}
+.nav-links a{
+  display:flex;align-items:center;gap:6px;
+  padding:6px 14px;border-radius:50px;
+  font-size:.82rem;font-weight:500;letter-spacing:.03em;
+  color:var(--text2);
+  transition:all 0.3s ease;
+  border:1px solid transparent;
+}
+.nav-links a:hover,.nav-links a.active{
+  color:var(--accent);
+  background:var(--badge-bg);
+  border-color:rgba(196,118,42,0.2);
+}
+.nav-links a .dot{
+  width:6px;height:6px;border-radius:50%;
+  background:var(--accent);opacity:0;
+  transition:opacity 0.3s;
+}
+.nav-links a.active .dot{opacity:1;}
+
+.nav-right{display:flex;align-items:center;gap:12px;}
+.theme-btn{
+  width:40px;height:40px;border-radius:50%;border:1px solid var(--border);
+  background:transparent;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1rem;color:var(--text);
+  transition:all 0.3s ease;
+}
+.theme-btn:hover{background:var(--badge-bg);border-color:var(--accent);transform:rotate(20deg);}
+
+/* ===== HERO ===== */
+.hero{
+  min-height:100vh;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:100px 2rem 80px;
+  position:relative;overflow:hidden;
+  text-align:center;
+}
+.hero-bg{
+  position:absolute;inset:0;pointer-events:none;z-index:0;
+  background:radial-gradient(ellipse 80% 60% at 50% 40%, var(--accent-glow), transparent 70%);
+}
+.hero-particles{position:absolute;inset:0;pointer-events:none;z-index:0;}
+.particle{
+  position:absolute;
+  width:2px;height:2px;border-radius:50%;
+  background:var(--accent);opacity:0.4;
+  animation:float-particle linear infinite;
+}
+@keyframes float-particle{
+  0%{transform:translateY(0) translateX(0);opacity:0;}
+  10%{opacity:.5;}
+  90%{opacity:.3;}
+  100%{transform:translateY(-100vh) translateX(40px);opacity:0;}
+}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:6px 18px;border-radius:50px;
+  background:var(--badge-bg);border:1px solid rgba(196,118,42,0.25);
+  font-size:.78rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:2rem;
+  position:relative;z-index:1;
+  animation:fadeUp 0.8s 0.5s both;
+}
+.hero-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(3rem,8vw,7rem);
+  font-weight:800;line-height:1.05;
+  color:var(--hero-text);
+  position:relative;z-index:1;
+  animation:fadeUp 0.8s 0.7s both;
+}
+.hero-title em{
+  font-style:italic;color:var(--accent);
+  display:block;
+}
+.hero-sub{
+  font-size:clamp(1rem,2.5vw,1.25rem);
+  color:var(--text2);max-width:540px;
+  margin:1.5rem auto 0;line-height:1.7;
+  position:relative;z-index:1;
+  animation:fadeUp 0.8s 0.9s both;
+}
+.hero-stats{
+  display:flex;gap:40px;margin-top:3rem;
+  position:relative;z-index:1;
+  animation:fadeUp 0.8s 1.1s both;
+}
+.stat{text-align:center;}
+.stat-num{
+  font-family:'Playfair Display',serif;
+  font-size:2.2rem;font-weight:800;color:var(--accent);
+  line-height:1;
+}
+.stat-label{font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text2);margin-top:4px;}
+.hero-divider{
+  width:60px;height:2px;
+  background:linear-gradient(90deg,transparent,var(--accent),transparent);
+  margin:3rem auto 0;
+  position:relative;z-index:1;
+  animation:fadeUp 0.8s 1.2s both;
+}
+.scroll-indicator{
+  position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  color:var(--text2);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;
+  animation:fadeUp 0.8s 1.5s both;z-index:1;
+}
+.scroll-line{
+  width:1px;height:40px;
+  background:linear-gradient(to bottom,var(--accent),transparent);
+  animation:scrollLine 2s ease infinite;
+}
+@keyframes scrollLine{0%{height:0;opacity:0;}50%{height:40px;opacity:1;}100%{height:40px;opacity:0;}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
+
+/* ===== CHAPTER SECTIONS ===== */
+.chapter{padding:80px 0 40px;position:relative;}
+.chapter-header{
+  padding:0 clamp(1rem,4vw,4rem);
+  margin-bottom:60px;
+  display:grid;grid-template-columns:auto 1fr;gap:0 40px;align-items:start;
+}
+.chapter-number{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(6rem,15vw,12rem);
+  font-weight:800;line-height:.85;
+  color:var(--number-color);
+  letter-spacing:-.02em;
+  user-select:none;
+  transition:color var(--transition);
+}
+.chapter-info{}
+.chapter-label{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:.72rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;
+  padding:4px 12px;border-radius:50px;
+  margin-bottom:.75rem;
+}
+.ch1 .chapter-label{background:rgba(139,69,19,.12);color:var(--ch1);}
+.ch2 .chapter-label{background:rgba(26,74,110,.12);color:var(--ch2);}
+.ch3 .chapter-label{background:rgba(45,106,79,.12);color:var(--ch3);}
+.chapter-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2rem,5vw,3.5rem);
+  font-weight:700;line-height:1.1;
+  color:var(--text);
+}
+.chapter-title em{font-style:italic;}
+.chapter-meta{
+  font-size:.85rem;color:var(--text2);margin-top:.5rem;
+  display:flex;align-items:center;gap:12px;
+}
+.chapter-meta::before{
+  content:'';display:inline-block;
+  width:24px;height:1px;background:var(--text2);
+}
+.chapter-rule{
+  height:1px;
+  margin:0 clamp(1rem,4vw,4rem);margin-bottom:0;
+  background:linear-gradient(90deg,var(--border),transparent);
+}
+
+/* ===== IMAGE STACK ===== */
+.img-stack{
+  display:flex;flex-direction:column;gap:0;
+}
+.img-entry{
+  position:relative;overflow:hidden;
+  opacity:0;transform:translateY(40px);
+  transition:opacity 0.7s cubic-bezier(.4,0,.2,1),transform 0.7s cubic-bezier(.4,0,.2,1);
+}
+.img-entry.visible{opacity:1;transform:translateY(0);}
+
+.img-entry:nth-child(even){
+  /* subtle alternate */
+  background:var(--bg2);
+}
+.img-entry:nth-child(odd){
+  background:var(--bg);
+}
+
+.img-inner{
+  position:relative;cursor:zoom-in;
+  padding:24px clamp(1rem,4vw,3rem);
+  transition:background var(--transition);
+}
+.img-inner:hover .img-overlay{opacity:1;}
+.img-inner:hover img{transform:scale(1.005);}
+img{transition:transform 0.5s cubic-bezier(.4,0,.2,1);}
+
+.img-overlay{
+  position:absolute;inset:0;
+  background:rgba(196,118,42,0.06);
+  display:flex;align-items:flex-start;justify-content:flex-end;
+  padding:32px clamp(1.5rem,5vw,4rem);
+  opacity:0;transition:opacity 0.3s ease;
+  pointer-events:none;z-index:2;
+}
+.img-zoom-icon{
+  width:40px;height:40px;border-radius:50%;
+  background:var(--accent);
+  display:flex;align-items:center;justify-content:center;
+  color:#fff;font-size:1rem;
+  box-shadow:0 4px 16px var(--accent-glow);
+  animation:popIn 0.3s cubic-bezier(.4,0,.2,1) both;
+}
+@keyframes popIn{from{transform:scale(.6);opacity:0;}to{transform:scale(1);opacity:1;}}
+.img-label{
+  padding:8px clamp(1rem,4vw,3rem) 12px;
+  font-size:.72rem;font-weight:500;
+  color:var(--text2);letter-spacing:.06em;
+  display:flex;align-items:center;gap:10px;
+  border-top:1px solid var(--border);
+}
+.img-label .pg-num{
+  font-family:'Space Mono',monospace;
+  color:var(--accent);font-size:.7rem;
+}
+
+/* ===== CHAPTER DIVIDER ===== */
+.chapter-end{
+  padding:60px clamp(1rem,4vw,4rem);
+  display:flex;align-items:center;gap:20px;
+  color:var(--text2);font-size:.78rem;letter-spacing:.1em;
+}
+.chapter-end::before,.chapter-end::after{
+  content:'';flex:1;height:1px;
+  background:linear-gradient(90deg,transparent,var(--border));
+}
+.chapter-end::after{
+  background:linear-gradient(270deg,transparent,var(--border));
+}
+
+/* ===== CREATOR SECTION ===== */
+.creator-section{
+  padding:120px clamp(1rem,6vw,6rem);
+  background:var(--surface);
+  border-top:1px solid var(--border);
+  position:relative;overflow:hidden;
+}
+.creator-bg{
+  position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse 60% 80% at 20% 50%, var(--accent-glow), transparent 60%),
+              radial-gradient(ellipse 40% 60% at 80% 50%, rgba(91,163,217,.1), transparent 60%);
+}
+.creator-inner{
+  position:relative;z-index:1;
+  display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;
+  max-width:1100px;margin:0 auto;
+}
+@media(max-width:768px){.creator-inner{grid-template-columns:1fr;gap:48px;}}
+.creator-text{}
+.creator-tag{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:.72rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:1.5rem;
+}
+.creator-tag::before{content:'✦';animation:spin2 4s linear infinite;}
+@keyframes spin2{to{transform:rotate(360deg);}}
+.creator-name{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2.5rem,6vw,5rem);
+  font-weight:800;line-height:1;
+  color:var(--text);margin-bottom:1rem;
+}
+.creator-name span{
+  display:block;color:var(--accent);
+  font-style:italic;
+}
+.creator-desc{
+  font-size:1rem;color:var(--text2);line-height:1.7;max-width:420px;
+}
+.creator-badges{
+  display:flex;flex-wrap:wrap;gap:10px;margin-top:2rem;
+}
+.badge{
+  padding:6px 14px;border-radius:50px;
+  font-size:.75rem;font-weight:500;
+  background:var(--badge-bg);color:var(--accent);
+  border:1px solid rgba(196,118,42,.2);
+}
+.creator-image-wrap{
+  position:relative;display:flex;justify-content:center;
+}
+.creator-image-frame{
+  position:relative;
+  width:320px;height:320px;
+}
+.creator-image-frame::before{
+  content:'';position:absolute;
+  inset:-12px;border-radius:50%;
+  background:conic-gradient(var(--accent),var(--accent2),var(--accent));
+  animation:rotate 6s linear infinite;
+  opacity:.6;
+}
+@keyframes rotate{to{transform:rotate(360deg);}}
+.creator-image-frame::after{
+  content:'';position:absolute;
+  inset:-8px;border-radius:50%;
+  background:var(--bg);
+}
+.creator-img{
+  position:relative;z-index:1;
+  width:320px;height:320px;
+  border-radius:50%;object-fit:cover;
+  border:4px solid var(--surface);
+  box-shadow:0 20px 60px var(--shadow);
+  animation:floatImg 4s ease-in-out infinite;
+}
+@keyframes floatImg{0%,100%{transform:translateY(0);}50%{transform:translateY(-12px);}}
+.creator-shimmer{
+  position:absolute;inset:0;border-radius:50%;z-index:2;
+  background:linear-gradient(135deg,transparent 30%,rgba(255,255,255,.2) 50%,transparent 70%);
+  animation:shimmer 3s ease infinite;pointer-events:none;
+}
+@keyframes shimmer{0%{transform:translateX(-100%) rotate(0);}100%{transform:translateX(100%) rotate(0);}}
+
+/* ===== FOOTER ===== */
+footer{
+  padding:40px clamp(1rem,4vw,4rem);
+  border-top:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;
+  font-size:.8rem;color:var(--text2);
+}
+.footer-brand{
+  font-family:'Playfair Display',serif;
+  font-weight:600;color:var(--text);
+}
+.footer-brand span{color:var(--accent);}
+
+/* ===== LIGHTBOX ===== */
+#lightbox{
+  position:fixed;inset:0;z-index:9997;
+  background:var(--overlay);
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;visibility:hidden;
+  transition:opacity 0.4s ease,visibility 0.4s ease;
+  padding:20px;
+}
+#lightbox.open{opacity:1;visibility:visible;}
+#lightbox.open #lb-img{animation:lbIn 0.4s cubic-bezier(.4,0,.2,1) both;}
+@keyframes lbIn{from{transform:scale(.88);opacity:0;}to{transform:scale(1);opacity:1;}}
+#lb-img{
+  max-width:95vw;max-height:90vh;
+  width:auto;height:auto;
+  object-fit:contain;
+  border-radius:6px;
+  box-shadow:0 30px 80px rgba(0,0,0,.5);
+  cursor:default;
+}
+.lb-close{
+  position:absolute;top:20px;right:24px;
+  width:44px;height:44px;border-radius:50%;
+  background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);
+  color:#fff;font-size:1.3rem;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  backdrop-filter:blur(8px);
+  transition:all 0.3s ease;
+}
+.lb-close:hover{background:var(--accent);border-color:var(--accent);transform:rotate(90deg);}
+.lb-nav{
+  position:absolute;top:50%;transform:translateY(-50%);
+  width:48px;height:48px;border-radius:50%;
+  background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);
+  color:#fff;font-size:1.3rem;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  backdrop-filter:blur(8px);
+  transition:all 0.3s ease;
+}
+.lb-nav:hover{background:var(--accent);border-color:var(--accent);}
+#lb-prev{left:20px;}
+#lb-next{right:20px;}
+#lb-counter{
+  position:absolute;bottom:20px;left:50%;transform:translateX(-50%);
+  font-family:'Space Mono',monospace;
+  font-size:.75rem;color:rgba(255,255,255,.7);
+  background:rgba(0,0,0,.4);backdrop-filter:blur(8px);
+  padding:6px 16px;border-radius:50px;
+  border:1px solid rgba(255,255,255,.1);
+}
+#lb-chapter-tag{
+  position:absolute;top:20px;left:24px;
+  font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  color:rgba(255,255,255,.8);
+  background:rgba(0,0,0,.4);backdrop-filter:blur(8px);
+  padding:6px 16px;border-radius:50px;
+  border:1px solid rgba(255,255,255,.1);
+}
+
+/* ===== BACK TO TOP ===== */
+#back-top{
+  position:fixed;bottom:32px;right:32px;z-index:800;
+  width:44px;height:44px;border-radius:50%;
+  background:var(--accent);border:none;
+  color:#fff;font-size:1rem;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 20px var(--accent-glow);
+  opacity:0;visibility:hidden;
+  transform:translateY(20px);
+  transition:all 0.4s cubic-bezier(.4,0,.2,1);
+}
+#back-top.show{opacity:1;visibility:visible;transform:translateY(0);}
+#back-top:hover{transform:translateY(-4px) scale(1.1);}
+
+/* ===== MOBILE ===== */
+@media(max-width:600px){
+  .nav-links{display:none;}
+  .hero-stats{gap:24px;}
+  .chapter-header{grid-template-columns:1fr;gap:8px;}
+  .chapter-number{font-size:5rem;}
+  .lb-nav{display:none;}
+}
+
+/* ===== CHAPTER STICKY LABELS ===== */
+.chapter-sticky{
+  position:sticky;top:64px;z-index:100;
+  background:var(--nav-bg);
+  backdrop-filter:blur(16px);
+  padding:10px clamp(1rem,4vw,4rem);
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;
+  animation:none;
+}
+.chapter-sticky-title{
+  font-family:'Playfair Display',serif;
+  font-size:1rem;font-weight:600;
+  display:flex;align-items:center;gap:10px;
+}
+.chapter-sticky-count{
+  font-family:'Space Mono',monospace;
+  font-size:.72rem;color:var(--text2);
+}
+.ch1 .sticky-dot{background:var(--ch1);}
+.ch2 .sticky-dot{background:var(--ch2);}
+.ch3 .sticky-dot{background:var(--ch3);}
+.sticky-dot{width:8px;height:8px;border-radius:50%;display:inline-block;}
+</style>
+</head>
+<body>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="loader-ring"></div>
+  <div class="loader-text">Loading Solutions…</div>
+</div>
+
+<!-- SCROLL PROGRESS -->
+<div id="progress-bar"></div>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="nav-brand">RS <span>Aggarwal</span> · Class XII</div>
+  <ul class="nav-links">
+    <li><a href="#matrices"><span class="dot"></span>Matrices</a></li>
+    <li><a href="#determinants"><span class="dot"></span>Determinants</a></li>
+    <li><a href="#itf"><span class="dot"></span>Inverse Trig</a></li>
+    <li><a href="#creator"><span class="dot"></span>Creator</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="theme-btn" id="themeBtn" title="Toggle theme">☀</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-particles" id="particles"></div>
+  <div class="hero-eyebrow">✦ Class 12 Mathematics ✦ RS Aggarwal</div>
+  <h1 class="hero-title">
+    Solved<br><em>Examples</em>
+  </h1>
+  <p class="hero-sub">Three complete chapters — hand-curated, beautifully presented. Study smarter, solve faster.</p>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-num" data-target="75">0</div><div class="stat-label">Solutions</div></div>
+    <div class="stat"><div class="stat-num" data-target="3">0</div><div class="stat-label">Chapters</div></div>
+    <div class="stat"><div class="stat-num" data-target="12">0</div><div class="stat-label">Grade</div></div>
+  </div>
+  <div class="hero-divider"></div>
+  <div class="scroll-indicator">
+    <span>Scroll to explore</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ==================== CHAPTER 1: MATRICES ==================== -->
+<section class="chapter ch1" id="matrices">
+  <div class="chapter-header">
+    <div class="chapter-number">01</div>
+    <div class="chapter-info">
+      <div class="chapter-label">Chapter One</div>
+      <h2 class="chapter-title"><em>Matrices</em></h2>
+      <div class="chapter-meta">27 solved examples · Pages 934–960</div>
+    </div>
+  </div>
+  <div class="chapter-rule"></div>
+  <div class="chapter-sticky ch1">
+    <div class="chapter-sticky-title"><span class="sticky-dot"></span> Matrices</div>
+    <span class="chapter-sticky-count">27 examples</span>
+  </div>
+
+  <div class="img-stack" id="matrices-stack">
+    <!-- 27 images: 934-960 -->
+  </div>
+  <div class="chapter-end">Chapter One Complete</div>
+</section>
+
+<!-- ==================== CHAPTER 2: DETERMINANTS ==================== -->
+<section class="chapter ch2" id="determinants">
+  <div class="chapter-header">
+    <div class="chapter-number">02</div>
+    <div class="chapter-info">
+      <div class="chapter-label">Chapter Two</div>
+      <h2 class="chapter-title"><em>Determinants</em></h2>
+      <div class="chapter-meta">25 solved examples · Pages 961–985</div>
+    </div>
+  </div>
+  <div class="chapter-rule"></div>
+  <div class="chapter-sticky ch2">
+    <div class="chapter-sticky-title"><span class="sticky-dot"></span> Determinants</div>
+    <span class="chapter-sticky-count">25 examples</span>
+  </div>
+
+  <div class="img-stack" id="determinants-stack">
+    <!-- 25 images: 961-985 -->
+  </div>
+  <div class="chapter-end">Chapter Two Complete</div>
+</section>
+
+<!-- ==================== CHAPTER 3: INVERSE TRIG ==================== -->
+<section class="chapter ch3" id="itf">
+  <div class="chapter-header">
+    <div class="chapter-number">03</div>
+    <div class="chapter-info">
+      <div class="chapter-label">Chapter Three</div>
+      <h2 class="chapter-title"><em>Inverse Trigonometric</em><br>Functions</h2>
+      <div class="chapter-meta">23 solved examples · Pages 986–1008</div>
+    </div>
+  </div>
+  <div class="chapter-rule"></div>
+  <div class="chapter-sticky ch3">
+    <div class="chapter-sticky-title"><span class="sticky-dot"></span> Inverse Trigonometric Functions</div>
+    <span class="chapter-sticky-count">23 examples</span>
+  </div>
+
+  <div class="img-stack" id="itf-stack">
+    <!-- 23 images: 986-1008 -->
+  </div>
+  <div class="chapter-end">Chapter Three Complete</div>
+</section>
+
+<!-- ==================== CREATOR ==================== -->
+<section class="creator-section" id="creator">
+  <div class="creator-bg"></div>
+  <div class="creator-inner">
+    <div class="creator-text">
+      <div class="creator-tag">Made with passion</div>
+      <div class="creator-name">
+        Crafted by
+        <span>Akshit Tyagi</span>
+      </div>
+      <p class="creator-desc">
+        This complete collection of RS Aggarwal Class 12 solved examples — covering Matrices, Determinants, and Inverse Trigonometric Functions — has been carefully compiled and designed by Akshit Tyagi, to make mathematics beautiful and accessible.
+      </p>
+      <div class="creator-badges">
+        <span class="badge">Class XII CBSE</span>
+        <span class="badge">RS Aggarwal</span>
+        <span class="badge">Mathematics</span>
+        <span class="badge">75 Solutions</span>
+      </div>
+    </div>
+    <div class="creator-image-wrap">
+      <div class="creator-image-frame">
+        <img class="creator-img" src="https://plain-apac-prod-public.komododecks.com/202605/22/nHDi45aen4uwI6zP8WGI/image.jpg" alt="Akshit Tyagi">
+        <div class="creator-shimmer"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">RS <span>Aggarwal</span> · Class XII Solutions</div>
+  <div>Compiled by Akshit Tyagi · 75 Solved Examples</div>
+  <div>© 2025 · Made with ♥</div>
+</footer>
+
+<!-- BACK TO TOP -->
+<button id="back-top" title="Back to top">↑</button>
+
+<!-- LIGHTBOX -->
+<div id="lightbox">
+  <div id="lb-chapter-tag"></div>
+  <button class="lb-close" id="lb-close">✕</button>
+  <button class="lb-nav" id="lb-prev">‹</button>
+  <img id="lb-img" src="" alt="Solution">
+  <button class="lb-nav" id="lb-next">›</button>
+  <div id="lb-counter">1 / 75</div>
+</div>
+
+<script>
+// ===== IMAGE DATA =====
+const BASE = 'https://rawcdn.githack.com/tyagiakshit536-dotcom/RS-Aggarwal/e15f006ebf062b79346499eb767e15e0f305e70e/';
+
+const chapters = [
+  {
+    id: 'matrices-stack',
+    chapter: 'Matrices',
+    folder: 'Matrices',
+    start: 934, end: 960
+  },
+  {
+    id: 'determinants-stack',
+    chapter: 'Determinants',
+    folder: 'Determinants',
+    start: 961, end: 985
+  },
+  {
+    id: 'itf-stack',
+    chapter: 'Inverse Trigonometric Functions',
+    folder: 'Inverse Trignometric Functions',
+    start: 986, end: 1008
+  }
+];
+
+// Build all image data
+let allImages = [];
+chapters.forEach(ch => {
+  for (let n = ch.start; n <= ch.end; n++) {
+    allImages.push({
+      src: BASE + encodeURIComponent(ch.folder) + '/Screenshot%20(' + n + ').png',
+      chapter: ch.chapter,
+      num: n,
+      idx: allImages.length
+    });
+  }
+});
+
+// Render images into stacks
+chapters.forEach(ch => {
+  const stack = document.getElementById(ch.id);
+  const imgs = allImages.filter(i => i.chapter === ch.chapter);
+  imgs.forEach((img, i) => {
+    const div = document.createElement('div');
+    div.className = 'img-entry';
+    div.dataset.idx = img.idx;
+    div.innerHTML = `
+      <div class="img-inner">
+        <img src="${img.src}" alt="Example ${img.num}" loading="lazy" width="100%">
+        <div class="img-overlay"><div class="img-zoom-icon">⤢</div></div>
+      </div>
+      <div class="img-label">
+        <span class="pg-num">P.${img.num}</span>
+        <span>${ch.chapter}</span>
+        <span style="margin-left:auto;font-size:.68rem;">Example ${i + 1} of ${imgs.length}</span>
+      </div>
+    `;
+    div.addEventListener('click', () => openLightbox(img.idx));
+    stack.appendChild(div);
+  });
+});
+
+// ===== LOADER =====
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    document.getElementById('loader').classList.add('hidden');
+  }, 900);
+});
+
+// ===== PARTICLES =====
+const particleContainer = document.getElementById('particles');
+for (let i = 0; i < 25; i++) {
+  const p = document.createElement('div');
+  p.className = 'particle';
+  p.style.cssText = `
+    left:${Math.random()*100}%;
+    bottom:${-20+Math.random()*10}%;
+    animation-duration:${6+Math.random()*10}s;
+    animation-delay:${Math.random()*8}s;
+    width:${1+Math.random()*2}px;
+    height:${1+Math.random()*2}px;
+    opacity:${0.2+Math.random()*.4};
+  `;
+  particleContainer.appendChild(p);
+}
+
+// ===== COUNTER ANIMATION =====
+const counters = document.querySelectorAll('.stat-num[data-target]');
+const counterDone = new Set();
+function animateCounters() {
+  counters.forEach(el => {
+    if (counterDone.has(el)) return;
+    const target = +el.dataset.target;
+    let current = 0;
+    const step = target / 40;
+    const timer = setInterval(() => {
+      current = Math.min(current + step, target);
+      el.textContent = Math.round(current);
+      if (current >= target) clearInterval(timer);
+    }, 30);
+    counterDone.add(el);
+  });
+}
+setTimeout(animateCounters, 1200);
+
+// ===== SCROLL PROGRESS =====
+const progressBar = document.getElementById('progress-bar');
+const backTop = document.getElementById('back-top');
+window.addEventListener('scroll', () => {
+  const scrollTop = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  progressBar.style.width = (scrollTop / docHeight * 100) + '%';
+  backTop.classList.toggle('show', scrollTop > 500);
+  updateNavActive();
+});
+backTop.addEventListener('click', () => window.scrollTo({top:0,behavior:'smooth'}));
+
+// ===== NAV ACTIVE =====
+const navLinks = document.querySelectorAll('.nav-links a');
+function updateNavActive() {
+  const sections = ['matrices','determinants','itf','creator'];
+  let current = '';
+  sections.forEach(id => {
+    const el = document.getElementById(id);
+    if (el && window.scrollY >= el.offsetTop - 120) current = id;
+  });
+  navLinks.forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#'+current);
+  });
+}
+
+// ===== INTERSECTION OBSERVER for img-entry ===== 
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      io.unobserve(e.target);
+    }
+  });
+}, {threshold: 0.05, rootMargin: '0px 0px -40px 0px'});
+document.querySelectorAll('.img-entry').forEach(el => io.observe(el));
+
+// ===== THEME TOGGLE =====
+const themeBtn = document.getElementById('themeBtn');
+themeBtn.addEventListener('click', () => {
+  const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  document.documentElement.setAttribute('data-theme', isDark ? 'light' : 'dark');
+  themeBtn.textContent = isDark ? '☀' : '☾';
+});
+
+// ===== LIGHTBOX =====
+const lb = document.getElementById('lightbox');
+const lbImg = document.getElementById('lb-img');
+const lbClose = document.getElementById('lb-close');
+const lbPrev = document.getElementById('lb-prev');
+const lbNext = document.getElementById('lb-next');
+const lbCounter = document.getElementById('lb-counter');
+const lbChapterTag = document.getElementById('lb-chapter-tag');
+let lbCurrent = 0;
+
+function openLightbox(idx) {
+  lbCurrent = idx;
+  showLbImage();
+  lb.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  lb.classList.remove('open');
+  document.body.style.overflow = '';
+}
+function showLbImage() {
+  const img = allImages[lbCurrent];
+  lbImg.src = img.src;
+  lbCounter.textContent = (lbCurrent + 1) + ' / ' + allImages.length;
+  lbChapterTag.textContent = img.chapter;
+}
+lbClose.addEventListener('click', closeLightbox);
+lbPrev.addEventListener('click', () => {
+  lbCurrent = (lbCurrent - 1 + allImages.length) % allImages.length;
+  lbImg.style.animation = 'none'; lbImg.offsetHeight;
+  lbImg.style.animation = '';
+  showLbImage();
+});
+lbNext.addEventListener('click', () => {
+  lbCurrent = (lbCurrent + 1) % allImages.length;
+  lbImg.style.animation = 'none'; lbImg.offsetHeight;
+  lbImg.style.animation = '';
+  showLbImage();
+});
+lb.addEventListener('click', e => { if(e.target === lb) closeLightbox(); });
+document.addEventListener('keydown', e => {
+  if (!lb.classList.contains('open')) return;
+  if (e.key === 'Escape') closeLightbox();
+  if (e.key === 'ArrowLeft') lbPrev.click();
+  if (e.key === 'ArrowRight') lbNext.click();
+});
+</script>
+</body>
+</html>

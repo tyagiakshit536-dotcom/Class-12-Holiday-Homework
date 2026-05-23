@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Current Electricity Derivations · Class XII · Akshit Tyagi</title>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false})"></script>
+<style>
+:root{
+  --bg:#FEFBF3;--paper:#FFF9EC;--paper-2:#FFF4DC;
+  --text:#1A1208;--text-muted:#6B5540;
+  --accent:#B07D10;--accent-2:#C05A12;--accent-3:#27AE60;
+  --line:#DDD0B0;--line-2:#EDE0C4;
+  --highlight:rgba(176,125,16,.1);--highlight-2:rgba(176,125,16,.06);
+  --shadow:rgba(100,60,10,.13);--shadow-lg:rgba(100,60,10,.22);
+  --nav-bg:rgba(254,251,243,.94);
+  --ruled:rgba(180,148,100,.18);--margin:rgba(200,100,80,.18);
+  --diagram-bg:#FAFAF5;
+  --c-red:#C0392B;--c-blue:#1E5BA8;--c-green:#1E8A50;
+  --c-gold:#B07D10;--c-purple:#7D3C98;--c-ink:#1A1208;
+}
+[data-theme="dark"]{
+  --bg:#100E0A;--paper:#1A1710;--paper-2:#221E14;
+  --text:#EDE0C8;--text-muted:#A89070;
+  --accent:#D4A820;--accent-2:#E8783A;--accent-3:#2ECC71;
+  --line:#3A2E1A;--line-2:#2A2416;
+  --highlight:rgba(212,168,32,.1);--highlight-2:rgba(212,168,32,.055);
+  --shadow:rgba(0,0,0,.4);--shadow-lg:rgba(0,0,0,.6);
+  --nav-bg:rgba(16,14,10,.95);
+  --ruled:rgba(212,168,32,.07);--margin:rgba(220,120,100,.12);
+  --diagram-bg:#181510;
+  --c-red:#E74C3C;--c-blue:#5B9BD5;--c-green:#2ECC71;
+  --c-gold:#D4A820;--c-purple:#AF7AC5;--c-ink:#EDE0C8;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:'Crimson Pro',Georgia,serif;background:var(--bg);color:var(--text);line-height:1.85;font-size:1.1rem;transition:background .45s ease,color .45s ease;overflow-x:hidden;}
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--accent);border-radius:3px}
+a{color:inherit;text-decoration:none}
+#progress{position:fixed;top:0;left:0;height:3px;width:0%;background:linear-gradient(90deg,var(--accent),var(--accent-2),var(--accent-3));z-index:999;transition:width .08s linear;box-shadow:0 0 8px var(--accent);}
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--nav-bg);backdrop-filter:blur(18px);border-bottom:1px solid var(--line);padding:.7rem 2rem;display:flex;align-items:center;justify-content:space-between;transform:translateY(-110%);transition:transform .45s cubic-bezier(.25,.8,.25,1),background .45s ease;}
+.nav.show{transform:translateY(0)}
+.nav-brand{font-family:'Caveat',cursive;font-size:1.25rem;font-weight:700;color:var(--accent);letter-spacing:.02em;}
+.nav-links{display:flex;gap:.3rem;list-style:none;flex-wrap:wrap;}
+.nav-links a{font-family:'Caveat',cursive;font-size:.88rem;color:var(--text-muted);padding:.2rem .55rem;border-radius:6px;transition:color .2s,background .2s;}
+.nav-links a:hover{color:var(--accent);background:var(--highlight)}
+.nav-right{display:flex;align-items:center;gap:.75rem}
+.toggle{width:46px;height:25px;background:var(--line);border:none;border-radius:100px;cursor:pointer;position:relative;transition:background .3s;}
+.toggle::after{content:'';position:absolute;top:3px;left:3px;width:19px;height:19px;border-radius:50%;background:var(--accent);transition:transform .35s cubic-bezier(.4,0,.2,1);}
+[data-theme="dark"] .toggle::after{transform:translateX(21px)}
+.toggle-icon{font-size:.7rem;position:absolute;top:50%;transform:translateY(-50%);transition:opacity .3s;pointer-events:none;}
+.icon-sun{left:5px;opacity:1}.icon-moon{right:5px;opacity:.5}
+[data-theme="dark"] .icon-sun{opacity:.5}[data-theme="dark"] .icon-moon{opacity:1}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:5rem 2rem 6rem;position:relative;overflow:hidden;background:var(--paper);}
+.hero::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(transparent,transparent 39px,var(--ruled) 39px,var(--ruled) 40px);pointer-events:none;}
+.hero::after{content:'';position:absolute;top:0;left:88px;width:1.5px;height:100%;background:var(--margin);pointer-events:none;}
+.ink-orb{position:absolute;border-radius:50%;pointer-events:none;animation:floatOrb var(--dur,12s) ease-in-out infinite;opacity:.055;filter:blur(60px);}
+@keyframes floatOrb{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(30px,-40px) scale(1.1)}66%{transform:translate(-20px,25px) scale(.9)}}
+.hero-eyebrow{font-family:'Caveat',cursive;font-size:1rem;color:var(--accent);letter-spacing:.18em;text-transform:uppercase;margin-bottom:1rem;opacity:0;animation:riseUp .8s ease .2s forwards;position:relative;z-index:2;}
+.hero-title{font-family:'Caveat',cursive;font-size:clamp(3.2rem,8.5vw,6.5rem);font-weight:700;line-height:1.05;color:var(--text);margin-bottom:.6rem;opacity:0;animation:riseUp .9s ease .38s forwards;position:relative;z-index:2;}
+.hero-title span{color:var(--accent)}
+.hero-sub{font-size:1.15rem;color:var(--text-muted);font-style:italic;margin-bottom:3rem;opacity:0;animation:riseUp .9s ease .55s forwards;position:relative;z-index:2;}
+.author-card{display:flex;align-items:center;gap:1.8rem;background:var(--paper-2);border:1.5px solid var(--line);border-radius:24px;padding:1.6rem 2.8rem;box-shadow:0 12px 50px var(--shadow);margin-bottom:2.2rem;opacity:0;position:relative;z-index:2;animation-name:riseUp,cardFloat;animation-duration:1s,6s;animation-delay:.72s,1.8s;animation-timing-function:ease,ease-in-out;animation-iteration-count:1,infinite;animation-fill-mode:forwards,none;}
+@keyframes cardFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.author-photo{width:88px;height:88px;border-radius:50%;object-fit:cover;border:3px solid var(--accent);box-shadow:0 0 0 5px var(--highlight),0 8px 24px var(--shadow);transition:transform .4s ease;flex-shrink:0;}
+.author-photo:hover{transform:scale(1.06) rotate(2deg)}
+.author-info{text-align:left}
+.author-label{font-family:'Caveat',cursive;font-size:.78rem;color:var(--text-muted);letter-spacing:.12em;text-transform:uppercase;}
+.author-name{font-family:'Caveat',cursive;font-size:2.8rem;font-weight:700;line-height:1;background:linear-gradient(135deg,var(--accent),var(--accent-2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.author-desc{font-size:.9rem;color:var(--text-muted);font-style:italic;}
+.chips{display:flex;flex-wrap:wrap;gap:.6rem;justify-content:center;opacity:0;animation:riseUp 1s ease .9s forwards;position:relative;z-index:2;}
+.chip{font-family:'Caveat',cursive;font-size:.9rem;color:var(--accent);border:1px solid var(--accent);background:var(--highlight);padding:.28rem .85rem;border-radius:100px;cursor:pointer;transition:all .3s cubic-bezier(.25,.8,.25,1);position:relative;overflow:hidden;}
+.chip::before{content:'';position:absolute;inset:0;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .3s ease;border-radius:inherit;z-index:-1;}
+.chip:hover::before{transform:scaleX(1)}.chip:hover{color:var(--bg);border-color:var(--accent)}
+.scroll-cue{position:absolute;bottom:2.2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.5rem;opacity:0;animation:fadeIn 1s ease 1.4s forwards;z-index:2;}
+.scroll-cue span{font-family:'Caveat',cursive;font-size:.8rem;color:var(--text-muted);letter-spacing:.1em;}
+.scroll-arrow{width:20px;height:20px;border-right:2px solid var(--accent);border-bottom:2px solid var(--accent);transform:rotate(45deg);animation:arrowBounce 1.6s ease infinite;}
+
+/* LAYOUT */
+.container{max-width:880px;margin:0 auto;padding:4rem 2rem 2rem;}
+.section{margin-bottom:5.5rem;opacity:0;transform:translateY(44px);transition:opacity .75s ease,transform .75s cubic-bezier(.25,.8,.25,1);}
+.section.reveal{opacity:1;transform:translateY(0)}
+.section-header{display:flex;align-items:flex-start;gap:1.4rem;margin-bottom:2rem;padding-bottom:1rem;border-bottom:2px solid var(--accent);}
+.s-num{font-family:'Caveat',cursive;font-size:4.5rem;font-weight:700;color:var(--accent);opacity:.22;line-height:1;min-width:58px;position:relative;top:-.25rem;}
+.s-title{font-family:'Caveat',cursive;font-size:2.1rem;font-weight:700;color:var(--text);line-height:1.2;}
+.s-tag{display:inline-block;margin-top:.35rem;font-family:'Caveat',cursive;font-size:.78rem;color:var(--accent-2);border:1px solid var(--accent-2);padding:.12rem .55rem;border-radius:100px;}
+.paper{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:2rem 2.4rem;position:relative;overflow:hidden;box-shadow:0 5px 28px var(--shadow);margin-bottom:1.4rem;transition:box-shadow .3s ease;}
+.paper:hover{box-shadow:0 10px 48px var(--shadow-lg)}
+.paper::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(transparent,transparent 27px,var(--ruled) 27px,var(--ruled) 28px);pointer-events:none;}
+.paper.margin::after{content:'';position:absolute;top:0;left:44px;width:1.5px;height:100%;background:var(--margin);pointer-events:none;}
+.theory-block{background:var(--highlight);border-left:3.5px solid var(--accent);border-radius:0 12px 12px 0;padding:1rem 1.4rem;margin-bottom:1.6rem;font-style:italic;font-size:1rem;color:var(--text-muted);position:relative;z-index:1;}
+.lbl{display:inline-block;font-family:'Caveat',cursive;font-size:.82rem;font-weight:700;color:var(--accent);letter-spacing:.12em;text-transform:uppercase;margin-bottom:.6rem;position:relative;z-index:1;}
+.step{display:flex;gap:.9rem;margin-bottom:.9rem;position:relative;z-index:1;}
+.step-n{font-family:'Caveat',cursive;font-size:.85rem;color:var(--accent);font-weight:700;min-width:22px;padding-top:.1rem;flex-shrink:0;}
+.step-c{font-size:1rem;flex:1;color:var(--text)}
+.fbox{background:var(--paper-2);border:1.5px solid var(--line);border-radius:12px;padding:1rem 1.8rem;text-align:center;margin:1.3rem 0;position:relative;z-index:1;overflow-x:auto;}
+.fbox.result{border-color:var(--accent);border-width:2px;background:linear-gradient(135deg,var(--highlight),var(--paper-2));box-shadow:0 2px 18px rgba(176,125,16,.12);animation:shimmer 4s ease-in-out infinite;}
+@keyframes shimmer{0%,100%{box-shadow:0 2px 18px rgba(176,125,16,.12)}50%{box-shadow:0 4px 32px rgba(176,125,16,.28)}}
+.result-tag{position:absolute;top:-.65rem;right:1rem;font-family:'Caveat',cursive;font-size:.75rem;color:var(--accent);background:var(--paper);padding:.05rem .45rem;border:1px solid var(--accent);border-radius:100px;}
+.note{background:var(--highlight-2);border:1px dashed var(--accent);border-radius:9px;padding:.75rem 1.2rem;margin:1rem 0;font-family:'Caveat',cursive;font-size:1.05rem;color:var(--text-muted);position:relative;z-index:1;}
+.note strong{color:var(--accent)}
+.diagram-wrap{background:var(--diagram-bg);border:1px solid var(--line-2);border-radius:16px;padding:1.6rem;display:flex;align-items:center;justify-content:center;overflow:hidden;margin:1.4rem 0;box-shadow:inset 0 2px 10px rgba(0,0,0,.04);}
+.diagram-wrap svg{max-width:100%;height:auto;display:block}
+.diagram-cap{text-align:center;font-family:'Caveat',cursive;font-size:.88rem;color:var(--text-muted);margin-top:-.5rem;margin-bottom:1.2rem;font-style:italic;}
+.dp{stroke-dasharray:900;stroke-dashoffset:900;animation:drawPath 1.4s ease forwards;animation-play-state:paused;}
+.section.reveal .dp{animation-play-state:running}
+.dp2{animation-delay:.3s}.dp3{animation-delay:.6s}.dp4{animation-delay:.9s}
+.sub-title{font-family:'Caveat',cursive;font-size:1.5rem;font-weight:600;color:var(--accent-2);display:flex;align-items:center;gap:.5rem;margin-bottom:1rem;margin-top:2.2rem;}
+.sub-title::before{content:'→';font-size:1.2rem;color:var(--accent)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem;margin:1.4rem 0;}
+.divider{display:flex;align-items:center;gap:1rem;margin:3.5rem 0;opacity:.45;}
+.divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--accent);}
+.divider span{font-family:'Caveat',cursive;color:var(--accent);font-size:1.4rem;}
+.footer{text-align:center;padding:3rem 2rem;border-top:1px solid var(--line);font-family:'Caveat',cursive;font-size:1.1rem;color:var(--text-muted);}
+.footer span{color:var(--accent)}
+p{position:relative;z-index:1;margin-bottom:.7rem}
+strong{color:var(--accent);font-weight:600}
+em{color:var(--text-muted)}
+small{font-size:.88rem}
+@keyframes riseUp{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes arrowBounce{0%,100%{transform:rotate(45deg) translateY(0)}50%{transform:rotate(45deg) translateY(7px)}}
+@keyframes drawPath{from{stroke-dashoffset:900}to{stroke-dashoffset:0}}
+.katex-display{padding:.4rem 0;overflow-x:auto}.katex{font-size:1.08em}
+@media(max-width:620px){.two{grid-template-columns:1fr}.nav-links{display:none}.hero::after{left:42px}.author-card{flex-direction:column;text-align:center;padding:1.4rem}.author-info{text-align:center}}
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<nav class="nav" id="nav">
+  <div class="nav-brand">⚡ Current Electricity · XII</div>
+  <ul class="nav-links">
+    <li><a href="#s1">Drift Velocity</a></li>
+    <li><a href="#s2">Ohm's Law</a></li>
+    <li><a href="#s3">Vector Form</a></li>
+    <li><a href="#s4">Resistivity &amp; Temp</a></li>
+    <li><a href="#s5">Kirchhoff's Laws</a></li>
+    <li><a href="#s6">Wheatstone</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="toggle" id="themeToggle" aria-label="Toggle theme">
+      <span class="toggle-icon icon-sun">☀</span>
+      <span class="toggle-icon icon-moon">☾</span>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="ink-orb" style="width:420px;height:420px;background:var(--accent);top:-120px;right:-100px;--dur:14s"></div>
+  <div class="ink-orb" style="width:300px;height:300px;background:var(--accent-2);bottom:-80px;left:-60px;--dur:11s;animation-delay:-4s"></div>
+  <div class="ink-orb" style="width:200px;height:200px;background:var(--accent-3);bottom:20%;left:15%;--dur:16s;animation-delay:-7s"></div>
+
+  <div class="hero-eyebrow">Class XII · Physics · Chapter 3 · Current Electricity</div>
+  <h1 class="hero-title">
+    Current<br><span>Electricity</span>
+  </h1>
+  <p class="hero-sub">A fair notebook — written clearly, for every student ✏️</p>
+
+  <div class="author-card">
+    <img src="https://plain-apac-prod-public.komododecks.com/202605/22/nHDi45aen4uwI6zP8WGI/image.jpg"
+      alt="Akshit Tyagi" class="author-photo" onerror="this.style.display='none'">
+    <div class="author-info">
+      <div class="author-label">Made with ♥ by</div>
+      <div class="author-name">Akshit Tyagi</div>
+      <div class="author-desc">Class XII · Physics Fair Notes</div>
+    </div>
+  </div>
+
+  <div class="chips">
+    <a class="chip" href="#s1">01 · Drift Velocity</a>
+    <a class="chip" href="#s2">02 · Ohm's Law</a>
+    <a class="chip" href="#s3">03 · Vector Form</a>
+    <a class="chip" href="#s4">04 · ρ &amp; Temperature</a>
+    <a class="chip" href="#s5">05 · Kirchhoff's Laws</a>
+    <a class="chip" href="#s6">06 · Wheatstone Bridge</a>
+  </div>
+
+  <div class="scroll-cue"><span>Begin</span><div class="scroll-arrow"></div></div>
+</section>
+
+<div class="container">
+
+<!-- ====================================================
+     SECTION 1 — DRIFT VELOCITY
+===================================================== -->
+<section class="section" id="s1">
+  <div class="section-header">
+    <div class="s-num">01</div>
+    <div class="s-meta">
+      <div class="s-title">Drift Velocity</div>
+      <span class="s-tag">Free electrons · Electric field · $v_d = \frac{eE\tau}{m}$</span>
+    </div>
+  </div>
+
+  <div class="theory-block">
+    In a conductor, free electrons move randomly at high speeds. When an electric field is applied, they gain a small <em>net velocity</em> opposite to the field — this is <strong>drift velocity</strong>. It is tiny (~mm/s) but responsible for all electric current.
+  </div>
+
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 580 170" xmlns="http://www.w3.org/2000/svg" width="580" height="170">
+      <defs>
+        <marker id="d1" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+          <path d="M0,0L0,7L7,3.5z" style="fill:var(--c-red)"/></marker>
+        <marker id="d2" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+          <path d="M0,0L0,7L7,3.5z" style="fill:var(--c-blue)"/></marker>
+        <marker id="d3" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+          <path d="M0,0L0,7L7,3.5z" style="fill:var(--c-gold)"/></marker>
+      </defs>
+
+      <!-- Conductor body -->
+      <rect x="50" y="55" width="480" height="62" rx="8"
+        style="fill:var(--highlight);stroke:var(--accent);stroke-width:1.8"/>
+
+      <!-- Random motion squiggles (before field) -->
+      <path d="M 90 76 Q 105 65 120 76 Q 135 87 150 76"
+        style="stroke:var(--text-muted);stroke-width:1.2;fill:none;opacity:.45" class="dp"/>
+      <path d="M 90 104 Q 105 93 120 104 Q 135 115 150 104"
+        style="stroke:var(--text-muted);stroke-width:1.2;fill:none;opacity:.45" class="dp dp2"/>
+
+      <!-- Electrons (circles) drifting left -->
+      <circle cx="130" cy="86" r="9" style="fill:var(--c-blue);opacity:.85"/>
+      <text x="130" y="90" text-anchor="middle" style="font-family:Crimson Pro,serif;font-size:11px;fill:white">e⁻</text>
+
+      <circle cx="230" cy="86" r="9" style="fill:var(--c-blue);opacity:.85"/>
+      <text x="230" y="90" text-anchor="middle" style="font-family:Crimson Pro,serif;font-size:11px;fill:white">e⁻</text>
+
+      <circle cx="340" cy="86" r="9" style="fill:var(--c-blue);opacity:.85"/>
+      <text x="340" y="90" text-anchor="middle" style="font-family:Crimson Pro,serif;font-size:11px;fill:white">e⁻</text>
+
+      <circle cx="450" cy="86" r="9" style="fill:var(--c-blue);opacity:.85"/>
+      <text x="450" y="90" text-anchor="middle" style="font-family:Crimson Pro,serif;font-size:11px;fill:white">e⁻</text>
+
+      <!-- vd arrows on electrons (pointing left, opposite to E) -->
+      <line x1="118" y1="86" x2="92" y2="86" style="stroke:var(--c-blue);stroke-width:2" marker-end="url(#d2)" class="dp dp2"/>
+      <line x1="218" y1="86" x2="192" y2="86" style="stroke:var(--c-blue);stroke-width:2" marker-end="url(#d2)" class="dp dp2"/>
+      <line x1="328" y1="86" x2="302" y2="86" style="stroke:var(--c-blue);stroke-width:2" marker-end="url(#d2)" class="dp dp3"/>
+      <line x1="438" y1="86" x2="412" y2="86" style="stroke:var(--c-blue);stroke-width:2" marker-end="url(#d2)" class="dp dp3"/>
+
+      <!-- vd label -->
+      <text x="105" y="75" style="font-family:Crimson Pro,serif;font-style:italic;font-size:13px;fill:var(--c-blue)">v⃗d</text>
+
+      <!-- E field arrow (pointing right) -->
+      <line x1="50" y1="140" x2="530" y2="140"
+        style="stroke:var(--c-red);stroke-width:2" marker-end="url(#d1)" class="dp"/>
+      <text x="290" y="158" text-anchor="middle"
+        style="font-family:Crimson Pro,serif;font-style:italic;font-size:14px;fill:var(--c-red)">E⃗  (field direction →)</text>
+
+      <!-- + plate left, – plate right feel -->
+      <text x="22" y="92" text-anchor="middle"
+        style="font-family:Crimson Pro,serif;font-size:22px;fill:var(--c-red);font-weight:700">+</text>
+      <text x="558" y="92" text-anchor="middle"
+        style="font-family:Crimson Pro,serif;font-size:22px;fill:var(--c-blue);font-weight:700">−</text>
+
+      <!-- tau label -->
+      <text x="290" y="46" text-anchor="middle"
+        style="font-family:'Caveat',cursive;font-size:.78rem;fill:var(--text-muted)">τ = mean free time between collisions (relaxation time)</text>
+    </svg>
+  </div>
+  <p class="diagram-cap">Fig 1.1 — Free electrons drift opposite to E⃗; each e⁻ acquires drift velocity $v_d$</p>
+
+  <div class="paper margin">
+    <div class="lbl">Derivation</div>
+    <p>Let $E$ be the electric field, $m$ the electron mass, $e$ the electron charge, $\tau$ the <em>relaxation time</em> (avg. time between collisions).</p>
+
+    <div class="step">
+      <span class="step-n">①</span>
+      <div class="step-c">
+        Force on each electron due to field (opposite to $\vec{E}$):
+        $$F = eE \quad \Rightarrow \quad \text{acceleration } a = \frac{eE}{m}$$
+      </div>
+    </div>
+
+    <div class="step">
+      <span class="step-n">②</span>
+      <div class="step-c">
+        After each collision the electron starts fresh (zero drift). In time $\tau$ it acquires velocity:
+        $$v_d = u + a\tau = 0 + \frac{eE}{m}\cdot\tau$$
+      </div>
+    </div>
+
+    <div class="step">
+      <span class="step-n">③</span>
+      <div class="step-c">
+        This average acquired velocity is the drift velocity:
+      </div>
+    </div>
+
+    <div class="fbox result">
+      <span class="result-tag">★ Result</span>
+      $$v_d = \frac{eE\tau}{m}$$
+      <small style="color:var(--text-muted)">Direction: opposite to $\vec{E}$ &nbsp;|&nbsp; Typical value: $\sim 10^{-4}$ m/s — surprisingly slow!</small>
+    </div>
+
+    <div class="step">
+      <span class="step-n">④</span>
+      <div class="step-c">
+        <strong>Current in terms of drift velocity</strong> — in time $\Delta t$, electrons in length $v_d\Delta t$ cross area $A$:
+        $$I = nAev_d$$
+        where $n$ = number density of free electrons.
+      </div>
+    </div>
+
+    <div class="note">
+      <strong>Why so slow yet light is instant?</strong> The electric field propagates at speed of light. Every electron in the wire starts drifting almost simultaneously — that's why the bulb lights up instantly.
+    </div>
+  </div>
+</section>
+
+<div class="divider"><span>✦</span></div>
+
+<!-- ====================================================
+     SECTION 2 — DERIVATION OF OHM'S LAW
+===================================================== -->
+<section class="section" id="s2">
+  <div class="section-header">
+    <div class="s-num">02</div>
+    <div class="s-meta">
+      <div class="s-title">Derivation of Ohm's Law</div>
+      <span class="s-tag">From drift velocity → $V = IR$ · Microscopic origin of resistance</span>
+    </div>
+  </div>
+
+  <div class="theory-block">
+    Ohm's Law states that at constant temperature, the current through a conductor is directly proportional to the voltage across it. Here we <em>derive</em> it from first principles using drift velocity.
+  </div>
+
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 540 165" xmlns="http://www.w3.org/2000/svg" width="540" height="165">
+      <defs>
+        <marker id="o1" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+          <path d="M0,0L0,7L7,3.5z" style="fill:var(--c-gold)"/></marker>
+        <marker id="o2" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+          <path d="M0,0L0,7L7,3.5z" style="fill:var(--c-red)"/></marker>
+        <marker id="o3" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+          <path d="M0,0L0,7L7,3.5z" style="fill:var(--c-blue)"/></marker>
+      </defs>
+
+      <!-- Cylinder conductor -->
+      <ellipse cx="100" cy="82" rx="18" ry="50" style="fill:var(--highlight);stroke:var(--accent);stroke-width:1.6"/>
+      <rect x="100" y="32" width="340" height="100" style="fill:var(--highlight);stroke:none"/>
+      <ellipse cx="440" cy="82" rx="18" ry="50" style="fill:var(--paper-2);stroke:var(--accent);stroke-width:1.6"/>
+      <!-- Top and bottom lines of cylinder -->
+      <line x1="100" y1="32" x2="440" y2="32" style="stroke:var(--accent);stroke-width:1.6"/>
+      <line x1="100" y1="132" x2="440" y2="132" style="stroke:var(--accent);stroke-width:1.6"/>
+
+      <!-- L arrow -->
+      <line x1="100" y1="152" x2="440" y2="152"
+        style="stroke:var(--c-gold);stroke-width:1.8" marker-end="url(#o1)" class="dp"/>
+      <text x="270" y="165" text-anchor="middle"
+        style="font-family:Crimson Pro,serif;font-style:italic;font-size:15px;fill:var(--c-gold)">L</text>
+
+      <!-- A label on face -->
+      <text x="440" y="86" text-anchor="middle"
+        style="font-family:Crimson Pro,serif;font-style:italic;font-size:14px;fill:var(--accent)">A</text>
+      <text x="458" y="90"
+        style="font-family:'Caveat',cursive;font-size:.72rem;fill:var(--text-muted)">(area)</text>
+
+      <!-- V label -->
+      <text x="90" y="26" style="font-family:Caveat,cursive;font-size:13px;fill:var(--c-green);font-weight:700">V</text>
+      <line x1="82" y1="32" x2="82" y2="132" style="stroke:var(--c-green);stroke-width:1.5;stroke-dasharray:4 3"/>
+
+      <!-- I arrow -->
+      <line x1="120" y1="82" x2="410" y2="82"
+        style="stroke:var(--c-red);stroke-width:2.2" marker-end="url(#o2)" class="dp dp2"/>
+      <text x="270" y="74" text-anchor="middle"
+        style="font-family:Crimson Pro,serif;font-style:italic;font-size:14px;fill:var(--c-red)">I →</text>
+
+      <!-- n label inside -->
+      <text x="200" y="110"
+        style="font-family:Caveat,cursive;font-size:.78rem;fill:var(--text-muted)">n free e⁻ per m³</text>
+    </svg>
+  </div>
+  <p class="diagram-cap">Fig 2.1 — Cylindrical conductor of length $L$, cross-section $A$, carrying current $I$ under voltage $V$</p>
+
+  <div class="paper margin">
+    <div class="lbl">Derivation</div>
+
+    <div class="step">
+      <span class="step-n">①</span>
+      <div class="step-c">
+        Electric field inside conductor: $E = \dfrac{V}{L}$
+      </div>
+    </div>
+
+    <div class="step">
+      <span class="step-n">②</span>
+      <div class="step-c">
+        Drift velocity: $v_d = \dfrac{eE\tau}{m} = \dfrac{eV\tau}{mL}$
+      </div>
+    </div>
+
+    <div class="step">
+      <span class="step-n">③</span>
+      <div class="step-c">
+        Current through the conductor:
+        $$I = nAev_d = nAe\cdot\frac{eV\tau}{mL} = \frac{ne^2\tau A}{mL}\cdot V$$
+      </div>
+    </div>
+
+    <div class="step">
+      <span class="step-n">④</span>
+      <div class="step-c">
+        Since $n, e, \tau, m, A, L$ are all constants at a given temperature, let:
+        $$R = \frac{mL}{ne^2\tau A} \quad \Rightarrow \quad I = \frac{V}{R}$$
+      </div>
+    </div>
+
+    <div class="fbox result">
+      <span class="result-tag">★ Result</span>
+      $$V = IR \qquad \text{where } R = \frac{mL}{ne^2\tau A} = \frac{\rho L}{A}$$
+    </div>
+
+    <div class="note">
+      <strong>Resistivity:</strong> $\rho = \dfrac{m}{ne^2\tau}$ — depends only on material &amp; temperature, not shape. &nbsp;|&nbsp;
+      <strong>Conductivity:</strong> $\sigma = \dfrac{1}{\rho} = \dfrac{ne^2\tau}{m}$.
+    </div>
+  </div>
+</section>
+
+<div class="divider"><span>✦</span></div>
+
+<!-- ====================================================
+     SECTION 3 — VECTOR FORM OF OHM'S LAW
+===================================================== -->
+<section class="section" id="s3">
+  <div class="section-header">
+    <div class="s-num">03</div>
+    <div class="s-meta">
+      <div class="s-title">Vector Form of Ohm's Law</div>
+      <span class="s-tag">Current density $\vec{J}$ · $\vec{J} = \sigma\vec{E}$</span>
+    </div>
+  </div>
+
+  <div class="theory-block">
+    The scalar $V = IR$ works for a whole conductor. For point-by-point analysis inside materials, we use the <strong>vector form</strong> — relating current density $\vec{J}$ to field $\vec{E}$.
+  </div>
+
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 520 180" xmlns="http://www.w3.org/2000/svg" width="520" height="180">
+      <defs>
+        <marker id="v1" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+          <path d="M0,0L0,7L7,3.5z" style="fill:var(--c-red)"/></marker>
+        <marker id="v2" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+          <path d="M0,0L0,7L7,3.5z" style="fill:var(--c-blue)"/></marker>
+        <marker id="v3" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+          <path d="M0,0L0,7L7,3.5z" style="fill:var(--c-gold)"/></marker>
+      </defs>
+
+      <!-- Material block -->
+      <rect x="130" y="30" width="260" height="120" rx="10"
+        style="fill:var(--highlight);stroke:var(--accent);stroke-width:1.8"/>
+      <text x="260" y="95" text-anchor="middle"
+        style="font-family:Caveat,cursive;font-size:.85rem;fill:var(--text-muted)">conductor</text>
+      <text x="260" y="112" text-anchor="middle"
+        style="font-family:Caveat,cursive;font-size:.78rem;fill:var(--text-muted)">σ (conductivity)</text>
+
+      <!-- E field arrow through material -->
+      <line x1="55" y1="90" x2="120" y2="90"
+        style="stroke:var(--c-red);stroke-width:2.5" marker-end="url(#v1)" class="dp"/>
+      <text x="82" y="79" style="font-family:Crimson Pro,serif;font-style:italic;font-size:15px;fill:var(--c-red)">E⃗</text>
+
+      <line x1="390" y1="90" x2="458" y2="90"
+        style="stroke:var(--c-red);stroke-width:2.5" marker-end="url(#v1)" class="dp dp2"/>
+
+      <!-- J arrow (same direction) inside block -->
+      <line x1="148" y1="90" x2="370" y2="90"
+        style="stroke:var(--c-blue);stroke-width:3" marker-end="url(#v2)" class="dp dp2"/>
+      <text x="260" y="76" text-anchor="middle"
+        style="font-family:Crimson Pro,serif;font-style:italic;font-size:16px;fill:var(--c-blue)">J⃗  = σE⃗</text>
+
+      <!-- A label -->
+      <line x1="390" y1="35" x2="390" y2="145"
+        style="stroke:var(--c-gold);stroke-width:1.4;stroke-dasharray:4 3" class="dp dp3"/>
+      <text x="398" y="95" style="font-family:Crimson Pro,serif;font-style:italic;font-size:14px;fill:var(--c-gold)">A</text>
+
+      <!-- I = JA label -->
+      <text x="260" y="165" text-anchor="middle"
+        style="font-family:Caveat,cursive;font-size:.82rem;fill:var(--text-muted)">I = J · A &nbsp;|&nbsp; J = I/A (A/m²)</text>
+
+      <!-- sigma label right -->
+      <text x="465" y="80"
+        style="font-family:Crimson Pro,serif;font-style:italic;font-size:13px;fill:var(--c-gold)">σ = ne²τ/m</text>
+    </svg>
+  </div>
+  <p class="diagram-cap">Fig 3.1 — $\vec{J}$ and $\vec{E}$ are parallel inside an isotropic conductor; both in the same direction</p>
+
+  <div class="paper margin">
+    <div class="lbl">Derivation</div>
+
+    <div class="step">
+      <span class="step-n">①</span>
+      <div class="step-c">
+        Define <strong>current density</strong> $\vec{J}$ = current per unit cross-sectional area (a vector, direction = flow of positive charge):
+        $$J = \frac{I}{A}$$
+      </div>
+    </div>
+
+    <div class="step">
+      <span class="step-n">②</span>
+      <div class="step-c">
+        From drift velocity: $I = nAev_d$ and $v_d = \dfrac{eE\tau}{m}$, so:
+        $$J = \frac{I}{A} = nev_d = ne\cdot\frac{eE\tau}{m} = \frac{ne^2\tau}{m}\,E$$
+      </div>
+    </div>
+
+    <div class="step">
+      <span class="step-n">③</span>
+      <div class="step-c">
+        Defining <strong>electrical conductivity</strong> $\sigma = \dfrac{ne^2\tau}{m}$:
+      </div>
+    </div>
+
+    <div class="fbox result">
+      <span class="result-tag">★ Result</span>
+      $$\vec{J} = \sigma\,\vec{E} \qquad \text{or equivalently} \qquad \vec{E} = \rho\,\vec{J}$$
+      <small style="color:var(--text-muted)">$\sigma$ = conductivity (S/m) &nbsp;|&nbsp; $\rho = 1/\sigma$ = resistivity (Ω·m)</small>
+    </div>
+
+    <div class="note">
+      <strong>This is the true, general Ohm's Law</strong> — valid point by point inside any material. The familiar $V = IR$ is just its macroscopic consequence for a uniform conductor.
+    </div>
+  </div>
+</section>
+
+<div class="divider"><span>✦</span></div>
+
+<!-- ====================================================
+     SECTION 4 — TEMPERATURE DEPENDENCE OF RESISTIVITY
+===================================================== -->
+<section class="section" id="s4">
+  <div class="section-header">
+    <div class="s-num">04</div>
+    <div class="s-meta">
+      <div class="s-title">Temperature Dependence of Resistivity</div>
+      <span class="s-tag">$\rho_T = \rho_0\,[1 + \alpha(T - T_0)]$ · Metals vs Semiconductors</span>
+    </div>
+  </div>
+
+  <div class="theory-block">
+    As temperature rises in a metal, lattice ions vibrate more, <em>reducing relaxation time</em> $\tau$ — so resistivity increases. Semiconductors behave opposite: more charge carriers free up, so resistivity falls.
+  </div>
+
+  <div class="two">
+    <!-- ρ vs T graph for metal -->
+    <div>
+      <div class="diagram-wrap" style="margin-top:0">
+        <svg viewBox="0 0 260 210" xmlns="http://www.w3.org/2000/svg" width="260" height="210">
+          <defs>
+            <marker id="t1" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+              <path d="M0,0L0,7L7,3.5z" style="fill:var(--c-ink)"/></marker>
+          </defs>
+          <!-- Axes -->
+          <line x1="40" y1="175" x2="235" y2="175" style="stroke:var(--c-ink);stroke-width:1.8" marker-end="url(#t1)"/>
+          <line x1="40" y1="175" x2="40"  y2="18"  style="stroke:var(--c-ink);stroke-width:1.8" marker-end="url(#t1)"/>
+          <text x="240" y="180" style="font-family:Crimson Pro,serif;font-style:italic;font-size:15px;fill:var(--c-ink)">T</text>
+          <text x="26"  y="14"  style="font-family:Crimson Pro,serif;font-style:italic;font-size:15px;fill:var(--c-ink)">ρ</text>
+          <text x="22"  y="182" style="font-family:Caveat,cursive;font-size:12px;fill:var(--c-ink)">O</text>
+          <!-- T₀ mark -->
+          <line x1="70" y1="170" x2="70" y2="180" style="stroke:var(--c-ink);stroke-width:1.5"/>
+          <text x="68" y="193" style="font-family:Crimson Pro,serif;font-style:italic;font-size:12px;fill:var(--c-ink)">T₀</text>
+          <!-- ρ₀ mark -->
+          <line x1="35" y1="138" x2="45" y2="138" style="stroke:var(--c-ink);stroke-width:1.5"/>
+          <text x="14" y="142" style="font-family:Crimson Pro,serif;font-style:italic;font-size:12px;fill:var(--c-ink)">ρ₀</text>
+          <!-- Linear rise line (metal) -->
+          <line x1="40" y1="158" x2="70" y2="138" style="stroke:var(--c-green);stroke-width:2;stroke-dasharray:4 3"/>
+          <line x1="70" y1="138" x2="225" y2="38"
+            style="stroke:var(--c-red);stroke-width:3;fill:none" class="dp"/>
+          <!-- Label -->
+          <text x="155" y="58" style="font-family:Caveat,cursive;font-size:12px;fill:var(--c-red)">Metal (↑ ρ)</text>
+          <text x="130" y="200" text-anchor="middle"
+            style="font-family:Caveat,cursive;font-size:12px;fill:var(--text-muted)">ρ ∝ T (roughly)</text>
+        </svg>
+      </div>
+      <p class="diagram-cap">Fig 4.1 — Metal: ρ rises linearly with T</p>
+    </div>
+    <!-- ρ vs T for semiconductor -->
+    <div>
+      <div class="diagram-wrap" style="margin-top:0">
+        <svg viewBox="0 0 260 210" xmlns="http://www.w3.org/2000/svg" width="260" height="210">
+          <defs>
+            <marker id="t2" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+              <path d="M0,0L0,7L7,3.5z" style="fill:var(--c-ink)"/></marker>
+          </defs>
+          <line x1="40" y1="175" x2="235" y2="175" style="stroke:var(--c-ink);stroke-width:1.8" marker-end="url(#t2)"/>
+          <line x1="40" y1="175" x2="40"  y2="18"  style="stroke:var(--c-ink);stroke-width:1.8" marker-end="url(#t2)"/>
+          <text x="240" y="180" style="font-family:Crimson Pro,serif;font-style:italic;font-size:15px;fill:var(--c-ink)">T</text>
+          <text x="26"  y="14"  style="font-family:Crimson Pro,serif;font-style:italic;font-size:15px;fill:var(--c-ink)">ρ</text>
+          <text x="22"  y="182" style="font-family:Caveat,cursive;font-size:12px;fill:var(--c-ink)">O</text>
+          <!-- Exponential fall curve (semiconductor) -->
+          <path d="M 50 38 C 80 55 130 110 225 165"
+            style="stroke:var(--c-blue);stroke-width:3;fill:none" class="dp"/>
+          <text x="88" y="92" style="font-family:Caveat,cursive;font-size:12px;fill:var(--c-blue)">Semiconductor (↓ ρ)</text>
+          <text x="130" y="200" text-anchor="middle"
+            style="font-family:Caveat,cursive;font-size:12px;fill:var(--text-muted)">more carriers freed at high T</text>
+        </svg>
+      </div>
+      <p class="diagram-cap">Fig 4.2 — Semiconductor: ρ falls as T rises</p>
+    </div>
+  </div>
+
+  <div class="paper margin">
+    <div class="lbl">Derivation</div>
+    <p>Since $\rho = \dfrac{m}{ne^2\tau}$, a change in $\tau$ (due to temperature) changes $\rho$. For metals, experimentally:</p>
+
+    <div class="step">
+      <span class="step-n">①</span>
+      <div class="step-c">
+        At temperature $T_0$, resistivity is $\rho_0$. A small increase in temperature $\Delta T = T - T_0$ causes a <em>proportional</em> increase in $\rho$:
+        $$\Delta\rho \propto \rho_0\,\Delta T \quad \Rightarrow \quad \Delta\rho = \rho_0\,\alpha\,\Delta T$$
+      </div>
+    </div>
+
+    <div class="step">
+      <span class="step-n">②</span>
+      <div class="step-c">
+        Total resistivity at temperature $T$:
+        $$\rho_T = \rho_0 + \Delta\rho = \rho_0 + \rho_0\,\alpha\,(T-T_0)$$
+      </div>
+    </div>
+
+    <div class="fbox result">
+      <span class="result-tag">★ Result</span>
+      $$\rho_T = \rho_0\,\bigl[1 + \alpha(T - T_0)\bigr]$$
+      <small style="color:var(--text-muted)">$\alpha$ = temperature coefficient of resistivity (unit: K⁻¹ or °C⁻¹)</small>
+    </div>
+
+    <div class="note">
+      <strong>Metals:</strong> $\alpha > 0$ (e.g. copper $\alpha \approx 3.9\times10^{-3}\,°C^{-1}$). &nbsp;|&nbsp;
+      <strong>Semiconductors &amp; insulators:</strong> $\alpha < 0$ — resistance falls with temperature. &nbsp;|&nbsp;
+      <strong>Nichrome:</strong> very small $\alpha$ — used in heating elements for stability.
+    </div>
+  </div>
+</section>
+
+<div class="divider"><span>✦</span></div>
+
+<!-- ====================================================
+     SECTION 5 — KIRCHHOFF'S LAWS
+===================================================== -->
+<section class="section" id="s5">
+  <div class="section-header">
+    <div class="s-num">05</div>
+    <div class="s-meta">
+      <div class="s-title">Kirchhoff's Laws</div>
+      <span class="s-tag">KCL — Junction Law &nbsp;·&nbsp; KVL — Loop Law</span>
+    </div>
+  </div>
+
+  <div class="theory-block">
+    Two fundamental rules for analysing any circuit — based on conservation of <strong>charge</strong> (KCL) and conservation of <strong>energy</strong> (KVL). Together they can solve any network, however complex.
+  </div>
+
+  <!-- KCL -->
+  <div class="sub-title">Kirchhoff's Current Law (KCL) — Junction Rule</div>
+
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg" width="400" height="200">
+      <defs>
+        <marker id="k1" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+          <path d="M0,0L0,7L7,3.5z" style="fill:var(--c-blue)"/></marker>
+        <marker id="k2" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+          <path d="M0,0L0,7L7,3.5z" style="fill:var(--c-red)"/></marker>
+      </defs>
+
+      <!-- Junction dot -->
+      <circle cx="200" cy="100" r="7" style="fill:var(--c-gold)"/>
+      <text x="212" y="96" style="font-family:Caveat,cursive;font-size:14px;fill:var(--c-gold);font-weight:700">Junction</text>
+
+      <!-- Incoming currents (blue) -->
+      <line x1="60"  y1="50"  x2="194" y2="96"  style="stroke:var(--c-blue);stroke-width:2.5" marker-end="url(#k1)" class="dp"/>
+      <text x="105" y="55" style="font-family:Crimson Pro,serif;font-style:italic;font-size:14px;fill:var(--c-blue)">I₁</text>
+
+      <line x1="40"  y1="100" x2="192" y2="100" style="stroke:var(--c-blue);stroke-width:2.5" marker-end="url(#k1)" class="dp dp2"/>
+      <text x="100" y="93" style="font-family:Crimson Pro,serif;font-style:italic;font-size:14px;fill:var(--c-blue)">I₂</text>
+
+      <line x1="60"  y1="152" x2="194" y2="104" style="stroke:var(--c-blue);stroke-width:2.5" marker-end="url(#k1)" class="dp dp2"/>
+      <text x="105" y="152" style="font-family:Crimson Pro,serif;font-style:italic;font-size:14px;fill:var(--c-blue)">I₃</text>
+
+      <!-- Outgoing currents (red) -->
+      <line x1="207" y1="96"  x2="330" y2="50"  style="stroke:var(--c-red);stroke-width:2.5" marker-end="url(#k2)" class="dp dp3"/>
+      <text x="288" y="55" style="font-family:Crimson Pro,serif;font-style:italic;font-size:14px;fill:var(--c-red)">I₄</text>
+
+      <line x1="208" y1="100" x2="360" y2="100" style="stroke:var(--c-red);stroke-width:2.5" marker-end="url(#k2)" class="dp dp3"/>
+      <text x="300" y="93" style="font-family:Crimson Pro,serif;font-style:italic;font-size:14px;fill:var(--c-red)">I₅</text>
+
+      <!-- Law statement -->
+      <text x="200" y="170" text-anchor="middle"
+        style="font-family:Caveat,cursive;font-size:14px;fill:var(--c-gold);font-weight:700">I₁ + I₂ + I₃ = I₄ + I₅</text>
+      <text x="200" y="188" text-anchor="middle"
+        style="font-family:Caveat,cursive;font-size:.78rem;fill:var(--text-muted)">ΣI(in) = ΣI(out) &nbsp;→&nbsp; ΣI = 0 at junction</text>
+    </svg>
+  </div>
+  <p class="diagram-cap">Fig 5.1 — KCL: currents entering (blue) = currents leaving (red) at any junction</p>
+
+  <div class="paper margin">
+    <div class="lbl">Statement &amp; Basis</div>
+    <p><strong>KCL:</strong> The algebraic sum of all currents at any junction (node) in a circuit is zero.</p>
+    <div class="fbox result" style="margin:.8rem 0">
+      <span class="result-tag">★ KCL</span>
+      $$\sum I = 0 \quad \text{at any junction}$$
+      <small style="color:var(--text-muted)">Currents entering: positive &nbsp;|&nbsp; Currents leaving: negative (sign convention)</small>
+    </div>
+    <div class="note" style="margin-top:.6rem">
+      <strong>Based on:</strong> Conservation of charge — charge cannot pile up at a junction. Whatever flows in must flow out.
+    </div>
+  </div>
+
+  <!-- KVL -->
+  <div class="sub-title">Kirchhoff's Voltage Law (KVL) — Loop Rule</div>
+
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 480 230" xmlns="http://www.w3.org/2000/svg" width="480" height="230">
+      <defs>
+        <marker id="kv1" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+          <path d="M0,0L0,7L7,3.5z" style="fill:var(--c-blue)"/></marker>
+      </defs>
+
+      <!-- Loop rectangle -->
+      <rect x="60" y="40" width="360" height="150" rx="8"
+        style="fill:none;stroke:var(--line);stroke-width:1.5;stroke-dasharray:5 4"/>
+
+      <!-- Top wire -->
+      <line x1="60" y1="40" x2="420" y2="40" style="stroke:var(--c-ink);stroke-width:2.2"/>
+      <!-- Bottom wire -->
+      <line x1="60" y1="190" x2="420" y2="190" style="stroke:var(--c-ink);stroke-width:2.2"/>
+      <!-- Left wire -->
+      <line x1="60" y1="40" x2="60" y2="190" style="stroke:var(--c-ink);stroke-width:2.2"/>
+      <!-- Right wire -->
+      <line x1="420" y1="40" x2="420" y2="190" style="stroke:var(--c-ink);stroke-width:2.2"/>
+
+      <!-- Battery (left side) -->
+      <line x1="60" y1="95" x2="60" y2="80" style="stroke:none"/>
+      <line x1="44" y1="108" x2="76" y2="108" style="stroke:var(--c-gold);stroke-width:3.5"/>
+      <line x1="50" y1="122" x2="70" y2="122" style="stroke:var(--c-gold);stroke-width:2"/>
+      <text x="24" y="90" style="font-family:Crimson Pro,serif;font-size:16px;fill:var(--c-red);font-weight:700">+</text>
+      <text x="24" y="140" style="font-family:Crimson Pro,serif;font-size:16px;fill:var(--c-blue);font-weight:700">−</text>
+      <text x="82" y="118" style="font-family:Caveat,cursive;font-size:13px;fill:var(--c-gold);font-weight:700">ε₁</text>
+
+      <!-- Resistor R1 (top) -->
+      <rect x="145" y="28" width="80" height="26" rx="4"
+        style="fill:var(--paper-2);stroke:var(--accent);stroke-width:2"/>
+      <text x="185" y="46" text-anchor="middle"
+        style="font-family:Caveat,cursive;font-size:14px;fill:var(--accent);font-weight:700">R₁</text>
+
+      <!-- Resistor R2 (bottom) -->
+      <rect x="145" y="178" width="80" height="26" rx="4"
+        style="fill:var(--paper-2);stroke:var(--accent);stroke-width:2"/>
+      <text x="185" y="196" text-anchor="middle"
+        style="font-family:Caveat,cursive;font-size:14px;fill:var(--accent);font-weight:700">R₂</text>
+
+      <!-- Battery right -->
+      <line x1="404" y1="108" x2="436" y2="108" style="stroke:var(--c-gold);stroke-width:3.5"/>
+      <line x1="410" y1="122" x2="430" y2="122" style="stroke:var(--c-gold);stroke-width:2"/>
+      <text x="445" y="90" style="font-family:Crimson Pro,serif;font-size:16px;fill:var(--c-red);font-weight:700">+</text>
+      <text x="445" y="140" style="font-family:Crimson Pro,serif;font-size:16px;fill:var(--c-blue);font-weight:700">−</text>
+      <text x="444" y="118" style="font-family:Caveat,cursive;font-size:13px;fill:var(--c-gold);font-weight:700">ε₂</text>
+
+      <!-- Current arrow I -->
+      <line x1="260" y1="40" x2="310" y2="40"
+        style="stroke:var(--c-blue);stroke-width:2" marker-end="url(#kv1)" class="dp dp2"/>
+      <text x="285" y="30" style="font-family:Crimson Pro,serif;font-style:italic;font-size:14px;fill:var(--c-blue)">I</text>
+
+      <!-- Loop arrow -->
+      <path d="M 230 115 A 45 45 0 1 1 232 115"
+        style="stroke:var(--c-gold);stroke-width:1.5;fill:none;stroke-dasharray:4 3" class="dp dp3"/>
+      <text x="204" y="120" text-anchor="middle"
+        style="font-family:Caveat,cursive;font-size:12px;fill:var(--c-gold)">loop</text>
+    </svg>
+  </div>
+  <p class="diagram-cap">Fig 5.2 — KVL: going around a loop, sum of all EMFs = sum of all IR drops</p>
+
+  <div class="paper margin">
+    <div class="lbl">Statement &amp; Basis</div>
+    <p><strong>KVL:</strong> The algebraic sum of all EMFs and potential drops around any closed loop is zero.</p>
+    <div class="fbox result" style="margin:.8rem 0">
+      <span class="result-tag">★ KVL</span>
+      $$\sum \varepsilon = \sum IR \quad \text{around any closed loop}$$
+      <small style="color:var(--text-muted)">Or equivalently: $\sum \Delta V = 0$ around the loop</small>
+    </div>
+    <div class="note" style="margin-top:.6rem">
+      <strong>Based on:</strong> Conservation of energy — when you go round a complete loop and return to start, net work done = 0. &nbsp;|&nbsp;
+      <strong>Sign rule:</strong> EMF in direction of traversal = positive; IR drop in direction of current = negative.
+    </div>
+  </div>
+</section>
+
+<div class="divider"><span>✦</span></div>
+
+<!-- ====================================================
+     SECTION 6 — WHEATSTONE BRIDGE
+===================================================== -->
+<section class="section" id="s6">
+  <div class="section-header">
+    <div class="s-num">06</div>
+    <div class="s-meta">
+      <div class="s-title">Balancing Condition — Wheatstone Bridge</div>
+      <span class="s-tag">$P/Q = R/S$ &nbsp;·&nbsp; No current through galvanometer</span>
+    </div>
+  </div>
+
+  <div class="theory-block">
+    A Wheatstone bridge is a circuit of four resistors arranged in a diamond. It is <em>balanced</em> when no current flows through the galvanometer. Used to measure unknown resistance with great precision.
+  </div>
+
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 420 300" xmlns="http://www.w3.org/2000/svg" width="420" height="300">
+      <defs>
+        <marker id="w1" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+          <path d="M0,0L0,7L7,3.5z" style="fill:var(--c-blue)"/></marker>
+        <marker id="w2" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+          <path d="M0,0L0,7L7,3.5z" style="fill:var(--c-gold)"/></marker>
+      </defs>
+
+      <!-- Diamond nodes: A(top) B(left) C(right) D(bottom) -->
+      <!-- A = (210, 30)   B = (75, 150)   C = (345, 150)   D = (210, 270) -->
+
+      <!-- Wire AB (P) -->
+      <line x1="210" y1="30" x2="75" y2="150" style="stroke:var(--c-ink);stroke-width:2.5" class="dp"/>
+      <!-- Wire AC (Q) -->
+      <line x1="210" y1="30" x2="345" y2="150" style="stroke:var(--c-ink);stroke-width:2.5" class="dp"/>
+      <!-- Wire BD (R) -->
+      <line x1="75"  y1="150" x2="210" y2="270" style="stroke:var(--c-ink);stroke-width:2.5" class="dp dp2"/>
+      <!-- Wire CD (S) -->
+      <line x1="345" y1="150" x2="210" y2="270" style="stroke:var(--c-ink);stroke-width:2.5" class="dp dp2"/>
+      <!-- Galvanometer BC -->
+      <line x1="75" y1="150" x2="345" y2="150" style="stroke:var(--c-green);stroke-width:2;stroke-dasharray:5 3" class="dp dp3"/>
+
+      <!-- Resistor labels (mid-arm) -->
+      <!-- P on AB -->
+      <rect x="98" y="72" width="42" height="24" rx="5"
+        style="fill:var(--paper-2);stroke:var(--accent);stroke-width:2"/>
+      <text x="119" y="89" text-anchor="middle"
+        style="font-family:Caveat,cursive;font-size:15px;fill:var(--accent);font-weight:700">P</text>
+
+      <!-- Q on AC -->
+      <rect x="273" y="72" width="42" height="24" rx="5"
+        style="fill:var(--paper-2);stroke:var(--accent);stroke-width:2"/>
+      <text x="294" y="89" text-anchor="middle"
+        style="font-family:Caveat,cursive;font-size:15px;fill:var(--accent);font-weight:700">Q</text>
+
+      <!-- R on BD -->
+      <rect x="98" y="192" width="42" height="24" rx="5"
+        style="fill:var(--paper-2);stroke:var(--c-red);stroke-width:2"/>
+      <text x="119" y="209" text-anchor="middle"
+        style="font-family:Caveat,cursive;font-size:15px;fill:var(--c-red);font-weight:700">R</text>
+
+      <!-- S on CD -->
+      <rect x="273" y="192" width="42" height="24" rx="5"
+        style="fill:var(--paper-2);stroke:var(--c-blue);stroke-width:2"/>
+      <text x="294" y="209" text-anchor="middle"
+        style="font-family:Caveat,cursive;font-size:15px;fill:var(--c-blue);font-weight:700">S</text>
+
+      <!-- Galvanometer G mid -->
+      <circle cx="210" cy="150" r="16" style="fill:var(--paper-2);stroke:var(--c-green);stroke-width:2"/>
+      <text x="210" y="155" text-anchor="middle"
+        style="font-family:Caveat,cursive;font-size:14px;fill:var(--c-green);font-weight:700">G</text>
+
+      <!-- Node labels -->
+      <circle cx="210" cy="30"  r="6" style="fill:var(--c-gold)"/>
+      <text x="210" y="18" text-anchor="middle" style="font-family:Caveat,cursive;font-size:15px;fill:var(--c-gold);font-weight:700">A</text>
+
+      <circle cx="75"  cy="150" r="6" style="fill:var(--c-gold)"/>
+      <text x="56"  y="155" style="font-family:Caveat,cursive;font-size:15px;fill:var(--c-gold);font-weight:700">B</text>
+
+      <circle cx="345" cy="150" r="6" style="fill:var(--c-gold)"/>
+      <text x="355" y="155" style="font-family:Caveat,cursive;font-size:15px;fill:var(--c-gold);font-weight:700">C</text>
+
+      <circle cx="210" cy="270" r="6" style="fill:var(--c-gold)"/>
+      <text x="210" y="290" text-anchor="middle" style="font-family:Caveat,cursive;font-size:15px;fill:var(--c-gold);font-weight:700">D</text>
+
+      <!-- Battery at bottom (A to D external) -->
+      <line x1="210" y1="276" x2="210" y2="296" style="stroke:var(--c-ink);stroke-width:2"/>
+      <text x="225" y="288" style="font-family:Caveat,cursive;font-size:12px;fill:var(--c-gold)">E (battery)</text>
+
+      <!-- Current arrows -->
+      <line x1="150" y1="96"  x2="130" y2="116"  style="stroke:var(--c-blue);stroke-width:1.8" marker-end="url(#w1)" class="dp dp3"/>
+      <text x="124" y="95" style="font-family:Crimson Pro,serif;font-style:italic;font-size:12px;fill:var(--c-blue)">I₁</text>
+
+      <line x1="270" y1="96"  x2="290" y2="116"  style="stroke:var(--c-blue);stroke-width:1.8" marker-end="url(#w1)" class="dp dp3"/>
+      <text x="283" y="95" style="font-family:Crimson Pro,serif;font-style:italic;font-size:12px;fill:var(--c-blue)">I₂</text>
+
+      <!-- Ig = 0 label -->
+      <text x="210" y="140" text-anchor="middle"
+        style="font-family:Caveat,cursive;font-size:.72rem;fill:var(--c-green)">Ig = 0</text>
+    </svg>
+  </div>
+  <p class="diagram-cap">Fig 6.1 — Wheatstone bridge; at balance, galvanometer reads zero ($I_g = 0$)</p>
+
+  <div class="paper margin">
+    <div class="lbl">Derivation of Balancing Condition</div>
+    <p>At balance, $I_g = 0$. So no current flows through galvanometer. Applying KCL:</p>
+
+    <div class="step">
+      <span class="step-n">①</span>
+      <div class="step-c">
+        Since $I_g = 0$: current through $P$ = current through $R$ = $I_1$, and current through $Q$ = current through $S$ = $I_2$.
+      </div>
+    </div>
+
+    <div class="step">
+      <span class="step-n">②</span>
+      <div class="step-c">
+        Since $I_g = 0$, points B and C are at the <em>same potential</em>. Applying KVL to loop ABD:
+        $$I_1 P = I_2 Q \quad \cdots (1)$$
+      </div>
+    </div>
+
+    <div class="step">
+      <span class="step-n">③</span>
+      <div class="step-c">
+        Applying KVL to loop BCD:
+        $$I_1 R = I_2 S \quad \cdots (2)$$
+      </div>
+    </div>
+
+    <div class="step">
+      <span class="step-n">④</span>
+      <div class="step-c">
+        Dividing equation (1) by (2):
+        $$\frac{I_1 P}{I_1 R} = \frac{I_2 Q}{I_2 S}$$
+      </div>
+    </div>
+
+    <div class="fbox result">
+      <span class="result-tag">★ Result</span>
+      $$\frac{P}{R} = \frac{Q}{S} \qquad \text{or equivalently} \qquad \frac{P}{Q} = \frac{R}{S}$$
+      <small style="color:var(--text-muted)">This is the <strong>balancing condition</strong> of the Wheatstone bridge</small>
+    </div>
+
+    <div class="note">
+      <strong>Practical use:</strong> $P$, $Q$, $R$ are known resistances. Unknown $S$ is found as $S = \dfrac{QR}{P}$. &nbsp;|&nbsp;
+      <strong>Sensitivity:</strong> bridge is most sensitive when all four arms are equal ($P = Q = R = S$).
+    </div>
+  </div>
+</section>
+
+</div><!-- end container -->
+
+<footer class="footer">
+  <p>✏️ Made with ♥ by <span>Akshit Tyagi</span> &nbsp;·&nbsp; Class XII Physics · Current Electricity</p>
+  <p style="font-size:.82rem;margin-top:.4rem;opacity:.55">NCERT Physics Part I · Chapter 3 · Derivations &amp; Diagrams</p>
+</footer>
+
+<script>
+const bar = document.getElementById('progress');
+const nav = document.getElementById('nav');
+const heroH = document.querySelector('.hero').offsetHeight;
+
+window.addEventListener('scroll', () => {
+  const s = window.scrollY, h = document.body.scrollHeight - window.innerHeight;
+  bar.style.width = (s / h * 100) + '%';
+  nav.classList.toggle('show', s > heroH * 0.55);
+}, { passive: true });
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('reveal'); });
+}, { threshold: 0.08 });
+document.querySelectorAll('.section').forEach(el => observer.observe(el));
+
+const toggle = document.getElementById('themeToggle');
+let dark = false;
+toggle.addEventListener('click', () => {
+  dark = !dark;
+  document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  if (typeof renderMathInElement !== 'undefined') {
+    renderMathInElement(document.body, {
+      delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],
+      throwOnError: false
+    });
+  }
+});
+
+document.querySelectorAll('.chip').forEach(chip => {
+  chip.addEventListener('click', function(e) {
+    const r = document.createElement('span');
+    r.style.cssText = `position:absolute;width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.6);pointer-events:none;transform:scale(0);animation:ripple .5s ease;left:${e.offsetX-4}px;top:${e.offsetY-4}px;`;
+    this.style.position = 'relative';
+    this.appendChild(r);
+    setTimeout(() => r.remove(), 500);
+  });
+});
+const s = document.createElement('style');
+s.textContent = '@keyframes ripple{to{transform:scale(18);opacity:0}}';
+document.head.appendChild(s);
+</script>
+</body>
+</html>

@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Literacy Rate — Arunachal Pradesh | NFHS-4 Estimate vs 2025 Projection</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+/* ── RESET ─────────────────────────────────────── */
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; scroll-snap-type:y mandatory; }
+
+/* ── TOKENS ────────────────────────────────────── */
+[data-theme="dark"] {
+  --bg:       #08090f;
+  --bg2:      #0e1120;
+  --bg3:      #141828;
+  --surface:  rgba(255,255,255,.045);
+  --surface2: rgba(255,255,255,.08);
+  --border:   rgba(255,255,255,.09);
+  --text:     #e8ecff;
+  --muted:    #7a8ab0;
+  --male:     #38e8c0;
+  --male-g:   rgba(56,232,192,.14);
+  --fem:      #ff7eb3;
+  --fem-g:    rgba(255,126,179,.13);
+  --gold:     #fcd34d;
+  --gold-g:   rgba(252,211,77,.12);
+}
+[data-theme="light"] {
+  --bg:       #f8f9ff;
+  --bg2:      #eef0fb;
+  --bg3:      #e2e6f5;
+  --surface:  rgba(0,0,0,.03);
+  --surface2: rgba(0,0,0,.07);
+  --border:   rgba(0,0,0,.09);
+  --text:     #0c1030;
+  --muted:    #546085;
+  --male:     #0d8a71;
+  --male-g:   rgba(13,138,113,.1);
+  --fem:      #c2185b;
+  --fem-g:    rgba(194,24,91,.1);
+  --gold:     #b45309;
+  --gold-g:   rgba(180,83,9,.1);
+}
+
+body {
+  background: var(--bg); color: var(--text);
+  font-family:'Outfit',sans-serif; overflow-x:hidden;
+  transition: background .45s, color .45s;
+}
+
+/* ── PROGRESS BAR ─────────────────────────── */
+#pbar {
+  position:fixed; top:0; left:0; height:3px; width:0;
+  background: linear-gradient(90deg,var(--male),var(--fem));
+  z-index:1000; box-shadow:0 0 14px var(--male);
+  transition: width .12s linear;
+}
+
+/* ── FLOATING NAV ──────────────────────────── */
+nav {
+  position:fixed; top:14px; left:50%; transform:translateX(-50%);
+  z-index:200; display:flex; align-items:center; gap:10px;
+  padding:9px 20px; border-radius:50px;
+  background:rgba(8,9,15,.65); backdrop-filter:blur(18px);
+  border:1px solid var(--border);
+  transition: background .4s, border-color .3s;
+}
+[data-theme="light"] nav { background:rgba(248,249,255,.78); }
+.nav-dot {
+  width:9px; height:9px; border-radius:50%;
+  background:var(--border); border:none; cursor:pointer;
+  transition:all .35s;
+}
+.nav-dot.on { background:var(--male); box-shadow:0 0 10px var(--male); transform:scale(1.5); }
+.nav-lbl { font-size:10px; color:var(--muted); letter-spacing:.12em; text-transform:uppercase; }
+
+/* Theme btn */
+#thbtn {
+  position:fixed; top:14px; right:18px; z-index:201;
+  padding:7px 16px; border-radius:50px; cursor:pointer;
+  border:1px solid var(--border); background:var(--surface);
+  color:var(--text); font-family:'Outfit',sans-serif; font-size:13px;
+  backdrop-filter:blur(12px); transition:all .3s;
+}
+#thbtn:hover { border-color:var(--male); color:var(--male); }
+
+/* ── PAGE SHELL ────────────────────────────── */
+section {
+  min-height:100vh; scroll-snap-align:start;
+  position:relative; overflow:hidden;
+  display:flex; flex-direction:column; justify-content:center;
+}
+.inner { max-width:1080px; margin:0 auto; padding:80px 36px; position:relative; z-index:1; width:100%; }
+
+/* ── AMBIENT ORBS ──────────────────────────── */
+.orb {
+  position:absolute; border-radius:50%; filter:blur(90px);
+  pointer-events:none; z-index:0;
+  animation:float 12s ease-in-out infinite;
+}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-18px)}}
+
+/* ── EYEBROW ───────────────────────────────── */
+.eye {
+  font-size:11px; letter-spacing:.15em; text-transform:uppercase;
+  color:var(--male); font-weight:600;
+  display:flex; align-items:center; gap:10px; margin-bottom:14px;
+}
+.eye::before { content:''; width:28px; height:1px; background:var(--male); }
+
+/* ── HEADINGS ──────────────────────────────── */
+h1,h2,h3 { font-family:'Cormorant Garamond',serif; }
+h1 { font-size:clamp(2.6rem,5.5vw,4.8rem); font-weight:700; line-height:1.06; }
+h2 { font-size:clamp(2rem,4vw,3.4rem); font-weight:700; line-height:1.15; margin-bottom:14px; }
+h3 { font-size:1.4rem; font-weight:600; margin-bottom:10px; }
+
+/* ── REVEAL ────────────────────────────────── */
+.rev { opacity:0; transform:translateY(28px); transition:opacity .75s cubic-bezier(.16,1,.3,1), transform .75s cubic-bezier(.16,1,.3,1); }
+.rev.in { opacity:1; transform:none; }
+.d1{transition-delay:.1s} .d2{transition-delay:.2s} .d3{transition-delay:.3s}
+.d4{transition-delay:.4s} .d5{transition-delay:.5s} .d6{transition-delay:.6s}
+
+/* ── SEPARATORS ────────────────────────────── */
+.hr { height:1px; background:var(--border); margin:32px 0; }
+
+/* ════════════════════════════════════════
+   P A G E  1  —  I N T R O
+════════════════════════════════════════ */
+#p1 { background:var(--bg); }
+
+.hero-layout {
+  display:grid; grid-template-columns:1.15fr 1fr; gap:72px; align-items:start;
+}
+@media(max-width:820px){ .hero-layout{grid-template-columns:1fr; gap:40px;} }
+
+.hero-badge {
+  display:inline-flex; align-items:center; gap:7px;
+  padding:5px 15px; border-radius:50px;
+  border:1px solid var(--male); background:var(--male-g);
+  color:var(--male); font-size:11px; letter-spacing:.1em; font-weight:600;
+  text-transform:uppercase; margin-bottom:22px;
+  animation:fadeUp .8s .1s both;
+}
+.hero-badge span { width:6px;height:6px;border-radius:50%;background:var(--male);animation:blink 1.6s infinite; }
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+
+h1 .state { color:var(--fem); }
+h1 .accent { font-style:italic; color:var(--male); }
+.hero-desc {
+  margin-top:22px; color:var(--muted); font-size:1.05rem; line-height:1.8;
+  animation:fadeUp .9s .35s both;
+}
+
+/* Long intro theory */
+.theory-block {
+  margin-top:28px; animation:fadeUp .9s .5s both;
+}
+.theory-block p {
+  font-size:.97rem; line-height:1.85; color:var(--muted);
+  margin-bottom:16px;
+}
+.theory-block p strong { color:var(--text); font-weight:600; }
+.theory-block p em { color:var(--male); font-style:normal; }
+
+.theory-block .hl-quote {
+  margin:24px 0; padding:18px 22px;
+  border-left:3px solid var(--fem);
+  background:var(--fem-g); border-radius:0 10px 10px 0;
+  font-family:'Cormorant Garamond',serif; font-size:1.15rem;
+  font-style:italic; line-height:1.6; color:var(--text);
+}
+
+/* right side floating cards + image */
+.hero-right { display:flex; flex-direction:column; gap:16px; }
+.hero-img-wrap {
+  border-radius:16px; overflow:hidden; border:1px solid var(--border);
+  position:relative; animation:fadeUp .9s .2s both;
+  box-shadow:0 24px 60px rgba(0,0,0,.3);
+}
+.hero-img-wrap img { width:100%; height:220px; object-fit:cover; display:block; }
+.hero-img-caption {
+  padding:10px 14px; font-size:11px; color:var(--muted); background:var(--surface);
+  letter-spacing:.04em;
+}
+
+.stat-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; animation:fadeUp .9s .4s both; }
+.sbox {
+  padding:18px; border-radius:14px; border:1px solid var(--border);
+  background:var(--surface); position:relative; overflow:hidden;
+  transition:transform .3s;
+}
+.sbox:hover { transform:translateY(-3px); }
+.sbox::after { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:var(--c); }
+.sbox .sv { font-family:'Cormorant Garamond',serif; font-size:1.9rem; font-weight:700; color:var(--c); }
+.sbox .sl { font-size:11px; color:var(--muted); text-transform:uppercase; letter-spacing:.08em; margin-top:2px; }
+.sbox .ss { font-size:12px; color:var(--muted); margin-top:6px; }
+
+/* bg deco year text */
+.deco-year {
+  position:absolute; right:-20px; bottom:-40px;
+  font-family:'Cormorant Garamond',serif; font-weight:700;
+  font-size:clamp(100px,16vw,200px); color:var(--border);
+  letter-spacing:-6px; user-select:none; line-height:1; z-index:0;
+}
+
+.scroll-cue {
+  position:absolute; bottom:28px; left:50%; transform:translateX(-50%);
+  font-size:11px; color:var(--muted); text-transform:uppercase; letter-spacing:.14em;
+  display:flex; flex-direction:column; align-items:center; gap:6px;
+  animation:bob 2s ease-in-out infinite; z-index:2;
+}
+@keyframes bob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(7px)}}
+
+/* pills row */
+.pill-row { display:flex; flex-wrap:wrap; gap:10px; margin-top:22px; animation:fadeUp .9s .62s both; }
+.pill {
+  padding:7px 16px; border-radius:50px; font-size:13px; font-weight:500;
+  border:1px solid var(--border); background:var(--surface); color:var(--muted);
+}
+.pill.m { border-color:var(--male); color:var(--male); background:var(--male-g); }
+.pill.f { border-color:var(--fem); color:var(--fem); background:var(--fem-g); }
+
+/* ════════════════════════════════════════
+   P A G E  2  —  D A T A
+════════════════════════════════════════ */
+#p2 { background:var(--bg2); }
+
+.data-layout {
+  display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:start;
+}
+@media(max-width:820px){ .data-layout{grid-template-columns:1fr;} }
+
+/* Big compare cards */
+.census-compare {
+  display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:28px 0;
+}
+.ccard {
+  border-radius:18px; padding:26px 22px; border:1px solid var(--border);
+  background:var(--surface); position:relative; overflow:hidden;
+  transition:transform .3s, box-shadow .3s;
+}
+.ccard:hover { transform:translateY(-4px); box-shadow:0 20px 50px rgba(0,0,0,.2); }
+.ccard .cy {
+  font-size:11px; text-transform:uppercase; letter-spacing:.12em; color:var(--muted);
+  font-weight:600; margin-bottom:12px;
+}
+.ccard-row { display:flex; align-items:baseline; justify-content:space-between; margin:8px 0; }
+.ccard-row .label { font-size:13px; color:var(--muted); }
+.ccard-row .val { font-family:'JetBrains Mono',monospace; font-size:1.4rem; font-weight:500; }
+.ccard-row.m .val { color:var(--male); }
+.ccard-row.f .val { color:var(--fem); }
+.ccard-row.o .val { color:var(--gold); }
+/* bar inside card */
+.mini-bar { height:5px; border-radius:3px; background:var(--border); overflow:hidden; margin:4px 0 10px; }
+.mini-fill { height:100%; border-radius:3px; transition:width 1.4s cubic-bezier(.16,1,.3,1); width:0%; }
+
+.ccard.yr2011::before { content:'2015'; position:absolute; right:-10px; bottom:-20px;
+  font-family:'Cormorant Garamond',serif; font-size:90px; font-weight:700;
+  color:var(--border); letter-spacing:-3px; z-index:0; line-height:1; }
+.ccard.yr2021::before { content:'2025'; position:absolute; right:-10px; bottom:-20px;
+  font-family:'Cormorant Garamond',serif; font-size:90px; font-weight:700;
+  color:var(--border); letter-spacing:-3px; z-index:0; line-height:1; }
+
+/* change badges */
+.change-badge {
+  display:inline-flex; align-items:center; gap:4px;
+  padding:3px 10px; border-radius:50px; font-size:11px; font-weight:600;
+  background:var(--male-g); color:var(--male); border:1px solid var(--male);
+  margin-top:6px;
+}
+
+/* paragraph explanation */
+.explain { font-size:.97rem; line-height:1.88; color:var(--muted); }
+.explain p { margin-bottom:18px; }
+.explain strong { color:var(--text); }
+.explain em { color:var(--male); font-style:normal; font-weight:600; }
+.explain .fem { color:var(--fem); font-weight:600; }
+.explain .gold { color:var(--gold); font-weight:600; }
+
+/* Data image */
+.data-img-wrap {
+  border-radius:14px; overflow:hidden; border:1px solid var(--border);
+  margin-top:20px; box-shadow:0 12px 36px rgba(0,0,0,.2);
+}
+.data-img-wrap img { width:100%; height:200px; object-fit:cover; display:block; }
+.data-img-caption { padding:10px 14px; font-size:11px; color:var(--muted); background:var(--surface); }
+
+/* Gap delta display */
+.gap-display {
+  border-radius:14px; padding:22px; border:1px solid var(--gold);
+  background:var(--gold-g); margin:20px 0;
+}
+.gap-display .gv { font-family:'Cormorant Garamond',serif; font-size:2.4rem; font-weight:700; color:var(--gold); }
+.gap-display .gl { font-size:13px; color:var(--muted); margin-top:4px; }
+
+/* ════════════════════════════════════════
+   P A G E  3  —  G R A P H
+════════════════════════════════════════ */
+#p3 { background:var(--bg); }
+
+.chart-shell {
+  background:var(--surface); border:1px solid var(--border);
+  border-radius:22px; padding:32px; margin-top:26px;
+  position:relative; overflow:hidden;
+}
+.chart-shell::before {
+  content:''; position:absolute; inset:0; border-radius:22px;
+  background:
+    radial-gradient(ellipse at 0% 100%, var(--male-g) 0%, transparent 55%),
+    radial-gradient(ellipse at 100% 0%, var(--fem-g) 0%, transparent 55%);
+  pointer-events:none;
+}
+canvas { position:relative; z-index:1; max-height:420px; }
+
+.chart-tabs { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:22px; }
+.ctab {
+  padding:7px 18px; border-radius:50px; font-size:13px; font-weight:500;
+  border:1px solid var(--border); background:transparent;
+  color:var(--muted); cursor:pointer; transition:all .3s;
+  font-family:'Outfit',sans-serif;
+}
+.ctab.on { background:var(--male-g); border-color:var(--male); color:var(--male); }
+
+.legend { display:flex; gap:22px; flex-wrap:wrap; margin-bottom:16px; }
+.leg { display:flex; align-items:center; gap:7px; font-size:13px; }
+.leg-dot { width:10px;height:10px;border-radius:50%; }
+
+/* stat highlights below chart */
+.highlights {
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
+  gap:14px; margin-top:24px;
+}
+.hl {
+  padding:18px; border-radius:14px; border:1px solid var(--border);
+  background:var(--surface); font-size:13px; line-height:1.65;
+}
+.hl strong { font-size:15px; display:block; margin-bottom:5px; }
+.hl.m strong { color:var(--male); }
+.hl.f strong { color:var(--fem); }
+.hl.g strong { color:var(--gold); }
+
+/* Graph explanation text */
+.graph-explain { margin-top:22px; }
+.graph-explain p { font-size:.97rem; line-height:1.87; color:var(--muted); margin-bottom:16px; }
+.graph-explain strong { color:var(--text); }
+.graph-explain em { color:var(--male); font-style:normal; font-weight:600; }
+
+/* ════════════════════════════════════════
+   P A G E  4  —  C O N C L U S I O N
+════════════════════════════════════════ */
+#p4 { background:var(--bg2); }
+
+.conc-layout { display:grid; grid-template-columns:1.3fr 1fr; gap:60px; align-items:start; }
+@media(max-width:820px){ .conc-layout{grid-template-columns:1fr;} }
+
+.conc-body { font-size:.97rem; line-height:1.9; color:var(--muted); }
+.conc-body p { margin-bottom:18px; }
+.conc-body strong { color:var(--text); }
+.conc-body .male { color:var(--male); font-weight:600; }
+.conc-body .fem { color:var(--fem); font-weight:600; }
+.conc-body .gold { color:var(--gold); font-weight:600; }
+
+.conc-quote {
+  border-left:3px solid var(--male); padding:18px 22px;
+  background:var(--male-g); border-radius:0 12px 12px 0;
+  margin:26px 0; font-family:'Cormorant Garamond',serif;
+  font-style:italic; font-size:1.18rem; line-height:1.6; color:var(--text);
+}
+
+.finding { display:flex; gap:13px; align-items:flex-start; margin-bottom:14px; }
+.f-n {
+  min-width:28px; height:28px; border-radius:50%; display:flex;
+  align-items:center; justify-content:center; font-size:12px; font-weight:700;
+  flex-shrink:0;
+}
+.f-n.m { background:var(--male-g); color:var(--male); }
+.f-n.f { background:var(--fem-g); color:var(--fem); }
+.f-n.g { background:var(--gold-g); color:var(--gold); }
+.finding p { font-size:14px; line-height:1.65; color:var(--muted); }
+.finding p strong { color:var(--text); }
+
+/* Credit card */
+.credit {
+  background:var(--surface); border:1px solid var(--border);
+  border-radius:22px; padding:36px 28px; text-align:center;
+  position:relative; overflow:hidden;
+}
+.credit::before {
+  content:''; position:absolute; inset:0;
+  background:radial-gradient(circle at 50% -10%, var(--male-g) 0%, transparent 65%);
+}
+.credit img {
+  width:100px; height:100px; border-radius:50%; object-fit:cover;
+  border:3px solid var(--male); box-shadow:0 0 0 7px var(--male-g),0 16px 40px rgba(0,0,0,.3);
+  display:block; margin:0 auto 18px; position:relative; z-index:1;
+  transition:transform .4s;
+}
+.credit img:hover { transform:scale(1.07) rotate(2deg); }
+.credit .madeby { font-size:11px; text-transform:uppercase; letter-spacing:.16em; color:var(--muted); position:relative; z-index:1; margin-bottom:6px; }
+.credit .cname {
+  font-family:'Cormorant Garamond',serif; font-size:2rem; font-weight:700;
+  background:linear-gradient(90deg,var(--male),var(--fem));
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+  background-clip:text; position:relative; z-index:1;
+}
+.credit .crole { font-size:13px; color:var(--muted); position:relative; z-index:1; margin-top:4px; }
+.credit .cbadge {
+  display:inline-flex; align-items:center; gap:5px; margin-top:16px;
+  padding:5px 16px; border-radius:50px;
+  border:1px solid var(--male); background:var(--male-g);
+  color:var(--male); font-size:11px; letter-spacing:.1em; font-weight:600;
+  position:relative; z-index:1; text-transform:uppercase;
+}
+
+/* Sources box */
+.sources-box {
+  background:var(--surface); border:1px solid var(--border);
+  border-radius:16px; padding:22px; margin-top:18px;
+}
+.src-title { font-size:11px; text-transform:uppercase; letter-spacing:.1em; color:var(--male); font-weight:600; margin-bottom:12px; }
+.src-item { font-size:13px; color:var(--muted); line-height:2; display:flex; align-items:center; gap:8px; }
+
+/* conclusion img */
+.conc-img-wrap {
+  border-radius:14px; overflow:hidden; border:1px solid var(--border);
+  margin-bottom:18px; box-shadow:0 12px 36px rgba(0,0,0,.2);
+}
+.conc-img-wrap img { width:100%; height:180px; object-fit:cover; display:block; }
+.conc-img-caption { padding:10px 14px; font-size:11px; color:var(--muted); background:var(--surface); }
+
+</style>
+</head>
+<body>
+
+<div id="pbar"></div>
+
+<nav>
+  <span class="nav-lbl">AP Literacy</span>
+  <button class="nav-dot on" data-i="0" onclick="goTo('p1')"></button>
+  <button class="nav-dot" data-i="1" onclick="goTo('p2')"></button>
+  <button class="nav-dot" data-i="2" onclick="goTo('p3')"></button>
+  <button class="nav-dot" data-i="3" onclick="goTo('p4')"></button>
+</nav>
+<button id="thbtn" onclick="toggleTheme()">🌙 Dark</button>
+
+<!-- ═══════════════════════════════════════
+     PAGE 1  —  INTRODUCTION
+════════════════════════════════════════ -->
+<section id="p1">
+  <div class="orb" style="width:500px;height:500px;background:var(--male-g);top:-5%;left:-12%;animation-duration:14s;"></div>
+  <div class="orb" style="width:360px;height:360px;background:var(--fem-g);bottom:-5%;right:-8%;animation-duration:11s;animation-delay:-5s;"></div>
+  <div class="deco-year">AP</div>
+  <div class="inner">
+    <div class="hero-layout">
+
+      <!-- LEFT: theory text -->
+      <div>
+        <div class="hero-badge"><span></span> Academic Research Project — Geography / Social Studies</div>
+        <h1>
+          <span class="accent">Literacy</span> Rate<br>
+          of Male &amp; Female<br>
+          in <span class="state">Arunachal</span> Pradesh
+        </h1>
+        <p class="hero-desc">A comparative gender-based study of literacy rates across the estimated <strong>2015</strong> NFHS-4 baseline and a <strong>2025</strong> projection, showing how education may evolve in one of India's most geographically challenging and culturally diverse states.</p>
+
+        <div class="theory-block">
+          <p>
+            <strong>What is Literacy?</strong> Literacy is defined by the Census of India as the ability of a person aged 7 years and above to read and write with understanding in any language. It is one of the most fundamental indicators of human development and social progress. A literate population is essential for democratic participation, economic productivity, and individual empowerment. UNESCO describes literacy as the foundation of lifelong learning and a basic human right.
+          </p>
+          <p>
+            <strong>About Arunachal Pradesh:</strong> Arunachal Pradesh, often called the "Land of the Dawn-Lit Mountains" (<em>Arunachal</em> meaning "Land of the Rising Sun"), is India's largest state in the Northeast by area, covering approximately <em>83,743 sq. km</em>. It shares international borders with China, Bhutan, and Myanmar. With a population of about <strong>13.84 lakh</strong> (as per Census 2011), the state is among the least populated in the country — yet among the most tribally diverse, home to over <strong>26 major tribes</strong> and more than <strong>110 sub-tribes</strong>, each with distinct languages, customs, and traditions.
+          </p>
+          <p>
+            <strong>Geographical and Educational Challenges:</strong> The literacy landscape of Arunachal Pradesh has been historically shaped by severe geographical barriers. Dense forests, high-altitude mountain passes, remote river valleys, and a largely rural population spread across vast distances have made it exceedingly difficult to establish and maintain schools. About <em>77% of the population lives in rural areas</em>, where access to secondary and higher education remains limited. Poor road connectivity, lack of trained teachers, and cultural factors — particularly related to female education — have combined to keep literacy rates below the national average for decades.
+          </p>
+
+          <div class="hl-quote">
+            "Education is not just about teaching alphabets — in a land as complex and diverse as Arunachal Pradesh, it is about bridging communities, breaking barriers, and building a future rooted in dignity and opportunity."
+          </div>
+
+          <p>
+            <strong>Gender Gap in Literacy — Why It Matters:</strong> The male-female literacy gap in any state reflects deep-seated social inequalities. In Arunachal Pradesh, historical customs, early marriage of girls, the preference for male children in education, and a scarcity of girls' hostels in remote areas have all contributed to a persistent gap between male and female literacy. However, government schemes like <em>Sarva Shiksha Abhiyan (SSA)</em>, <em>Saakshar Bharat Mission</em>, <em>Beti Bachao Beti Padhao (BBBP)</em>, and the <em>Right to Education (RTE) Act, 2009</em> have made measurable strides in narrowing this divide. The shift from the <strong>2015 estimate</strong> to the <strong>2025 projection</strong> is used here to show how that gap may continue to close.
+          </p>
+        </div>
+
+        <div class="pill-row">
+          <span class="pill m">◉ Male Literacy</span>
+          <span class="pill f">◉ Female Literacy</span>
+          <span class="pill">2015 NFHS-4 vs 2025 Projection</span>
+          <span class="pill">Northeast India</span>
+          <span class="pill">Gender Analysis</span>
+        </div>
+      </div>
+
+      <!-- RIGHT: image + stat cards -->
+      <div class="hero-right">
+        <div class="hero-img-wrap rev">
+          <img src="https://thenewsmill.com/wp-content/uploads/2021/03/School-Arunachal.jpg"
+               onerror="this.src='https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=600&q=80'"
+               alt="Students in Arunachal Pradesh school">
+          <div class="hero-img-caption">📍 Students attending class in Arunachal Pradesh — education access has improved steadily over the last decade.</div>
+        </div>
+
+        <div class="stat-grid">
+          <div class="sbox rev d1" style="--c:var(--male)">
+            <div class="sv">~75.8%</div>
+            <div class="sl">Male — 2015</div>
+            <div class="ss">NFHS-4 estimate</div>
+          </div>
+          <div class="sbox rev d2" style="--c:var(--fem)">
+            <div class="sv">~63.3%</div>
+            <div class="sl">Female — 2015</div>
+            <div class="ss">NFHS-4 estimate</div>
+          </div>
+          <div class="sbox rev d3" style="--c:var(--male)">
+            <div class="sv">~84.2%</div>
+            <div class="sl">Male — 2025</div>
+            <div class="ss">Projection</div>
+          </div>
+          <div class="sbox rev d4" style="--c:var(--fem)">
+            <div class="sv">~77.4%</div>
+            <div class="sl">Female — 2025</div>
+            <div class="ss">Projection</div>
+          </div>
+        </div>
+
+        <div class="sbox rev d5" style="--c:var(--gold); margin-top:0;">
+          <div class="sv">~69.6% → ~81.1%</div>
+          <div class="sl">Overall Literacy Rise (2015 → 2025)</div>
+          <div class="ss">An estimated +11.5 percentage point rise over one decade, driven largely by female literacy gains.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-cue">
+    <span>Scroll to explore</span>
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     PAGE 2  —  DETAILED DATA
+════════════════════════════════════════ -->
+<section id="p2">
+  <div class="inner">
+    <div class="eye rev">Detailed Data Analysis</div>
+    <h2 class="rev d1">NFHS-4 <em style="font-style:italic;color:var(--male)">2015</em> vs <em style="font-style:italic;color:var(--fem)">2025</em></h2>
+    <p class="rev d2" style="color:var(--muted);font-size:1rem;line-height:1.7;max-width:580px;margin-bottom:36px;">
+      A side-by-side comparison of an estimated 2015 NFHS-4 baseline and a 2025 projection, with a shorter summary of the key metrics.
+    </p>
+
+    <div class="data-layout">
+      <!-- LEFT: compare cards + explanation -->
+      <div>
+        <!-- The two census cards -->
+        <div class="census-compare rev d2">
+          <div class="ccard yr2011">
+            <div class="cy">📋 NFHS-4 2015 — Estimated</div>
+            <div class="ccard-row m">
+              <span class="label">Male</span>
+              <span class="val">~75.8%</span>
+            </div>
+            <div class="mini-bar"><div class="mini-fill" style="width:75.8%;background:var(--male);" id="b1m"></div></div>
+            <div class="ccard-row f">
+              <span class="label">Female</span>
+              <span class="val">~63.3%</span>
+            </div>
+            <div class="mini-bar"><div class="mini-fill" style="width:63.3%;background:var(--fem);" id="b1f"></div></div>
+            <div class="ccard-row o">
+              <span class="label">Overall</span>
+              <span class="val">~69.6%</span>
+            </div>
+          </div>
+
+          <div class="ccard yr2021">
+            <div class="cy">📊 2025 — Projected*</div>
+            <div class="ccard-row m">
+              <span class="label">Male</span>
+              <span class="val">~84.2%</span>
+            </div>
+            <div class="mini-bar"><div class="mini-fill" style="width:84.2%;background:var(--male);" id="b2m"></div></div>
+            <div class="ccard-row f">
+              <span class="label">Female</span>
+              <span class="val">~77.4%</span>
+            </div>
+            <div class="mini-bar"><div class="mini-fill" style="width:77.4%;background:var(--fem);" id="b2f"></div></div>
+            <div class="ccard-row o">
+              <span class="label">Overall</span>
+              <span class="val">~81.1%</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Gender gap display -->
+        <div class="gap-display rev d3">
+          <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;">
+            <div>
+              <div class="gv">~12.5% → ~6.8%</div>
+              <div class="gl">Gender gap projected to narrow from 2015 to 2025 — a <strong style="color:var(--gold)">~45.6% reduction</strong> in the gap width</div>
+            </div>
+            <span class="change-badge">▼ Improving Rapidly</span>
+          </div>
+        </div>
+
+        <!-- Detailed paragraph explanation -->
+        <div class="explain rev d4">
+          <p>
+            <strong>2015 Baseline:</strong> The estimated NFHS-4 baseline places Arunachal Pradesh at about <em>69.6%</em> overall literacy, with male literacy near <em>75.8%</em> and female literacy near <em>63.3%</em>. The gap is still significant, but the state is already moving upward.
+          </p>
+          <p>
+            <strong>2025 Projection:</strong> By 2025, the projection lifts male literacy to roughly <em>84.2%</em> and female literacy to about <em class="fem">77.4%</em>. The faster female rise is the key trend, because it pulls the gap down instead of letting it stay fixed.
+          </p>
+          <p>
+            <strong>What Matters Most:</strong> The story here is the direction of change. Literacy is rising, and female literacy is rising faster, which makes the comparison more useful than a long list of historical detail.
+          </p>
+          <p>
+            <strong>Interpreting the Numbers:</strong> Even though these figures are estimates, they are useful because they show the likely direction of literacy change over time. The 2015 baseline suggests a state still shaped by access gaps, while the 2025 projection points toward broader school reach, stronger retention, and better support for girls' education. Together, the two numbers show not only progress, but also the pace at which that progress may continue in the coming years.
+          </p>
+        </div>
+      </div>
+
+      <!-- RIGHT: image + additional notes -->
+      <div>
+        <div class="data-img-wrap rev d2">
+          <img src="https://images.deccanherald.com/deccanherald%2F2024-12%2Fd6f9d05a-e61c-407c-adb0-7a6d7f3db8bc%2F2020_10image_14_24_2843613041-ll.jpg"
+               onerror="this.src='https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=600&q=80'"
+               alt="Education in Northeast India">
+          <div class="data-img-caption">📍 Improved school infrastructure and teacher availability have driven literacy gains across Arunachal Pradesh.</div>
+        </div>
+
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:22px;margin-top:16px;" class="rev d3">
+          <h3 style="color:var(--male);font-size:1.1rem;margin-bottom:14px;">Key Statistical Snapshot</h3>
+          <table style="width:100%;font-size:13px;border-collapse:collapse;">
+            <thead>
+              <tr>
+                <th style="text-align:left;padding:8px 0;color:var(--muted);font-weight:600;border-bottom:1px solid var(--border);">Metric</th>
+                <th style="text-align:center;padding:8px 0;color:var(--male);font-weight:600;border-bottom:1px solid var(--border);">2015</th>
+                <th style="text-align:center;padding:8px 0;color:var(--fem);font-weight:600;border-bottom:1px solid var(--border);">2025 (Proj.)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td style="padding:9px 0;color:var(--muted);border-bottom:1px solid var(--border);">Male Literacy</td><td style="text-align:center;font-family:'JetBrains Mono',monospace;color:var(--male);border-bottom:1px solid var(--border);">~75.8%</td><td style="text-align:center;font-family:'JetBrains Mono',monospace;color:var(--male);border-bottom:1px solid var(--border);">~84.2%</td></tr>
+              <tr><td style="padding:9px 0;color:var(--muted);border-bottom:1px solid var(--border);">Female Literacy</td><td style="text-align:center;font-family:'JetBrains Mono',monospace;color:var(--fem);border-bottom:1px solid var(--border);">~63.3%</td><td style="text-align:center;font-family:'JetBrains Mono',monospace;color:var(--fem);border-bottom:1px solid var(--border);">~77.4%</td></tr>
+              <tr><td style="padding:9px 0;color:var(--muted);border-bottom:1px solid var(--border);">Overall Literacy</td><td style="text-align:center;font-family:'JetBrains Mono',monospace;border-bottom:1px solid var(--border);">~69.6%</td><td style="text-align:center;font-family:'JetBrains Mono',monospace;border-bottom:1px solid var(--border);">~81.1%</td></tr>
+              <tr><td style="padding:9px 0;color:var(--muted);border-bottom:1px solid var(--border);">Gender Gap</td><td style="text-align:center;font-family:'JetBrains Mono',monospace;color:var(--gold);border-bottom:1px solid var(--border);">~12.5%</td><td style="text-align:center;font-family:'JetBrains Mono',monospace;color:var(--gold);border-bottom:1px solid var(--border);">~6.8%</td></tr>
+              <tr><td style="padding:9px 0;color:var(--muted);">Rural Female</td><td style="text-align:center;font-family:'JetBrains Mono',monospace;color:var(--fem);">~58.0%</td><td style="text-align:center;font-family:'JetBrains Mono',monospace;color:var(--fem);">~72.0%</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p style="font-size:11px;color:var(--muted);margin-top:12px;line-height:1.7;" class="rev d4">
+          * 2015 figures are estimated from NFHS-4 patterns, while 2025 values are projections based on the observed rise in literacy and gender parity trends.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     PAGE 3  —  GRAPH
+════════════════════════════════════════ -->
+<section id="p3">
+  <div class="orb" style="width:400px;height:400px;background:var(--fem-g);top:-10%;right:5%;animation-duration:10s;"></div>
+  <div class="inner">
+    <div class="eye rev">Data Visualization</div>
+    <h2 class="rev d1">The Literacy Graph<br><span style="font-size:.65em;color:var(--muted);font-weight:400;">NFHS-4 2015 estimate vs 2025 projection — Arunachal Pradesh</span></h2>
+
+    <div class="chart-tabs rev d2">
+      <button class="ctab on" onclick="switchChart('grouped',this)">Grouped Bar</button>
+      <button class="ctab" onclick="switchChart('side',this)">Side-by-Side</button>
+      <button class="ctab" onclick="switchChart('gap',this)">Gender Gap</button>
+      <button class="ctab" onclick="switchChart('change',this)">Change (Δ)</button>
+    </div>
+
+    <div class="chart-shell rev d3">
+      <div class="legend">
+        <div class="leg m"><div class="leg-dot" style="background:var(--male);box-shadow:0 0 8px var(--male)"></div> Male Literacy Rate</div>
+        <div class="leg f"><div class="leg-dot" style="background:var(--fem);box-shadow:0 0 8px var(--fem)"></div> Female Literacy Rate</div>
+      </div>
+      <canvas id="mainChart"></canvas>
+    </div>
+
+    <div class="highlights rev d4">
+      <div class="hl m"><strong>+8.4 pts — Male</strong>Male literacy rises from ~75.8% to ~84.2% in the projection.</div>
+      <div class="hl f"><strong>+14.1 pts — Female</strong>Female literacy rises from ~63.3% to ~77.4%, keeping the faster growth pattern.</div>
+      <div class="hl g"><strong>Gap: ~12.5% → ~6.8%</strong>The gender gap is projected to shrink by about 45.6%.</div>
+      <div class="hl"><strong>+11.5 pts — Overall</strong>Overall literacy moves from ~69.6% to ~81.1%, pushing the state into stronger parity territory.</div>
+    </div>
+
+    <!-- Graph explanation in paragraphs -->
+    <div class="graph-explain rev d5">
+      <div class="hr"></div>
+      <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;margin-bottom:16px;">Interpreting the Graph</h3>
+      <p>
+        The bar graph compares an estimated <strong>2015</strong> NFHS-4 baseline with a <strong>2025</strong> projection for Arunachal Pradesh. The layout is simple on purpose: one view for male literacy, one for female literacy, and one clear gap between them.
+      </p>
+      <p>
+        <strong>What the Graph Shows:</strong> Both bars rise, but the female bars rise faster. That is the key takeaway, because it shows that the projected change is not just growth, but also better parity.
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     PAGE 4  —  CONCLUSION
+════════════════════════════════════════ -->
+<section id="p4">
+  <div class="inner">
+    <div class="eye rev">Conclusion & Summary</div>
+    <h2 class="rev d1">Key Findings &<br>The Road Ahead</h2>
+
+    <div class="conc-layout">
+      <!-- LEFT: conclusion text + findings -->
+      <div>
+        <div class="conc-body rev d2">
+          <p>
+            The comparative analysis of literacy rates in Arunachal Pradesh between the estimated <strong>2015</strong> baseline and the projected <strong>2025</strong> data shows steady progress, especially for <span class="fem">female literacy</span>.
+          </p>
+          <p>
+            The overall rate rises from about <span class="male">69.6%</span> to roughly <span class="male">81.1%</span>, while female literacy climbs from about <span class="fem">63.3%</span> to <span class="fem">77.4%</span>. The trend is clear: access is improving, and the gender gap is shrinking.
+          </p>
+
+          <div class="conc-quote">
+            "The pen is mightier than the sword — and in Arunachal Pradesh, it is the pen that is slowly but surely winning the battle against poverty, isolation, and inequality."
+          </div>
+
+          <p>
+            Female literacy grows faster than male literacy in the projection, which keeps the state moving toward parity. That pattern matters more than a single number because it suggests the gap is being closed rather than preserved.
+          </p>
+          <p>
+            <strong>Challenges Ahead:</strong> Rural access, teacher availability, and retention of girl students in higher classes still need attention. Those issues remain the main barriers to turning the projection into a real outcome.
+          </p>
+          <p>
+            <strong>The Way Forward:</strong> If the projected trend holds, Arunachal Pradesh could move very close to gender parity by <span class="gold">2031–2033</span>. Literacy here is still more than a statistic; it is a measure of access, dignity, and opportunity.
+          </p>
+        </div>
+
+        <div class="hr rev d3"></div>
+        <h3 class="rev d3" style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;margin-bottom:16px;">Key Findings at a Glance</h3>
+        <div class="finding rev d3"><div class="f-n m">1</div><p>Male literacy rises from <strong>~75.8% (2015)</strong> to approximately <strong>~84.2% (2025)</strong>.</p></div>
+        <div class="finding rev d4"><div class="f-n f">2</div><p>Female literacy rises from <strong>~63.3% (2015)</strong> to approximately <strong>~77.4% (2025)</strong>, which keeps the faster growth pattern intact.</p></div>
+        <div class="finding rev d4"><div class="f-n g">3</div><p>The gender gap shrinks from <strong>~12.5 percentage points</strong> to approximately <strong>~6.8 percentage points</strong>.</p></div>
+        <div class="finding rev d5"><div class="f-n m">4</div><p>Overall literacy rises from <strong>~69.6%</strong> to approximately <strong>~81.1%</strong>.</p></div>
+        <div class="finding rev d5"><div class="f-n f">5</div><p>The biggest story is not one number, but the direction of change: faster gains for girls and a narrowing gap.</p></div>
+      </div>
+
+      <!-- RIGHT: credit + image + sources -->
+      <div>
+        <div class="conc-img-wrap rev d2">
+          <img src="https://pbs.twimg.com/media/E2IGGE5VoAEFYLF?format=jpg&name=large"
+               onerror="this.src='https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600&q=80'"
+               alt="Girls education in Arunachal Pradesh">
+          <div class="conc-img-caption">📍 Girls increasingly attending school in Arunachal Pradesh — reflecting the decade's most significant educational achievement.</div>
+        </div>
+
+        <!-- Credit card -->
+        <div class="credit rev d3">
+          <div class="madeby">✦ This Project is Made By</div>
+          <img src="https://plain-apac-prod-public.komododecks.com/202605/22/nHDi45aen4uwI6zP8WGI/image.jpg"
+               onerror="this.src='https://ui-avatars.com/api/?name=Akshit+Tyagi&background=38e8c0&color=08090f&size=200'"
+               alt="Akshit Tyagi">
+          <div class="cname">Akshit Tyagi</div>
+          <div class="crole">Student Researcher</div>
+          <div class="cbadge">✦ Academic Project 2025</div>
+        </div>
+
+        <!-- Sources -->
+        <div class="sources-box rev d4">
+          <div class="src-title">Data Sources & References</div>
+          <div class="src-item">📋 NFHS-4 (2015–16) — Estimated baseline</div>
+          <div class="src-item">📊 2025 literacy projection — derived estimate</div>
+          <div class="src-item">📈 Trend-based projection for gender parity analysis</div>
+          <div class="src-item">📚 State education indicators — summarized estimate</div>
+          <div class="src-item">🏛 Arunachal Pradesh — Dept. of School Education</div>
+          <div class="src-item">📘 Development Statistics Atlas of AP 2020</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════ SCRIPT ════════════════════════ -->
+<script>
+/* ─── DATA ──────────────────────────────── */
+const D = {
+  labels: ['NFHS-4 2015','2025 Projection'],
+  male:   [75.8, 84.2],
+  female: [63.3, 77.4],
+  overall:[69.6, 81.1],
+  gap:    [12.5, 6.8],
+  maleΔ:  [0, 8.4],
+  femΔ:   [0, 14.1],
+};
+
+/* ─── CHART.JS ───────────────────────────── */
+const ctx = document.getElementById('mainChart').getContext('2d');
+let chart; let curMode='grouped';
+
+function cv(v){ return getComputedStyle(document.documentElement).getPropertyValue(v).trim(); }
+
+function buildChart(mode){
+  if(chart) chart.destroy();
+  const dark = document.documentElement.dataset.theme==='dark';
+  const mc=cv('--male'), fc=cv('--fem'), gc=cv('--gold');
+  const grid = dark?'rgba(255,255,255,.05)':'rgba(0,0,0,.06)';
+  const lc   = dark?'#7a8ab0':'#546085';
+
+  let datasets, labels, yMin, yMax, yTitle;
+
+  if(mode==='gap'){
+    labels=[...D.labels];
+    datasets=[{label:'Gender Gap (%)',data:D.gap,
+      backgroundColor:[dark?'rgba(252,211,77,.25)':'rgba(180,83,9,.15)',dark?'rgba(252,211,77,.18)':'rgba(180,83,9,.1)'],
+      borderColor:[gc,gc],borderWidth:2,borderRadius:10}];
+    yMin=0;yMax=20;yTitle='Gender Gap (%)';
+  } else if(mode==='change'){
+    labels=[...D.labels];
+    datasets=[
+      {label:'Male Δ',data:D.maleΔ,backgroundColor:dark?'rgba(56,232,192,.25)':'rgba(13,138,113,.18)',borderColor:mc,borderWidth:2,borderRadius:10},
+      {label:'Female Δ',data:D.femΔ,backgroundColor:dark?'rgba(255,126,179,.22)':'rgba(194,24,91,.15)',borderColor:fc,borderWidth:2,borderRadius:10},
+    ];
+    yMin=0;yMax=20;yTitle='Change in Percentage Points';
+  } else {
+    labels=[...D.labels];
+    datasets=[
+      {label:'Male Literacy %',data:D.male,
+        backgroundColor:dark?'rgba(56,232,192,.28)':'rgba(13,138,113,.2)',
+        borderColor:mc,borderWidth:2,borderRadius:10},
+      {label:'Female Literacy %',data:D.female,
+        backgroundColor:dark?'rgba(255,126,179,.25)':'rgba(194,24,91,.18)',
+        borderColor:fc,borderWidth:2,borderRadius:10},
+    ];
+    yMin=40;yMax=90;yTitle='Literacy Rate (%)';
+  }
+
+  chart = new Chart(ctx,{
+    type:'bar', data:{labels,datasets},
+    options:{
+      responsive:true,maintainAspectRatio:true,
+      animation:{duration:900,easing:'easeInOutQuart'},
+      interaction:{mode:'index',intersect:false},
+      plugins:{
+        legend:{display:false},
+        tooltip:{
+          backgroundColor:dark?'#141828':'#ffffff',
+          titleColor:dark?'#e8ecff':'#0c1030',
+          bodyColor:lc, borderColor:dark?'rgba(255,255,255,.1)':'rgba(0,0,0,.1)',
+          borderWidth:1,padding:14,cornerRadius:12,
+          callbacks:{label:c=>` ${c.dataset.label}: ${c.raw}%`}
+        }
+      },
+      scales:{
+        x:{grid:{color:grid},ticks:{color:lc,font:{size:13,weight:'500'}}},
+        y:{
+          min:yMin,max:yMax,
+          grid:{color:grid},
+          ticks:{color:lc,font:{size:12},callback:v=>v+'%'},
+          title:{display:true,text:yTitle,color:lc,font:{size:12}}
+        }
+      }
+    }
+  });
+}
+buildChart('grouped');
+
+function switchChart(mode,el){
+  curMode=mode;
+  document.querySelectorAll('.ctab').forEach(t=>t.classList.remove('on'));
+  el.classList.add('on');
+  buildChart(mode);
+}
+
+/* ─── THEME ──────────────────────────────── */
+function toggleTheme(){
+  const dark = document.documentElement.dataset.theme==='dark';
+  document.documentElement.dataset.theme = dark?'light':'dark';
+  document.getElementById('thbtn').textContent = dark?'🌙 Dark':'☀ Light';
+  setTimeout(()=>buildChart(curMode),50);
+}
+
+/* ─── SCROLL ──────────────────────────────── */
+function goTo(id){ document.getElementById(id).scrollIntoView({behavior:'smooth'}); }
+
+window.addEventListener('scroll',()=>{
+  const tot = document.body.scrollHeight-window.innerHeight;
+  document.getElementById('pbar').style.width=(window.scrollY/tot*100)+'%';
+  ['p1','p2','p3','p4'].forEach((id,i)=>{
+    const r=document.getElementById(id).getBoundingClientRect();
+    document.querySelectorAll('.nav-dot')[i].classList.toggle('on',r.top<=window.innerHeight/2&&r.bottom>=window.innerHeight/2);
+  });
+});
+
+/* ─── REVEAL ─────────────────────────────── */
+const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')})},{threshold:.1});
+document.querySelectorAll('.rev').forEach(el=>io.observe(el));
+
+/* ─── BAR ANIMATIONS ─────────────────────── */
+setTimeout(()=>{
+  document.querySelectorAll('.mini-fill').forEach(b=>{ const w=b.style.width; b.style.width='0'; setTimeout(()=>b.style.width=w,200); });
+},600);
+</script>
+</body>
+</html>

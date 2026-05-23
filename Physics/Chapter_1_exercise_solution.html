@@ -1,0 +1,1322 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Electrostatics Exercise Questions · Class XII · Akshit Tyagi</title>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false})"></script>
+
+<style>
+/* ===== DESIGN TOKENS ===== */
+:root {
+  --bg:          #FEFBF3;
+  --paper:       #FFF9EC;
+  --paper-2:     #FFF4DC;
+  --text:        #1A1208;
+  --text-muted:  #6B5540;
+  --accent:      #B07D10;
+  --accent-2:    #C05A12;
+  --accent-3:    #27AE60;
+  --line:        #DDD0B0;
+  --line-2:      #EDE0C4;
+  --highlight:   rgba(176,125,16,.1);
+  --highlight-2: rgba(176,125,16,.06);
+  --shadow:      rgba(100,60,10,.13);
+  --shadow-lg:   rgba(100,60,10,.22);
+  --nav-bg:      rgba(254,251,243,.94);
+  --ruled:       rgba(180,148,100,.18);
+  --margin:      rgba(200,100,80,.18);
+  --diagram-bg:  #FAFAF5;
+  --c-red:       #C0392B;
+  --c-blue:      #1E5BA8;
+  --c-green:     #1E8A50;
+  --c-gold:      #B07D10;
+  --c-purple:    #7D3C98;
+  --c-ink:       #1A1208;
+}
+[data-theme="dark"] {
+  --bg:          #100E0A;
+  --paper:       #1A1710;
+  --paper-2:     #221E14;
+  --text:        #EDE0C8;
+  --text-muted:  #A89070;
+  --accent:      #D4A820;
+  --accent-2:    #E8783A;
+  --accent-3:    #2ECC71;
+  --line:        #3A2E1A;
+  --line-2:      #2A2416;
+  --highlight:   rgba(212,168,32,.1);
+  --highlight-2: rgba(212,168,32,.055);
+  --shadow:      rgba(0,0,0,.4);
+  --shadow-lg:   rgba(0,0,0,.6);
+  --nav-bg:      rgba(16,14,10,.95);
+  --ruled:       rgba(212,168,32,.07);
+  --margin:      rgba(220,120,100,.12);
+  --diagram-bg:  #181510;
+  --c-red:       #E74C3C;
+  --c-blue:      #5B9BD5;
+  --c-green:     #2ECC71;
+  --c-gold:      #D4A820;
+  --c-purple:    #AF7AC5;
+  --c-ink:       #EDE0C8;
+}
+
+/* ===== RESET & BASE ===== */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;font-size:16px}
+body{
+  font-family:'Crimson Pro',Georgia,serif;
+  background:var(--bg);color:var(--text);
+  line-height:1.85;font-size:1.1rem;
+  transition:background .45s ease,color .45s ease;
+  overflow-x:hidden;
+}
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--accent);border-radius:3px}
+a{color:inherit;text-decoration:none}
+
+/* ===== PROGRESS BAR ===== */
+#progress{
+  position:fixed;top:0;left:0;height:3px;width:0%;
+  background:linear-gradient(90deg,var(--accent),var(--accent-2),var(--accent-3));
+  z-index:999;transition:width .08s linear;
+  box-shadow:0 0 8px var(--accent);
+}
+
+/* ===== NAVIGATION ===== */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:var(--nav-bg);backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--line);
+  padding:.7rem 2rem;
+  display:flex;align-items:center;justify-content:space-between;
+  transform:translateY(-110%);
+  transition:transform .45s cubic-bezier(.25,.8,.25,1),background .45s ease;
+}
+.nav.show{transform:translateY(0)}
+.nav-brand{
+  font-family:'Caveat',cursive;font-size:1.25rem;
+  font-weight:700;color:var(--accent);letter-spacing:.02em;
+}
+.nav-links{display:flex;gap:.3rem;list-style:none;flex-wrap:wrap;}
+.nav-links a{
+  font-family:'Caveat',cursive;font-size:.88rem;color:var(--text-muted);
+  padding:.2rem .55rem;border-radius:6px;
+  transition:color .2s,background .2s;
+}
+.nav-links a:hover{color:var(--accent);background:var(--highlight)}
+.nav-right{display:flex;align-items:center;gap:.75rem}
+
+/* Theme Toggle */
+.toggle{
+  width:46px;height:25px;
+  background:var(--line);border:none;border-radius:100px;
+  cursor:pointer;position:relative;transition:background .3s;
+}
+.toggle::after{
+  content:'';position:absolute;top:3px;left:3px;
+  width:19px;height:19px;border-radius:50%;
+  background:var(--accent);
+  transition:transform .35s cubic-bezier(.4,0,.2,1);
+}
+[data-theme="dark"] .toggle::after{transform:translateX(21px)}
+.toggle-icon{
+  font-size:.7rem;position:absolute;
+  top:50%;transform:translateY(-50%);
+  transition:opacity .3s;pointer-events:none;
+}
+.icon-sun{left:5px;opacity:1}
+.icon-moon{right:5px;opacity:.5}
+[data-theme="dark"] .icon-sun{opacity:.5}
+[data-theme="dark"] .icon-moon{opacity:1}
+
+/* ===== HERO ===== */
+.hero{
+  min-height:100vh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  text-align:center;padding:5rem 2rem 6rem;
+  position:relative;overflow:hidden;
+  background:var(--paper);
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background:repeating-linear-gradient(transparent,transparent 39px,var(--ruled) 39px,var(--ruled) 40px);
+  pointer-events:none;
+}
+.hero::after{
+  content:'';position:absolute;top:0;left:88px;width:1.5px;height:100%;
+  background:var(--margin);pointer-events:none;
+}
+.ink-orb{
+  position:absolute;border-radius:50%;pointer-events:none;
+  animation:floatOrb var(--dur,12s) ease-in-out infinite;
+  opacity:.055;filter:blur(60px);
+}
+@keyframes floatOrb{
+  0%,100%{transform:translate(0,0) scale(1)}
+  33%{transform:translate(30px,-40px) scale(1.1)}
+  66%{transform:translate(-20px,25px) scale(.9)}
+}
+.hero-eyebrow{
+  font-family:'Caveat',cursive;font-size:1rem;
+  color:var(--accent);letter-spacing:.18em;text-transform:uppercase;
+  margin-bottom:1rem;opacity:0;animation:riseUp .8s ease .2s forwards;
+  position:relative;z-index:2;
+}
+.hero-title{
+  font-family:'Caveat',cursive;
+  font-size:clamp(3.2rem,8.5vw,6.5rem);
+  font-weight:700;line-height:1.05;
+  color:var(--text);margin-bottom:.6rem;
+  opacity:0;animation:riseUp .9s ease .38s forwards;
+  position:relative;z-index:2;
+}
+.hero-title span{color:var(--accent)}
+.hero-sub{
+  font-size:1.15rem;color:var(--text-muted);
+  font-style:italic;margin-bottom:3rem;
+  opacity:0;animation:riseUp .9s ease .55s forwards;
+  position:relative;z-index:2;
+}
+.author-card{
+  display:flex;align-items:center;gap:1.8rem;
+  background:var(--paper-2);border:1.5px solid var(--line);border-radius:24px;
+  padding:1.6rem 2.8rem;box-shadow:0 12px 50px var(--shadow);
+  margin-bottom:2.2rem;opacity:0;position:relative;z-index:2;
+  animation-fill-mode:both;
+  animation-name:riseUp,cardFloat;animation-duration:1s,6s;
+  animation-delay:.72s,1.8s;animation-timing-function:ease,ease-in-out;
+  animation-iteration-count:1,infinite;
+}
+@keyframes cardFloat{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-8px)}
+}
+.author-photo{
+  width:88px;height:88px;border-radius:50%;object-fit:cover;
+  border:3px solid var(--accent);
+  box-shadow:0 0 0 5px var(--highlight),0 8px 24px var(--shadow);
+  transition:transform .4s ease;flex-shrink:0;
+}
+.author-photo:hover{transform:scale(1.06) rotate(2deg)}
+.author-info{text-align:left}
+.author-label{
+  font-family:'Caveat',cursive;font-size:.78rem;
+  color:var(--text-muted);letter-spacing:.12em;text-transform:uppercase;
+}
+.author-name{
+  font-family:'Caveat',cursive;font-size:2.8rem;
+  font-weight:700;line-height:1;
+  background:linear-gradient(135deg,var(--accent),var(--accent-2));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.author-desc{font-size:.9rem;color:var(--text-muted);font-style:italic;}
+.chips{
+  display:flex;flex-wrap:wrap;gap:.6rem;justify-content:center;
+  opacity:0;animation:riseUp 1s ease .9s forwards;position:relative;z-index:2;
+}
+.chip{
+  font-family:'Caveat',cursive;font-size:.9rem;color:var(--accent);
+  border:1px solid var(--accent);background:var(--highlight);
+  padding:.28rem .85rem;border-radius:100px;cursor:pointer;
+  transition:all .3s cubic-bezier(.25,.8,.25,1);position:relative;overflow:hidden;
+}
+.chip::before{
+  content:'';position:absolute;inset:0;background:var(--accent);
+  transform:scaleX(0);transform-origin:left;transition:transform .3s ease;
+  border-radius:inherit;z-index:-1;
+}
+.chip:hover::before{transform:scaleX(1)}
+.chip:hover{color:var(--bg);border-color:var(--accent)}
+.scroll-cue{
+  position:absolute;bottom:2.2rem;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:.5rem;
+  opacity:0;animation:fadeIn 1s ease 1.4s forwards;z-index:2;
+}
+.scroll-cue span{font-family:'Caveat',cursive;font-size:.8rem;color:var(--text-muted);letter-spacing:.1em;}
+.scroll-arrow{
+  width:20px;height:20px;
+  border-right:2px solid var(--accent);border-bottom:2px solid var(--accent);
+  transform:rotate(45deg);animation:arrowBounce 1.6s ease infinite;
+}
+
+/* ===== MAIN LAYOUT ===== */
+.container{max-width:880px;margin:0 auto;padding:4rem 2rem 2rem;}
+
+/* ===== SECTION ===== */
+.section{
+  margin-bottom:5.5rem;opacity:0;transform:translateY(44px);
+  transition:opacity .75s ease,transform .75s cubic-bezier(.25,.8,.25,1);
+}
+.section.reveal{opacity:1;transform:translateY(0)}
+.section:nth-child(2){transition-delay:.05s}
+.section:nth-child(3){transition-delay:.1s}
+
+.section-header{
+  display:flex;align-items:flex-start;gap:1.4rem;
+  margin-bottom:2rem;padding-bottom:1rem;border-bottom:2px solid var(--accent);
+}
+.s-num{
+  font-family:'Caveat',cursive;font-size:4.5rem;
+  font-weight:700;color:var(--accent);opacity:.22;
+  line-height:1;min-width:58px;position:relative;top:-.25rem;
+}
+.s-meta{}
+.s-title{font-family:'Caveat',cursive;font-size:2.1rem;font-weight:700;color:var(--text);line-height:1.2;}
+.s-tag{
+  display:inline-block;margin-top:.35rem;
+  font-family:'Caveat',cursive;font-size:.78rem;
+  color:var(--accent-2);border:1px solid var(--accent-2);
+  padding:.12rem .55rem;border-radius:100px;
+}
+
+/* ===== PAPER CARDS ===== */
+.paper{
+  background:var(--paper);border:1px solid var(--line);border-radius:18px;
+  padding:2rem 2.4rem;position:relative;overflow:hidden;
+  box-shadow:0 5px 28px var(--shadow);margin-bottom:1.4rem;
+  transition:box-shadow .3s ease;
+}
+.paper:hover{box-shadow:0 10px 48px var(--shadow-lg)}
+.paper::before{
+  content:'';position:absolute;inset:0;
+  background:repeating-linear-gradient(transparent,transparent 27px,var(--ruled) 27px,var(--ruled) 28px);
+  pointer-events:none;
+}
+.paper.margin::after{
+  content:'';position:absolute;top:0;left:44px;
+  width:1.5px;height:100%;background:var(--margin);pointer-events:none;
+}
+
+/* ===== QUESTION BADGE ===== */
+.q-badge{
+  font-family:'Caveat',cursive;font-size:.78rem;font-weight:700;
+  color:var(--bg);background:var(--accent-2);
+  padding:.1rem .6rem;border-radius:100px;
+  letter-spacing:.1em;display:inline-block;
+  margin-bottom:.75rem;position:relative;z-index:1;
+}
+
+/* ===== QUESTION TEXT ===== */
+.q-text{
+  background:var(--highlight-2);
+  border-left:3px solid var(--accent-2);
+  border-radius:0 8px 8px 0;
+  padding:.65rem 1rem;
+  font-style:italic;font-size:.97rem;color:var(--text);
+  margin-bottom:1.1rem;position:relative;z-index:1;
+}
+
+/* ===== GIVEN BOX ===== */
+.given{
+  font-family:'DM Mono',monospace;font-size:.82rem;
+  color:var(--text-muted);margin-bottom:.9rem;
+  background:var(--paper-2);border-radius:8px;
+  padding:.5rem 1rem;border:1px solid var(--line-2);
+  position:relative;z-index:1;line-height:1.7;
+}
+
+/* ===== THEORY BLOCK ===== */
+.theory-block{
+  background:var(--highlight);border-left:3.5px solid var(--accent);
+  border-radius:0 12px 12px 0;padding:1rem 1.4rem;
+  margin-bottom:1.6rem;font-style:italic;font-size:1rem;
+  color:var(--text-muted);position:relative;z-index:1;
+}
+
+/* ===== LABELS ===== */
+.lbl{
+  display:inline-block;font-family:'Caveat',cursive;font-size:.82rem;
+  font-weight:700;color:var(--accent);letter-spacing:.12em;text-transform:uppercase;
+  margin-bottom:.6rem;position:relative;z-index:1;
+}
+
+/* ===== STEPS ===== */
+.step{display:flex;gap:.9rem;margin-bottom:.9rem;position:relative;z-index:1;}
+.step-n{
+  font-family:'Caveat',cursive;font-size:.85rem;
+  color:var(--accent);font-weight:700;
+  min-width:22px;padding-top:.1rem;flex-shrink:0;
+}
+.step-c{font-size:1rem;flex:1;color:var(--text)}
+
+/* ===== FORMULA BOXES ===== */
+.fbox{
+  background:var(--paper-2);border:1.5px solid var(--line);
+  border-radius:12px;padding:1rem 1.8rem;
+  text-align:center;margin:1.3rem 0;
+  position:relative;z-index:1;overflow-x:auto;
+}
+.fbox.result{
+  border-color:var(--accent);border-width:2px;
+  background:linear-gradient(135deg,var(--highlight),var(--paper-2));
+  box-shadow:0 2px 18px rgba(176,125,16,.12);
+  animation:shimmer 4s ease-in-out infinite;
+}
+@keyframes shimmer{
+  0%,100%{box-shadow:0 2px 18px rgba(176,125,16,.12)}
+  50%{box-shadow:0 4px 32px rgba(176,125,16,.28)}
+}
+.result-tag{
+  position:absolute;top:-.65rem;right:1rem;
+  font-family:'Caveat',cursive;font-size:.75rem;
+  color:var(--accent);background:var(--paper);
+  padding:.05rem .45rem;border:1px solid var(--accent);border-radius:100px;
+}
+
+/* ===== NOTE ===== */
+.note{
+  background:var(--highlight-2);border:1px dashed var(--accent);
+  border-radius:9px;padding:.75rem 1.2rem;margin:1rem 0;
+  font-family:'Caveat',cursive;font-size:1.05rem;color:var(--text-muted);
+  position:relative;z-index:1;
+}
+.note strong{color:var(--accent)}
+
+/* ===== DIAGRAMS ===== */
+.diagram-wrap{
+  background:var(--diagram-bg);border:1px solid var(--line-2);
+  border-radius:16px;padding:1.6rem;
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;margin:1.4rem 0;
+  box-shadow:inset 0 2px 10px rgba(0,0,0,.04);
+}
+.diagram-wrap svg{max-width:100%;height:auto;display:block}
+.diagram-cap{
+  text-align:center;font-family:'Caveat',cursive;font-size:.88rem;
+  color:var(--text-muted);margin-top:-.5rem;margin-bottom:1.2rem;font-style:italic;
+}
+
+/* SVG animated paths */
+.dp{stroke-dasharray:900;stroke-dashoffset:900;animation:drawPath 1.4s ease forwards;animation-play-state:paused;}
+.section.reveal .dp{animation-play-state:running}
+.dp2{animation-delay:.3s}.dp3{animation-delay:.6s}.dp4{animation-delay:.9s}
+
+/* Sub-title */
+.sub-title{
+  font-family:'Caveat',cursive;font-size:1.5rem;font-weight:600;color:var(--accent-2);
+  display:flex;align-items:center;gap:.5rem;margin-bottom:1rem;margin-top:2.2rem;
+}
+.sub-title::before{content:'→';font-size:1.2rem;color:var(--accent)}
+
+/* 2-col grid */
+.two{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem;margin:1.4rem 0;}
+
+/* ===== DIVIDER ===== */
+.divider{display:flex;align-items:center;gap:1rem;margin:3.5rem 0;opacity:.45;}
+.divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--accent);}
+.divider span{font-family:'Caveat',cursive;color:var(--accent);font-size:1.4rem;}
+
+/* ===== FOOTER ===== */
+.footer{
+  text-align:center;padding:3rem 2rem;border-top:1px solid var(--line);
+  font-family:'Caveat',cursive;font-size:1.1rem;color:var(--text-muted);
+}
+.footer span{color:var(--accent)}
+
+/* ===== INLINE UTILS ===== */
+p{position:relative;z-index:1;margin-bottom:.7rem}
+strong{color:var(--accent);font-weight:600}
+em{color:var(--text-muted)}
+small{font-size:.88rem}
+
+/* ===== KEYFRAMES ===== */
+@keyframes riseUp{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes arrowBounce{
+  0%,100%{transform:rotate(45deg) translateY(0)}
+  50%{transform:rotate(45deg) translateY(7px)}
+}
+@keyframes drawPath{from{stroke-dashoffset:900}to{stroke-dashoffset:0}}
+
+/* KaTeX overrides */
+.katex-display{padding:.4rem 0;overflow-x:auto}
+.katex{font-size:1.08em}
+
+@media(max-width:620px){
+  .two{grid-template-columns:1fr}
+  .nav-links{display:none}
+  .hero::after{left:42px}
+  .author-card{flex-direction:column;text-align:center;padding:1.4rem}
+  .author-info{text-align:center}
+}
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<nav class="nav" id="nav">
+  <div class="nav-brand">⚡ Electrostatics · XII</div>
+  <ul class="nav-links">
+    <li><a href="#s1">Coulomb's Law</a></li>
+    <li><a href="#s2">Charge Properties</a></li>
+    <li><a href="#s3">Electric Field</a></li>
+    <li><a href="#s4">Gauss's Law</a></li>
+    <li><a href="#s5">Applications</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="toggle" id="themeToggle" aria-label="Toggle theme">
+      <span class="toggle-icon icon-sun">☀</span>
+      <span class="toggle-icon icon-moon">☾</span>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="ink-orb" style="width:420px;height:420px;background:var(--accent);top:-120px;right:-100px;--dur:14s"></div>
+  <div class="ink-orb" style="width:300px;height:300px;background:var(--accent-2);bottom:-80px;left:-60px;--dur:11s;animation-delay:-4s"></div>
+  <div class="ink-orb" style="width:200px;height:200px;background:var(--accent-3);bottom:20%;left:15%;--dur:16s;animation-delay:-7s"></div>
+
+  <div class="hero-eyebrow">Class XII · Physics · Chapter 1 · Electrostatics</div>
+  <h1 class="hero-title">Exercise<br><span>Solutions</span></h1>
+  <p class="hero-sub">All 24 questions — solved neatly, like a fair notebook ✏️</p>
+
+  <div class="author-card">
+    <img src="https://plain-apac-prod-public.komododecks.com/202605/22/nHDi45aen4uwI6zP8WGI/image.jpg"
+      alt="Akshit Tyagi" class="author-photo" onerror="this.style.display='none'">
+    <div class="author-info">
+      <div class="author-label">Made with ♥ by</div>
+      <div class="author-name">Akshit Tyagi</div>
+      <div class="author-desc">Class XII · Physics Fair Notes</div>
+    </div>
+  </div>
+
+  <div class="chips">
+    <a class="chip" href="#s1">01 · Coulomb's Law</a>
+    <a class="chip" href="#s2">02 · Charge Properties</a>
+    <a class="chip" href="#s3">03 · Electric Field</a>
+    <a class="chip" href="#s4">04 · Gauss's Law</a>
+    <a class="chip" href="#s5">05 · Applications</a>
+  </div>
+  <div class="scroll-cue"><span>Begin</span><div class="scroll-arrow"></div></div>
+</section>
+
+<!-- =================== MAIN =================== -->
+<div class="container">
+
+<!-- ============================================================
+     SECTION 1 — COULOMB'S LAW  (Q 1.1, 1.2, 1.12, 1.13)
+============================================================= -->
+<section class="section" id="s1">
+  <div class="section-header">
+    <div class="s-num">01</div>
+    <div class="s-meta">
+      <div class="s-title">Coulomb's Law</div>
+      <span class="s-tag">Q 1.1 · 1.2 · 1.12 · 1.13</span>
+    </div>
+  </div>
+
+  <div class="theory-block">
+    $F = k\dfrac{q_1 q_2}{r^2}$, where $k = 9\times10^9$ N m² C⁻². Like charges repel, unlike attract. Newton's 3rd law holds — force on $q_1$ due to $q_2$ is equal and opposite to force on $q_2$ due to $q_1$.
+  </div>
+
+  <!-- Diagram: two charges -->
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 560 120" xmlns="http://www.w3.org/2000/svg" width="560" height="120">
+      <defs>
+        <marker id="aR" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3z" style="fill:var(--c-blue)"/></marker>
+        <marker id="aL" markerWidth="8" markerHeight="8" refX="2" refY="3" orient="auto-start-reverse"><path d="M0,0 L0,6 L8,3z" style="fill:var(--c-blue)"/></marker>
+        <marker id="aG" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto"><path d="M0,0L0,7L7,3.5z" style="fill:var(--c-gold)"/></marker>
+        <marker id="aGR" markerWidth="7" markerHeight="7" refX="2" refY="3.5" orient="auto-start-reverse"><path d="M0,0L0,7L7,3.5z" style="fill:var(--c-gold)"/></marker>
+      </defs>
+      <line x1="150" y1="60" x2="410" y2="60" style="stroke:#aaa;stroke-width:1.2;stroke-dasharray:5 4" class="dp"/>
+      <circle cx="125" cy="60" r="28" style="fill:var(--c-red);opacity:.88"/>
+      <text x="125" y="65" text-anchor="middle" style="font-family:Crimson Pro,serif;font-size:16px;fill:white;font-weight:600">+q₁</text>
+      <circle cx="435" cy="60" r="28" style="fill:var(--c-blue);opacity:.88"/>
+      <text x="435" y="65" text-anchor="middle" style="font-family:Crimson Pro,serif;font-size:16px;fill:white;font-weight:600">+q₂</text>
+      <line x1="465" y1="60" x2="530" y2="60" style="stroke:var(--c-blue);stroke-width:2.5" marker-end="url(#aR)" class="dp dp2"/>
+      <text x="498" y="50" text-anchor="middle" style="font-family:Crimson Pro,serif;font-size:13px;fill:var(--c-blue)">F₁₂</text>
+      <line x1="95" y1="60" x2="30" y2="60" style="stroke:var(--c-blue);stroke-width:2.5" marker-end="url(#aL)" class="dp dp2"/>
+      <text x="62" y="50" text-anchor="middle" style="font-family:Crimson Pro,serif;font-size:13px;fill:var(--c-blue)">F₂₁</text>
+      <line x1="150" y1="90" x2="410" y2="90" style="stroke:var(--c-gold);stroke-width:1.5" marker-end="url(#aG)" marker-start="url(#aGR)" class="dp dp3"/>
+      <text x="280" y="110" text-anchor="middle" style="font-family:Crimson Pro,serif;font-style:italic;font-size:14px;fill:var(--c-gold)">r</text>
+    </svg>
+  </div>
+  <p class="diagram-cap">Like charges — force is repulsive, equal and opposite by Newton's 3rd law</p>
+
+  <!-- Q 1.1 -->
+  <div class="paper margin">
+    <div class="q-badge">Q 1.1</div>
+    <div class="q-text">Two small charged spheres: $q_1 = 2\times10^{-7}$ C, $q_2 = 3\times10^{-7}$ C, placed 30 cm apart in air. Find force.</div>
+    <div class="given">Given: $q_1 = 2\times10^{-7}$ C, $q_2 = 3\times10^{-7}$ C, $r = 0.30$ m</div>
+    <div class="step"><span class="step-n">①</span>
+      <div class="step-c">$$F = k\frac{q_1 q_2}{r^2} = \frac{9\times10^9 \times 2\times10^{-7} \times 3\times10^{-7}}{(0.30)^2}$$</div>
+    </div>
+    <div class="step"><span class="step-n">②</span>
+      <div class="step-c">$$F = \frac{9\times10^9 \times 6\times10^{-14}}{0.09} = \frac{54\times10^{-5}}{0.09}$$</div>
+    </div>
+    <div class="fbox result">
+      <span class="result-tag">★ Answer</span>
+      $$F = 6\times10^{-3}\text{ N} = 6\text{ mN} \quad \text{(repulsive)}$$
+    </div>
+  </div>
+
+  <!-- Q 1.2 -->
+  <div class="paper margin">
+    <div class="q-badge">Q 1.2</div>
+    <div class="q-text">Electrostatic force on sphere A (charge $0.4\ \mu$C) due to sphere B (charge $-0.8\ \mu$C) is $0.2$ N. (a) Find distance $r$. (b) Force on B due to A?</div>
+    <div class="given">Given: $q_1 = 4\times10^{-7}$ C, $q_2 = 8\times10^{-7}$ C, $F = 0.2$ N (attractive)</div>
+    <div class="sub-title">Part (a) — Distance</div>
+    <div class="step"><span class="step-n">①</span>
+      <div class="step-c">$$r^2 = \frac{kq_1q_2}{F} = \frac{9\times10^9 \times 4\times10^{-7} \times 8\times10^{-7}}{0.2}$$</div>
+    </div>
+    <div class="step"><span class="step-n">②</span>
+      <div class="step-c">$$r^2 = \frac{9\times10^9 \times 32\times10^{-14}}{0.2} = \frac{288\times10^{-5}}{0.2} = 144\times10^{-4}$$</div>
+    </div>
+    <div class="fbox result">
+      <span class="result-tag">★ (a)</span>
+      $$r = 12\times10^{-2}\text{ m} = 0.12\text{ m} = 12\text{ cm}$$
+    </div>
+    <div class="sub-title">Part (b) — Force on B</div>
+    <div class="note"><strong>Newton's 3rd Law:</strong> Force on B due to A = $0.2$ N, directed toward A (attractive). Equal in magnitude, opposite in direction.</div>
+  </div>
+
+  <!-- Q 1.12 -->
+  <div class="paper margin">
+    <div class="q-badge">Q 1.12</div>
+    <div class="q-text">Two conducting spheres A and B, each with charge $q = 6.5\times10^{-7}$ C, centres 50 cm apart. (a) Find repulsive force. (b) What if each charge is doubled and distance halved?</div>
+    <div class="given">Given: $q = 6.5\times10^{-7}$ C, $r = 0.50$ m</div>
+    <div class="sub-title">Part (a)</div>
+    <div class="step"><span class="step-n">①</span>
+      <div class="step-c">$$F = \frac{9\times10^9\times(6.5\times10^{-7})^2}{(0.5)^2} = \frac{9\times10^9\times42.25\times10^{-14}}{0.25}$$</div>
+    </div>
+    <div class="fbox result">
+      <span class="result-tag">★ (a)</span>
+      $$F = 1.52\times10^{-2}\text{ N}$$
+    </div>
+    <div class="sub-title">Part (b) — Charge doubled, distance halved</div>
+    <div class="step"><span class="step-n">①</span>
+      <div class="step-c">New charge $= 2q$, new distance $= r/2$. So:
+        $$F' = \frac{k(2q)^2}{(r/2)^2} = \frac{4kq^2}{r^2/4} = 16\cdot\frac{kq^2}{r^2} = 16F$$
+      </div>
+    </div>
+    <div class="fbox result">
+      <span class="result-tag">★ (b)</span>
+      $$F' = 16 \times 1.52\times10^{-2} \approx 0.243\text{ N}$$
+    </div>
+  </div>
+
+  <!-- Q 1.13 -->
+  <div class="paper margin">
+    <div class="q-badge">Q 1.13</div>
+    <div class="q-text">Spheres A and B from Q 1.12 (identical size, $q = 6.5\times10^{-7}$ C each). An uncharged sphere C (same size) touches A first, then B, then removed. New force between A and B?</div>
+    <div class="given">$q_A = q_B = 6.5\times10^{-7}$ C, $r = 0.50$ m, C uncharged initially</div>
+    <div class="step"><span class="step-n">①</span>
+      <div class="step-c"><strong>C touches A:</strong> charge shared equally.
+        $$q_A' = q_C' = \frac{6.5\times10^{-7}}{2} = 3.25\times10^{-7}\text{ C each}$$
+      </div>
+    </div>
+    <div class="step"><span class="step-n">②</span>
+      <div class="step-c"><strong>C then touches B:</strong> total charge $= 3.25 + 6.5 = 9.75\ (\times10^{-7})$ C, shared equally.
+        $$q_B'' = q_C'' = \frac{9.75\times10^{-7}}{2} = 4.875\times10^{-7}\text{ C}$$
+      </div>
+    </div>
+    <div class="step"><span class="step-n">③</span>
+      <div class="step-c">Final: $q_A = 3.25\times10^{-7}$ C, $q_B = 4.875\times10^{-7}$ C, $r = 0.50$ m
+        $$F = \frac{9\times10^9\times3.25\times10^{-7}\times4.875\times10^{-7}}{(0.5)^2}$$
+      </div>
+    </div>
+    <div class="fbox result">
+      <span class="result-tag">★ Answer</span>
+      $$F \approx 5.7\times10^{-3}\text{ N} \quad \text{(repulsive)}$$
+    </div>
+  </div>
+</section>
+
+<div class="divider"><span>✦</span></div>
+
+<!-- ============================================================
+     SECTION 2 — PROPERTIES OF CHARGE  (Q 1.3, 1.4, 1.5, 1.11)
+============================================================= -->
+<section class="section" id="s2">
+  <div class="section-header">
+    <div class="s-num">02</div>
+    <div class="s-meta">
+      <div class="s-title">Properties of Electric Charge</div>
+      <span class="s-tag">Q 1.3 · 1.4 · 1.5 · 1.11</span>
+    </div>
+  </div>
+
+  <div class="theory-block">
+    Charge is quantised ($q = ne$), conserved, and additive. Electron charge $e = 1.6\times10^{-19}$ C. Electric force is $\sim10^{39}$ times stronger than gravitational force between a proton and electron.
+  </div>
+
+  <!-- Q 1.3 -->
+  <div class="paper margin">
+    <div class="q-badge">Q 1.3</div>
+    <div class="q-text">Show that the ratio $\dfrac{ke^2}{Gm_em_p}$ is dimensionless and find its value. What does it signify?</div>
+    <div class="given">$k=9\times10^9,\ e=1.6\times10^{-19}$ C, $G=6.67\times10^{-11}$, $m_e=9.11\times10^{-31}$ kg, $m_p=1.67\times10^{-27}$ kg</div>
+    <div class="step"><span class="step-n">①</span>
+      <div class="step-c">Dimensions: $[ke^2] = \text{N m}^2\text{C}^{-2}\cdot\text{C}^2 = \text{N m}^2$. $[Gm_em_p] = \text{N m}^2\text{kg}^{-2}\cdot\text{kg}^2 = \text{N m}^2$. Ratio is <em>dimensionless</em> ✓</div>
+    </div>
+    <div class="step"><span class="step-n">②</span>
+      <div class="step-c">Numerator: $ke^2 = 9\times10^9\times(1.6\times10^{-19})^2 = 9\times10^9\times2.56\times10^{-38} = 23.04\times10^{-29}$</div>
+    </div>
+    <div class="step"><span class="step-n">③</span>
+      <div class="step-c">Denominator: $Gm_em_p = 6.67\times10^{-11}\times9.11\times10^{-31}\times1.67\times10^{-27} = 1.015\times10^{-67}$</div>
+    </div>
+    <div class="fbox result">
+      <span class="result-tag">★ Answer</span>
+      $$\frac{ke^2}{Gm_em_p} \approx 2.27\times10^{39}$$
+      <small style="color:var(--text-muted)">Electric force between e⁻ and p⁺ is $2.27\times10^{39}$ times stronger than gravitational force between them</small>
+    </div>
+  </div>
+
+  <!-- Q 1.4 -->
+  <div class="paper margin">
+    <div class="q-badge">Q 1.4</div>
+    <div class="q-text">(a) What is quantisation of electric charge? (b) Why can we ignore quantisation for macroscopic charges?</div>
+    <div class="sub-title">Part (a)</div>
+    <p><strong>Quantisation:</strong> Electric charge always exists as integer multiples of a minimum charge $e = 1.6\times10^{-19}$ C. So $q = \pm ne$ where $n = 1, 2, 3, \ldots$</p>
+    <div class="fbox">$$q = ne, \quad n \in \mathbb{Z}, \quad e = 1.6\times10^{-19}\text{ C}$$</div>
+    <div class="sub-title">Part (b)</div>
+    <p>For macroscopic charges (say $1\ \mu$C $= 10^{-6}$ C), the number of electrons involved is $n \sim 10^{13}$ — so the charge appears practically continuous. The "graininess" due to $e$ is completely negligible at that scale.</p>
+  </div>
+
+  <!-- Q 1.5 -->
+  <div class="paper margin">
+    <div class="q-badge">Q 1.5</div>
+    <div class="q-text">When glass is rubbed with silk, charges appear on both. How is this consistent with conservation of charge?</div>
+    <p>Before rubbing: both glass and silk are electrically neutral — total charge $= 0$.</p>
+    <p>On rubbing, electrons transfer from glass to silk (or vice versa). Glass gains $+Q$, silk gains $-Q$.</p>
+    <div class="note"><strong>Total charge after</strong> $= +Q + (-Q) = 0$ — same as before. Charge is neither created nor destroyed, only transferred. This is perfect consistency with the <strong>Law of Conservation of Charge</strong>.</div>
+  </div>
+
+  <!-- Q 1.11 -->
+  <div class="paper margin">
+    <div class="q-badge">Q 1.11</div>
+    <div class="q-text">A polythene piece rubbed with wool has charge $-3\times10^{-7}$ C. (a) Estimate number of electrons transferred. (b) Is there a transfer of mass?</div>
+    <div class="given">$q = 3\times10^{-7}$ C (negative on polythene), $e = 1.6\times10^{-19}$ C, $m_e = 9.11\times10^{-31}$ kg</div>
+    <div class="sub-title">Part (a)</div>
+    <div class="step"><span class="step-n">①</span>
+      <div class="step-c">$$n = \frac{q}{e} = \frac{3\times10^{-7}}{1.6\times10^{-19}}$$</div>
+    </div>
+    <div class="fbox result">
+      <span class="result-tag">★ (a)</span>
+      $$n \approx 1.875\times10^{12}\text{ electrons transferred from wool to polythene}$$
+    </div>
+    <div class="sub-title">Part (b) — Mass transferred</div>
+    <div class="step"><span class="step-n">①</span>
+      <div class="step-c">$$\Delta m = n\cdot m_e = 1.875\times10^{12}\times9.11\times10^{-31} \approx 1.71\times10^{-18}\text{ kg}$$</div>
+    </div>
+    <div class="note"><strong>Yes</strong> — a tiny mass is transferred (wool loses, polythene gains), but it is so negligibly small ($\sim10^{-18}$ kg) that it is undetectable in practice.</div>
+  </div>
+</section>
+
+<div class="divider"><span>✦</span></div>
+
+<!-- ============================================================
+     SECTION 3 — ELECTRIC FIELD & DIPOLE  (Q 1.6–1.10)
+============================================================= -->
+<section class="section" id="s3">
+  <div class="section-header">
+    <div class="s-num">03</div>
+    <div class="s-meta">
+      <div class="s-title">Electric Field &amp; Dipole</div>
+      <span class="s-tag">Q 1.6 · 1.7 · 1.8 · 1.9 · 1.10</span>
+    </div>
+  </div>
+
+  <div class="theory-block">
+    $E = kq/r^2$ for a point charge. For a dipole: $p = q\cdot2a$. Torque on dipole: $\tau = pE\sin\theta$. Fields from two equal opposite charges at a midpoint add up (same direction).
+  </div>
+
+  <!-- Q 1.6 -->
+  <div class="paper margin">
+    <div class="q-badge">Q 1.6</div>
+    <div class="q-text">Four charges at corners of square ABCD (side 10 cm): $q_A = 2\ \mu$C, $q_B = -5\ \mu$C, $q_C = 2\ \mu$C, $q_D = -5\ \mu$C. Force on $1\ \mu$C charge at centre?</div>
+
+    <!-- Square diagram -->
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 320 280" xmlns="http://www.w3.org/2000/svg" width="320" height="280">
+        <defs>
+          <marker id="sq1" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto"><path d="M0,0L0,7L7,3.5z" style="fill:var(--c-gold)"/></marker>
+        </defs>
+        <!-- Square -->
+        <rect x="80" y="60" width="160" height="160" style="fill:none;stroke:var(--line);stroke-width:1.5;stroke-dasharray:4 3" class="dp"/>
+        <!-- Diagonal lines to centre -->
+        <line x1="80" y1="60" x2="240" y2="220" style="stroke:var(--line);stroke-width:1;stroke-dasharray:3 3" class="dp dp2"/>
+        <line x1="240" y1="60" x2="80" y2="220" style="stroke:var(--line);stroke-width:1;stroke-dasharray:3 3" class="dp dp2"/>
+        <!-- A — top-left +2μC -->
+        <circle cx="80" cy="60" r="22" style="fill:var(--c-red);opacity:.88" class="dp dp2"/>
+        <text x="80" y="65" text-anchor="middle" style="font-family:Crimson Pro,serif;font-size:12px;fill:white">+2μC</text>
+        <text x="55" y="42" style="font-family:Caveat,cursive;font-size:13px;fill:var(--c-red)">A</text>
+        <!-- B — top-right -5μC -->
+        <circle cx="240" cy="60" r="22" style="fill:var(--c-blue);opacity:.88" class="dp dp2"/>
+        <text x="240" y="65" text-anchor="middle" style="font-family:Crimson Pro,serif;font-size:12px;fill:white">-5μC</text>
+        <text x="250" y="42" style="font-family:Caveat,cursive;font-size:13px;fill:var(--c-blue)">B</text>
+        <!-- C — bottom-right +2μC -->
+        <circle cx="240" cy="220" r="22" style="fill:var(--c-red);opacity:.88" class="dp dp2"/>
+        <text x="240" y="225" text-anchor="middle" style="font-family:Crimson Pro,serif;font-size:12px;fill:white">+2μC</text>
+        <text x="250" y="250" style="font-family:Caveat,cursive;font-size:13px;fill:var(--c-red)">C</text>
+        <!-- D — bottom-left -5μC -->
+        <circle cx="80" cy="220" r="22" style="fill:var(--c-blue);opacity:.88" class="dp dp2"/>
+        <text x="80" y="225" text-anchor="middle" style="font-family:Crimson Pro,serif;font-size:12px;fill:white">-5μC</text>
+        <text x="46" y="250" style="font-family:Caveat,cursive;font-size:13px;fill:var(--c-blue)">D</text>
+        <!-- Centre charge -->
+        <circle cx="160" cy="140" r="16" style="fill:var(--c-gold)"/>
+        <text x="160" y="144" text-anchor="middle" style="font-family:Crimson Pro,serif;font-size:11px;fill:white">1μC</text>
+        <text x="165" y="125" style="font-family:Caveat,cursive;font-size:12px;fill:var(--c-gold)">O</text>
+        <!-- Symmetry note -->
+        <text x="160" y="268" text-anchor="middle" style="font-family:Caveat,cursive;font-size:11px;fill:#999">A,C opposite corners (equal) · B,D opposite corners (equal)</text>
+      </svg>
+    </div>
+    <p class="diagram-cap">Fig 3.1 — A and C are diagonally opposite (+2 μC each); B and D are diagonally opposite (−5 μC each)</p>
+    <div class="step"><span class="step-n">①</span>
+      <div class="step-c">A and C are at opposite corners — equal charges, equal distances to O, forces on the 1 μC charge are equal and exactly opposite. <strong>They cancel.</strong></div>
+    </div>
+    <div class="step"><span class="step-n">②</span>
+      <div class="step-c">B and D are at opposite corners — equal charges (−5 μC each), equal distances to O, forces are equal and exactly opposite. <strong>They cancel.</strong></div>
+    </div>
+    <div class="fbox result">
+      <span class="result-tag">★ Answer</span>
+      $$\text{Net force} = 0 \quad \text{(by symmetry)}$$
+    </div>
+  </div>
+
+  <!-- Q 1.7 -->
+  <div class="paper margin">
+    <div class="q-badge">Q 1.7</div>
+    <div class="q-text">(a) Why can't a field line have sudden breaks? (b) Why can't two field lines cross?</div>
+    <div class="sub-title">Part (a)</div>
+    <p>A field line represents the path along which a positive test charge would move. A sudden break would imply the charge disappears and reappears — physically impossible. Also, at a break, the field would be undefined. <em>Field lines must be continuous.</em></p>
+    <div class="sub-title">Part (b)</div>
+    <p>If two field lines crossed at a point P, then at P there would be <strong>two different directions</strong> of the electric field simultaneously. But the electric field at any point has a unique direction. Contradiction — hence field lines <em>never cross</em>.</p>
+  </div>
+
+  <!-- Q 1.8 -->
+  <div class="paper margin">
+    <div class="q-badge">Q 1.8</div>
+    <div class="q-text">$q_A = 3\ \mu$C and $q_B = -3\ \mu$C are 20 cm apart in vacuum. (a) Electric field at midpoint O? (b) Force on $-1.5\times10^{-9}$ C test charge at O?</div>
+
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 500 120" xmlns="http://www.w3.org/2000/svg" width="500" height="120">
+        <defs>
+          <marker id="eR" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3z" style="fill:var(--c-green)"/></marker>
+        </defs>
+        <!-- Axis -->
+        <line x1="30" y1="60" x2="470" y2="60" style="stroke:#ccc;stroke-width:1"/>
+        <!-- A (+3μC) -->
+        <circle cx="80" cy="60" r="25" style="fill:var(--c-red);opacity:.88"/>
+        <text x="80" y="65" text-anchor="middle" style="font-family:Crimson Pro,serif;font-size:13px;fill:white">+q_A</text>
+        <text x="80" y="100" text-anchor="middle" style="font-family:Caveat,cursive;font-size:12px;fill:var(--c-red)">A</text>
+        <!-- O midpoint -->
+        <circle cx="250" cy="60" r="6" style="fill:var(--c-gold)"/>
+        <text x="250" y="100" text-anchor="middle" style="font-family:Caveat,cursive;font-size:13px;fill:var(--c-gold)">O (midpoint)</text>
+        <!-- B (-3μC) -->
+        <circle cx="420" cy="60" r="25" style="fill:var(--c-blue);opacity:.88"/>
+        <text x="420" y="65" text-anchor="middle" style="font-family:Crimson Pro,serif;font-size:13px;fill:white">-q_B</text>
+        <text x="420" y="100" text-anchor="middle" style="font-family:Caveat,cursive;font-size:12px;fill:var(--c-blue)">B</text>
+        <!-- E_A arrow at O (rightward — away from +) -->
+        <line x1="258" y1="40" x2="330" y2="40" style="stroke:var(--c-green);stroke-width:2.5" marker-end="url(#eR)" class="dp"/>
+        <text x="295" y="30" text-anchor="middle" style="font-family:Caveat,cursive;font-size:11px;fill:var(--c-green)">E_A (away from +)</text>
+        <!-- E_B arrow at O (rightward — toward -) -->
+        <line x1="258" y1="55" x2="390" y2="55" style="stroke:var(--c-gold);stroke-width:2" marker-end="url(#eR)" class="dp dp2"/>
+        <text x="325" y="72" text-anchor="middle" style="font-family:Caveat,cursive;font-size:11px;fill:var(--c-gold)">E_B (toward -)</text>
+        <!-- 10 cm labels -->
+        <text x="165" y="110" text-anchor="middle" style="font-family:Caveat,cursive;font-size:11px;fill:#999">10 cm</text>
+        <text x="335" y="110" text-anchor="middle" style="font-family:Caveat,cursive;font-size:11px;fill:#999">10 cm</text>
+      </svg>
+    </div>
+    <p class="diagram-cap">Fig 3.2 — Both E_A and E_B point in the same direction (A to B) at midpoint O</p>
+
+    <div class="given">$|q_A| = |q_B| = 3\times10^{-6}$ C, $r = 0.10$ m (each to O)</div>
+    <div class="step"><span class="step-n">①</span>
+      <div class="step-c">$$E_A = \frac{kq_A}{r^2} = \frac{9\times10^9\times3\times10^{-6}}{(0.10)^2} = 2.7\times10^6\text{ N/C, toward B}$$</div>
+    </div>
+    <div class="step"><span class="step-n">②</span>
+      <div class="step-c">$E_B = 2.7\times10^6$ N/C also points toward B (toward negative charge). Both add up:</div>
+    </div>
+    <div class="fbox result">
+      <span class="result-tag">★ (a)</span>
+      $$E = E_A + E_B = 5.4\times10^6\text{ N/C, directed from A to B}$$
+    </div>
+    <div class="step"><span class="step-n">③</span>
+      <div class="step-c">Force on test charge $q_0 = -1.5\times10^{-9}$ C:
+        $$F = q_0 E = 1.5\times10^{-9}\times5.4\times10^6 = 8.1\times10^{-3}\text{ N}$$
+      </div>
+    </div>
+    <div class="fbox result">
+      <span class="result-tag">★ (b)</span>
+      $$F = 8.1\times10^{-3}\text{ N, directed from B to A (toward }+q\text{)}$$
+    </div>
+    <div class="note"><strong>Note:</strong> Force on negative test charge is opposite to E, hence toward A.</div>
+  </div>
+
+  <!-- Q 1.9 -->
+  <div class="paper margin">
+    <div class="q-badge">Q 1.9</div>
+    <div class="q-text">$q_A = +2.5\times10^{-7}$ C at $(0,0,-15\text{ cm})$ and $q_B = -2.5\times10^{-7}$ C at $(0,0,+15\text{ cm})$. Total charge and dipole moment?</div>
+    <div class="step"><span class="step-n">①</span>
+      <div class="step-c"><strong>Total charge:</strong> $q_A + q_B = 2.5\times10^{-7} + (-2.5\times10^{-7}) = 0$</div>
+    </div>
+    <div class="step"><span class="step-n">②</span>
+      <div class="step-c">Separation $2a = 30$ cm $= 0.30$ m. Dipole moment magnitude:
+        $$p = |q|\cdot 2a = 2.5\times10^{-7}\times0.30 = 7.5\times10^{-8}\text{ C m}$$
+      </div>
+    </div>
+    <div class="step"><span class="step-n">③</span>
+      <div class="step-c">Direction of $\vec{p}$: from $-q$ to $+q$, i.e., from B (z = +15) to A (z = -15) — along <strong>$-\hat{z}$ direction</strong>.</div>
+    </div>
+    <div class="fbox result">
+      <span class="result-tag">★ Answer</span>
+      $$q_{\text{total}} = 0, \quad p = 7.5\times10^{-8}\text{ C m along }-\hat{z}$$
+    </div>
+  </div>
+
+  <!-- Q 1.10 -->
+  <div class="paper margin">
+    <div class="q-badge">Q 1.10</div>
+    <div class="q-text">Electric dipole moment $p = 4\times10^{-9}$ C m, aligned at $30°$ with uniform field $E = 5\times10^4$ N/C. Find torque.</div>
+    <div class="given">$p = 4\times10^{-9}$ C m, $E = 5\times10^4$ N/C, $\theta = 30°$</div>
+    <div class="step"><span class="step-n">①</span>
+      <div class="step-c">$$\tau = pE\sin\theta = 4\times10^{-9}\times5\times10^4\times\sin 30°$$</div>
+    </div>
+    <div class="step"><span class="step-n">②</span>
+      <div class="step-c">$$\tau = 4\times10^{-9}\times5\times10^4\times0.5 = 10\times10^{-5}$$</div>
+    </div>
+    <div class="fbox result">
+      <span class="result-tag">★ Answer</span>
+      $$\tau = 10^{-4}\text{ N m}$$
+    </div>
+  </div>
+</section>
+
+<div class="divider"><span>✦</span></div>
+
+<!-- ============================================================
+     SECTION 4 — GAUSS'S LAW & FLUX  (Q 1.14–1.20)
+============================================================= -->
+<section class="section" id="s4">
+  <div class="section-header">
+    <div class="s-num">04</div>
+    <div class="s-meta">
+      <div class="s-title">Electric Flux &amp; Gauss's Law</div>
+      <span class="s-tag">Q 1.14 · 1.15 · 1.16 · 1.17 · 1.18 · 1.19 · 1.20</span>
+    </div>
+  </div>
+
+  <div class="theory-block">
+    $\phi = EA\cos\theta$. Gauss's Law: $\phi = q_{\text{enc}}/\varepsilon_0$. The net flux through a closed surface depends <em>only</em> on the enclosed charge — not on the shape or size of the surface.
+  </div>
+
+  <!-- Q 1.14 -->
+  <div class="paper margin">
+    <div class="q-badge">Q 1.14</div>
+    <div class="q-text">Three charged particles move in a uniform electrostatic field (plates). Give signs of charges and identify which has highest charge-to-mass ratio.</div>
+
+    <!-- Particle tracks diagram -->
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 500 220" xmlns="http://www.w3.org/2000/svg" width="500" height="220">
+        <defs>
+          <marker id="pt" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto"><path d="M0,0L0,7L7,3.5z" style="fill:var(--c-ink)"/></marker>
+        </defs>
+        <!-- Plates -->
+        <rect x="30" y="10" width="440" height="18" rx="4" style="fill:var(--c-red);opacity:.7"/>
+        <text x="250" y="23" text-anchor="middle" style="font-family:Caveat,cursive;font-size:11px;fill:white">+ + + + + + + + + + + (positive plate)</text>
+        <rect x="30" y="192" width="440" height="18" rx="4" style="fill:var(--c-blue);opacity:.7"/>
+        <text x="250" y="205" text-anchor="middle" style="font-family:Caveat,cursive;font-size:11px;fill:white">- - - - - - - - - - - (negative plate)</text>
+
+        <!-- Particle 1: enters left, slight upward curve → positive charge -->
+        <path d="M 50 120 Q 180 118 300 90" style="fill:none;stroke:var(--c-red);stroke-width:2.5" class="dp"/>
+        <line x1="290" y1="93" x2="310" y2="87" style="stroke:var(--c-red);stroke-width:2.5" marker-end="url(#pt)" class="dp"/>
+        <text x="160" y="108" style="font-family:Caveat,cursive;font-size:13px;fill:var(--c-red)">1</text>
+
+        <!-- Particle 2: enters left, downward curve → negative charge -->
+        <path d="M 50 100 Q 200 102 330 145" style="fill:none;stroke:var(--c-blue);stroke-width:2.5" class="dp dp2"/>
+        <line x1="320" y1="142" x2="340" y2="150" style="stroke:var(--c-blue);stroke-width:2.5" marker-end="url(#pt)" class="dp dp2"/>
+        <text x="195" y="138" style="font-family:Caveat,cursive;font-size:13px;fill:var(--c-blue)">2</text>
+
+        <!-- Particle 3: enters left, strong upward curve → positive, high q/m -->
+        <path d="M 50 112 Q 140 108 220 55" style="fill:none;stroke:var(--c-green);stroke-width:2.5" class="dp dp3"/>
+        <line x1="212" y1="60" x2="228" y2="48" style="stroke:var(--c-green);stroke-width:2.5" marker-end="url(#pt)" class="dp dp3"/>
+        <text x="120" y="75" style="font-family:Caveat,cursive;font-size:13px;fill:var(--c-green)">3</text>
+
+        <!-- E arrow -->
+        <line x1="460" y1="60" x2="460" y2="175" style="stroke:#aaa;stroke-width:1.5" marker-end="url(#pt)"/>
+        <text x="464" y="120" style="font-family:Caveat,cursive;font-size:12px;fill:#999">E</text>
+      </svg>
+    </div>
+    <p class="diagram-cap">Fig 4.1 — Particles enter from left; field E points from +ve plate (top) to −ve plate (bottom)</p>
+
+    <div class="step"><span class="step-n">①</span>
+      <div class="step-c"><strong>Particle 1:</strong> deflects toward positive plate (upward = toward +ve plate) → <strong>positive charge</strong></div>
+    </div>
+    <div class="step"><span class="step-n">②</span>
+      <div class="step-c"><strong>Particle 2:</strong> deflects toward negative plate (downward) → <strong>negative charge</strong></div>
+    </div>
+    <div class="step"><span class="step-n">③</span>
+      <div class="step-c"><strong>Particle 3:</strong> deflects upward (positive), much more sharply (greater curvature) → <strong>positive charge</strong></div>
+    </div>
+    <div class="fbox result">
+      <span class="result-tag">★ Answer</span>
+      <p style="margin:.3rem 0">Particle 1: $+ve$ &nbsp;|&nbsp; Particle 2: $-ve$ &nbsp;|&nbsp; Particle 3: $+ve$</p>
+      <p style="margin:.3rem 0"><strong>Particle 3 has the highest $q/m$ ratio</strong> (maximum curvature → maximum deflection for same field).</p>
+    </div>
+  </div>
+
+  <!-- Q 1.15 -->
+  <div class="paper margin">
+    <div class="q-badge">Q 1.15</div>
+    <div class="q-text">Uniform field $\vec{E} = 3\times10^3\,\hat{i}$ N/C. Square of side 10 cm. (a) Flux when plane is parallel to $yz$-plane? (b) Flux when normal makes $60°$ with $x$-axis?</div>
+    <div class="given">$E = 3\times10^3$ N/C, side $= 0.10$ m, $A = 0.01$ m²</div>
+    <div class="sub-title">Part (a) — Normal along x (parallel to yz-plane)</div>
+    <div class="step"><span class="step-n">①</span>
+      <div class="step-c">Normal to the square is along $\hat{i}$; angle between E and normal $= 0°$.
+        $$\phi = EA\cos 0° = 3\times10^3\times0.01\times1$$
+      </div>
+    </div>
+    <div class="fbox result"><span class="result-tag">★ (a)</span>$$\phi = 30\text{ N m}^2\text{ C}^{-1}$$</div>
+
+    <div class="sub-title">Part (b) — Normal at 60° to x-axis</div>
+    <div class="step"><span class="step-n">①</span>
+      <div class="step-c">$$\phi = EA\cos 60° = 3\times10^3\times0.01\times0.5$$</div>
+    </div>
+    <div class="fbox result"><span class="result-tag">★ (b)</span>$$\phi = 15\text{ N m}^2\text{ C}^{-1}$$</div>
+  </div>
+
+  <!-- Q 1.16 -->
+  <div class="paper margin">
+    <div class="q-badge">Q 1.16</div>
+    <div class="q-text">Net flux of the uniform field $\vec{E} = 3\times10^3\,\hat{i}$ N/C through a cube of side 20 cm with faces parallel to coordinate planes.</div>
+    <p>In a <em>uniform</em> field, the flux entering one face is equal to the flux leaving the opposite face. Every face has a partner that cancels it.</p>
+    <div class="fbox result">
+      <span class="result-tag">★ Answer</span>
+      $$\phi_{\text{net}} = 0$$
+      <small style="color:var(--text-muted)">Consistent with Gauss's Law — no enclosed charge, so net flux must be zero.</small>
+    </div>
+  </div>
+
+  <!-- Q 1.17 -->
+  <div class="paper margin">
+    <div class="q-badge">Q 1.17</div>
+    <div class="q-text">Net outward flux through surface of a box is $8\times10^3$ N m² C⁻¹. (a) Net charge inside? (b) If flux = 0, are there no charges inside?</div>
+    <div class="given">$\phi = 8\times10^3$ N m² C⁻¹, $\varepsilon_0 = 8.854\times10^{-12}$ C² N⁻¹ m⁻²</div>
+    <div class="sub-title">Part (a)</div>
+    <div class="step"><span class="step-n">①</span>
+      <div class="step-c">By Gauss's Law: $\phi = q_{\text{enc}}/\varepsilon_0$
+        $$q_{\text{enc}} = \phi\cdot\varepsilon_0 = 8\times10^3\times8.854\times10^{-12}$$
+      </div>
+    </div>
+    <div class="fbox result"><span class="result-tag">★ (a)</span>$$q_{\text{enc}} \approx 70.8\times10^{-9}\text{ C} = 70.8\text{ nC}$$</div>
+    <div class="sub-title">Part (b)</div>
+    <div class="note"><strong>No</strong> — zero net flux means zero <em>net</em> charge inside. There could be equal amounts of positive and negative charges inside, which give net zero. We cannot conclude the box is empty.</div>
+  </div>
+
+  <!-- Q 1.18 -->
+  <div class="paper margin">
+    <div class="q-badge">Q 1.18</div>
+    <div class="q-text">A point charge $+10\ \mu$C is 5 cm directly above the centre of a square of side 10 cm. Flux through the square?</div>
+
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 340 220" xmlns="http://www.w3.org/2000/svg" width="340" height="220">
+        <!-- Cube outline (dashed) -->
+        <!-- Front face (the square) -->
+        <rect x="90" y="110" width="160" height="90" style="fill:var(--highlight);stroke:var(--c-gold);stroke-width:2" class="dp"/>
+        <!-- Top face -->
+        <line x1="90" y1="110" x2="130" y2="68" style="stroke:var(--line);stroke-width:1.2;stroke-dasharray:4 3" class="dp dp2"/>
+        <line x1="250" y1="110" x2="290" y2="68" style="stroke:var(--line);stroke-width:1.2;stroke-dasharray:4 3" class="dp dp2"/>
+        <line x1="130" y1="68" x2="290" y2="68" style="stroke:var(--line);stroke-width:1.2;stroke-dasharray:4 3" class="dp dp2"/>
+        <!-- Back vertical -->
+        <line x1="130" y1="68" x2="130" y2="158" style="stroke:var(--line);stroke-width:1;stroke-dasharray:3 3" class="dp dp2"/>
+        <line x1="290" y1="68" x2="290" y2="158" style="stroke:var(--line);stroke-width:1;stroke-dasharray:3 3" class="dp dp2"/>
+        <!-- Charge +Q above cube centre -->
+        <circle cx="170" cy="28" r="16" style="fill:var(--c-red);opacity:.9"/>
+        <text x="170" y="33" text-anchor="middle" style="font-family:Crimson Pro,serif;font-size:12px;fill:white">+10μC</text>
+        <!-- Dashed line from charge to top face centre -->
+        <line x1="170" y1="44" x2="170" y2="68" style="stroke:var(--c-red);stroke-width:1.5;stroke-dasharray:3 3"/>
+        <text x="178" y="58" style="font-family:Caveat,cursive;font-size:11px;fill:var(--c-red)">5 cm</text>
+        <!-- Square label -->
+        <text x="170" y="162" text-anchor="middle" style="font-family:Caveat,cursive;font-size:11px;fill:var(--c-gold)">square (10cm x 10cm)</text>
+        <!-- The square is 1 face of the cube! -->
+        <text x="170" y="210" text-anchor="middle" style="font-family:Caveat,cursive;font-size:11px;fill:#999">= 1 face of imaginary cube (edge 10 cm)</text>
+      </svg>
+    </div>
+    <p class="diagram-cap">Fig 4.2 — Trick: treat square as one face of a cube; charge is at centre of cube</p>
+
+    <div class="step"><span class="step-n">①</span>
+      <div class="step-c"><strong>Key trick:</strong> The charge is 5 cm above the centre of a 10 cm square — it's at the centre of an imaginary cube of edge 10 cm. The square is one face of this cube.</div>
+    </div>
+    <div class="step"><span class="step-n">②</span>
+      <div class="step-c">Total flux from the cube (by Gauss's Law):
+        $$\phi_{\text{total}} = \frac{q}{\varepsilon_0} = \frac{10\times10^{-6}}{8.854\times10^{-12}} = 1.13\times10^6\text{ N m}^2\text{C}^{-1}$$
+      </div>
+    </div>
+    <div class="step"><span class="step-n">③</span>
+      <div class="step-c">By symmetry, flux is distributed equally among all 6 faces:
+        $$\phi_{\text{square}} = \frac{\phi_{\text{total}}}{6}$$
+      </div>
+    </div>
+    <div class="fbox result">
+      <span class="result-tag">★ Answer</span>
+      $$\phi_{\text{square}} = \frac{1.13\times10^6}{6} \approx 1.88\times10^5\text{ N m}^2\text{C}^{-1}$$
+    </div>
+  </div>
+
+  <!-- Q 1.19 -->
+  <div class="paper margin">
+    <div class="q-badge">Q 1.19</div>
+    <div class="q-text">A point charge $2.0\ \mu$C at centre of a cubic Gaussian surface (edge 9.0 cm). Net electric flux?</div>
+    <div class="step"><span class="step-n">①</span>
+      <div class="step-c">By Gauss's Law, flux depends only on enclosed charge, not on size or shape of surface:
+        $$\phi = \frac{q_{\text{enc}}}{\varepsilon_0} = \frac{2.0\times10^{-6}}{8.854\times10^{-12}}$$
+      </div>
+    </div>
+    <div class="fbox result">
+      <span class="result-tag">★ Answer</span>
+      $$\phi = 2.26\times10^5\text{ N m}^2\text{C}^{-1}$$
+    </div>
+  </div>
+
+  <!-- Q 1.20 -->
+  <div class="paper margin">
+    <div class="q-badge">Q 1.20</div>
+    <div class="q-text">Flux through a spherical Gaussian surface of radius 10 cm is $-1.0\times10^3$ N m² C⁻¹. (a) Flux if radius doubled? (b) Value of point charge?</div>
+    <div class="sub-title">Part (a)</div>
+    <p>Gauss's Law: $\phi = q/\varepsilon_0$ — depends only on charge, not on radius. Doubling the radius changes nothing.</p>
+    <div class="fbox result">
+      <span class="result-tag">★ (a)</span>
+      $$\phi \text{ remains } = -1.0\times10^3\text{ N m}^2\text{C}^{-1}$$
+    </div>
+    <div class="sub-title">Part (b) — Charge value</div>
+    <div class="step"><span class="step-n">①</span>
+      <div class="step-c">$$q = \phi\cdot\varepsilon_0 = -1.0\times10^3\times8.854\times10^{-12}$$</div>
+    </div>
+    <div class="fbox result">
+      <span class="result-tag">★ (b)</span>
+      $$q \approx -8.85\times10^{-9}\text{ C} = -8.85\text{ nC}$$
+      <small style="color:var(--text-muted)">Negative flux → negative (inward) charge</small>
+    </div>
+  </div>
+</section>
+
+<div class="divider"><span>✦</span></div>
+
+<!-- ============================================================
+     SECTION 5 — APPLICATIONS OF GAUSS'S LAW  (Q 1.21–1.24)
+============================================================= -->
+<section class="section" id="s5">
+  <div class="section-header">
+    <div class="s-num">05</div>
+    <div class="s-meta">
+      <div class="s-title">Applications of Gauss's Law</div>
+      <span class="s-tag">Q 1.21 · 1.22 · 1.23 · 1.24</span>
+    </div>
+  </div>
+
+  <div class="theory-block">
+    Gauss's Law gives us $E$ for highly symmetric charge distributions. For a conducting sphere: $E = kq/r^2$ outside, $E = 0$ inside. For infinite line charge: $E = \lambda/2\pi\varepsilon_0 r$. For infinite plane: $E = \sigma/2\varepsilon_0$ (each side).
+  </div>
+
+  <!-- Q 1.21 -->
+  <div class="paper margin">
+    <div class="q-badge">Q 1.21</div>
+    <div class="q-text">Conducting sphere of radius 10 cm. Electric field 20 cm from centre is $1.5\times10^3$ N/C, pointing <em>radially inward</em>. Find net charge on sphere.</div>
+    <div class="given">$r = 0.20$ m (from centre), $E = 1.5\times10^3$ N/C (inward $\Rightarrow$ negative charge)</div>
+    <div class="step"><span class="step-n">①</span>
+      <div class="step-c">For a conducting sphere, outside field behaves like a point charge:
+        $$E = \frac{kq}{r^2} \implies q = \frac{Er^2}{k}$$
+      </div>
+    </div>
+    <div class="step"><span class="step-n">②</span>
+      <div class="step-c">Field is inward, so charge is negative:
+        $$q = -\frac{1.5\times10^3\times(0.20)^2}{9\times10^9} = -\frac{1.5\times10^3\times0.04}{9\times10^9}$$
+      </div>
+    </div>
+    <div class="fbox result">
+      <span class="result-tag">★ Answer</span>
+      $$q \approx -6.67\times10^{-9}\text{ C} = -6.67\text{ nC}$$
+    </div>
+  </div>
+
+  <!-- Q 1.22 -->
+  <div class="paper margin">
+    <div class="q-badge">Q 1.22</div>
+    <div class="q-text">Uniformly charged conducting sphere of diameter 2.4 m, surface charge density $\sigma = 80.0\ \mu$C/m². (a) Charge on sphere. (b) Total electric flux leaving surface.</div>
+    <div class="given">$R = 1.2$ m, $\sigma = 80\times10^{-6}$ C/m²</div>
+    <div class="sub-title">Part (a) — Charge</div>
+    <div class="step"><span class="step-n">①</span>
+      <div class="step-c">$$q = \sigma\cdot 4\pi R^2 = 80\times10^{-6}\times4\pi\times(1.2)^2 = 80\times10^{-6}\times18.096$$</div>
+    </div>
+    <div class="fbox result">
+      <span class="result-tag">★ (a)</span>
+      $$q \approx 1.45\times10^{-3}\text{ C} = 1.45\text{ mC}$$
+    </div>
+    <div class="sub-title">Part (b) — Total flux</div>
+    <div class="step"><span class="step-n">①</span>
+      <div class="step-c">$$\phi = \frac{q}{\varepsilon_0} = \frac{1.45\times10^{-3}}{8.854\times10^{-12}}$$</div>
+    </div>
+    <div class="fbox result">
+      <span class="result-tag">★ (b)</span>
+      $$\phi \approx 1.64\times10^{8}\text{ N m}^2\text{ C}^{-1}$$
+    </div>
+  </div>
+
+  <!-- Q 1.23 -->
+  <div class="paper margin">
+    <div class="q-badge">Q 1.23</div>
+    <div class="q-text">Infinite line charge produces field $E = 9\times10^4$ N/C at distance $r = 2$ cm. Find linear charge density $\lambda$.</div>
+    <div class="given">$E = 9\times10^4$ N/C, $r = 0.02$ m</div>
+    <div class="step"><span class="step-n">①</span>
+      <div class="step-c">For an infinite line charge (by Gauss's Law):
+        $$E = \frac{\lambda}{2\pi\varepsilon_0 r} \implies \lambda = E\cdot2\pi\varepsilon_0 r$$
+      </div>
+    </div>
+    <div class="step"><span class="step-n">②</span>
+      <div class="step-c">$$\lambda = 9\times10^4\times2\pi\times8.854\times10^{-12}\times0.02$$
+        $$= 9\times10^4\times1.113\times10^{-12} = 10^{-7}\text{ C/m}$$
+      </div>
+    </div>
+    <div class="fbox result">
+      <span class="result-tag">★ Answer</span>
+      $$\lambda = 10^{-7}\text{ C/m} = 0.1\ \mu\text{C/m}$$
+    </div>
+  </div>
+
+  <!-- Q 1.24 with diagram -->
+  <div class="paper margin">
+    <div class="q-badge">Q 1.24</div>
+    <div class="q-text">Two large thin parallel plates with surface charge densities $+\sigma$ and $-\sigma$ on their inner faces ($\sigma = 17.0\times10^{-22}$ C/m²). Find E in: (a) outer region of plate 1, (b) outer region of plate 2, (c) between the plates.</div>
+
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 500 180" xmlns="http://www.w3.org/2000/svg" width="500" height="180">
+        <defs>
+          <marker id="eArr" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto"><path d="M0,0L0,7L7,3.5z" style="fill:var(--c-green)"/></marker>
+          <marker id="eArrL" markerWidth="7" markerHeight="7" refX="2" refY="3.5" orient="auto-start-reverse"><path d="M0,0L0,7L7,3.5z" style="fill:var(--c-green)"/></marker>
+        </defs>
+        <!-- Plate 1 (left) -->
+        <rect x="150" y="20" width="18" height="140" rx="3" style="fill:var(--c-red);opacity:.7"/>
+        <text x="158" y="100" text-anchor="middle" transform="rotate(-90,158,100)" style="font-family:Caveat,cursive;font-size:11px;fill:white">+sigma (inner)</text>
+        <text x="140" y="168" text-anchor="middle" style="font-family:Caveat,cursive;font-size:11px;fill:var(--c-red)">Plate 1</text>
+
+        <!-- Plate 2 (right) -->
+        <rect x="330" y="20" width="18" height="140" rx="3" style="fill:var(--c-blue);opacity:.7"/>
+        <text x="339" y="100" text-anchor="middle" transform="rotate(-90,339,100)" style="font-family:Caveat,cursive;font-size:11px;fill:white">-sigma (inner)</text>
+        <text x="339" y="168" text-anchor="middle" style="font-family:Caveat,cursive;font-size:11px;fill:var(--c-blue)">Plate 2</text>
+
+        <!-- Region labels -->
+        <text x="75" y="90" text-anchor="middle" style="font-family:Caveat,cursive;font-size:13px;fill:#999">Region (a)</text>
+        <text x="240" y="90" text-anchor="middle" style="font-family:Caveat,cursive;font-size:13px;fill:#999">Region (c)</text>
+        <text x="420" y="90" text-anchor="middle" style="font-family:Caveat,cursive;font-size:13px;fill:#999">Region (b)</text>
+
+        <!-- Between plates: E arrows rightward (c) -->
+        <line x1="185" y1="75" x2="315" y2="75" style="stroke:var(--c-green);stroke-width:2.5" marker-end="url(#eArr)" class="dp dp2"/>
+        <line x1="185" y1="100" x2="315" y2="100" style="stroke:var(--c-green);stroke-width:2.5" marker-end="url(#eArr)" class="dp dp2"/>
+        <line x1="185" y1="125" x2="315" y2="125" style="stroke:var(--c-green);stroke-width:2.5" marker-end="url(#eArr)" class="dp dp2"/>
+        <text x="250" y="148" text-anchor="middle" style="font-family:Caveat,cursive;font-size:11px;fill:var(--c-green)">E = sigma / epsilon_0</text>
+
+        <!-- Outside regions: E = 0 -->
+        <text x="75" y="115" text-anchor="middle" style="font-family:Caveat,cursive;font-size:14px;fill:#999">E = 0</text>
+        <text x="420" y="115" text-anchor="middle" style="font-family:Caveat,cursive;font-size:14px;fill:#999">E = 0</text>
+      </svg>
+    </div>
+    <p class="diagram-cap">Fig 5.1 — Fields from each plate cancel outside, add up between the plates</p>
+
+    <div class="step"><span class="step-n">①</span>
+      <div class="step-c">Each infinite sheet produces $E = \sigma/2\varepsilon_0$ on each side. In the outer regions, the two fields (one from each plate) are equal and opposite — they cancel.
+        $$E_{\text{outer}} = \frac{\sigma}{2\varepsilon_0} - \frac{\sigma}{2\varepsilon_0} = 0$$
+      </div>
+    </div>
+    <div class="step"><span class="step-n">②</span>
+      <div class="step-c">Between the plates, both fields point in the same direction (from $+$ to $-$):
+        $$E_{\text{between}} = \frac{\sigma}{2\varepsilon_0} + \frac{\sigma}{2\varepsilon_0} = \frac{\sigma}{\varepsilon_0}$$
+        $$= \frac{17\times10^{-22}}{8.854\times10^{-12}} \approx 1.92\times10^{-10}\text{ N/C}$$
+      </div>
+    </div>
+    <div class="fbox result">
+      <span class="result-tag">★ Answer</span>
+      <p style="margin:.3rem 0"><strong>(a)</strong> Outer region, Plate 1: $E = 0$</p>
+      <p style="margin:.3rem 0"><strong>(b)</strong> Outer region, Plate 2: $E = 0$</p>
+      <p style="margin:.3rem 0"><strong>(c)</strong> Between plates: $E = \sigma/\varepsilon_0 \approx 1.92\times10^{-10}$ N/C</p>
+    </div>
+  </div>
+</section>
+
+</div><!-- end container -->
+
+<footer class="footer">
+  <p>✏️ Made with ♥ by <span>Akshit Tyagi</span> &nbsp;·&nbsp; Class XII Physics · Electrostatics</p>
+  <p style="font-size:.82rem;margin-top:.4rem;opacity:.55">NCERT Physics Part I · Chapter 1 · All 24 Exercise Questions Solved</p>
+</footer>
+
+<script>
+/* Progress bar */
+const bar = document.getElementById('progress');
+const nav = document.getElementById('nav');
+const heroH = document.querySelector('.hero').offsetHeight;
+window.addEventListener('scroll', () => {
+  const s = window.scrollY;
+  const h = document.body.scrollHeight - window.innerHeight;
+  bar.style.width = (s / h * 100) + '%';
+  nav.classList.toggle('show', s > heroH * 0.55);
+}, { passive: true });
+
+/* Scroll reveal */
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('reveal'); });
+}, { threshold: 0.08 });
+document.querySelectorAll('.section').forEach(el => observer.observe(el));
+
+/* Paper card reveal */
+const cardObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.style.opacity = '1';
+      e.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.06 });
+document.querySelectorAll('.paper').forEach((c, i) => {
+  c.style.opacity = '0';
+  c.style.transform = 'translateY(22px)';
+  c.style.transition = `opacity .6s ease ${i * 0.04}s, transform .6s ease ${i * 0.04}s`;
+  cardObs.observe(c);
+});
+
+/* Theme toggle */
+const toggle = document.getElementById('themeToggle');
+let dark = false;
+toggle.addEventListener('click', () => {
+  dark = !dark;
+  document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+});
+
+/* KaTeX re-render */
+document.addEventListener('DOMContentLoaded', () => {
+  if (typeof renderMathInElement !== 'undefined') {
+    renderMathInElement(document.body, {
+      delimiters: [
+        { left: '$$', right: '$$', display: true },
+        { left: '$',  right: '$',  display: false }
+      ],
+      throwOnError: false
+    });
+  }
+});
+
+/* Chip ripple */
+document.querySelectorAll('.chip').forEach(chip => {
+  chip.addEventListener('click', function(e) {
+    const r = document.createElement('span');
+    r.style.cssText = `position:absolute;width:8px;height:8px;border-radius:50%;
+      background:rgba(255,255,255,.6);pointer-events:none;
+      transform:scale(0);animation:ripple .5s ease;
+      left:${e.offsetX-4}px;top:${e.offsetY-4}px;`;
+    this.style.position = 'relative';
+    this.appendChild(r);
+    setTimeout(() => r.remove(), 500);
+  });
+});
+const s = document.createElement('style');
+s.textContent = '@keyframes ripple{to{transform:scale(18);opacity:0}}';
+document.head.appendChild(s);
+</script>
+</body>
+</html>

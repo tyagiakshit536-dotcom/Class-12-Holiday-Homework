@@ -1,0 +1,1485 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Electrostatics Derivations · Chapter 2 · Akshit Tyagi</title>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false})"></script>
+
+<style>
+/* ===== DESIGN TOKENS ===== */
+:root {
+  --bg:          #FEFBF3;
+  --paper:       #FFF9EC;
+  --paper-2:     #FFF4DC;
+  --text:        #1A1208;
+  --text-muted:  #6B5540;
+  --accent:      #B07D10;
+  --accent-2:    #C05A12;
+  --accent-3:    #27AE60;
+  --line:        #DDD0B0;
+  --line-2:      #EDE0C4;
+  --highlight:   rgba(176,125,16,.1);
+  --highlight-2: rgba(176,125,16,.06);
+  --shadow:      rgba(100,60,10,.13);
+  --shadow-lg:   rgba(100,60,10,.22);
+  --nav-bg:      rgba(254,251,243,.94);
+  --ruled:       rgba(180,148,100,.18);
+  --margin:      rgba(200,100,80,.18);
+  --diagram-bg:  #FAFAF5;
+  --c-red:       #C0392B;
+  --c-blue:      #1E5BA8;
+  --c-green:     #1E8A50;
+  --c-gold:      #B07D10;
+  --c-purple:    #7D3C98;
+  --c-ink:       #1A1208;
+}
+[data-theme="dark"] {
+  --bg:          #100E0A;
+  --paper:       #1A1710;
+  --paper-2:     #221E14;
+  --text:        #EDE0C8;
+  --text-muted:  #A89070;
+  --accent:      #D4A820;
+  --accent-2:    #E8783A;
+  --accent-3:    #2ECC71;
+  --line:        #3A2E1A;
+  --line-2:      #2A2416;
+  --highlight:   rgba(212,168,32,.1);
+  --highlight-2: rgba(212,168,32,.055);
+  --shadow:      rgba(0,0,0,.4);
+  --shadow-lg:   rgba(0,0,0,.6);
+  --nav-bg:      rgba(16,14,10,.95);
+  --ruled:       rgba(212,168,32,.07);
+  --margin:      rgba(220,120,100,.12);
+  --diagram-bg:  #181510;
+  --c-red:       #E74C3C;
+  --c-blue:      #5B9BD5;
+  --c-green:     #2ECC71;
+  --c-gold:      #D4A820;
+  --c-purple:    #AF7AC5;
+  --c-ink:       #EDE0C8;
+}
+
+/* ===== RESET & BASE ===== */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;font-size:16px}
+body{
+  font-family:'Crimson Pro',Georgia,serif;
+  background:var(--bg);color:var(--text);
+  line-height:1.85;font-size:1.1rem;
+  transition:background .45s ease,color .45s ease;
+  overflow-x:hidden;
+}
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--accent);border-radius:3px}
+a{color:inherit;text-decoration:none}
+
+/* ===== PROGRESS BAR ===== */
+#progress{
+  position:fixed;top:0;left:0;height:3px;width:0%;
+  background:linear-gradient(90deg,var(--accent),var(--accent-2),var(--accent-3));
+  z-index:999;transition:width .08s linear;
+  box-shadow:0 0 8px var(--accent);
+}
+
+/* ===== NAVIGATION ===== */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:var(--nav-bg);backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--line);
+  padding:.7rem 2rem;
+  display:flex;align-items:center;justify-content:space-between;
+  transform:translateY(-110%);
+  transition:transform .45s cubic-bezier(.25,.8,.25,1),background .45s ease;
+}
+.nav.show{transform:translateY(0)}
+.nav-brand{
+  font-family:'Caveat',cursive;font-size:1.25rem;
+  font-weight:700;color:var(--accent);letter-spacing:.02em;
+}
+.nav-links{
+  display:flex;gap:.3rem;list-style:none;flex-wrap:wrap;
+}
+.nav-links a{
+  font-family:'Caveat',cursive;font-size:.88rem;color:var(--text-muted);
+  padding:.2rem .55rem;border-radius:6px;
+  transition:color .2s,background .2s;
+}
+.nav-links a:hover{color:var(--accent);background:var(--highlight)}
+.nav-right{display:flex;align-items:center;gap:.75rem}
+
+/* Theme Toggle */
+.toggle{
+  width:46px;height:25px;
+  background:var(--line);border:none;border-radius:100px;
+  cursor:pointer;position:relative;
+  transition:background .3s;
+}
+.toggle::after{
+  content:'';position:absolute;top:3px;left:3px;
+  width:19px;height:19px;border-radius:50%;
+  background:var(--accent);
+  transition:transform .35s cubic-bezier(.4,0,.2,1);
+}
+[data-theme="dark"] .toggle::after{transform:translateX(21px)}
+.toggle-icon{
+  font-size:.7rem;position:absolute;
+  top:50%;transform:translateY(-50%);
+  transition:opacity .3s;pointer-events:none;
+}
+.icon-sun{left:5px;opacity:1}
+.icon-moon{right:5px;opacity:.5}
+[data-theme="dark"] .icon-sun{opacity:.5}
+[data-theme="dark"] .icon-moon{opacity:1}
+
+/* ===== HERO ===== */
+.hero{
+  min-height:100vh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  text-align:center;padding:5rem 2rem 6rem;
+  position:relative;overflow:hidden;
+  background:var(--paper);
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background:repeating-linear-gradient(
+    transparent,transparent 39px,
+    var(--ruled) 39px,var(--ruled) 40px
+  );pointer-events:none;
+}
+.hero::after{
+  content:'';position:absolute;
+  top:0;left:88px;width:1.5px;height:100%;
+  background:var(--margin);pointer-events:none;
+}
+.ink-orb{
+  position:absolute;border-radius:50%;pointer-events:none;
+  animation:floatOrb var(--dur,12s) ease-in-out infinite;
+  opacity:.055;filter:blur(60px);
+}
+@keyframes floatOrb{
+  0%,100%{transform:translate(0,0) scale(1)}
+  33%{transform:translate(30px,-40px) scale(1.1)}
+  66%{transform:translate(-20px,25px) scale(.9)}
+}
+.hero-eyebrow{
+  font-family:'Caveat',cursive;font-size:1rem;
+  color:var(--accent);letter-spacing:.18em;text-transform:uppercase;
+  margin-bottom:1rem;
+  opacity:0;animation:riseUp .8s ease .2s forwards;
+  position:relative;z-index:2;
+}
+.hero-title{
+  font-family:'Caveat',cursive;
+  font-size:clamp(3.2rem,8.5vw,6.5rem);
+  font-weight:700;line-height:1.05;
+  color:var(--text);margin-bottom:.6rem;
+  opacity:0;animation:riseUp .9s ease .38s forwards;
+  position:relative;z-index:2;
+}
+.hero-title span{color:var(--accent)}
+.hero-sub{
+  font-size:1.15rem;color:var(--text-muted);
+  font-style:italic;margin-bottom:3rem;
+  opacity:0;animation:riseUp .9s ease .55s forwards;
+  position:relative;z-index:2;
+}
+.author-card{
+  display:flex;align-items:center;gap:1.8rem;
+  background:var(--paper-2);
+  border:1.5px solid var(--line);border-radius:24px;
+  padding:1.6rem 2.8rem;
+  box-shadow:0 12px 50px var(--shadow);
+  margin-bottom:2.2rem;
+  opacity:0;
+  position:relative;z-index:2;
+  animation-name:riseUp,cardFloat;
+  animation-duration:1s,6s;
+  animation-delay:.72s,1.8s;
+  animation-timing-function:ease,ease-in-out;
+  animation-iteration-count:1,infinite;
+  animation-fill-mode:forwards,none;
+}
+@keyframes cardFloat{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-8px)}
+}
+.author-photo{
+  width:88px;height:88px;border-radius:50%;object-fit:cover;
+  border:3px solid var(--accent);
+  box-shadow:0 0 0 5px var(--highlight),0 8px 24px var(--shadow);
+  transition:transform .4s ease;flex-shrink:0;
+}
+.author-photo:hover{transform:scale(1.06) rotate(2deg)}
+.author-info{text-align:left}
+.author-label{
+  font-family:'Caveat',cursive;font-size:.78rem;
+  color:var(--text-muted);letter-spacing:.12em;text-transform:uppercase;
+}
+.author-name{
+  font-family:'Caveat',cursive;font-size:2.8rem;
+  font-weight:700;color:var(--text);line-height:1;
+  background:linear-gradient(135deg,var(--accent),var(--accent-2));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.author-desc{font-size:.9rem;color:var(--text-muted);font-style:italic;}
+
+.chips{
+  display:flex;flex-wrap:wrap;gap:.6rem;justify-content:center;
+  opacity:0;animation:riseUp 1s ease .9s forwards;
+  position:relative;z-index:2;
+}
+.chip{
+  font-family:'Caveat',cursive;font-size:.9rem;
+  color:var(--accent);
+  border:1px solid var(--accent);
+  background:var(--highlight);
+  padding:.28rem .85rem;border-radius:100px;
+  cursor:pointer;
+  transition:all .3s cubic-bezier(.25,.8,.25,1);
+  position:relative;overflow:hidden;
+}
+.chip::before{
+  content:'';position:absolute;inset:0;
+  background:var(--accent);transform:scaleX(0);
+  transform-origin:left;transition:transform .3s ease;
+  border-radius:inherit;z-index:-1;
+}
+.chip:hover::before{transform:scaleX(1)}
+.chip:hover{color:var(--bg);border-color:var(--accent)}
+
+.scroll-cue{
+  position:absolute;bottom:2.2rem;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:.5rem;
+  opacity:0;animation:fadeIn 1s ease 1.4s forwards;z-index:2;
+}
+.scroll-cue span{
+  font-family:'Caveat',cursive;font-size:.8rem;
+  color:var(--text-muted);letter-spacing:.1em;
+}
+.scroll-arrow{
+  width:20px;height:20px;
+  border-right:2px solid var(--accent);
+  border-bottom:2px solid var(--accent);
+  transform:rotate(45deg);
+  animation:arrowBounce 1.6s ease infinite;
+}
+
+/* ===== MAIN LAYOUT ===== */
+.container{max-width:880px;margin:0 auto;padding:4rem 2rem 2rem;}
+
+/* ===== SECTION ===== */
+.section{
+  margin-bottom:5.5rem;
+  opacity:0;transform:translateY(44px);
+  transition:opacity .75s ease,transform .75s cubic-bezier(.25,.8,.25,1);
+}
+.section.reveal{opacity:1;transform:translateY(0)}
+.section:nth-child(2){transition-delay:.05s}
+.section:nth-child(3){transition-delay:.1s}
+
+.section-header{
+  display:flex;align-items:flex-start;gap:1.4rem;
+  margin-bottom:2rem;
+  padding-bottom:1rem;
+  border-bottom:2px solid var(--accent);
+}
+.s-num{
+  font-family:'Caveat',cursive;font-size:4.5rem;
+  font-weight:700;color:var(--accent);opacity:.22;
+  line-height:1;min-width:58px;
+  position:relative;top:-.25rem;
+}
+.s-meta{}
+.s-title{
+  font-family:'Caveat',cursive;font-size:2.1rem;
+  font-weight:700;color:var(--text);line-height:1.2;
+}
+.s-tag{
+  display:inline-block;margin-top:.35rem;
+  font-family:'Caveat',cursive;font-size:.78rem;
+  color:var(--accent-2);border:1px solid var(--accent-2);
+  padding:.12rem .55rem;border-radius:100px;
+}
+
+/* ===== CARDS ===== */
+.paper{
+  background:var(--paper);
+  border:1px solid var(--line);border-radius:18px;
+  padding:2rem 2.4rem;
+  position:relative;overflow:hidden;
+  box-shadow:0 5px 28px var(--shadow);
+  margin-bottom:1.4rem;
+  transition:box-shadow .3s ease;
+}
+.paper:hover{box-shadow:0 10px 48px var(--shadow-lg)}
+.paper::before{
+  content:'';position:absolute;inset:0;
+  background:repeating-linear-gradient(
+    transparent,transparent 27px,
+    var(--ruled) 27px,var(--ruled) 28px
+  );pointer-events:none;
+}
+.paper.margin::after{
+  content:'';position:absolute;top:0;left:44px;
+  width:1.5px;height:100%;background:var(--margin);
+  pointer-events:none;
+}
+
+.theory-block{
+  background:var(--highlight);
+  border-left:3.5px solid var(--accent);
+  border-radius:0 12px 12px 0;
+  padding:1rem 1.4rem;
+  margin-bottom:1.6rem;
+  font-style:italic;font-size:1rem;
+  color:var(--text-muted);
+  position:relative;z-index:1;
+}
+
+/* ===== LABELS ===== */
+.lbl{
+  display:inline-block;
+  font-family:'Caveat',cursive;font-size:.82rem;
+  font-weight:700;color:var(--accent);
+  letter-spacing:.12em;text-transform:uppercase;
+  margin-bottom:.6rem;position:relative;z-index:1;
+}
+
+/* ===== STEPS ===== */
+.step{
+  display:flex;gap:.9rem;margin-bottom:.9rem;
+  position:relative;z-index:1;
+}
+.step-n{
+  font-family:'Caveat',cursive;font-size:.85rem;
+  color:var(--accent);font-weight:700;
+  min-width:22px;padding-top:.1rem;flex-shrink:0;
+}
+.step-c{font-size:1rem;flex:1;color:var(--text)}
+
+/* ===== FORMULA BOXES ===== */
+.fbox{
+  background:var(--paper-2);
+  border:1.5px solid var(--line);
+  border-radius:12px;padding:1rem 1.8rem;
+  text-align:center;margin:1.3rem 0;
+  position:relative;z-index:1;
+  overflow-x:auto;
+}
+.fbox.result{
+  border-color:var(--accent);border-width:2px;
+  background:linear-gradient(135deg,var(--highlight),var(--paper-2));
+  box-shadow:0 2px 18px rgba(176,125,16,.12);
+  animation:shimmer 4s ease-in-out infinite;
+}
+@keyframes shimmer{
+  0%,100%{box-shadow:0 2px 18px rgba(176,125,16,.12)}
+  50%{box-shadow:0 4px 32px rgba(176,125,16,.28)}
+}
+.result-tag{
+  position:absolute;top:-.65rem;right:1rem;
+  font-family:'Caveat',cursive;font-size:.75rem;
+  color:var(--accent);background:var(--paper);
+  padding:.05rem .45rem;border:1px solid var(--accent);
+  border-radius:100px;
+}
+
+/* ===== NOTE ===== */
+.note{
+  background:var(--highlight-2);
+  border:1px dashed var(--accent);
+  border-radius:9px;padding:.75rem 1.2rem;
+  margin:1rem 0;font-family:'Caveat',cursive;
+  font-size:1.05rem;color:var(--text-muted);
+  position:relative;z-index:1;
+}
+.note strong{color:var(--accent)}
+
+/* ===== DIAGRAMS ===== */
+.diagram-wrap{
+  background:var(--diagram-bg);
+  border:1px solid var(--line-2);
+  border-radius:16px;padding:1.6rem;
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;margin:1.4rem 0;
+  box-shadow:inset 0 2px 10px rgba(0,0,0,.04);
+}
+.diagram-wrap svg{max-width:100%;height:auto;display:block}
+.diagram-cap{
+  text-align:center;
+  font-family:'Caveat',cursive;font-size:.88rem;
+  color:var(--text-muted);margin-top:-.5rem;margin-bottom:1.2rem;
+  font-style:italic;
+}
+
+/* SVG animated paths */
+.dp{
+  stroke-dasharray:900;stroke-dashoffset:900;
+  animation:drawPath 1.4s ease forwards;
+  animation-play-state:paused;
+}
+.section.reveal .dp{animation-play-state:running}
+.dp2{animation-delay:.3s}
+.dp3{animation-delay:.6s}
+.dp4{animation-delay:.9s}
+
+.sub-title{
+  font-family:'Caveat',cursive;font-size:1.5rem;
+  font-weight:600;color:var(--accent-2);
+  display:flex;align-items:center;gap:.5rem;
+  margin-bottom:1rem;margin-top:2.2rem;
+}
+.sub-title::before{content:'→';font-size:1.2rem;color:var(--accent)}
+
+/* ===== 2-COL GRID ===== */
+.two{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:1.4rem;margin:1.4rem 0;
+}
+@media(max-width:620px){
+  .two{grid-template-columns:1fr}
+  .nav-links{display:none}
+  .hero::after{left:42px}
+  .author-card{flex-direction:column;text-align:center;padding:1.4rem}
+  .author-info{text-align:center}
+}
+
+/* ===== DIVIDER ===== */
+.divider{
+  display:flex;align-items:center;gap:1rem;
+  margin:3.5rem 0;opacity:.45;
+}
+.divider::before,.divider::after{
+  content:'';flex:1;height:1px;background:var(--accent);
+}
+.divider span{
+  font-family:'Caveat',cursive;color:var(--accent);font-size:1.4rem;
+}
+
+/* ===== FOOTER ===== */
+.footer{
+  text-align:center;padding:3rem 2rem;
+  border-top:1px solid var(--line);
+  font-family:'Caveat',cursive;font-size:1.1rem;
+  color:var(--text-muted);
+}
+.footer span{color:var(--accent)}
+
+/* ===== INLINE UTILS ===== */
+p{position:relative;z-index:1;margin-bottom:.7rem}
+strong{color:var(--accent);font-weight:600}
+em{color:var(--text-muted)}
+small{font-size:.88rem}
+
+/* ===== KEYFRAMES ===== */
+@keyframes riseUp{
+  from{opacity:0;transform:translateY(32px)}
+  to{opacity:1;transform:translateY(0)}
+}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes arrowBounce{
+  0%,100%{transform:rotate(45deg) translateY(0)}
+  50%{transform:rotate(45deg) translateY(7px)}
+}
+@keyframes drawPath{
+  from{stroke-dashoffset:900}
+  to{stroke-dashoffset:0}
+}
+
+/* KaTeX overrides */
+.katex-display{padding:.4rem 0;overflow-x:auto}
+.katex{font-size:1.08em}
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<nav class="nav" id="nav">
+  <div class="nav-brand">⚡ Electrostatics · XII</div>
+  <ul class="nav-links">
+    <li><a href="#s1">V Point Charge</a></li>
+    <li><a href="#s2">V Dipole</a></li>
+    <li><a href="#s3">E &amp; V Relation</a></li>
+    <li><a href="#s4">P.E. of Charges</a></li>
+    <li><a href="#s5">Capacitors</a></li>
+    <li><a href="#s6">Energy in Cap.</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="toggle" id="themeToggle" aria-label="Toggle theme">
+      <span class="toggle-icon icon-sun">☀</span>
+      <span class="toggle-icon icon-moon">☾</span>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="ink-orb" style="width:420px;height:420px;background:var(--accent);top:-120px;right:-100px;--dur:14s"></div>
+  <div class="ink-orb" style="width:300px;height:300px;background:var(--accent-2);bottom:-80px;left:-60px;--dur:11s;animation-delay:-4s"></div>
+  <div class="ink-orb" style="width:200px;height:200px;background:var(--accent-3);bottom:20%;left:15%;--dur:16s;animation-delay:-7s"></div>
+
+  <div class="hero-eyebrow">Class XII · Physics · Chapter 2 · Electrostatics</div>
+  <h1 class="hero-title">
+    Electric Potential<br>
+    <span>&amp; Capacitance</span>
+  </h1>
+  <p class="hero-sub">A fair notebook — written clearly, for every student ✏️</p>
+
+  <div class="author-card">
+    <img
+      src="https://plain-apac-prod-public.komododecks.com/202605/22/nHDi45aen4uwI6zP8WGI/image.jpg"
+      alt="Akshit Tyagi"
+      class="author-photo"
+      onerror="this.style.display='none'">
+    <div class="author-info">
+      <div class="author-label">Made with ♥ by</div>
+      <div class="author-name">Akshit Tyagi</div>
+      <div class="author-desc">Class XII · Physics Fair Notes</div>
+    </div>
+  </div>
+
+  <div class="chips">
+    <a class="chip" href="#s1">01 · V Point Charge</a>
+    <a class="chip" href="#s2">02 · V Dipole</a>
+    <a class="chip" href="#s3">03 · E &amp; V Relation</a>
+    <a class="chip" href="#s4">04 · P.E. Two Charges</a>
+    <a class="chip" href="#s5">05 · Capacitors</a>
+    <a class="chip" href="#s6">06 · Energy in Cap.</a>
+  </div>
+
+  <div class="scroll-cue">
+    <span>Begin</span>
+    <div class="scroll-arrow"></div>
+  </div>
+</section>
+
+<!-- =================== MAIN =================== -->
+<div class="container">
+
+<!-- ====================================================
+     SECTION 1 — ELECTRIC POTENTIAL DUE TO POINT CHARGE
+===================================================== -->
+<section class="section" id="s1">
+  <div class="section-header">
+    <div class="s-num">01</div>
+    <div class="s-meta">
+      <div class="s-title">Electric Potential due to a Point Charge</div>
+      <span class="s-tag">Work done per unit charge · V = kq/r</span>
+    </div>
+  </div>
+
+  <div class="theory-block">
+    Electric potential at a point is the work done in bringing a unit positive charge from infinity to that point, <em>slowly and without acceleration</em>. It is a scalar quantity. $V = \dfrac{W_\infty}{q_0}$
+  </div>
+
+  <!-- Diagram -->
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 520 220" xmlns="http://www.w3.org/2000/svg" width="520" height="220">
+      <defs>
+        <marker id="ar1" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+          <path d="M0,0L0,7L7,3.5z" style="fill:var(--c-gold)"/></marker>
+        <marker id="ar2" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+          <path d="M0,0L0,7L7,3.5z" style="fill:var(--c-blue)"/></marker>
+        <radialGradient id="qGrad" cx="50%" cy="40%">
+          <stop offset="0%" stop-color="#D4A820" stop-opacity=".25"/>
+          <stop offset="100%" stop-color="#B07D10" stop-opacity=".05"/>
+        </radialGradient>
+      </defs>
+
+      <!-- Equipotential dashed circles -->
+      <circle cx="185" cy="110" r="55"  style="stroke:var(--c-gold);stroke-width:1;stroke-dasharray:5 4;fill:none;opacity:.35" class="dp"/>
+      <circle cx="185" cy="110" r="88"  style="stroke:var(--c-gold);stroke-width:1;stroke-dasharray:5 4;fill:none;opacity:.25" class="dp dp2"/>
+      <circle cx="185" cy="110" r="118" style="stroke:var(--c-gold);stroke-width:1;stroke-dasharray:5 4;fill:none;opacity:.18" class="dp dp3"/>
+
+      <!-- Radial glow -->
+      <circle cx="185" cy="110" r="118" fill="url(#qGrad)"/>
+
+      <!-- Source charge +q -->
+      <circle cx="185" cy="110" r="26" style="fill:var(--c-red);opacity:.9"/>
+      <text x="185" y="117" text-anchor="middle"
+        style="font-family:Crimson Pro,serif;font-size:17px;fill:white;font-weight:600">+q</text>
+
+      <!-- r arrow to P -->
+      <line x1="211" y1="110" x2="368" y2="110"
+        style="stroke:var(--c-gold);stroke-width:2" marker-end="url(#ar1)" class="dp dp2"/>
+      <text x="290" y="102"
+        style="font-family:Crimson Pro,serif;font-style:italic;font-size:15px;fill:var(--c-gold)">r</text>
+
+      <!-- P point -->
+      <circle cx="378" cy="110" r="6" style="fill:var(--c-blue)"/>
+      <text x="394" y="107"
+        style="font-family:Caveat,cursive;font-size:16px;fill:var(--c-blue);font-weight:700">P</text>
+
+      <!-- dx element -->
+      <line x1="320" y1="130" x2="340" y2="130"
+        style="stroke:var(--c-blue);stroke-width:2" marker-end="url(#ar2)" class="dp dp3"/>
+      <text x="329" y="148"
+        style="font-family:Crimson Pro,serif;font-style:italic;font-size:13px;fill:var(--c-blue)">dx</text>
+
+      <!-- Infinity label -->
+      <text x="430" y="114"
+        style="font-family:Caveat,cursive;font-size:1.1rem;fill:var(--text-muted);opacity:.7">∞</text>
+      <line x1="395" y1="110" x2="430" y2="110"
+        style="stroke:var(--text-muted);stroke-width:1;stroke-dasharray:4 3;opacity:.5" class="dp dp4"/>
+
+      <!-- Equipotential label -->
+      <text x="42" y="56"
+        style="font-family:Caveat,cursive;font-size:.78rem;fill:var(--c-gold);opacity:.8">equipotential</text>
+      <text x="42" y="70"
+        style="font-family:Caveat,cursive;font-size:.78rem;fill:var(--c-gold);opacity:.8">surfaces</text>
+    </svg>
+  </div>
+  <p class="diagram-cap">Fig 1.1 — Point charge +q, test point P at distance r; dashed circles are equipotential surfaces</p>
+
+  <div class="paper margin">
+    <div class="lbl">Derivation</div>
+    <p>Consider point charge $+q$ at origin. Bring test charge $q_0$ from $\infty$ to point P at distance $r$.</p>
+
+    <div class="step">
+      <span class="step-n">①</span>
+      <div class="step-c">
+        At distance $x$ from $q$, electric force on $q_0$ is directed away (repulsive).
+        The external agent must apply equal and opposite force:
+        $$F_{ext} = \frac{kq\,q_0}{x^2} \quad \text{(directed toward }q\text{)}$$
+      </div>
+    </div>
+
+    <div class="step">
+      <span class="step-n">②</span>
+      <div class="step-c">
+        Small work done by external agent in displacement $dx$ (from $\infty$ toward $q$, so $dx$ is negative):
+        $$dW = F_{ext}\cdot(-dx) = -\frac{kq\,q_0}{x^2}\,dx$$
+      </div>
+    </div>
+
+    <div class="step">
+      <span class="step-n">③</span>
+      <div class="step-c">
+        Total work done from $\infty$ to $r$:
+        $$W = \int_{\infty}^{r} \left(-\frac{kq\,q_0}{x^2}\right)dx
+          = -kq\,q_0\left[-\frac{1}{x}\right]_{\infty}^{r}
+          = \frac{kq\,q_0}{r}$$
+      </div>
+    </div>
+
+    <div class="step">
+      <span class="step-n">④</span>
+      <div class="step-c">
+        Electric potential $V = \dfrac{W}{q_0}$:
+      </div>
+    </div>
+
+    <div class="fbox result">
+      <span class="result-tag">★ Result</span>
+      $$V = \frac{W}{q_0} = \frac{kq}{r} = \frac{1}{4\pi\varepsilon_0}\cdot\frac{q}{r}$$
+    </div>
+
+    <div class="note">
+      <strong>Sign rule:</strong> $q > 0$ → $V > 0$ (positive); $q < 0$ → $V < 0$ (negative). &nbsp;|&nbsp;
+      <strong>At infinity:</strong> $V = 0$.
+    </div>
+  </div>
+</section>
+
+<div class="divider"><span>✦</span></div>
+
+<!-- ====================================================
+     SECTION 2 — ELECTRIC POTENTIAL DUE TO DIPOLE
+===================================================== -->
+<section class="section" id="s2">
+  <div class="section-header">
+    <div class="s-num">02</div>
+    <div class="s-meta">
+      <div class="s-title">Electric Potential due to an Electric Dipole</div>
+      <span class="s-tag">General point · Axial &amp; Equatorial cases</span>
+    </div>
+  </div>
+
+  <div class="theory-block">
+    An electric dipole has charges $+q$ and $-q$ separated by $2a$. Dipole moment $p = q \cdot 2a$, directed from $-q$ to $+q$. Potential at any point is the scalar sum of potentials due to each charge.
+  </div>
+
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 540 270" xmlns="http://www.w3.org/2000/svg" width="540" height="270">
+      <defs>
+        <marker id="dp1" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+          <path d="M0,0L0,7L7,3.5z" style="fill:var(--c-gold)"/></marker>
+        <marker id="dp1L" markerWidth="7" markerHeight="7" refX="2" refY="3.5" orient="auto-start-reverse">
+          <path d="M0,0L0,7L7,3.5z" style="fill:var(--c-gold)"/></marker>
+      </defs>
+
+      <!-- Dipole axis -->
+      <line x1="40" y1="210" x2="490" y2="210"
+        style="stroke:#bbb;stroke-width:1;stroke-dasharray:5 4"/>
+      <text x="478" y="203" style="font-family:Caveat,cursive;font-size:12px;fill:#aaa">axis</text>
+
+      <!-- O (centre) -->
+      <circle cx="270" cy="210" r="4" style="fill:var(--c-gold)"/>
+      <text x="270" y="232" text-anchor="middle"
+        style="font-family:Caveat,cursive;font-size:13px;fill:var(--c-gold)">O</text>
+
+      <!-- -q -->
+      <circle cx="160" cy="210" r="26" style="fill:var(--c-red);opacity:.9"/>
+      <text x="160" y="216" text-anchor="middle"
+        style="font-family:Crimson Pro,serif;font-size:17px;fill:white;font-weight:600">−q</text>
+
+      <!-- +q -->
+      <circle cx="380" cy="210" r="26" style="fill:var(--c-blue);opacity:.9"/>
+      <text x="380" y="216" text-anchor="middle"
+        style="font-family:Crimson Pro,serif;font-size:17px;fill:white;font-weight:600">+q</text>
+
+      <!-- p arrow -->
+      <line x1="172" y1="178" x2="366" y2="178"
+        style="stroke:var(--c-gold);stroke-width:2" marker-end="url(#dp1)" class="dp"/>
+      <text x="270" y="168" text-anchor="middle"
+        style="font-family:Crimson Pro,serif;font-style:italic;font-size:14px;fill:var(--c-gold)">p⃗</text>
+
+      <!-- a labels -->
+      <line x1="160" y1="248" x2="270" y2="248"
+        style="stroke:#aaa;stroke-width:1" marker-end="url(#dp1)" marker-start="url(#dp1L)" class="dp dp2"/>
+      <text x="215" y="262" text-anchor="middle"
+        style="font-family:Crimson Pro,serif;font-style:italic;font-size:13px;fill:#999">a</text>
+      <line x1="270" y1="248" x2="380" y2="248"
+        style="stroke:#aaa;stroke-width:1" marker-end="url(#dp1)" marker-start="url(#dp1L)" class="dp dp2"/>
+      <text x="325" y="262" text-anchor="middle"
+        style="font-family:Crimson Pro,serif;font-style:italic;font-size:13px;fill:#999">a</text>
+
+      <!-- Point P (general) -->
+      <circle cx="420" cy="75" r="6" style="fill:var(--c-blue)"/>
+      <text x="434" y="72"
+        style="font-family:Caveat,cursive;font-size:16px;fill:var(--c-blue);font-weight:700">P</text>
+
+      <!-- r from O to P -->
+      <line x1="270" y1="210" x2="416" y2="78"
+        style="stroke:var(--c-gold);stroke-width:1.8;stroke-dasharray:5 3" class="dp dp2"/>
+      <text x="330" y="132"
+        style="font-family:Crimson Pro,serif;font-style:italic;font-size:15px;fill:var(--c-gold)">r</text>
+
+      <!-- r1 from -q to P -->
+      <line x1="168" y1="195" x2="415" y2="81"
+        style="stroke:var(--c-red);stroke-width:1.5;stroke-dasharray:4 3" class="dp dp3"/>
+      <text x="278" y="118"
+        style="font-family:Crimson Pro,serif;font-style:italic;font-size:13px;fill:var(--c-red)">r₁</text>
+
+      <!-- r2 from +q to P -->
+      <line x1="373" y1="193" x2="418" y2="84"
+        style="stroke:var(--c-blue);stroke-width:1.5;stroke-dasharray:4 3" class="dp dp3"/>
+      <text x="408" y="140"
+        style="font-family:Crimson Pro,serif;font-style:italic;font-size:13px;fill:var(--c-blue)">r₂</text>
+
+      <!-- theta arc -->
+      <path d="M 295 210 A 28 28 0 0 0 278 183"
+        style="stroke:var(--c-gold);stroke-width:1.5;fill:none" class="dp dp3"/>
+      <text x="302" y="195"
+        style="font-family:Crimson Pro,serif;font-style:italic;font-size:14px;fill:var(--c-gold)">θ</text>
+    </svg>
+  </div>
+  <p class="diagram-cap">Fig 2.1 — Point P at $(r, \theta)$; $r_1$ = dist from $-q$, $r_2$ = dist from $+q$</p>
+
+  <div class="paper margin">
+    <div class="lbl">Derivation</div>
+    <p>For $r \gg a$, using geometry: $r_1 \approx r + a\cos\theta$ and $r_2 \approx r - a\cos\theta$.</p>
+
+    <div class="step">
+      <span class="step-n">①</span>
+      <div class="step-c">
+        Potential at P due to $+q$ and $-q$ (scalar sum):
+        $$V = \frac{kq}{r_2} + \frac{k(-q)}{r_1} = kq\left(\frac{1}{r_2} - \frac{1}{r_1}\right)$$
+      </div>
+    </div>
+
+    <div class="step">
+      <span class="step-n">②</span>
+      <div class="step-c">
+        Substituting $r_1$ and $r_2$:
+        $$V = kq\left(\frac{1}{r - a\cos\theta} - \frac{1}{r + a\cos\theta}\right)
+            = kq\cdot\frac{2a\cos\theta}{r^2 - a^2\cos^2\theta}$$
+      </div>
+    </div>
+
+    <div class="step">
+      <span class="step-n">③</span>
+      <div class="step-c">
+        Since $r \gg a$, neglect $a^2\cos^2\theta$ compared to $r^2$, and $p = q\cdot 2a$:
+      </div>
+    </div>
+
+    <div class="fbox result">
+      <span class="result-tag">★ Result</span>
+      $$V = \frac{kp\cos\theta}{r^2} = \frac{1}{4\pi\varepsilon_0}\cdot\frac{p\cos\theta}{r^2}$$
+    </div>
+  </div>
+
+  <div class="two">
+    <div class="paper">
+      <div class="lbl">Axial Point ($\theta = 0°$)</div>
+      <p style="font-size:.95rem">$\cos 0° = 1$, so:</p>
+      <div class="fbox result" style="margin-top:.6rem">
+        <span class="result-tag">★</span>
+        $$V_{axial} = \frac{kp}{r^2}$$
+        <small style="color:var(--text-muted)">Maximum potential</small>
+      </div>
+    </div>
+    <div class="paper">
+      <div class="lbl">Equatorial Point ($\theta = 90°$)</div>
+      <p style="font-size:.95rem">$\cos 90° = 0$, so:</p>
+      <div class="fbox result" style="margin-top:.6rem">
+        <span class="result-tag">★</span>
+        $$V_{eq} = 0$$
+        <small style="color:var(--text-muted)">Equatorial plane is at zero potential</small>
+      </div>
+    </div>
+  </div>
+
+  <div class="note">
+    <strong>Key:</strong> Unlike electric field, potential is a scalar — just add values algebraically. The equatorial plane of a dipole is always at zero potential.
+  </div>
+</section>
+
+<div class="divider"><span>✦</span></div>
+
+<!-- ====================================================
+     SECTION 3 — RELATION BETWEEN E AND V
+===================================================== -->
+<section class="section" id="s3">
+  <div class="section-header">
+    <div class="s-num">03</div>
+    <div class="s-meta">
+      <div class="s-title">Relation Between Electric Field &amp; Potential</div>
+      <span class="s-tag">E = −dV/dr · Field is negative gradient of potential</span>
+    </div>
+  </div>
+
+  <div class="theory-block">
+    The electric field and potential are not independent — they are related. Field always points in the direction of <em>decreasing potential</em>. The field is the negative gradient of potential.
+  </div>
+
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 520 200" xmlns="http://www.w3.org/2000/svg" width="520" height="200">
+      <defs>
+        <marker id="ev1" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+          <path d="M0,0L0,7L7,3.5z" style="fill:var(--c-red)"/></marker>
+        <marker id="ev2" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+          <path d="M0,0L0,7L7,3.5z" style="fill:var(--c-gold)"/></marker>
+      </defs>
+
+      <!-- Equipotential lines (vertical) -->
+      <line x1="95"  y1="28" x2="95"  y2="172" style="stroke:var(--c-gold);stroke-width:1.8;stroke-dasharray:6 3;opacity:.7" class="dp"/>
+      <line x1="195" y1="28" x2="195" y2="172" style="stroke:var(--c-gold);stroke-width:1.8;stroke-dasharray:6 3;opacity:.7" class="dp dp2"/>
+      <line x1="295" y1="28" x2="295" y2="172" style="stroke:var(--c-gold);stroke-width:1.8;stroke-dasharray:6 3;opacity:.7" class="dp dp2"/>
+      <line x1="395" y1="28" x2="395" y2="172" style="stroke:var(--c-gold);stroke-width:1.8;stroke-dasharray:6 3;opacity:.7" class="dp dp3"/>
+
+      <!-- V labels (decreasing left to right) -->
+      <text x="95"  y="20" text-anchor="middle" style="font-family:Caveat,cursive;font-size:13px;fill:var(--c-gold)">V₁</text>
+      <text x="195" y="20" text-anchor="middle" style="font-family:Caveat,cursive;font-size:13px;fill:var(--c-gold)">V₂</text>
+      <text x="295" y="20" text-anchor="middle" style="font-family:Caveat,cursive;font-size:13px;fill:var(--c-gold)">V₃</text>
+      <text x="395" y="20" text-anchor="middle" style="font-family:Caveat,cursive;font-size:13px;fill:var(--c-gold)">V₄</text>
+      <text x="245" y="192" text-anchor="middle"
+        style="font-family:Caveat,cursive;font-size:.75rem;fill:var(--c-gold)">V₁ &gt; V₂ &gt; V₃ &gt; V₄  (decreasing →)</text>
+
+      <!-- E field arrows (horizontal, left to right) -->
+      <line x1="95"  y1="100" x2="180" y2="100" style="stroke:var(--c-red);stroke-width:2.5" marker-end="url(#ev1)" class="dp dp2"/>
+      <line x1="195" y1="100" x2="280" y2="100" style="stroke:var(--c-red);stroke-width:2.5" marker-end="url(#ev1)" class="dp dp2"/>
+      <line x1="295" y1="100" x2="380" y2="100" style="stroke:var(--c-red);stroke-width:2.5" marker-end="url(#ev1)" class="dp dp3"/>
+
+      <!-- E label -->
+      <text x="148" y="87" text-anchor="middle"
+        style="font-family:Crimson Pro,serif;font-style:italic;font-size:14px;fill:var(--c-red)">E⃗</text>
+      <text x="248" y="87" text-anchor="middle"
+        style="font-family:Crimson Pro,serif;font-style:italic;font-size:14px;fill:var(--c-red)">E⃗</text>
+      <text x="348" y="87" text-anchor="middle"
+        style="font-family:Crimson Pro,serif;font-style:italic;font-size:14px;fill:var(--c-red)">E⃗</text>
+
+      <!-- dr label -->
+      <line x1="95"  y1="130" x2="195" y2="130" style="stroke:#aaa;stroke-width:1" marker-end="url(#ev2)" class="dp dp3"/>
+      <text x="145" y="148" text-anchor="middle"
+        style="font-family:Crimson Pro,serif;font-style:italic;font-size:13px;fill:#999">dr</text>
+
+      <!-- Perpendicular note -->
+      <text x="455" y="105"
+        style="font-family:Caveat,cursive;font-size:.75rem;fill:var(--text-muted)">E⃗ ⊥ equip.</text>
+      <text x="455" y="120"
+        style="font-family:Caveat,cursive;font-size:.75rem;fill:var(--text-muted)">surfaces</text>
+    </svg>
+  </div>
+  <p class="diagram-cap">Fig 3.1 — E⃗ is perpendicular to equipotential surfaces and points toward decreasing V</p>
+
+  <div class="paper margin">
+    <div class="lbl">Derivation</div>
+    <p>Let a unit positive charge move through small displacement $dr$ along the field direction.</p>
+
+    <div class="step">
+      <span class="step-n">①</span>
+      <div class="step-c">
+        Work done by electric field in displacement $dr$:
+        $$dW = \vec{E}\cdot d\vec{r} = E\,dr$$
+      </div>
+    </div>
+
+    <div class="step">
+      <span class="step-n">②</span>
+      <div class="step-c">
+        This work equals the <em>decrease</em> in potential energy of unit charge, i.e., decrease in $V$:
+        $$dW = -dV \quad \Rightarrow \quad E\,dr = -dV$$
+      </div>
+    </div>
+
+    <div class="step">
+      <span class="step-n">③</span>
+      <div class="step-c">
+        Dividing both sides by $dr$:
+      </div>
+    </div>
+
+    <div class="fbox result">
+      <span class="result-tag">★ Result</span>
+      $$E = -\frac{dV}{dr}$$
+      <small style="color:var(--text-muted)">In 3D: &nbsp; $\vec{E} = -\nabla V = -\left(\dfrac{\partial V}{\partial x}\hat{i}+\dfrac{\partial V}{\partial y}\hat{j}+\dfrac{\partial V}{\partial z}\hat{k}\right)$</small>
+    </div>
+
+    <div class="note">
+      <strong>Negative sign:</strong> field points from high V to low V — always in the direction of decreasing potential. &nbsp;|&nbsp;
+      <strong>Unit:</strong> $1\;\text{V/m} = 1\;\text{N/C}$.
+    </div>
+  </div>
+</section>
+
+<div class="divider"><span>✦</span></div>
+
+<!-- ====================================================
+     SECTION 4 — POTENTIAL ENERGY OF TWO POINT CHARGES
+===================================================== -->
+<section class="section" id="s4">
+  <div class="section-header">
+    <div class="s-num">04</div>
+    <div class="s-meta">
+      <div class="s-title">Potential Energy of a System of Two Point Charges</div>
+      <span class="s-tag">U = kq₁q₂/r · Electrostatic P.E.</span>
+    </div>
+  </div>
+
+  <div class="theory-block">
+    Potential energy of a system of charges is the work done in assembling the charges from infinity to their respective positions. It is stored in the system as electrostatic energy.
+  </div>
+
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 500 160" xmlns="http://www.w3.org/2000/svg" width="500" height="160">
+      <defs>
+        <marker id="pe1" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+          <path d="M0,0L0,7L7,3.5z" style="fill:var(--c-gold)"/></marker>
+        <marker id="pe1L" markerWidth="7" markerHeight="7" refX="2" refY="3.5" orient="auto-start-reverse">
+          <path d="M0,0L0,7L7,3.5z" style="fill:var(--c-gold)"/></marker>
+        <marker id="pe2" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+          <path d="M0,0L0,7L7,3.5z" style="fill:var(--c-blue)"/></marker>
+      </defs>
+
+      <!-- Dashed connector -->
+      <line x1="158" y1="80" x2="342" y2="80"
+        style="stroke:#aaa;stroke-width:1.5;stroke-dasharray:6 4" class="dp"/>
+
+      <!-- q₁ -->
+      <circle cx="135" cy="80" r="30" style="fill:var(--c-red);opacity:.9"/>
+      <text x="135" y="87" text-anchor="middle"
+        style="font-family:Crimson Pro,serif;font-size:17px;fill:white;font-weight:600">q₁</text>
+
+      <!-- q₂ -->
+      <circle cx="365" cy="80" r="30" style="fill:var(--c-blue);opacity:.9"/>
+      <text x="365" y="87" text-anchor="middle"
+        style="font-family:Crimson Pro,serif;font-size:17px;fill:white;font-weight:600">q₂</text>
+
+      <!-- r label -->
+      <line x1="165" y1="120" x2="335" y2="120"
+        style="stroke:var(--c-gold);stroke-width:1.8"
+        marker-end="url(#pe1)" marker-start="url(#pe1L)" class="dp dp2"/>
+      <text x="250" y="140" text-anchor="middle"
+        style="font-family:Crimson Pro,serif;font-style:italic;font-size:16px;fill:var(--c-gold)">r</text>
+
+      <!-- V₁ at q₂ position -->
+      <text x="365" y="48"
+        style="font-family:Caveat,cursive;font-size:.82rem;fill:var(--c-red);text-anchor:middle">
+        $V_1(r) = kq_1/r$
+      </text>
+
+      <!-- Work arrow from infinity -->
+      <text x="46" y="40"
+        style="font-family:Caveat,cursive;font-size:.75rem;fill:var(--text-muted)">q₂ brought</text>
+      <text x="46" y="54"
+        style="font-family:Caveat,cursive;font-size:.75rem;fill:var(--text-muted)">from ∞</text>
+      <line x1="50" y1="62" x2="110" y2="75"
+        style="stroke:var(--c-blue);stroke-width:1.5;stroke-dasharray:3 2" marker-end="url(#pe2)" class="dp dp3"/>
+    </svg>
+  </div>
+  <p class="diagram-cap">Fig 4.1 — $q_2$ brought from infinity to distance $r$ from $q_1$ (already fixed)</p>
+
+  <div class="paper margin">
+    <div class="lbl">Derivation</div>
+    <p>Fix $q_1$ at its position (no work needed). Now bring $q_2$ from $\infty$ to a distance $r$ from $q_1$.</p>
+
+    <div class="step">
+      <span class="step-n">①</span>
+      <div class="step-c">
+        The potential at distance $r$ due to $q_1$ alone:
+        $$V_1(r) = \frac{kq_1}{r}$$
+      </div>
+    </div>
+
+    <div class="step">
+      <span class="step-n">②</span>
+      <div class="step-c">
+        Work done to bring $q_2$ from $\infty$ to this point against the field of $q_1$:
+        $$W = q_2 \times V_1(r) = q_2 \times \frac{kq_1}{r}$$
+      </div>
+    </div>
+
+    <div class="step">
+      <span class="step-n">③</span>
+      <div class="step-c">
+        This work is stored as the potential energy of the system:
+      </div>
+    </div>
+
+    <div class="fbox result">
+      <span class="result-tag">★ Result</span>
+      $$U = \frac{kq_1 q_2}{r} = \frac{1}{4\pi\varepsilon_0}\cdot\frac{q_1 q_2}{r}$$
+    </div>
+
+    <div class="note">
+      <strong>Like charges</strong> ($q_1 q_2 > 0$): $U > 0$ → repulsive, system has positive energy. &nbsp;|&nbsp;
+      <strong>Unlike charges</strong> ($q_1 q_2 < 0$): $U < 0$ → attractive, system is bound.
+    </div>
+  </div>
+</section>
+
+<div class="divider"><span>✦</span></div>
+
+<!-- ====================================================
+     SECTION 5 — CAPACITORS IN PARALLEL AND SERIES
+===================================================== -->
+<section class="section" id="s5">
+  <div class="section-header">
+    <div class="s-num">05</div>
+    <div class="s-meta">
+      <div class="s-title">Combination of Capacitors</div>
+      <span class="s-tag">Parallel · Series · Equivalent Capacitance</span>
+    </div>
+  </div>
+
+  <div class="theory-block">
+    Capacitors can be combined in <strong>parallel</strong> (same voltage, charges add) or in <strong>series</strong> (same charge, voltages add). The equivalent capacitance replaces the combination.
+  </div>
+
+  <!-- ---- PARALLEL ---- -->
+  <div class="sub-title">Case I — Capacitors in Parallel</div>
+
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 480 210" xmlns="http://www.w3.org/2000/svg" width="480" height="210">
+      <defs>
+        <marker id="cp1" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+          <path d="M0,0L0,6L6,3z" style="fill:var(--c-gold)"/></marker>
+      </defs>
+
+      <!-- Left bus -->
+      <line x1="80" y1="40" x2="80" y2="170" style="stroke:var(--c-ink);stroke-width:2.2"/>
+      <!-- Right bus -->
+      <line x1="380" y1="40" x2="380" y2="170" style="stroke:var(--c-ink);stroke-width:2.2"/>
+
+      <!-- Top wire -->
+      <line x1="80" y1="40" x2="380" y2="40" style="stroke:var(--c-ink);stroke-width:1.8;stroke-dasharray:4 3;opacity:.4"/>
+      <!-- Bottom wire -->
+      <line x1="80" y1="170" x2="380" y2="170" style="stroke:var(--c-ink);stroke-width:1.8;stroke-dasharray:4 3;opacity:.4"/>
+
+      <!-- Capacitor 1 (top) -->
+      <line x1="80" y1="68"  x2="195" y2="68"  style="stroke:var(--c-ink);stroke-width:1.8"/>
+      <line x1="195" y1="52" x2="195" y2="84"  style="stroke:var(--c-red);stroke-width:4"/>
+      <line x1="210" y1="52" x2="210" y2="84"  style="stroke:var(--c-blue);stroke-width:4"/>
+      <line x1="210" y1="68"  x2="380" y2="68"  style="stroke:var(--c-ink);stroke-width:1.8"/>
+      <text x="230" y="64" style="font-family:Caveat,cursive;font-size:15px;fill:var(--c-gold);font-weight:700">C₁</text>
+
+      <!-- Capacitor 2 (mid) -->
+      <line x1="80" y1="105"  x2="195" y2="105"  style="stroke:var(--c-ink);stroke-width:1.8"/>
+      <line x1="195" y1="89"  x2="195" y2="121"  style="stroke:var(--c-red);stroke-width:4"/>
+      <line x1="210" y1="89"  x2="210" y2="121"  style="stroke:var(--c-blue);stroke-width:4"/>
+      <line x1="210" y1="105"  x2="380" y2="105"  style="stroke:var(--c-ink);stroke-width:1.8"/>
+      <text x="230" y="101" style="font-family:Caveat,cursive;font-size:15px;fill:var(--c-gold);font-weight:700">C₂</text>
+
+      <!-- Capacitor 3 (bot) -->
+      <line x1="80" y1="142"  x2="195" y2="142"  style="stroke:var(--c-ink);stroke-width:1.8"/>
+      <line x1="195" y1="126" x2="195" y2="158"  style="stroke:var(--c-red);stroke-width:4"/>
+      <line x1="210" y1="126" x2="210" y2="158"  style="stroke:var(--c-blue);stroke-width:4"/>
+      <line x1="210" y1="142"  x2="380" y2="142"  style="stroke:var(--c-ink);stroke-width:1.8"/>
+      <text x="230" y="138" style="font-family:Caveat,cursive;font-size:15px;fill:var(--c-gold);font-weight:700">C₃</text>
+
+      <!-- V label -->
+      <text x="36" y="112" text-anchor="middle"
+        style="font-family:Caveat,cursive;font-size:13px;fill:var(--c-green)">V</text>
+      <line x1="52" y1="40" x2="52" y2="170"
+        style="stroke:var(--c-green);stroke-width:1.5;stroke-dasharray:3 2" marker-end="url(#cp1)"/>
+
+      <!-- Q labels -->
+      <text x="155" y="58" style="font-family:Caveat,cursive;font-size:12px;fill:var(--c-red)">Q₁</text>
+      <text x="155" y="95" style="font-family:Caveat,cursive;font-size:12px;fill:var(--c-red)">Q₂</text>
+      <text x="155" y="133" style="font-family:Caveat,cursive;font-size:12px;fill:var(--c-red)">Q₃</text>
+
+      <!-- Same V label -->
+      <text x="400" y="80"  style="font-family:Caveat,cursive;font-size:12px;fill:var(--c-green)">← same V</text>
+      <text x="400" y="110" style="font-family:Caveat,cursive;font-size:12px;fill:var(--c-green)">← same V</text>
+      <text x="400" y="140" style="font-family:Caveat,cursive;font-size:12px;fill:var(--c-green)">← same V</text>
+    </svg>
+  </div>
+  <p class="diagram-cap">Fig 5.1 — Parallel combination: same voltage V across each capacitor</p>
+
+  <div class="paper margin">
+    <div class="lbl">Derivation — Parallel</div>
+    <p>All capacitors share the <strong>same potential difference</strong> $V$. Charges are different.</p>
+
+    <div class="step">
+      <span class="step-n">①</span>
+      <div class="step-c">
+        Individual charges: $Q_1 = C_1 V,\quad Q_2 = C_2 V,\quad Q_3 = C_3 V$
+      </div>
+    </div>
+    <div class="step">
+      <span class="step-n">②</span>
+      <div class="step-c">
+        Total charge from source: $Q = Q_1 + Q_2 + Q_3$
+        $$Q = C_1 V + C_2 V + C_3 V = (C_1+C_2+C_3)V$$
+      </div>
+    </div>
+    <div class="step">
+      <span class="step-n">③</span>
+      <div class="step-c">
+        For equivalent capacitor $C_P$: $Q = C_P\,V$, so:
+      </div>
+    </div>
+
+    <div class="fbox result">
+      <span class="result-tag">★ Result</span>
+      $$C_P = C_1 + C_2 + C_3 \quad \text{(in general: } C_P = \sum C_i\text{)}$$
+      <small style="color:var(--text-muted)">Equivalent capacitance is always greater than any individual one</small>
+    </div>
+  </div>
+
+  <!-- ---- SERIES ---- -->
+  <div class="sub-title">Case II — Capacitors in Series</div>
+
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 520 130" xmlns="http://www.w3.org/2000/svg" width="520" height="130">
+      <defs>
+        <marker id="cs1" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+          <path d="M0,0L0,6L6,3z" style="fill:var(--c-gold)"/></marker>
+      </defs>
+
+      <!-- Main wire -->
+      <line x1="30" y1="65" x2="80" y2="65"  style="stroke:var(--c-ink);stroke-width:2"/>
+
+      <!-- Capacitor 1 -->
+      <line x1="80"  y1="65" x2="145" y2="65" style="stroke:var(--c-ink);stroke-width:2"/>
+      <line x1="145" y1="48" x2="145" y2="82" style="stroke:var(--c-red);stroke-width:4"/>
+      <line x1="160" y1="48" x2="160" y2="82" style="stroke:var(--c-blue);stroke-width:4"/>
+      <line x1="160" y1="65" x2="220" y2="65" style="stroke:var(--c-ink);stroke-width:2"/>
+      <text x="152" y="40" text-anchor="middle"
+        style="font-family:Caveat,cursive;font-size:14px;fill:var(--c-gold);font-weight:700">C₁</text>
+      <text x="100" y="55" style="font-family:Caveat,cursive;font-size:11px;fill:var(--c-red)">+Q</text>
+      <text x="165" y="55" style="font-family:Caveat,cursive;font-size:11px;fill:var(--c-blue)">−Q</text>
+
+      <!-- Capacitor 2 -->
+      <line x1="220" y1="48" x2="220" y2="82" style="stroke:var(--c-red);stroke-width:4"/>
+      <line x1="235" y1="48" x2="235" y2="82" style="stroke:var(--c-blue);stroke-width:4"/>
+      <line x1="235" y1="65" x2="305" y2="65" style="stroke:var(--c-ink);stroke-width:2"/>
+      <text x="227" y="40" text-anchor="middle"
+        style="font-family:Caveat,cursive;font-size:14px;fill:var(--c-gold);font-weight:700">C₂</text>
+      <text x="178" y="55" style="font-family:Caveat,cursive;font-size:11px;fill:var(--c-red)">+Q</text>
+      <text x="240" y="55" style="font-family:Caveat,cursive;font-size:11px;fill:var(--c-blue)">−Q</text>
+
+      <!-- Capacitor 3 -->
+      <line x1="305" y1="48" x2="305" y2="82" style="stroke:var(--c-red);stroke-width:4"/>
+      <line x1="320" y1="48" x2="320" y2="82" style="stroke:var(--c-blue);stroke-width:4"/>
+      <line x1="320" y1="65" x2="390" y2="65" style="stroke:var(--c-ink);stroke-width:2"/>
+      <text x="312" y="40" text-anchor="middle"
+        style="font-family:Caveat,cursive;font-size:14px;fill:var(--c-gold);font-weight:700">C₃</text>
+      <text x="258" y="55" style="font-family:Caveat,cursive;font-size:11px;fill:var(--c-red)">+Q</text>
+      <text x="325" y="55" style="font-family:Caveat,cursive;font-size:11px;fill:var(--c-blue)">−Q</text>
+
+      <!-- End wire -->
+      <line x1="390" y1="65" x2="490" y2="65" style="stroke:var(--c-ink);stroke-width:2"/>
+
+      <!-- V total -->
+      <text x="30" y="55"
+        style="font-family:Caveat,cursive;font-size:12px;fill:var(--c-green)">+</text>
+      <text x="478" y="55"
+        style="font-family:Caveat,cursive;font-size:12px;fill:var(--c-green)">−</text>
+      <text x="260" y="115" text-anchor="middle"
+        style="font-family:Caveat,cursive;font-size:13px;fill:var(--c-green)">V = V₁ + V₂ + V₃ (same Q on each)</text>
+    </svg>
+  </div>
+  <p class="diagram-cap">Fig 5.2 — Series combination: same charge Q on each capacitor; voltages add up</p>
+
+  <div class="paper margin">
+    <div class="lbl">Derivation — Series</div>
+    <p>All capacitors carry the <strong>same charge</strong> $Q$. Voltages are different and add up.</p>
+
+    <div class="step">
+      <span class="step-n">①</span>
+      <div class="step-c">
+        Individual voltages: $V_1 = \dfrac{Q}{C_1},\quad V_2 = \dfrac{Q}{C_2},\quad V_3 = \dfrac{Q}{C_3}$
+      </div>
+    </div>
+    <div class="step">
+      <span class="step-n">②</span>
+      <div class="step-c">
+        Total voltage: $V = V_1+V_2+V_3$
+        $$V = Q\left(\frac{1}{C_1}+\frac{1}{C_2}+\frac{1}{C_3}\right)$$
+      </div>
+    </div>
+    <div class="step">
+      <span class="step-n">③</span>
+      <div class="step-c">
+        For equivalent capacitor $C_S$: $V = \dfrac{Q}{C_S}$, so:
+      </div>
+    </div>
+
+    <div class="fbox result">
+      <span class="result-tag">★ Result</span>
+      $$\frac{1}{C_S} = \frac{1}{C_1}+\frac{1}{C_2}+\frac{1}{C_3} \quad \text{(in general: }\frac{1}{C_S}=\sum\frac{1}{C_i}\text{)}$$
+      <small style="color:var(--text-muted)">Equivalent capacitance is always less than the smallest individual one</small>
+    </div>
+  </div>
+
+  <div class="note">
+    <strong>Memory trick:</strong> Parallel → capacitances add (like resistors in series). Series → reciprocals add (like resistors in parallel). Opposite to resistors!
+  </div>
+</section>
+
+<div class="divider"><span>✦</span></div>
+
+<!-- ====================================================
+     SECTION 6 — ENERGY STORED IN CAPACITOR
+===================================================== -->
+<section class="section" id="s6">
+  <div class="section-header">
+    <div class="s-num">06</div>
+    <div class="s-meta">
+      <div class="s-title">Energy Stored in a Capacitor</div>
+      <span class="s-tag">U = ½CV² · Work done during charging</span>
+    </div>
+  </div>
+
+  <div class="theory-block">
+    When a capacitor is charged, work is done by the battery. This work is stored as electrostatic potential energy in the electric field between the plates.
+  </div>
+
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 480 200" xmlns="http://www.w3.org/2000/svg" width="480" height="200">
+      <defs>
+        <marker id="en1" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+          <path d="M0,0L0,7L7,3.5z" style="fill:var(--c-red)"/></marker>
+        <marker id="en2" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+          <path d="M0,0L0,7L7,3.5z" style="fill:var(--c-gold)"/></marker>
+        <linearGradient id="fieldGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#B07D10" stop-opacity=".18"/>
+          <stop offset="100%" stop-color="#B07D10" stop-opacity=".05"/>
+        </linearGradient>
+      </defs>
+
+      <!-- Left plate (+) -->
+      <rect x="145" y="30" width="14" height="140" rx="3"
+        style="fill:var(--c-red);opacity:.85"/>
+      <text x="122" y="105" text-anchor="middle"
+        style="font-family:Crimson Pro,serif;font-size:18px;fill:var(--c-red);font-weight:700">+Q</text>
+
+      <!-- Right plate (−) -->
+      <rect x="295" y="30" width="14" height="140" rx="3"
+        style="fill:var(--c-blue);opacity:.85"/>
+      <text x="330" y="105" text-anchor="middle"
+        style="font-family:Crimson Pro,serif;font-size:18px;fill:var(--c-blue);font-weight:700">−Q</text>
+
+      <!-- Field region fill -->
+      <rect x="159" y="30" width="136" height="140" fill="url(#fieldGrad)"/>
+
+      <!-- E field arrows inside -->
+      <line x1="174" y1="75"  x2="286" y2="75"  style="stroke:var(--c-red);stroke-width:2" marker-end="url(#en1)" class="dp"/>
+      <line x1="174" y1="100" x2="286" y2="100" style="stroke:var(--c-red);stroke-width:2" marker-end="url(#en1)" class="dp dp2"/>
+      <line x1="174" y1="125" x2="286" y2="125" style="stroke:var(--c-red);stroke-width:2" marker-end="url(#en1)" class="dp dp2"/>
+      <text x="227" y="58" text-anchor="middle"
+        style="font-family:Crimson Pro,serif;font-style:italic;font-size:14px;fill:var(--c-red)">E⃗</text>
+
+      <!-- d (plate separation) -->
+      <line x1="159" y1="185" x2="295" y2="185"
+        style="stroke:var(--c-gold);stroke-width:1.5" marker-end="url(#en2)" class="dp dp3"/>
+      <text x="227" y="198" text-anchor="middle"
+        style="font-family:Crimson Pro,serif;font-style:italic;font-size:14px;fill:var(--c-gold)">d</text>
+
+      <!-- V across plates -->
+      <line x1="88" y1="30" x2="88" y2="170"
+        style="stroke:var(--c-green);stroke-width:1.5;stroke-dasharray:4 3"/>
+      <text x="72" y="106"
+        style="font-family:Caveat,cursive;font-size:14px;fill:var(--c-green);font-weight:700">V</text>
+      <line x1="88" y1="30" x2="145" y2="30"
+        style="stroke:var(--c-green);stroke-width:1;stroke-dasharray:3 2;opacity:.6"/>
+      <line x1="88" y1="170" x2="145" y2="170"
+        style="stroke:var(--c-green);stroke-width:1;stroke-dasharray:3 2;opacity:.6"/>
+
+      <!-- Energy label -->
+      <text x="227" y="155" text-anchor="middle"
+        style="font-family:Caveat,cursive;font-size:13px;fill:var(--c-gold);font-weight:700">U stored here</text>
+
+      <!-- dq tiny charge label -->
+      <text x="390" y="80"
+        style="font-family:Caveat,cursive;font-size:.78rem;fill:var(--text-muted)">At instant q,</text>
+      <text x="390" y="95"
+        style="font-family:Caveat,cursive;font-size:.78rem;fill:var(--text-muted)">V = q/C</text>
+      <text x="390" y="110"
+        style="font-family:Caveat,cursive;font-size:.78rem;fill:var(--text-muted)">dW = V·dq</text>
+    </svg>
+  </div>
+  <p class="diagram-cap">Fig 6.1 — Capacitor plates, field E⃗ between them, voltage V; energy is stored in the field</p>
+
+  <div class="paper margin">
+    <div class="lbl">Derivation</div>
+    <p>Suppose at any instant, charge on capacitor is $q$ and voltage is $v = q/C$.</p>
+
+    <div class="step">
+      <span class="step-n">①</span>
+      <div class="step-c">
+        Small work done to add a tiny charge $dq$ against the existing voltage $v$:
+        $$dW = v\,dq = \frac{q}{C}\,dq$$
+      </div>
+    </div>
+
+    <div class="step">
+      <span class="step-n">②</span>
+      <div class="step-c">
+        Total work done to charge from $0$ to $Q$:
+        $$W = \int_0^Q \frac{q}{C}\,dq = \frac{1}{C}\cdot\frac{q^2}{2}\Bigg|_0^Q = \frac{Q^2}{2C}$$
+      </div>
+    </div>
+
+    <div class="step">
+      <span class="step-n">③</span>
+      <div class="step-c">
+        This work is stored as potential energy $U$. Using $Q = CV$:
+      </div>
+    </div>
+
+    <div class="fbox result">
+      <span class="result-tag">★ Result</span>
+      $$U = \frac{Q^2}{2C} = \frac{1}{2}CV^2 = \frac{1}{2}QV$$
+    </div>
+
+    <div class="two">
+      <div class="paper" style="margin-bottom:0">
+        <div class="lbl" style="font-size:.75rem">Energy Density</div>
+        <p style="font-size:.92rem">Energy stored per unit volume between plates:</p>
+        <div class="fbox" style="margin:.7rem 0">
+          $$u = \frac{1}{2}\varepsilon_0 E^2$$
+        </div>
+        <small style="color:var(--text-muted);position:relative;z-index:1">Energy lives in the electric field itself</small>
+      </div>
+      <div class="paper" style="margin-bottom:0">
+        <div class="lbl" style="font-size:.75rem">Which formula to use?</div>
+        <p style="font-size:.92rem;position:relative;z-index:1">
+          Use $\dfrac{1}{2}CV^2$ when $C$ &amp; $V$ are known.<br>
+          Use $\dfrac{Q^2}{2C}$ when $C$ &amp; $Q$ are known.<br>
+          Use $\dfrac{1}{2}QV$ when both $Q$ &amp; $V$ are given.
+        </p>
+      </div>
+    </div>
+
+    <div class="note">
+      <strong>On disconnecting battery:</strong> $Q$ stays constant → $V$ &amp; $U$ change when $C$ changes.
+      <strong>On keeping battery:</strong> $V$ stays constant → $Q$ &amp; $U$ change when $C$ changes.
+    </div>
+  </div>
+</section>
+
+</div><!-- end container -->
+
+<!-- FOOTER -->
+<footer class="footer">
+  <p>✏️ Made with ♥ by <span>Akshit Tyagi</span> &nbsp;·&nbsp; Class XII Physics · Electrostatics</p>
+  <p style="font-size:.82rem;margin-top:.4rem;opacity:.55">NCERT Physics Part I · Chapter 2 · Electric Potential &amp; Capacitance · Derivations &amp; Diagrams</p>
+</footer>
+
+<script>
+/* ── Progress bar ── */
+const bar = document.getElementById('progress');
+const nav = document.getElementById('nav');
+const heroH = document.querySelector('.hero').offsetHeight;
+
+window.addEventListener('scroll', () => {
+  const s = window.scrollY;
+  const h = document.body.scrollHeight - window.innerHeight;
+  bar.style.width = (s / h * 100) + '%';
+  nav.classList.toggle('show', s > heroH * 0.55);
+}, { passive: true });
+
+/* ── Scroll reveal ── */
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('reveal'); });
+}, { threshold: 0.08 });
+document.querySelectorAll('.section').forEach(el => observer.observe(el));
+
+/* ── App cards reveal ── */
+const cardObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      setTimeout(() => {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }, 100);
+    }
+  });
+}, { threshold: 0.08 });
+
+/* ── Theme toggle ── */
+const toggle = document.getElementById('themeToggle');
+let dark = false;
+toggle.addEventListener('click', () => {
+  dark = !dark;
+  document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+});
+
+/* ── KaTeX re-render fallback ── */
+document.addEventListener('DOMContentLoaded', () => {
+  if (typeof renderMathInElement !== 'undefined') {
+    renderMathInElement(document.body, {
+      delimiters: [
+        { left: '$$', right: '$$', display: true },
+        { left: '$',  right: '$',  display: false }
+      ],
+      throwOnError: false
+    });
+  }
+});
+
+/* ── Chip ripple ── */
+document.querySelectorAll('.chip').forEach(chip => {
+  chip.addEventListener('click', function(e) {
+    const ripple = document.createElement('span');
+    ripple.style.cssText = `
+      position:absolute;width:8px;height:8px;border-radius:50%;
+      background:rgba(255,255,255,.6);pointer-events:none;
+      transform:scale(0);animation:ripple .5s ease;
+      left:${e.offsetX - 4}px;top:${e.offsetY - 4}px;
+    `;
+    this.style.position = 'relative';
+    this.appendChild(ripple);
+    setTimeout(() => ripple.remove(), 500);
+  });
+});
+
+const style = document.createElement('style');
+style.textContent = '@keyframes ripple{to{transform:scale(18);opacity:0}}';
+document.head.appendChild(style);
+</script>
+</body>
+</html>

@@ -1,0 +1,1361 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Moving Charges &amp; Magnetism Derivations · Class XII · Akshit Tyagi</title>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false})"></script>
+
+<style>
+/* ===== DESIGN TOKENS ===== */
+:root {
+  --bg:          #FEFBF3;
+  --paper:       #FFF9EC;
+  --paper-2:     #FFF4DC;
+  --text:        #1A1208;
+  --text-muted:  #6B5540;
+  --accent:      #B07D10;
+  --accent-2:    #C05A12;
+  --accent-3:    #27AE60;
+  --line:        #DDD0B0;
+  --line-2:      #EDE0C4;
+  --highlight:   rgba(176,125,16,.1);
+  --highlight-2: rgba(176,125,16,.06);
+  --shadow:      rgba(100,60,10,.13);
+  --shadow-lg:   rgba(100,60,10,.22);
+  --nav-bg:      rgba(254,251,243,.94);
+  --ruled:       rgba(180,148,100,.18);
+  --margin:      rgba(200,100,80,.18);
+  --diagram-bg:  #FAFAF5;
+  --c-red:       #C0392B;
+  --c-blue:      #1E5BA8;
+  --c-green:     #1E8A50;
+  --c-gold:      #B07D10;
+  --c-purple:    #7D3C98;
+  --c-ink:       #1A1208;
+}
+[data-theme="dark"] {
+  --bg:          #100E0A;
+  --paper:       #1A1710;
+  --paper-2:     #221E14;
+  --text:        #EDE0C8;
+  --text-muted:  #A89070;
+  --accent:      #D4A820;
+  --accent-2:    #E8783A;
+  --accent-3:    #2ECC71;
+  --line:        #3A2E1A;
+  --line-2:      #2A2416;
+  --highlight:   rgba(212,168,32,.1);
+  --highlight-2: rgba(212,168,32,.055);
+  --shadow:      rgba(0,0,0,.4);
+  --shadow-lg:   rgba(0,0,0,.6);
+  --nav-bg:      rgba(16,14,10,.95);
+  --ruled:       rgba(212,168,32,.07);
+  --margin:      rgba(220,120,100,.12);
+  --diagram-bg:  #181510;
+  --c-red:       #E74C3C;
+  --c-blue:      #5B9BD5;
+  --c-green:     #2ECC71;
+  --c-gold:      #D4A820;
+  --c-purple:    #AF7AC5;
+  --c-ink:       #EDE0C8;
+}
+
+/* ===== RESET & BASE ===== */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;font-size:16px}
+body{
+  font-family:'Crimson Pro',Georgia,serif;
+  background:var(--bg);color:var(--text);
+  line-height:1.85;font-size:1.1rem;
+  transition:background .45s ease,color .45s ease;
+  overflow-x:hidden;
+}
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--accent);border-radius:3px}
+a{color:inherit;text-decoration:none}
+
+/* ===== PROGRESS BAR ===== */
+#progress{
+  position:fixed;top:0;left:0;height:3px;width:0%;
+  background:linear-gradient(90deg,var(--accent),var(--accent-2),var(--accent-3));
+  z-index:999;transition:width .08s linear;
+  box-shadow:0 0 8px var(--accent);
+}
+
+/* ===== NAVIGATION ===== */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:var(--nav-bg);backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--line);
+  padding:.7rem 2rem;
+  display:flex;align-items:center;justify-content:space-between;
+  transform:translateY(-110%);
+  transition:transform .45s cubic-bezier(.25,.8,.25,1),background .45s ease;
+}
+.nav.show{transform:translateY(0)}
+.nav-brand{
+  font-family:'Caveat',cursive;font-size:1.25rem;
+  font-weight:700;color:var(--accent);letter-spacing:.02em;
+}
+.nav-links{
+  display:flex;gap:.3rem;list-style:none;flex-wrap:wrap;
+}
+.nav-links a{
+  font-family:'Caveat',cursive;font-size:.88rem;color:var(--text-muted);
+  padding:.2rem .55rem;border-radius:6px;
+  transition:color .2s,background .2s;
+}
+.nav-links a:hover{color:var(--accent);background:var(--highlight)}
+.nav-right{display:flex;align-items:center;gap:.75rem}
+
+/* Theme Toggle */
+.toggle{
+  width:46px;height:25px;
+  background:var(--line);border:none;border-radius:100px;
+  cursor:pointer;position:relative;
+  transition:background .3s;
+}
+.toggle::after{
+  content:'';position:absolute;top:3px;left:3px;
+  width:19px;height:19px;border-radius:50%;
+  background:var(--accent);
+  transition:transform .35s cubic-bezier(.4,0,.2,1);
+}
+[data-theme="dark"] .toggle::after{transform:translateX(21px)}
+.toggle-icon{
+  font-size:.7rem;position:absolute;
+  top:50%;transform:translateY(-50%);
+  transition:opacity .3s;pointer-events:none;
+}
+.icon-sun{left:5px;opacity:1}
+.icon-moon{right:5px;opacity:.5}
+[data-theme="dark"] .icon-sun{opacity:.5}
+[data-theme="dark"] .icon-moon{opacity:1}
+
+/* ===== HERO ===== */
+.hero{
+  min-height:100vh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  text-align:center;padding:5rem 2rem 6rem;
+  position:relative;overflow:hidden;
+  background:var(--paper);
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background:repeating-linear-gradient(
+    transparent,transparent 39px,
+    var(--ruled) 39px,var(--ruled) 40px
+  );pointer-events:none;
+}
+.hero::after{
+  content:'';position:absolute;
+  top:0;left:88px;width:1.5px;height:100%;
+  background:var(--margin);pointer-events:none;
+}
+.ink-orb{
+  position:absolute;border-radius:50%;pointer-events:none;
+  animation:floatOrb var(--dur,12s) ease-in-out infinite;
+  opacity:.055;filter:blur(60px);
+}
+@keyframes floatOrb{
+  0%,100%{transform:translate(0,0) scale(1)}
+  33%{transform:translate(30px,-40px) scale(1.1)}
+  66%{transform:translate(-20px,25px) scale(.9)}
+}
+.hero-eyebrow{
+  font-family:'Caveat',cursive;font-size:1rem;
+  color:var(--accent);letter-spacing:.18em;text-transform:uppercase;
+  margin-bottom:1rem;
+  opacity:0;animation:riseUp .8s ease .2s forwards;
+  position:relative;z-index:2;
+}
+.hero-title{
+  font-family:'Caveat',cursive;
+  font-size:clamp(3.2rem,8.5vw,6.5rem);
+  font-weight:700;line-height:1.05;
+  color:var(--text);margin-bottom:.6rem;
+  opacity:0;animation:riseUp .9s ease .38s forwards;
+  position:relative;z-index:2;
+}
+.hero-title span{color:var(--accent)}
+.hero-sub{
+  font-size:1.15rem;color:var(--text-muted);
+  font-style:italic;margin-bottom:3rem;
+  opacity:0;animation:riseUp .9s ease .55s forwards;
+  position:relative;z-index:2;
+}
+.author-card{
+  display:flex;align-items:center;gap:1.8rem;
+  background:var(--paper-2);
+  border:1.5px solid var(--line);border-radius:24px;
+  padding:1.6rem 2.8rem;
+  box-shadow:0 12px 50px var(--shadow);
+  margin-bottom:2.2rem;
+  opacity:0;
+  position:relative;z-index:2;
+  animation-fill-mode:both;
+  animation-name:riseUp,cardFloat;
+  animation-duration:1s,6s;
+  animation-delay:.72s,1.8s;
+  animation-timing-function:ease,ease-in-out;
+  animation-iteration-count:1,infinite;
+}
+@keyframes cardFloat{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-8px)}
+}
+.author-photo{
+  width:88px;height:88px;border-radius:50%;object-fit:cover;
+  border:3px solid var(--accent);
+  box-shadow:0 0 0 5px var(--highlight),0 8px 24px var(--shadow);
+  transition:transform .4s ease;flex-shrink:0;
+}
+.author-photo:hover{transform:scale(1.06) rotate(2deg)}
+.author-info{text-align:left}
+.author-label{
+  font-family:'Caveat',cursive;font-size:.78rem;
+  color:var(--text-muted);letter-spacing:.12em;text-transform:uppercase;
+}
+.author-name{
+  font-family:'Caveat',cursive;font-size:2.8rem;
+  font-weight:700;color:var(--text);line-height:1;
+  background:linear-gradient(135deg,var(--accent),var(--accent-2));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.author-desc{
+  font-size:.9rem;color:var(--text-muted);font-style:italic;
+}
+.chips{
+  display:flex;flex-wrap:wrap;gap:.6rem;justify-content:center;
+  opacity:0;animation:riseUp 1s ease .9s forwards;
+  position:relative;z-index:2;
+}
+.chip{
+  font-family:'Caveat',cursive;font-size:.9rem;
+  color:var(--accent);
+  border:1px solid var(--accent);
+  background:var(--highlight);
+  padding:.28rem .85rem;border-radius:100px;
+  cursor:pointer;
+  transition:all .3s cubic-bezier(.25,.8,.25,1);
+  position:relative;overflow:hidden;
+}
+.chip::before{
+  content:'';position:absolute;inset:0;
+  background:var(--accent);transform:scaleX(0);
+  transform-origin:left;transition:transform .3s ease;
+  border-radius:inherit;z-index:-1;
+}
+.chip:hover::before{transform:scaleX(1)}
+.chip:hover{color:var(--bg);border-color:var(--accent)}
+.scroll-cue{
+  position:absolute;bottom:2.2rem;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:.5rem;
+  opacity:0;animation:fadeIn 1s ease 1.4s forwards;z-index:2;
+}
+.scroll-cue span{
+  font-family:'Caveat',cursive;font-size:.8rem;
+  color:var(--text-muted);letter-spacing:.1em;
+}
+.scroll-arrow{
+  width:20px;height:20px;
+  border-right:2px solid var(--accent);
+  border-bottom:2px solid var(--accent);
+  transform:rotate(45deg);
+  animation:arrowBounce 1.6s ease infinite;
+}
+
+/* ===== MAIN LAYOUT ===== */
+.container{max-width:880px;margin:0 auto;padding:4rem 2rem 2rem;}
+
+/* ===== SECTION ===== */
+.section{
+  margin-bottom:5.5rem;
+  opacity:0;transform:translateY(44px);
+  transition:opacity .75s ease,transform .75s cubic-bezier(.25,.8,.25,1);
+}
+.section.reveal{opacity:1;transform:translateY(0)}
+.section:nth-child(2){transition-delay:.05s}
+.section:nth-child(3){transition-delay:.1s}
+
+.section-header{
+  display:flex;align-items:flex-start;gap:1.4rem;
+  margin-bottom:2rem;padding-bottom:1rem;
+  border-bottom:2px solid var(--accent);
+}
+.s-num{
+  font-family:'Caveat',cursive;font-size:4.5rem;
+  font-weight:700;color:var(--accent);opacity:.22;
+  line-height:1;min-width:58px;position:relative;top:-.25rem;
+}
+.s-title{
+  font-family:'Caveat',cursive;font-size:2.1rem;
+  font-weight:700;color:var(--text);line-height:1.2;
+}
+.s-tag{
+  display:inline-block;margin-top:.35rem;
+  font-family:'Caveat',cursive;font-size:.78rem;
+  color:var(--accent-2);border:1px solid var(--accent-2);
+  padding:.12rem .55rem;border-radius:100px;
+}
+
+/* ===== CARDS ===== */
+.paper{
+  background:var(--paper);
+  border:1px solid var(--line);border-radius:18px;
+  padding:2rem 2.4rem;
+  position:relative;overflow:hidden;
+  box-shadow:0 5px 28px var(--shadow);
+  margin-bottom:1.4rem;
+  transition:box-shadow .3s ease;
+}
+.paper:hover{box-shadow:0 10px 48px var(--shadow-lg)}
+.paper::before{
+  content:'';position:absolute;inset:0;
+  background:repeating-linear-gradient(
+    transparent,transparent 27px,
+    var(--ruled) 27px,var(--ruled) 28px
+  );pointer-events:none;
+}
+.paper.margin::after{
+  content:'';position:absolute;top:0;left:44px;
+  width:1.5px;height:100%;background:var(--margin);
+  pointer-events:none;
+}
+
+.theory-block{
+  background:var(--highlight);
+  border-left:3.5px solid var(--accent);
+  border-radius:0 12px 12px 0;
+  padding:1rem 1.4rem;
+  margin-bottom:1.6rem;
+  font-style:italic;font-size:1rem;
+  color:var(--text-muted);
+  position:relative;z-index:1;
+}
+
+/* ===== LABELS ===== */
+.lbl{
+  display:inline-block;
+  font-family:'Caveat',cursive;font-size:.82rem;
+  font-weight:700;color:var(--accent);
+  letter-spacing:.12em;text-transform:uppercase;
+  margin-bottom:.6rem;position:relative;z-index:1;
+}
+
+/* ===== STEPS ===== */
+.step{display:flex;gap:.9rem;margin-bottom:.9rem;position:relative;z-index:1;}
+.step-n{
+  font-family:'Caveat',cursive;font-size:.85rem;
+  color:var(--accent);font-weight:700;
+  min-width:22px;padding-top:.1rem;flex-shrink:0;
+}
+.step-c{font-size:1rem;flex:1;color:var(--text)}
+
+/* ===== FORMULA BOXES ===== */
+.fbox{
+  background:var(--paper-2);
+  border:1.5px solid var(--line);
+  border-radius:12px;padding:1rem 1.8rem;
+  text-align:center;margin:1.3rem 0;
+  position:relative;z-index:1;overflow-x:auto;
+}
+.fbox.result{
+  border-color:var(--accent);border-width:2px;
+  background:linear-gradient(135deg,var(--highlight),var(--paper-2));
+  box-shadow:0 2px 18px rgba(176,125,16,.12);
+  animation:shimmer 4s ease-in-out infinite;
+}
+@keyframes shimmer{
+  0%,100%{box-shadow:0 2px 18px rgba(176,125,16,.12)}
+  50%{box-shadow:0 4px 32px rgba(176,125,16,.28)}
+}
+.result-tag{
+  position:absolute;top:-.65rem;right:1rem;
+  font-family:'Caveat',cursive;font-size:.75rem;
+  color:var(--accent);background:var(--paper);
+  padding:.05rem .45rem;border:1px solid var(--accent);
+  border-radius:100px;
+}
+
+/* ===== NOTE ===== */
+.note{
+  background:var(--highlight-2);
+  border:1px dashed var(--accent);
+  border-radius:9px;padding:.75rem 1.2rem;
+  margin:1rem 0;font-family:'Caveat',cursive;
+  font-size:1.05rem;color:var(--text-muted);
+  position:relative;z-index:1;
+}
+.note strong{color:var(--accent)}
+
+/* ===== DIAGRAMS ===== */
+.diagram-wrap{
+  background:var(--diagram-bg);
+  border:1px solid var(--line-2);
+  border-radius:16px;padding:1.6rem;
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;margin:1.4rem 0;
+  box-shadow:inset 0 2px 10px rgba(0,0,0,.04);
+}
+.diagram-wrap svg{max-width:100%;height:auto;display:block}
+.diagram-cap{
+  text-align:center;
+  font-family:'Caveat',cursive;font-size:.88rem;
+  color:var(--text-muted);margin-top:-.5rem;margin-bottom:1.2rem;
+  font-style:italic;
+}
+
+/* SVG animated paths */
+.dp{
+  stroke-dasharray:900;stroke-dashoffset:900;
+  animation:drawPath 1.4s ease forwards;
+  animation-play-state:paused;
+}
+.section.reveal .dp{animation-play-state:running}
+.dp2{animation-delay:.3s}
+.dp3{animation-delay:.6s}
+.dp4{animation-delay:.9s}
+
+/* Sub-title */
+.sub-title{
+  font-family:'Caveat',cursive;font-size:1.5rem;
+  font-weight:600;color:var(--accent-2);
+  display:flex;align-items:center;gap:.5rem;
+  margin-bottom:1rem;margin-top:2.2rem;
+}
+.sub-title::before{content:'→';font-size:1.2rem;color:var(--accent)}
+
+/* ===== 2-COL GRID ===== */
+.two{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem;margin:1.4rem 0;}
+@media(max-width:620px){
+  .two{grid-template-columns:1fr}
+  .nav-links{display:none}
+  .hero::after{left:42px}
+  .author-card{flex-direction:column;text-align:center;padding:1.4rem}
+  .author-info{text-align:center}
+}
+
+/* App cards */
+.app-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.4rem;margin:1.4rem 0;}
+.app-card{
+  background:var(--paper);border:1px solid var(--line);
+  border-radius:18px;padding:1.5rem;
+  box-shadow:0 4px 20px var(--shadow);
+  transition:transform .35s cubic-bezier(.25,.8,.25,1),box-shadow .35s ease;
+}
+.app-card:hover{transform:translateY(-5px);box-shadow:0 14px 40px var(--shadow-lg)}
+.app-card-title{
+  font-family:'Caveat',cursive;font-size:1.35rem;
+  font-weight:700;color:var(--accent);margin-bottom:.6rem;
+}
+
+/* ===== DIVIDER ===== */
+.divider{display:flex;align-items:center;gap:1rem;margin:3.5rem 0;opacity:.45;}
+.divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--accent);}
+.divider span{font-family:'Caveat',cursive;color:var(--accent);font-size:1.4rem;}
+
+/* ===== FOOTER ===== */
+.footer{
+  text-align:center;padding:3rem 2rem;
+  border-top:1px solid var(--line);
+  font-family:'Caveat',cursive;font-size:1.1rem;
+  color:var(--text-muted);
+}
+.footer span{color:var(--accent)}
+
+/* ===== INLINE UTILS ===== */
+p{position:relative;z-index:1;margin-bottom:.7rem}
+strong{color:var(--accent);font-weight:600}
+em{color:var(--text-muted)}
+small{font-size:.88rem}
+
+/* ===== KEYFRAMES ===== */
+@keyframes riseUp{
+  from{opacity:0;transform:translateY(32px)}
+  to{opacity:1;transform:translateY(0)}
+}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes arrowBounce{
+  0%,100%{transform:rotate(45deg) translateY(0)}
+  50%{transform:rotate(45deg) translateY(7px)}
+}
+@keyframes drawPath{
+  from{stroke-dashoffset:900}
+  to{stroke-dashoffset:0}
+}
+
+/* KaTeX overrides */
+.katex-display{padding:.4rem 0;overflow-x:auto}
+.katex{font-size:1.08em}
+</style>
+</head>
+<body>
+
+<!-- PROGRESS -->
+<div id="progress"></div>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="nav-brand">🧲 Magnetism · XII</div>
+  <ul class="nav-links">
+    <li><a href="#s1">Biot-Savart</a></li>
+    <li><a href="#s2">Circular Coil</a></li>
+    <li><a href="#s3">Ampere's Law</a></li>
+    <li><a href="#s4">Lorentz Force</a></li>
+    <li><a href="#s5">Torque on Loop</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="toggle" id="themeToggle" aria-label="Toggle theme">
+      <span class="toggle-icon icon-sun">☀</span>
+      <span class="toggle-icon icon-moon">☾</span>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="ink-orb" style="width:420px;height:420px;background:var(--accent);top:-120px;right:-100px;--dur:14s"></div>
+  <div class="ink-orb" style="width:300px;height:300px;background:var(--accent-2);bottom:-80px;left:-60px;--dur:11s;animation-delay:-4s"></div>
+  <div class="ink-orb" style="width:200px;height:200px;background:var(--accent-3);bottom:20%;left:15%;--dur:16s;animation-delay:-7s"></div>
+
+  <div class="hero-eyebrow">Class XII · Physics · Chapter 4 · Moving Charges &amp; Magnetism</div>
+
+  <h1 class="hero-title">
+    Magnetism<br>
+    <span>Derivations</span>
+  </h1>
+
+  <p class="hero-sub">A fair notebook — written clearly, for every student ✏️</p>
+
+  <div class="author-card">
+    <img
+      src="https://plain-apac-prod-public.komododecks.com/202605/22/nHDi45aen4uwI6zP8WGI/image.jpg"
+      alt="Akshit Tyagi"
+      class="author-photo"
+      onerror="this.style.display='none'">
+    <div class="author-info">
+      <div class="author-label">Made with ♥ by</div>
+      <div class="author-name">Akshit Tyagi</div>
+      <div class="author-desc">Class XII · Physics Fair Notes</div>
+    </div>
+  </div>
+
+  <div class="chips">
+    <a class="chip" href="#s1">01 · Biot-Savart's Law</a>
+    <a class="chip" href="#s2">02 · Circular Coil</a>
+    <a class="chip" href="#s3">03 · Ampere's Law</a>
+    <a class="chip" href="#s4">04 · Lorentz Force</a>
+    <a class="chip" href="#s5">05 · Torque on Loop</a>
+  </div>
+
+  <div class="scroll-cue">
+    <span>Begin</span>
+    <div class="scroll-arrow"></div>
+  </div>
+</section>
+
+<!-- =================== MAIN =================== -->
+<div class="container">
+
+<!-- ====================================================
+     SECTION 1 — BIOT-SAVART'S LAW
+===================================================== -->
+<section class="section" id="s1">
+  <div class="section-header">
+    <div class="s-num">01</div>
+    <div class="s-meta">
+      <div class="s-title">Biot-Savart's Law</div>
+      <span class="s-tag">Magnetic field due to a current element</span>
+    </div>
+  </div>
+
+  <div class="theory-block">
+    The magnetic field $d\vec{B}$ at a point P due to a tiny current element $Id\vec{l}$ is perpendicular to both $d\vec{l}$ and $\hat{r}$, and falls off as $1/r^2$.
+  </div>
+
+  <!-- Diagram -->
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 580 200" xmlns="http://www.w3.org/2000/svg" width="580" height="200">
+      <defs>
+        <marker id="aBlue" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+          <path d="M0,0 L0,6 L8,3z" style="fill:var(--c-blue)"/></marker>
+        <marker id="aRed" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+          <path d="M0,0 L0,6 L8,3z" style="fill:var(--c-red)"/></marker>
+        <marker id="aGold" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+          <path d="M0,0 L0,6 L8,3z" style="fill:var(--c-gold)"/></marker>
+        <marker id="aGrn" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+          <path d="M0,0 L0,6 L8,3z" style="fill:var(--c-green)"/></marker>
+      </defs>
+
+      <!-- Wire (current path) -->
+      <path d="M 30 130 Q 150 80 280 130 Q 360 160 430 120"
+        style="stroke:var(--c-blue);stroke-width:3;fill:none;opacity:.35" class="dp"/>
+
+      <!-- Current element dl at wire midpoint -->
+      <line x1="220" y1="128" x2="290" y2="118"
+        style="stroke:var(--c-blue);stroke-width:3" marker-end="url(#aBlue)" class="dp"/>
+      <!-- Label dl -->
+      <text x="238" y="113" style="font-family:Crimson Pro,serif;font-style:italic;font-size:15px;fill:var(--c-blue)">Id𝑙</text>
+
+      <!-- Current direction label -->
+      <text x="42" y="117" style="font-family:Caveat,cursive;font-size:13px;fill:var(--c-blue)">I →</text>
+
+      <!-- r vector from element to P -->
+      <line x1="255" y1="123" x2="460" y2="58"
+        style="stroke:var(--c-gold);stroke-width:2;stroke-dasharray:5 3" marker-end="url(#aGold)" class="dp dp2"/>
+      <text x="370" y="78" style="font-family:Crimson Pro,serif;font-style:italic;font-size:14px;fill:var(--c-gold)">r</text>
+
+      <!-- angle theta -->
+      <path d="M 270 121 A 28 28 0 0 1 290 107"
+        style="stroke:var(--c-gold);stroke-width:1.5;fill:none" class="dp dp2"/>
+      <text x="285" y="128" style="font-family:Crimson Pro,serif;font-style:italic;font-size:13px;fill:var(--c-gold)">θ</text>
+
+      <!-- P point -->
+      <circle cx="462" cy="57" r="6" style="fill:var(--c-gold)"/>
+      <text x="472" y="52" style="font-family:Caveat,cursive;font-size:16px;fill:var(--c-gold);font-weight:bold">P</text>
+
+      <!-- dB vector (out of plane — dot symbol at P, shifted) -->
+      <circle cx="462" cy="80" r="7" style="fill:none;stroke:var(--c-green);stroke-width:2" class="dp dp3"/>
+      <circle cx="462" cy="80" r="2.5" style="fill:var(--c-green)" class="dp dp3"/>
+      <text x="474" y="85" style="font-family:Crimson Pro,serif;font-style:italic;font-size:13px;fill:var(--c-green)">dB  (⊙ out)</text>
+
+      <!-- Origin on wire -->
+      <circle cx="255" cy="123" r="4" style="fill:var(--c-red)"/>
+      <text x="248" y="148" style="font-family:Caveat,cursive;font-size:12px;fill:var(--c-red)">O</text>
+
+      <!-- sinθ label -->
+      <text x="100" y="175" style="font-family:Caveat,cursive;font-size:12px;fill:#999">dB ∝ I dl sinθ / r²  (Biot-Savart)</text>
+    </svg>
+  </div>
+  <p class="diagram-cap">Fig 1.1 — Current element $Id\vec{l}$ at O; $\vec{r}$ to field point P; $d\vec{B}$ points out of page</p>
+
+  <div class="paper margin">
+    <div class="lbl">Derivation</div>
+
+    <p>Consider a conductor carrying current $I$. Take a tiny element $d\vec{l}$ at origin. Let $\vec{r}$ be the position vector from this element to point P, making angle $\theta$ with $d\vec{l}$.</p>
+
+    <div class="step">
+      <span class="step-n">①</span>
+      <div class="step-c">From experiment, the magnitude of $d\vec{B}$ is:
+        $$dB \propto \frac{I\,dl\,\sin\theta}{r^2}$$
+      </div>
+    </div>
+
+    <div class="step">
+      <span class="step-n">②</span>
+      <div class="step-c">Introducing proportionality constant $\dfrac{\mu_0}{4\pi}$ (in SI):
+        $$dB = \frac{\mu_0}{4\pi}\cdot\frac{I\,dl\,\sin\theta}{r^2}$$
+      </div>
+    </div>
+
+    <div class="step">
+      <span class="step-n">③</span>
+      <div class="step-c">In vector form, using cross product ($d\vec{B} \perp d\vec{l}$ and $\perp \hat{r}$):
+      </div>
+    </div>
+
+    <div class="fbox result">
+      <span class="result-tag">★ Result</span>
+      $$d\vec{B} = \frac{\mu_0}{4\pi}\cdot\frac{I\,(d\vec{l}\times\hat{r})}{r^2} = \frac{\mu_0}{4\pi}\cdot\frac{I\,(d\vec{l}\times\vec{r})}{r^3}$$
+    </div>
+
+    <div class="note">
+      <strong>Direction:</strong> Right-hand rule — curl fingers from $d\vec{l}$ to $\hat{r}$; thumb gives $d\vec{B}$. &nbsp;|&nbsp;
+      <strong>$\mu_0$</strong> $= 4\pi\times10^{-7}\;\text{T\,m\,A}^{-1}$ (permeability of free space).
+    </div>
+  </div>
+</section>
+
+<div class="divider"><span>✦</span></div>
+
+<!-- ====================================================
+     SECTION 2 — CIRCULAR COIL
+===================================================== -->
+<section class="section" id="s2">
+  <div class="section-header">
+    <div class="s-num">02</div>
+    <div class="s-meta">
+      <div class="s-title">Magnetic Field — Circular Coil</div>
+      <span class="s-tag">At Centre &amp; At Axis</span>
+    </div>
+  </div>
+
+  <div class="theory-block">
+    A circular loop of radius $R$ carrying current $I$ — we apply Biot-Savart and integrate around the loop. Two cases: centre of the loop, and a point P on the axis at distance $x$.
+  </div>
+
+  <!-- ── CASE I: AT CENTRE ── -->
+  <div class="sub-title">Case I — At the Centre</div>
+
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 520 220" xmlns="http://www.w3.org/2000/svg" width="520" height="220">
+      <defs>
+        <marker id="cBlue" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+          <path d="M0,0L0,7L7,3.5z" style="fill:var(--c-blue)"/></marker>
+        <marker id="cGrn" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+          <path d="M0,0L0,7L7,3.5z" style="fill:var(--c-green)"/></marker>
+        <marker id="cGold" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+          <path d="M0,0L0,7L7,3.5z" style="fill:var(--c-gold)"/></marker>
+      </defs>
+
+      <!-- Loop (ellipse to give 3D feel) -->
+      <ellipse cx="200" cy="110" rx="120" ry="55"
+        style="fill:none;stroke:var(--c-blue);stroke-width:2.5;opacity:.7" class="dp"/>
+
+      <!-- Current arrow on top of ellipse -->
+      <line x1="196" y1="55" x2="220" y2="55"
+        style="stroke:var(--c-blue);stroke-width:2.5" marker-end="url(#cBlue)" class="dp"/>
+      <text x="172" y="50" style="font-family:Caveat,cursive;font-size:13px;fill:var(--c-blue)">I</text>
+
+      <!-- Centre O -->
+      <circle cx="200" cy="110" r="4" style="fill:var(--c-gold)"/>
+      <text x="207" y="108" style="font-family:Caveat,cursive;font-size:14px;fill:var(--c-gold)">O (Centre)</text>
+
+      <!-- B at centre (upward) -->
+      <line x1="200" y1="108" x2="200" y2="30"
+        style="stroke:var(--c-green);stroke-width:2.5" marker-end="url(#cGrn)" class="dp dp2"/>
+      <text x="208" y="28" style="font-family:Crimson Pro,serif;font-style:italic;font-size:14px;fill:var(--c-green)">B</text>
+
+      <!-- R radius -->
+      <line x1="200" y1="110" x2="320" y2="110"
+        style="stroke:var(--c-gold);stroke-width:1.5;stroke-dasharray:4 3" marker-end="url(#cGold)" class="dp dp3"/>
+      <text x="255" y="128" style="font-family:Crimson Pro,serif;font-style:italic;font-size:14px;fill:var(--c-gold)">R</text>
+
+      <!-- dl element on loop -->
+      <circle cx="200" cy="55" r="4" style="fill:var(--c-red)"/>
+      <text x="208" y="54" style="font-family:Crimson Pro,serif;font-style:italic;font-size:12px;fill:var(--c-red)">dl</text>
+
+      <!-- r = R dashed line from dl to centre -->
+      <line x1="200" y1="58" x2="200" y2="106"
+        style="stroke:#aaa;stroke-width:1;stroke-dasharray:3 3"/>
+      <text x="155" y="85" style="font-family:Crimson Pro,serif;font-style:italic;font-size:12px;fill:#999">r = R</text>
+      <text x="156" y="98" style="font-family:Crimson Pro,serif;font-style:italic;font-size:11px;fill:#999">(θ=90°)</text>
+
+      <!-- Formula label -->
+      <text x="350" y="105" style="font-family:Caveat,cursive;font-size:13px;fill:var(--c-green)">B = μ₀I / 2R</text>
+    </svg>
+  </div>
+  <p class="diagram-cap">Fig 2.1 — Every element $dl$ is perpendicular to $r = R$, so $\sin\theta = 1$ always</p>
+
+  <div class="paper margin">
+    <div class="lbl">Derivation · Centre</div>
+
+    <p>For any element $dl$ on the loop, $r = R$ and $\theta = 90°$ (since $d\vec{l} \perp \vec{r}$ always at the centre). So $\sin 90° = 1$.</p>
+
+    <div class="step">
+      <span class="step-n">①</span>
+      <div class="step-c">Field due to one element by Biot-Savart:
+        $$dB = \frac{\mu_0}{4\pi}\cdot\frac{I\,dl}{R^2}$$
+      </div>
+    </div>
+
+    <div class="step">
+      <span class="step-n">②</span>
+      <div class="step-c">By symmetry all $d\vec{B}$ point in the same direction (along axis). Integrate over the full loop (circumference $= 2\pi R$):
+        $$B = \oint dB = \frac{\mu_0 I}{4\pi R^2}\oint dl = \frac{\mu_0 I}{4\pi R^2}\cdot 2\pi R$$
+      </div>
+    </div>
+
+    <div class="fbox result">
+      <span class="result-tag">★ Result</span>
+      $$B = \frac{\mu_0 I}{2R}$$
+      <small style="color:var(--text-muted)">For N turns: $B = \dfrac{\mu_0 N I}{2R}$</small>
+    </div>
+  </div>
+
+  <!-- ── CASE II: AT AXIS ── -->
+  <div class="sub-title">Case II — At a Point on the Axis</div>
+
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 580 230" xmlns="http://www.w3.org/2000/svg" width="580" height="230">
+      <defs>
+        <marker id="ax1" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+          <path d="M0,0L0,7L7,3.5z" style="fill:var(--c-blue)"/></marker>
+        <marker id="ax2" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+          <path d="M0,0L0,7L7,3.5z" style="fill:var(--c-green)"/></marker>
+        <marker id="ax3" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+          <path d="M0,0L0,7L7,3.5z" style="fill:var(--c-gold)"/></marker>
+        <marker id="ax4" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+          <path d="M0,0L0,7L7,3.5z" style="fill:var(--c-red)"/></marker>
+      </defs>
+
+      <!-- Axis line -->
+      <line x1="40" y1="115" x2="545" y2="115"
+        style="stroke:#bbb;stroke-width:1;stroke-dasharray:6 4"/>
+      <text x="530" y="108" style="font-family:Caveat,cursive;font-size:12px;fill:#aaa">axis</text>
+
+      <!-- Loop (ellipse) -->
+      <ellipse cx="175" cy="115" rx="18" ry="75"
+        style="fill:none;stroke:var(--c-blue);stroke-width:2.5;opacity:.7" class="dp"/>
+
+      <!-- Current arrow -->
+      <line x1="171" y1="40" x2="179" y2="40"
+        style="stroke:var(--c-blue);stroke-width:2.5" marker-end="url(#ax1)" class="dp"/>
+      <text x="142" y="36" style="font-family:Caveat,cursive;font-size:13px;fill:var(--c-blue)">I</text>
+
+      <!-- Centre O -->
+      <circle cx="175" cy="115" r="4" style="fill:var(--c-gold)"/>
+      <text x="160" y="135" style="font-family:Caveat,cursive;font-size:13px;fill:var(--c-gold)">O</text>
+
+      <!-- P on axis -->
+      <circle cx="430" cy="115" r="6" style="fill:var(--c-gold)"/>
+      <text x="436" y="110" style="font-family:Caveat,cursive;font-size:16px;fill:var(--c-gold);font-weight:bold">P</text>
+
+      <!-- x distance label -->
+      <line x1="175" y1="155" x2="430" y2="155"
+        style="stroke:var(--c-gold);stroke-width:1.5" marker-end="url(#ax3)" class="dp dp2"/>
+      <text x="294" y="173" text-anchor="middle"
+        style="font-family:Crimson Pro,serif;font-style:italic;font-size:14px;fill:var(--c-gold)">x</text>
+
+      <!-- dl element on top of loop -->
+      <circle cx="175" cy="40" r="4" style="fill:var(--c-red)"/>
+      <text x="182" y="38" style="font-family:Crimson Pro,serif;font-style:italic;font-size:11px;fill:var(--c-red)">dl</text>
+
+      <!-- r line from dl to P -->
+      <line x1="178" y1="42" x2="427" y2="113"
+        style="stroke:var(--c-gold);stroke-width:1.5;stroke-dasharray:5 3" marker-end="url(#ax3)" class="dp dp2"/>
+      <text x="305" y="70" style="font-family:Crimson Pro,serif;font-style:italic;font-size:13px;fill:var(--c-gold)">r = √(R²+x²)</text>
+
+      <!-- R label (vertical from centre to top of loop) -->
+      <line x1="145" y1="40" x2="145" y2="113"
+        style="stroke:#aaa;stroke-width:1;stroke-dasharray:3 3"/>
+      <text x="118" y="80" style="font-family:Crimson Pro,serif;font-style:italic;font-size:13px;fill:#999">R</text>
+
+      <!-- dB total at P (along axis) -->
+      <line x1="432" y1="113" x2="530" y2="113"
+        style="stroke:var(--c-green);stroke-width:2.5" marker-end="url(#ax2)" class="dp dp3"/>
+      <text x="470" y="100" style="font-family:Crimson Pro,serif;font-style:italic;font-size:13px;fill:var(--c-green)">B (net, axial)</text>
+
+      <!-- dB component (diagonal — perpendicular components cancel) -->
+      <line x1="432" y1="113" x2="460" y2="75"
+        style="stroke:var(--c-green);stroke-width:1.5;stroke-dasharray:4 3;opacity:.5" class="dp dp3"/>
+      <text x="462" y="72" style="font-family:Caveat,cursive;font-size:10px;fill:#999">⊥ cancels</text>
+
+      <!-- angle phi -->
+      <path d="M 445 113 A 18 18 0 0 0 440 100"
+        style="stroke:var(--c-red);stroke-width:1.3;fill:none"/>
+      <text x="452" y="108" style="font-family:Crimson Pro,serif;font-style:italic;font-size:12px;fill:var(--c-red)">φ</text>
+    </svg>
+  </div>
+  <p class="diagram-cap">Fig 2.2 — Perpendicular components of $dB$ cancel in pairs; only axial components add up</p>
+
+  <div class="paper margin">
+    <div class="lbl">Derivation · Axis</div>
+
+    <p>Let P be at distance $x$ from centre. Distance from each element to P is $r = \sqrt{R^2+x^2}$. Each $dB$ is perpendicular to $\vec{r}$, so it has components — axial (along axis) and perpendicular. By symmetry, perpendicular parts cancel.</p>
+
+    <div class="step">
+      <span class="step-n">①</span>
+      <div class="step-c">Magnitude of $dB$ (since $\theta = 90°$, $d\vec{l} \perp \vec{r}$):
+        $$dB = \frac{\mu_0}{4\pi}\cdot\frac{I\,dl}{R^2+x^2}$$
+      </div>
+    </div>
+
+    <div class="step">
+      <span class="step-n">②</span>
+      <div class="step-c">Axial component of each $dB$ (angle $\phi$ with axis, where $\cos\phi = R/r$):
+        $$dB_{\text{axial}} = dB\cdot\frac{R}{\sqrt{R^2+x^2}}$$
+      </div>
+    </div>
+
+    <div class="step">
+      <span class="step-n">③</span>
+      <div class="step-c">Integrate over full loop ($\oint dl = 2\pi R$):
+        $$B = \frac{\mu_0 I}{4\pi}\cdot\frac{2\pi R}{(R^2+x^2)}\cdot\frac{R}{\sqrt{R^2+x^2}}$$
+      </div>
+    </div>
+
+    <div class="fbox result">
+      <span class="result-tag">★ Result</span>
+      $$B = \frac{\mu_0 I R^2}{2(R^2+x^2)^{3/2}}$$
+      <small style="color:var(--text-muted)">At centre $(x=0)$: reduces to $B = \dfrac{\mu_0 I}{2R}$ ✓</small>
+    </div>
+
+    <div class="note">
+      <strong>Special case:</strong> When $x \gg R$, $(R^2+x^2)^{3/2} \approx x^3$, so $B \approx \dfrac{\mu_0 IR^2}{2x^3}$ — like a magnetic dipole.
+    </div>
+  </div>
+</section>
+
+<div class="divider"><span>✦</span></div>
+
+<!-- ====================================================
+     SECTION 3 — AMPERE'S CIRCUITAL LAW
+===================================================== -->
+<section class="section" id="s3">
+  <div class="section-header">
+    <div class="s-num">03</div>
+    <div class="s-meta">
+      <div class="s-title">Ampere's Circuital Law</div>
+      <span class="s-tag">∮ B·dl = μ₀ I<sub>enc</sub></span>
+    </div>
+  </div>
+
+  <div class="theory-block">
+    The line integral of magnetic field around any closed loop (Amperian loop) equals $\mu_0$ times the total current enclosed by that loop.
+  </div>
+
+  <!-- Diagram -->
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 540 220" xmlns="http://www.w3.org/2000/svg" width="540" height="220">
+      <defs>
+        <marker id="am1" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+          <path d="M0,0L0,7L7,3.5z" style="fill:var(--c-blue)"/></marker>
+        <marker id="am2" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+          <path d="M0,0L0,7L7,3.5z" style="fill:var(--c-green)"/></marker>
+        <marker id="am3" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+          <path d="M0,0L0,7L7,3.5z" style="fill:var(--c-gold)"/></marker>
+      </defs>
+
+      <!-- Long straight wire (vertical) -->
+      <line x1="270" y1="10" x2="270" y2="210"
+        style="stroke:var(--c-blue);stroke-width:6;opacity:.7" class="dp"/>
+      <!-- Current arrow on wire -->
+      <line x1="270" y1="80" x2="270" y2="50"
+        style="stroke:white;stroke-width:2" marker-end="url(#am1)"/>
+      <text x="278" y="68" style="font-family:Caveat,cursive;font-size:13px;fill:white">I</text>
+
+      <!-- Amperian circular loop around wire -->
+      <circle cx="270" cy="110" r="100"
+        style="fill:none;stroke:var(--c-red);stroke-width:2;stroke-dasharray:6 4;opacity:.8" class="dp dp2"/>
+
+      <!-- Loop direction arrow (CCW) at top of circle -->
+      <line x1="335" y1="68" x2="320" y2="60"
+        style="stroke:var(--c-red);stroke-width:2" marker-end="url(#am3)" class="dp dp2"/>
+      <text x="340" y="56" style="font-family:Caveat,cursive;font-size:12px;fill:var(--c-red)">Amperian loop</text>
+
+      <!-- B vectors tangential to loop at 4 points -->
+      <!-- right -->
+      <line x1="370" y1="110" x2="370" y2="78"
+        style="stroke:var(--c-green);stroke-width:2" marker-end="url(#am2)" class="dp dp3"/>
+      <text x="378" y="96" style="font-family:Crimson Pro,serif;font-style:italic;font-size:12px;fill:var(--c-green)">B</text>
+
+      <!-- top -->
+      <line x1="270" y1="10" x2="238" y2="10"
+        style="stroke:var(--c-green);stroke-width:2" marker-end="url(#am2)" class="dp dp3"/>
+
+      <!-- left -->
+      <line x1="170" y1="110" x2="170" y2="142"
+        style="stroke:var(--c-green);stroke-width:2" marker-end="url(#am2)" class="dp dp3"/>
+
+      <!-- bottom -->
+      <line x1="270" y1="210" x2="302" y2="210"
+        style="stroke:var(--c-green);stroke-width:2" marker-end="url(#am2)" class="dp dp3"/>
+
+      <!-- r label -->
+      <line x1="270" y1="110" x2="370" y2="110"
+        style="stroke:var(--c-gold);stroke-width:1.5;stroke-dasharray:4 3" marker-end="url(#am3)" class="dp dp2"/>
+      <text x="308" y="128" style="font-family:Crimson Pro,serif;font-style:italic;font-size:14px;fill:var(--c-gold)">r</text>
+
+      <!-- dl label on loop -->
+      <text x="358" y="70" style="font-family:Crimson Pro,serif;font-style:italic;font-size:12px;fill:var(--c-red)">dl</text>
+
+      <!-- Annotation -->
+      <text x="30" y="185" style="font-family:Caveat,cursive;font-size:12px;fill:#999">B is tangential everywhere; B·dl = B dl cos0° = B dl</text>
+    </svg>
+  </div>
+  <p class="diagram-cap">Fig 3.1 — Circular Amperian loop of radius $r$ around a long straight wire; $\vec{B} \parallel d\vec{l}$ everywhere on loop</p>
+
+  <div class="paper margin">
+    <div class="lbl">Statement &amp; Derivation</div>
+
+    <p><strong>Statement:</strong> $\oint_C \vec{B}\cdot d\vec{l} = \mu_0 I_{\text{enc}}$, where $I_{\text{enc}}$ is the net current threading through the loop.</p>
+
+    <div class="step">
+      <span class="step-n">①</span>
+      <div class="step-c">From Biot-Savart, field at distance $r$ from an infinite straight wire is:
+        $$B = \frac{\mu_0 I}{2\pi r}$$
+        Direction: tangential (by right-hand rule).
+      </div>
+    </div>
+
+    <div class="step">
+      <span class="step-n">②</span>
+      <div class="step-c">Choose an Amperian circle of radius $r$ around wire. Since $\vec{B} \parallel d\vec{l}$ at every point on the loop:
+        $$\oint \vec{B}\cdot d\vec{l} = B\oint dl = B\cdot 2\pi r$$
+      </div>
+    </div>
+
+    <div class="step">
+      <span class="step-n">③</span>
+      <div class="step-c">Substituting $B = \dfrac{\mu_0 I}{2\pi r}$:
+        $$\oint \vec{B}\cdot d\vec{l} = \frac{\mu_0 I}{2\pi r}\cdot 2\pi r$$
+      </div>
+    </div>
+
+    <div class="fbox result">
+      <span class="result-tag">★ Result</span>
+      $$\oint_C \vec{B}\cdot d\vec{l} = \mu_0\, I_{\text{enc}}$$
+    </div>
+
+    <div class="note">
+      <strong>Key insight:</strong> The result is independent of the shape of the Amperian loop and only depends on the enclosed current — not on $r$. Currents outside the loop contribute zero net integral.
+    </div>
+  </div>
+
+  <!-- Application: Solenoid -->
+  <div class="sub-title">Application — Magnetic Field inside a Solenoid</div>
+  <div class="paper margin">
+    <div class="lbl">Quick Derivation</div>
+    <p>Take a rectangular Amperian loop ABCD with AB of length $l$ inside the solenoid (field $= B$) and CD outside (field $= 0$). Sides BC and AD contribute nothing ($\vec{B}\perp d\vec{l}$).</p>
+
+    <div class="fbox">$$\oint \vec{B}\cdot d\vec{l} = B\cdot l + 0 + 0 + 0 = Bl$$</div>
+    <p>If $n$ = turns per unit length, enclosed current $= nIl$. By Ampere's Law:</p>
+    <div class="fbox result">
+      <span class="result-tag">★ Result</span>
+      $$B = \mu_0 n I$$
+      <small style="color:var(--text-muted)">Valid deep inside; field is uniform &amp; parallel to axis</small>
+    </div>
+  </div>
+</section>
+
+<div class="divider"><span>✦</span></div>
+
+<!-- ====================================================
+     SECTION 4 — LORENTZ FORCE
+===================================================== -->
+<section class="section" id="s4">
+  <div class="section-header">
+    <div class="s-num">04</div>
+    <div class="s-meta">
+      <div class="s-title">Lorentz Force (Force on Moving Charge)</div>
+      <span class="s-tag">F = q(v × B)</span>
+    </div>
+  </div>
+
+  <div class="theory-block">
+    A charge $q$ moving with velocity $\vec{v}$ in a magnetic field $\vec{B}$ experiences a force perpendicular to both — it cannot do work on the charge.
+  </div>
+
+  <!-- Diagram -->
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 540 220" xmlns="http://www.w3.org/2000/svg" width="540" height="220">
+      <defs>
+        <marker id="lz1" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+          <path d="M0,0 L0,6 L8,3z" style="fill:var(--c-blue)"/></marker>
+        <marker id="lz2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+          <path d="M0,0 L0,6 L8,3z" style="fill:var(--c-green)"/></marker>
+        <marker id="lz3" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+          <path d="M0,0 L0,6 L8,3z" style="fill:var(--c-red)"/></marker>
+        <marker id="lz4" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+          <path d="M0,0 L0,6 L8,3z" style="fill:var(--c-gold)"/></marker>
+      </defs>
+
+      <!-- B field dots (into page) grid -->
+      <g style="fill:var(--c-blue);opacity:.3;font-size:16px;font-family:sans-serif">
+        <text x="60"  y="70">×</text><text x="140" y="70">×</text><text x="220" y="70">×</text><text x="300" y="70">×</text><text x="380" y="70">×</text><text x="460" y="70">×</text>
+        <text x="60"  y="130">×</text><text x="140" y="130">×</text><text x="220" y="130">×</text><text x="300" y="130">×</text><text x="380" y="130">×</text><text x="460" y="130">×</text>
+        <text x="60"  y="190">×</text><text x="140" y="190">×</text><text x="220" y="190">×</text><text x="300" y="190">×</text><text x="380" y="190">×</text><text x="460" y="190">×</text>
+      </g>
+      <text x="20" y="18" style="font-family:Caveat,cursive;font-size:13px;fill:var(--c-blue);opacity:.7">B into page (×)</text>
+
+      <!-- Charge q -->
+      <circle cx="270" cy="130" r="20" style="fill:var(--c-red);opacity:.9"/>
+      <text x="270" y="135" text-anchor="middle" style="font-family:Crimson Pro,serif;font-size:15px;fill:white;font-weight:bold">+q</text>
+
+      <!-- Velocity v (rightward) -->
+      <line x1="292" y1="130" x2="390" y2="130"
+        style="stroke:var(--c-gold);stroke-width:3" marker-end="url(#lz4)" class="dp"/>
+      <text x="398" y="126" style="font-family:Crimson Pro,serif;font-style:italic;font-size:15px;fill:var(--c-gold)">v</text>
+
+      <!-- Force F (upward) -->
+      <line x1="270" y1="108" x2="270" y2="30"
+        style="stroke:var(--c-green);stroke-width:3" marker-end="url(#lz2)" class="dp dp2"/>
+      <text x="278" y="28" style="font-family:Crimson Pro,serif;font-style:italic;font-size:15px;fill:var(--c-green)">F = q(v × B)</text>
+
+      <!-- Right hand rule note -->
+      <text x="30" y="200" style="font-family:Caveat,cursive;font-size:13px;fill:#999">✋ Fingers: v → B  |  Thumb: F  (for +q)</text>
+
+      <!-- Angle box -->
+      <rect x="400" y="150" width="120" height="52" rx="8"
+        style="fill:var(--paper-2);stroke:var(--line);stroke-width:1"/>
+      <text x="460" y="170" text-anchor="middle" style="font-family:Caveat,cursive;font-size:12px;fill:var(--text-muted)">F = qvB sinθ</text>
+      <text x="460" y="188" text-anchor="middle" style="font-family:Caveat,cursive;font-size:11px;fill:var(--text-muted)">Here θ=90°, F=qvB</text>
+    </svg>
+  </div>
+  <p class="diagram-cap">Fig 4.1 — $+q$ moves rightward in $\vec{B}$ (into page); force is upward by right-hand rule</p>
+
+  <div class="paper margin">
+    <div class="lbl">Derivation</div>
+
+    <p>Consider a conductor of length $l$, cross-section $A$, carrying current $I$ in field $\vec{B}$. Let $n$ = free electron density, each moving with drift velocity $\vec{v}_d$.</p>
+
+    <div class="step">
+      <span class="step-n">①</span>
+      <div class="step-c">Total charge in the conductor: $q = nAl\cdot e$.</div>
+    </div>
+
+    <div class="step">
+      <span class="step-n">②</span>
+      <div class="step-c">Force on this conductor in $\vec{B}$:
+        $$\vec{F} = I(\vec{l}\times\vec{B})$$
+        But $I = nAev_d$ and $q = nAle$, so $I\vec{l} = nAle\cdot\vec{v}_d = q\vec{v}_d$.
+      </div>
+    </div>
+
+    <div class="step">
+      <span class="step-n">③</span>
+      <div class="step-c">Force on a single charge $q$ moving with velocity $\vec{v}$:</div>
+    </div>
+
+    <div class="fbox result">
+      <span class="result-tag">★ Lorentz Force</span>
+      $$\vec{F} = q(\vec{v}\times\vec{B})$$
+      $$|\vec{F}| = qvB\sin\theta$$
+    </div>
+
+    <div class="two">
+      <div class="note">
+        <strong>Direction:</strong> $\vec{F} \perp \vec{v}$ always, so the magnetic force does <em>no work</em> — it changes direction, not speed.
+      </div>
+      <div class="note">
+        <strong>Circular motion:</strong> If $\vec{v}\perp\vec{B}$, the charge moves in a circle: $r = \dfrac{mv}{qB}$.
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"><span>✦</span></div>
+
+<!-- ====================================================
+     SECTION 5 — TORQUE ON CURRENT LOOP
+===================================================== -->
+<section class="section" id="s5">
+  <div class="section-header">
+    <div class="s-num">05</div>
+    <div class="s-meta">
+      <div class="s-title">Torque on a Current Loop</div>
+      <span class="s-tag">τ = NIAB sinθ = MB sinθ</span>
+    </div>
+  </div>
+
+  <div class="theory-block">
+    A rectangular current loop placed in a uniform magnetic field experiences zero net force but a net <strong>torque</strong> that tends to align the loop's magnetic moment with $\vec{B}$.
+  </div>
+
+  <!-- Diagram -->
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 580 240" xmlns="http://www.w3.org/2000/svg" width="580" height="240">
+      <defs>
+        <marker id="tq1" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+          <path d="M0,0L0,7L7,3.5z" style="fill:var(--c-blue)"/></marker>
+        <marker id="tq2" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+          <path d="M0,0L0,7L7,3.5z" style="fill:var(--c-green)"/></marker>
+        <marker id="tq3" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+          <path d="M0,0L0,7L7,3.5z" style="fill:var(--c-gold)"/></marker>
+        <marker id="tq4" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+          <path d="M0,0L0,7L7,3.5z" style="fill:var(--c-red)"/></marker>
+        <marker id="tq4R" markerWidth="7" markerHeight="7" refX="2" refY="3.5" orient="auto-start-reverse">
+          <path d="M0,0L0,7L7,3.5z" style="fill:var(--c-red)"/></marker>
+      </defs>
+
+      <!-- B field arrows (horizontal, rightward) -->
+      <g style="opacity:.35">
+        <line x1="20" y1="60"  x2="80"  y2="60"  style="stroke:var(--c-blue);stroke-width:1.5" marker-end="url(#tq1)"/>
+        <line x1="20" y1="100" x2="80"  y2="100" style="stroke:var(--c-blue);stroke-width:1.5" marker-end="url(#tq1)"/>
+        <line x1="20" y1="140" x2="80"  y2="140" style="stroke:var(--c-blue);stroke-width:1.5" marker-end="url(#tq1)"/>
+        <line x1="20" y1="180" x2="80"  y2="180" style="stroke:var(--c-blue);stroke-width:1.5" marker-end="url(#tq1)"/>
+        <line x1="480" y1="60"  x2="540" y2="60"  style="stroke:var(--c-blue);stroke-width:1.5" marker-end="url(#tq1)"/>
+        <line x1="480" y1="100" x2="540" y2="100" style="stroke:var(--c-blue);stroke-width:1.5" marker-end="url(#tq1)"/>
+        <line x1="480" y1="140" x2="540" y2="140" style="stroke:var(--c-blue);stroke-width:1.5" marker-end="url(#tq1)"/>
+        <line x1="480" y1="180" x2="540" y2="180" style="stroke:var(--c-blue);stroke-width:1.5" marker-end="url(#tq1)"/>
+      </g>
+      <text x="22" y="34" style="font-family:Caveat,cursive;font-size:13px;fill:var(--c-blue);opacity:.7">B →</text>
+
+      <!-- Rectangular loop (tilted to show 3D) -->
+      <!-- Loop: A(160,55) B(360,55) C(400,185) D(200,185) -->
+      <polygon points="170,55 370,55 410,185 210,185"
+        style="fill:none;stroke:var(--c-blue);stroke-width:2.5;opacity:.8" class="dp"/>
+
+      <!-- Current direction labels on sides -->
+      <!-- Top AB: rightward -->
+      <line x1="240" y1="55" x2="280" y2="55"
+        style="stroke:var(--c-blue);stroke-width:2.5" marker-end="url(#tq1)" class="dp"/>
+      <text x="240" y="44" style="font-family:Caveat,cursive;font-size:12px;fill:var(--c-blue)">I →  (AB, length b)</text>
+
+      <!-- Bottom DC: leftward -->
+      <line x1="330" y1="185" x2="290" y2="185"
+        style="stroke:var(--c-blue);stroke-width:2.5" marker-end="url(#tq1)" class="dp"/>
+      <text x="248" y="205" style="font-family:Caveat,cursive;font-size:12px;fill:var(--c-blue)">I ←  (DC)</text>
+
+      <!-- Left side AD: downward -->
+      <line x1="190" y1="90" x2="200" y2="140"
+        style="stroke:var(--c-blue);stroke-width:2" marker-end="url(#tq1)" class="dp dp2"/>
+
+      <!-- Right side BC: upward -->
+      <line x1="400" y1="150" x2="390" y2="100"
+        style="stroke:var(--c-blue);stroke-width:2" marker-end="url(#tq1)" class="dp dp2"/>
+
+      <!-- Force F1 on AB (upward? actually into page — shown as ⊙) -->
+      <circle cx="290" cy="55" r="7" style="fill:none;stroke:var(--c-red);stroke-width:2" class="dp dp3"/>
+      <circle cx="290" cy="55" r="2.5" style="fill:var(--c-red)" class="dp dp3"/>
+      <text x="298" y="52" style="font-family:Crimson Pro,serif;font-style:italic;font-size:12px;fill:var(--c-red)">F₁⊙</text>
+
+      <!-- Force F2 on DC (into page — shown as ×) -->
+      <text x="284" y="196" style="font-family:sans-serif;font-size:16px;fill:var(--c-red);opacity:.9" class="dp dp3">×</text>
+      <text x="296" y="196" style="font-family:Crimson Pro,serif;font-style:italic;font-size:12px;fill:var(--c-red)">F₂⊗</text>
+
+      <!-- Torque curved arrow -->
+      <path d="M 290 100 A 60 40 0 0 1 290 160"
+        style="stroke:var(--c-green);stroke-width:2;fill:none;stroke-dasharray:5 3" class="dp dp3"/>
+      <line x1="290" y1="158" x2="278" y2="170"
+        style="stroke:var(--c-green);stroke-width:2" marker-end="url(#tq2)" class="dp dp3"/>
+      <text x="320" y="132" style="font-family:Crimson Pro,serif;font-style:italic;font-size:13px;fill:var(--c-green)">τ</text>
+
+      <!-- θ angle and dimensions -->
+      <!-- a = height label -->
+      <line x1="140" y1="55" x2="140" y2="185"
+        style="stroke:#aaa;stroke-width:1;stroke-dasharray:3 3" marker-end="url(#tq3)" marker-start="url(#tq3)"/>
+      <text x="110" y="125" style="font-family:Crimson Pro,serif;font-style:italic;font-size:13px;fill:#999">a</text>
+      <!-- b = width label -->
+      <text x="232" y="228" style="font-family:Crimson Pro,serif;font-style:italic;font-size:13px;fill:#999">b</text>
+
+      <!-- theta -->
+      <text x="418" y="75" style="font-family:Crimson Pro,serif;font-style:italic;font-size:14px;fill:var(--c-gold)">θ with B</text>
+    </svg>
+  </div>
+  <p class="diagram-cap">Fig 5.1 — Forces $F_1$ and $F_2$ on AB &amp; DC form a couple; AD and BC forces are collinear and cancel</p>
+
+  <div class="paper margin">
+    <div class="lbl">Derivation</div>
+
+    <p>Let the rectangular loop have sides $a$ (perpendicular to $\vec{B}$) and $b$ (parallel to $\vec{B}$), carrying current $I$, tilted at angle $\theta$ with $\vec{B}$.</p>
+
+    <div class="step">
+      <span class="step-n">①</span>
+      <div class="step-c"><strong>Forces on sides AD and BC</strong> (parallel to $\vec{B}$): $F = BIb\sin0° = 0$. They cancel. No contribution.</div>
+    </div>
+
+    <div class="step">
+      <span class="step-n">②</span>
+      <div class="step-c"><strong>Forces on sides AB and DC</strong> (perpendicular to $\vec{B}$):
+        $$F_1 = F_2 = BIb$$
+        They are equal, opposite, and not collinear — forming a <em>couple</em>.
+      </div>
+    </div>
+
+    <div class="step">
+      <span class="step-n">③</span>
+      <div class="step-c">Perpendicular distance between $F_1$ and $F_2$ is $a\sin\theta$. Torque of the couple:
+        $$\tau = F_1\cdot a\sin\theta = BIb\cdot a\sin\theta = BIA\sin\theta$$
+        where $A = ab$ is the area of the loop.
+      </div>
+    </div>
+
+    <div class="fbox result">
+      <span class="result-tag">★ Result</span>
+      $$\tau = NIAB\sin\theta = MB\sin\theta$$
+      <small style="color:var(--text-muted)">where $M = NIA$ is the magnetic dipole moment of the loop</small>
+    </div>
+
+    <div class="two">
+      <div class="note">
+        <strong>Vector form:</strong> $\vec{\tau} = \vec{M}\times\vec{B}$ &nbsp; — $\tau$ is max when $\theta = 90°$ (loop parallel to $\vec{B}$), zero when $\theta = 0°$ (stable equilibrium).
+      </div>
+      <div class="note">
+        <strong>Analogy:</strong> Just like electric dipole in $\vec{E}$, current loop acts as a magnetic dipole in $\vec{B}$.
+        $M = NIA$ is the magnetic moment.
+      </div>
+    </div>
+  </div>
+</section>
+
+</div><!-- end container -->
+
+<!-- FOOTER -->
+<footer class="footer">
+  <p>✏️ Made with ♥ by <span>Akshit Tyagi</span> &nbsp;·&nbsp; Class XII Physics · Moving Charges &amp; Magnetism</p>
+  <p style="font-size:.82rem;margin-top:.4rem;opacity:.55">NCERT Physics Part I · Chapter 4 · Derivations &amp; Diagrams</p>
+</footer>
+
+<script>
+/* ── Progress bar ── */
+const bar = document.getElementById('progress');
+const nav = document.getElementById('nav');
+const heroH = document.querySelector('.hero').offsetHeight;
+
+window.addEventListener('scroll', () => {
+  const s = window.scrollY;
+  const h = document.body.scrollHeight - window.innerHeight;
+  bar.style.width = (s / h * 100) + '%';
+  nav.classList.toggle('show', s > heroH * 0.55);
+}, { passive: true });
+
+/* ── Scroll reveal ── */
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('reveal'); });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.section').forEach(el => observer.observe(el));
+
+/* ── App cards reveal ── */
+const cardObs = new IntersectionObserver(entries => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }, 100);
+    }
+  });
+}, { threshold: 0.08 });
+
+document.querySelectorAll('.app-card').forEach((c, i) => {
+  c.style.opacity = '0';
+  c.style.transform = 'translateY(30px)';
+  c.style.transition = `opacity .65s ease ${i * 0.12}s, transform .65s ease ${i * 0.12}s`;
+  cardObs.observe(c);
+});
+
+/* ── Theme toggle ── */
+const toggle = document.getElementById('themeToggle');
+let dark = false;
+toggle.addEventListener('click', () => {
+  dark = !dark;
+  document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+});
+
+/* ── KaTeX re-render fallback ── */
+document.addEventListener('DOMContentLoaded', () => {
+  if (typeof renderMathInElement !== 'undefined') {
+    renderMathInElement(document.body, {
+      delimiters: [
+        { left: '$$', right: '$$', display: true },
+        { left: '$',  right: '$',  display: false }
+      ],
+      throwOnError: false
+    });
+  }
+});
+
+/* ── Chip ripple ── */
+document.querySelectorAll('.chip').forEach(chip => {
+  chip.addEventListener('click', function(e) {
+    const ripple = document.createElement('span');
+    ripple.style.cssText = `
+      position:absolute;width:8px;height:8px;border-radius:50%;
+      background:rgba(255,255,255,.6);pointer-events:none;
+      transform:scale(0);animation:ripple .5s ease;
+      left:${e.offsetX - 4}px;top:${e.offsetY - 4}px;
+    `;
+    this.style.position = 'relative';
+    this.appendChild(ripple);
+    setTimeout(() => ripple.remove(), 500);
+  });
+});
+
+/* inject ripple keyframe */
+const style = document.createElement('style');
+style.textContent = '@keyframes ripple{to{transform:scale(18);opacity:0}}';
+document.head.appendChild(style);
+</script>
+</body>
+</html>

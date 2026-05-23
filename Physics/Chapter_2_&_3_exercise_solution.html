@@ -1,0 +1,1323 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Electrostatics Potential & Current Electricity · Class XII · Akshit Tyagi</title>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false})"></script>
+
+<style>
+/* ===== DESIGN TOKENS ===== */
+:root {
+  --bg:          #FEFBF3;
+  --paper:       #FFF9EC;
+  --paper-2:     #FFF4DC;
+  --text:        #1A1208;
+  --text-muted:  #6B5540;
+  --accent:      #B07D10;
+  --accent-2:    #C05A12;
+  --accent-3:    #27AE60;
+  --line:        #DDD0B0;
+  --line-2:      #EDE0C4;
+  --highlight:   rgba(176,125,16,.1);
+  --highlight-2: rgba(176,125,16,.06);
+  --shadow:      rgba(100,60,10,.13);
+  --shadow-lg:   rgba(100,60,10,.22);
+  --nav-bg:      rgba(254,251,243,.94);
+  --ruled:       rgba(180,148,100,.18);
+  --margin:      rgba(200,100,80,.18);
+  --diagram-bg:  #FAFAF5;
+  --c-red:       #C0392B;
+  --c-blue:      #1E5BA8;
+  --c-green:     #1E8A50;
+  --c-gold:      #B07D10;
+  --c-purple:    #7D3C98;
+  --c-ink:       #1A1208;
+}
+[data-theme="dark"] {
+  --bg:          #100E0A;
+  --paper:       #1A1710;
+  --paper-2:     #221E14;
+  --text:        #EDE0C8;
+  --text-muted:  #A89070;
+  --accent:      #D4A820;
+  --accent-2:    #E8783A;
+  --accent-3:    #2ECC71;
+  --line:        #3A2E1A;
+  --line-2:      #2A2416;
+  --highlight:   rgba(212,168,32,.1);
+  --highlight-2: rgba(212,168,32,.055);
+  --shadow:      rgba(0,0,0,.4);
+  --shadow-lg:   rgba(0,0,0,.6);
+  --nav-bg:      rgba(16,14,10,.95);
+  --ruled:       rgba(212,168,32,.07);
+  --margin:      rgba(220,120,100,.12);
+  --diagram-bg:  #181510;
+  --c-red:       #E74C3C;
+  --c-blue:      #5B9BD5;
+  --c-green:     #2ECC71;
+  --c-gold:      #D4A820;
+  --c-purple:    #AF7AC5;
+  --c-ink:       #EDE0C8;
+}
+
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;font-size:16px}
+body{
+  font-family:'Crimson Pro',Georgia,serif;
+  background:var(--bg);color:var(--text);
+  line-height:1.85;font-size:1.1rem;
+  transition:background .45s ease,color .45s ease;
+  overflow-x:hidden;
+}
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--accent);border-radius:3px}
+a{color:inherit;text-decoration:none}
+
+/* PROGRESS */
+#progress{
+  position:fixed;top:0;left:0;height:3px;width:0%;
+  background:linear-gradient(90deg,var(--accent),var(--accent-2),var(--accent-3));
+  z-index:999;transition:width .08s linear;
+  box-shadow:0 0 8px var(--accent);
+}
+
+/* NAV */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:var(--nav-bg);backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--line);
+  padding:.7rem 2rem;
+  display:flex;align-items:center;justify-content:space-between;
+  transform:translateY(-110%);
+  transition:transform .45s cubic-bezier(.25,.8,.25,1),background .45s ease;
+}
+.nav.show{transform:translateY(0)}
+.nav-brand{font-family:'Caveat',cursive;font-size:1.25rem;font-weight:700;color:var(--accent);letter-spacing:.02em;}
+.nav-links{display:flex;gap:.3rem;list-style:none;flex-wrap:wrap;}
+.nav-links a{
+  font-family:'Caveat',cursive;font-size:.88rem;color:var(--text-muted);
+  padding:.2rem .55rem;border-radius:6px;transition:color .2s,background .2s;
+}
+.nav-links a:hover{color:var(--accent);background:var(--highlight)}
+.nav-right{display:flex;align-items:center;gap:.75rem}
+.toggle{
+  width:46px;height:25px;background:var(--line);border:none;border-radius:100px;
+  cursor:pointer;position:relative;transition:background .3s;
+}
+.toggle::after{
+  content:'';position:absolute;top:3px;left:3px;
+  width:19px;height:19px;border-radius:50%;background:var(--accent);
+  transition:transform .35s cubic-bezier(.4,0,.2,1);
+}
+[data-theme="dark"] .toggle::after{transform:translateX(21px)}
+.toggle-icon{font-size:.7rem;position:absolute;top:50%;transform:translateY(-50%);transition:opacity .3s;pointer-events:none;}
+.icon-sun{left:5px;opacity:1}.icon-moon{right:5px;opacity:.5}
+[data-theme="dark"] .icon-sun{opacity:.5}[data-theme="dark"] .icon-moon{opacity:1}
+
+/* HERO */
+.hero{
+  min-height:100vh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  text-align:center;padding:5rem 2rem 6rem;
+  position:relative;overflow:hidden;background:var(--paper);
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background:repeating-linear-gradient(transparent,transparent 39px,var(--ruled) 39px,var(--ruled) 40px);
+  pointer-events:none;
+}
+.hero::after{
+  content:'';position:absolute;top:0;left:88px;width:1.5px;height:100%;
+  background:var(--margin);pointer-events:none;
+}
+.ink-orb{
+  position:absolute;border-radius:50%;pointer-events:none;
+  animation:floatOrb var(--dur,12s) ease-in-out infinite;
+  opacity:.055;filter:blur(60px);
+}
+@keyframes floatOrb{
+  0%,100%{transform:translate(0,0) scale(1)}
+  33%{transform:translate(30px,-40px) scale(1.1)}
+  66%{transform:translate(-20px,25px) scale(.9)}
+}
+.hero-eyebrow{
+  font-family:'Caveat',cursive;font-size:1rem;
+  color:var(--accent);letter-spacing:.18em;text-transform:uppercase;
+  margin-bottom:1rem;opacity:0;animation:riseUp .8s ease .2s forwards;position:relative;z-index:2;
+}
+.hero-title{
+  font-family:'Caveat',cursive;font-size:clamp(3.2rem,8.5vw,6.5rem);
+  font-weight:700;line-height:1.05;color:var(--text);margin-bottom:.6rem;
+  opacity:0;animation:riseUp .9s ease .38s forwards;position:relative;z-index:2;
+}
+.hero-title span{color:var(--accent)}
+.hero-sub{
+  font-size:1.15rem;color:var(--text-muted);font-style:italic;margin-bottom:3rem;
+  opacity:0;animation:riseUp .9s ease .55s forwards;position:relative;z-index:2;
+}
+.author-card{
+  display:flex;align-items:center;gap:1.8rem;
+  background:var(--paper-2);border:1.5px solid var(--line);border-radius:24px;
+  padding:1.6rem 2.8rem;box-shadow:0 12px 50px var(--shadow);
+  margin-bottom:2.2rem;opacity:0;position:relative;z-index:2;
+  animation-fill-mode:both;
+  animation-name:riseUp,cardFloat;animation-duration:1s,6s;
+  animation-delay:.72s,1.8s;animation-timing-function:ease,ease-in-out;
+  animation-iteration-count:1,infinite;
+}
+@keyframes cardFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.author-photo{
+  width:88px;height:88px;border-radius:50%;object-fit:cover;
+  border:3px solid var(--accent);
+  box-shadow:0 0 0 5px var(--highlight),0 8px 24px var(--shadow);
+  transition:transform .4s ease;flex-shrink:0;
+}
+.author-photo:hover{transform:scale(1.06) rotate(2deg)}
+.author-info{text-align:left}
+.author-label{font-family:'Caveat',cursive;font-size:.78rem;color:var(--text-muted);letter-spacing:.12em;text-transform:uppercase;}
+.author-name{
+  font-family:'Caveat',cursive;font-size:2.8rem;font-weight:700;line-height:1;
+  background:linear-gradient(135deg,var(--accent),var(--accent-2));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.author-desc{font-size:.9rem;color:var(--text-muted);font-style:italic;}
+.chips{
+  display:flex;flex-wrap:wrap;gap:.6rem;justify-content:center;
+  opacity:0;animation:riseUp 1s ease .9s forwards;position:relative;z-index:2;
+}
+.chip{
+  font-family:'Caveat',cursive;font-size:.9rem;color:var(--accent);
+  border:1px solid var(--accent);background:var(--highlight);
+  padding:.28rem .85rem;border-radius:100px;cursor:pointer;
+  transition:all .3s cubic-bezier(.25,.8,.25,1);position:relative;overflow:hidden;
+}
+.chip::before{
+  content:'';position:absolute;inset:0;background:var(--accent);
+  transform:scaleX(0);transform-origin:left;transition:transform .3s ease;
+  border-radius:inherit;z-index:-1;
+}
+.chip:hover::before{transform:scaleX(1)}
+.chip:hover{color:var(--bg);border-color:var(--accent)}
+.scroll-cue{
+  position:absolute;bottom:2.2rem;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:.5rem;
+  opacity:0;animation:fadeIn 1s ease 1.4s forwards;z-index:2;
+}
+.scroll-cue span{font-family:'Caveat',cursive;font-size:.8rem;color:var(--text-muted);letter-spacing:.1em;}
+.scroll-arrow{
+  width:20px;height:20px;border-right:2px solid var(--accent);border-bottom:2px solid var(--accent);
+  transform:rotate(45deg);animation:arrowBounce 1.6s ease infinite;
+}
+
+/* CHAPTER DIVIDER */
+.chapter-divider{
+  display:flex;align-items:center;gap:1.5rem;
+  margin:5rem 0 3.5rem;
+}
+.chapter-divider::before,.chapter-divider::after{content:'';flex:1;height:2px;background:linear-gradient(90deg,transparent,var(--accent),transparent);}
+.chapter-divider-inner{
+  font-family:'Caveat',cursive;font-size:1.6rem;font-weight:700;color:var(--accent);
+  white-space:nowrap;text-align:center;
+}
+
+/* LAYOUT */
+.container{max-width:880px;margin:0 auto;padding:4rem 2rem 2rem;}
+
+/* SECTION */
+.section{
+  margin-bottom:5.5rem;opacity:0;transform:translateY(44px);
+  transition:opacity .75s ease,transform .75s cubic-bezier(.25,.8,.25,1);
+}
+.section.reveal{opacity:1;transform:translateY(0)}
+.section-header{
+  display:flex;align-items:flex-start;gap:1.4rem;
+  margin-bottom:2rem;padding-bottom:1rem;border-bottom:2px solid var(--accent);
+}
+.s-num{
+  font-family:'Caveat',cursive;font-size:4.5rem;font-weight:700;color:var(--accent);
+  opacity:.22;line-height:1;min-width:58px;position:relative;top:-.25rem;
+}
+.s-title{font-family:'Caveat',cursive;font-size:2.1rem;font-weight:700;color:var(--text);line-height:1.2;}
+.s-tag{
+  display:inline-block;margin-top:.35rem;font-family:'Caveat',cursive;font-size:.78rem;
+  color:var(--accent-2);border:1px solid var(--accent-2);padding:.12rem .55rem;border-radius:100px;
+}
+
+/* PAPER CARDS */
+.paper{
+  background:var(--paper);border:1px solid var(--line);border-radius:18px;
+  padding:2rem 2.4rem;position:relative;overflow:hidden;
+  box-shadow:0 5px 28px var(--shadow);margin-bottom:1.4rem;transition:box-shadow .3s ease;
+}
+.paper:hover{box-shadow:0 10px 48px var(--shadow-lg)}
+.paper::before{
+  content:'';position:absolute;inset:0;
+  background:repeating-linear-gradient(transparent,transparent 27px,var(--ruled) 27px,var(--ruled) 28px);
+  pointer-events:none;
+}
+.paper.margin::after{
+  content:'';position:absolute;top:0;left:44px;width:1.5px;height:100%;
+  background:var(--margin);pointer-events:none;
+}
+
+/* Q BADGE */
+.q-badge{
+  font-family:'Caveat',cursive;font-size:.78rem;font-weight:700;
+  color:var(--bg);background:var(--accent-2);
+  padding:.1rem .6rem;border-radius:100px;letter-spacing:.1em;
+  display:inline-block;margin-bottom:.75rem;position:relative;z-index:1;
+}
+
+/* Q TEXT */
+.q-text{
+  background:var(--highlight-2);border-left:3px solid var(--accent-2);
+  border-radius:0 8px 8px 0;padding:.65rem 1rem;
+  font-style:italic;font-size:.97rem;color:var(--text);
+  margin-bottom:1.1rem;position:relative;z-index:1;
+}
+
+/* GIVEN */
+.given{
+  font-family:'DM Mono',monospace;font-size:.82rem;color:var(--text-muted);
+  margin-bottom:.9rem;background:var(--paper-2);border-radius:8px;
+  padding:.5rem 1rem;border:1px solid var(--line-2);position:relative;z-index:1;line-height:1.7;
+}
+
+/* THEORY */
+.theory-block{
+  background:var(--highlight);border-left:3.5px solid var(--accent);
+  border-radius:0 12px 12px 0;padding:1rem 1.4rem;
+  margin-bottom:1.6rem;font-style:italic;font-size:1rem;
+  color:var(--text-muted);position:relative;z-index:1;
+}
+
+/* LABEL */
+.lbl{
+  display:inline-block;font-family:'Caveat',cursive;font-size:.82rem;
+  font-weight:700;color:var(--accent);letter-spacing:.12em;text-transform:uppercase;
+  margin-bottom:.6rem;position:relative;z-index:1;
+}
+
+/* STEPS */
+.step{display:flex;gap:.9rem;margin-bottom:.9rem;position:relative;z-index:1;}
+.step-n{font-family:'Caveat',cursive;font-size:.85rem;color:var(--accent);font-weight:700;min-width:22px;padding-top:.1rem;flex-shrink:0;}
+.step-c{font-size:1rem;flex:1;color:var(--text)}
+
+/* FORMULA BOX */
+.fbox{
+  background:var(--paper-2);border:1.5px solid var(--line);
+  border-radius:12px;padding:1rem 1.8rem;
+  text-align:center;margin:1.3rem 0;position:relative;z-index:1;overflow-x:auto;
+}
+.fbox.result{
+  border-color:var(--accent);border-width:2px;
+  background:linear-gradient(135deg,var(--highlight),var(--paper-2));
+  box-shadow:0 2px 18px rgba(176,125,16,.12);
+  animation:shimmer 4s ease-in-out infinite;
+}
+@keyframes shimmer{
+  0%,100%{box-shadow:0 2px 18px rgba(176,125,16,.12)}
+  50%{box-shadow:0 4px 32px rgba(176,125,16,.28)}
+}
+.result-tag{
+  position:absolute;top:-.65rem;right:1rem;
+  font-family:'Caveat',cursive;font-size:.75rem;
+  color:var(--accent);background:var(--paper);
+  padding:.05rem .45rem;border:1px solid var(--accent);border-radius:100px;
+}
+
+/* NOTE */
+.note{
+  background:var(--highlight-2);border:1px dashed var(--accent);
+  border-radius:9px;padding:.75rem 1.2rem;margin:1rem 0;
+  font-family:'Caveat',cursive;font-size:1.05rem;color:var(--text-muted);
+  position:relative;z-index:1;
+}
+.note strong{color:var(--accent)}
+
+/* DIAGRAMS */
+.diagram-wrap{
+  background:var(--diagram-bg);border:1px solid var(--line-2);
+  border-radius:16px;padding:1.6rem;
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;margin:1.4rem 0;
+  box-shadow:inset 0 2px 10px rgba(0,0,0,.04);
+}
+.diagram-wrap svg{max-width:100%;height:auto;display:block}
+.diagram-cap{
+  text-align:center;font-family:'Caveat',cursive;font-size:.88rem;
+  color:var(--text-muted);margin-top:-.5rem;margin-bottom:1.2rem;font-style:italic;
+}
+
+/* SVG animation */
+.dp{stroke-dasharray:900;stroke-dashoffset:900;animation:drawPath 1.4s ease forwards;animation-play-state:paused;}
+.section.reveal .dp{animation-play-state:running}
+.dp2{animation-delay:.3s}.dp3{animation-delay:.6s}.dp4{animation-delay:.9s}
+
+/* SUB-TITLE */
+.sub-title{
+  font-family:'Caveat',cursive;font-size:1.5rem;font-weight:600;color:var(--accent-2);
+  display:flex;align-items:center;gap:.5rem;margin-bottom:1rem;margin-top:2.2rem;
+}
+.sub-title::before{content:'→';font-size:1.2rem;color:var(--accent)}
+
+/* 2-col */
+.two{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem;margin:1.4rem 0;}
+
+/* DIVIDER */
+.divider{display:flex;align-items:center;gap:1rem;margin:3.5rem 0;opacity:.45;}
+.divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--accent);}
+.divider span{font-family:'Caveat',cursive;color:var(--accent);font-size:1.4rem;}
+
+/* FOOTER */
+.footer{
+  text-align:center;padding:3rem 2rem;border-top:1px solid var(--line);
+  font-family:'Caveat',cursive;font-size:1.1rem;color:var(--text-muted);
+}
+.footer span{color:var(--accent)}
+
+p{position:relative;z-index:1;margin-bottom:.7rem}
+strong{color:var(--accent);font-weight:600}
+em{color:var(--text-muted)}
+small{font-size:.88rem}
+
+@keyframes riseUp{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes arrowBounce{0%,100%{transform:rotate(45deg) translateY(0)}50%{transform:rotate(45deg) translateY(7px)}}
+@keyframes drawPath{from{stroke-dashoffset:900}to{stroke-dashoffset:0}}
+
+.katex-display{padding:.4rem 0;overflow-x:auto}
+.katex{font-size:1.08em}
+
+@media(max-width:620px){
+  .two{grid-template-columns:1fr}
+  .nav-links{display:none}
+  .hero::after{left:42px}
+  .author-card{flex-direction:column;text-align:center;padding:1.4rem}
+  .author-info{text-align:center}
+}
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<nav class="nav" id="nav">
+  <div class="nav-brand">⚡ Ch. 2 & 3 · XII Physics</div>
+  <ul class="nav-links">
+    <li><a href="#s1">2A · Potential</a></li>
+    <li><a href="#s2">2B · Capacitors</a></li>
+    <li><a href="#s3">3A · EMF & R</a></li>
+    <li><a href="#s4">3B · Resistivity</a></li>
+    <li><a href="#s5">3C · Kirchhoff</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="toggle" id="themeToggle" aria-label="Toggle theme">
+      <span class="toggle-icon icon-sun">☀</span>
+      <span class="toggle-icon icon-moon">☾</span>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="ink-orb" style="width:420px;height:420px;background:var(--accent);top:-120px;right:-100px;--dur:14s"></div>
+  <div class="ink-orb" style="width:300px;height:300px;background:var(--accent-2);bottom:-80px;left:-60px;--dur:11s;animation-delay:-4s"></div>
+  <div class="ink-orb" style="width:200px;height:200px;background:var(--accent-3);bottom:20%;left:15%;--dur:16s;animation-delay:-7s"></div>
+
+  <div class="hero-eyebrow">Class XII · Physics · Chapter 2 &amp; 3 · Fair Notes</div>
+  <h1 class="hero-title">Exercise<br><span>Solutions</span></h1>
+  <p class="hero-sub">Ch 2 — Electrostatic Potential &amp; Capacitance &nbsp;·&nbsp; Ch 3 — Current Electricity ✏️</p>
+
+  <div class="author-card">
+    <img src="https://plain-apac-prod-public.komododecks.com/202605/22/nHDi45aen4uwI6zP8WGI/image.jpg"
+      alt="Akshit Tyagi" class="author-photo" onerror="this.style.display='none'">
+    <div class="author-info">
+      <div class="author-label">Made with ♥ by</div>
+      <div class="author-name">Akshit Tyagi</div>
+      <div class="author-desc">Class XII · Physics Fair Notes</div>
+    </div>
+  </div>
+
+  <div class="chips">
+    <a class="chip" href="#s1">2A · Potential</a>
+    <a class="chip" href="#s2">2B · Capacitors</a>
+    <a class="chip" href="#s3">3A · EMF &amp; R</a>
+    <a class="chip" href="#s4">3B · Resistivity</a>
+    <a class="chip" href="#s5">3C · Kirchhoff</a>
+  </div>
+  <div class="scroll-cue"><span>Begin</span><div class="scroll-arrow"></div></div>
+</section>
+
+<!-- =================== MAIN =================== -->
+<div class="container">
+
+<!-- ============================================================
+     CHAPTER 2 HEADER
+============================================================= -->
+<div class="chapter-divider">
+  <div class="chapter-divider-inner">⚡ Chapter 2 — Electrostatic Potential &amp; Capacitance</div>
+</div>
+
+<!-- ============================================================
+     SECTION 1 — ELECTRIC POTENTIAL  (Q 2.1, 2.2, 2.3, 2.4)
+============================================================= -->
+<section class="section" id="s1">
+  <div class="section-header">
+    <div class="s-num">01</div>
+    <div class="s-meta">
+      <div class="s-title">Electric Potential</div>
+      <span class="s-tag">Q 2.1 · 2.2 · 2.3 · 2.4</span>
+    </div>
+  </div>
+
+  <div class="theory-block">
+    Potential $V = kq/r$. For zero potential, contributions from all charges add to zero. For a conductor, $E = 0$ inside and $E = \sigma/\varepsilon_0$ just outside the surface.
+  </div>
+
+  <!-- Q 2.1 -->
+  <div class="paper margin">
+    <div class="q-badge">Q 2.1</div>
+    <div class="q-text">Two charges $5\times10^{-8}$ C and $-3\times10^{-8}$ C are located 16 cm apart. At what point(s) on the line joining the two charges is the electric potential zero? Take the potential at infinity to be zero.</div>
+    <div class="given">$q_1 = 5\times10^{-8}$ C at origin O, $q_2 = -3\times10^{-8}$ C at 16 cm from O</div>
+
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 560 90" xmlns="http://www.w3.org/2000/svg" width="560" height="90">
+        <defs>
+          <marker id="aR" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto"><path d="M0,0L0,7L7,3.5z" style="fill:var(--c-gold)"/></marker>
+        </defs>
+        <line x1="30" y1="45" x2="520" y2="45" style="stroke:var(--line);stroke-width:1.5" class="dp"/>
+        <!-- q1 -->
+        <circle cx="130" cy="45" r="22" style="fill:var(--c-red);opacity:.85"/>
+        <text x="130" y="50" text-anchor="middle" style="font-family:Caveat,cursive;font-size:13px;fill:white">+q₁</text>
+        <!-- q2 -->
+        <circle cx="370" cy="45" r="22" style="fill:var(--c-blue);opacity:.85"/>
+        <text x="370" y="50" text-anchor="middle" style="font-family:Caveat,cursive;font-size:13px;fill:white">−q₂</text>
+        <!-- P1 internal -->
+        <line x1="130" y1="70" x2="370" y2="70" style="stroke:var(--c-gold);stroke-width:1.2;stroke-dasharray:4 3" class="dp dp2"/>
+        <circle cx="263" cy="45" r="5" style="fill:var(--c-green)"/>
+        <text x="263" y="30" text-anchor="middle" style="font-family:Caveat,cursive;font-size:11px;fill:var(--c-green)">P₁ (x=10 cm)</text>
+        <text x="195" y="85" text-anchor="middle" style="font-family:Caveat,cursive;font-size:10px;fill:var(--c-gold)">10 cm</text>
+        <text x="315" y="85" text-anchor="middle" style="font-family:Caveat,cursive;font-size:10px;fill:var(--c-gold)">6 cm</text>
+        <!-- P2 external -->
+        <circle cx="480" cy="45" r="5" style="fill:var(--c-purple)"/>
+        <text x="480" y="30" text-anchor="middle" style="font-family:Caveat,cursive;font-size:11px;fill:var(--c-purple)">P₂ (x=40 cm)</text>
+        <text x="303" y="15" text-anchor="middle" style="font-family:Caveat,cursive;font-size:10px;fill:var(--text-muted)">← 16 cm →</text>
+        <line x1="130" y1="10" x2="370" y2="10" style="stroke:var(--text-muted);stroke-width:1" marker-end="url(#aR)" class="dp dp3"/>
+      </svg>
+    </div>
+    <p class="diagram-cap">P₁ — internal zero potential point; P₂ — external zero potential point</p>
+
+    <div class="sub-title">Internal Point P₁</div>
+    <div class="step"><span class="step-n">①</span>
+      <div class="step-c">Let P₁ be at distance $x$ from $q_1$, so distance from $q_2$ is $(16-x)$ cm. For $V = 0$:
+        $$\frac{kq_1}{x} + \frac{kq_2}{16-x} = 0 \implies \frac{5}{x} = \frac{3}{16-x}$$
+      </div>
+    </div>
+    <div class="step"><span class="step-n">②</span>
+      <div class="step-c">$$5(16-x) = 3x \implies 80 = 8x$$</div>
+    </div>
+    <div class="fbox result">
+      <span class="result-tag">★ P₁</span>
+      $$x = 10 \text{ cm from } q_1 \quad \text{(between the charges)}$$
+    </div>
+
+    <div class="sub-title">External Point P₂</div>
+    <div class="step"><span class="step-n">①</span>
+      <div class="step-c">Let P₂ be at distance $x$ from $q_1$, beyond $q_2$. Distance from $q_2$ is $(x-16)$ cm:
+        $$\frac{5}{x} = \frac{3}{x-16} \implies 5(x-16) = 3x \implies 2x = 80$$
+      </div>
+    </div>
+    <div class="fbox result">
+      <span class="result-tag">★ P₂</span>
+      $$x = 40 \text{ cm from } q_1 \quad \text{(i.e. 24 cm beyond }q_2\text{)}$$
+    </div>
+  </div>
+
+  <!-- Q 2.2 -->
+  <div class="paper margin">
+    <div class="q-badge">Q 2.2</div>
+    <div class="q-text">A regular hexagon of side 10 cm has a charge $5\ \mu$C at each of its vertices. Calculate the potential at the centre of the hexagon.</div>
+    <div class="given">Side $= r = 10$ cm $= 0.1$ m, $q = 5\times10^{-6}$ C at each of 6 vertices</div>
+
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 240 220" xmlns="http://www.w3.org/2000/svg" width="240" height="220">
+        <!-- Hexagon vertices: centre at 120,110, radius 80 -->
+        <polygon points="120,30 189,70 189,150 120,190 51,150 51,70"
+          style="fill:none;stroke:var(--line);stroke-width:1.5" class="dp"/>
+        <!-- Lines from centre to vertices -->
+        <line x1="120" y1="110" x2="120" y2="30"  style="stroke:var(--c-gold);stroke-width:1;stroke-dasharray:3 3" class="dp dp2"/>
+        <line x1="120" y1="110" x2="189" y2="70"  style="stroke:var(--c-gold);stroke-width:1;stroke-dasharray:3 3" class="dp dp2"/>
+        <line x1="120" y1="110" x2="189" y2="150" style="stroke:var(--c-gold);stroke-width:1;stroke-dasharray:3 3" class="dp dp2"/>
+        <line x1="120" y1="110" x2="120" y2="190" style="stroke:var(--c-gold);stroke-width:1;stroke-dasharray:3 3" class="dp dp2"/>
+        <line x1="120" y1="110" x2="51"  y2="150" style="stroke:var(--c-gold);stroke-width:1;stroke-dasharray:3 3" class="dp dp2"/>
+        <line x1="120" y1="110" x2="51"  y2="70"  style="stroke:var(--c-gold);stroke-width:1;stroke-dasharray:3 3" class="dp dp2"/>
+        <!-- Charge circles -->
+        <circle cx="120" cy="30"  r="10" style="fill:var(--c-red);opacity:.85"/>
+        <circle cx="189" cy="70"  r="10" style="fill:var(--c-red);opacity:.85"/>
+        <circle cx="189" cy="150" r="10" style="fill:var(--c-red);opacity:.85"/>
+        <circle cx="120" cy="190" r="10" style="fill:var(--c-red);opacity:.85"/>
+        <circle cx="51"  cy="150" r="10" style="fill:var(--c-red);opacity:.85"/>
+        <circle cx="51"  cy="70"  r="10" style="fill:var(--c-red);opacity:.85"/>
+        <!-- Charge labels -->
+        <text x="120" y="34"  text-anchor="middle" style="font-family:Caveat,cursive;font-size:9px;fill:white">q</text>
+        <text x="189" y="74"  text-anchor="middle" style="font-family:Caveat,cursive;font-size:9px;fill:white">q</text>
+        <text x="189" y="154" text-anchor="middle" style="font-family:Caveat,cursive;font-size:9px;fill:white">q</text>
+        <text x="120" y="194" text-anchor="middle" style="font-family:Caveat,cursive;font-size:9px;fill:white">q</text>
+        <text x="51"  y="154" text-anchor="middle" style="font-family:Caveat,cursive;font-size:9px;fill:white">q</text>
+        <text x="51"  y="74"  text-anchor="middle" style="font-family:Caveat,cursive;font-size:9px;fill:white">q</text>
+        <!-- Centre O -->
+        <circle cx="120" cy="110" r="5" style="fill:var(--c-green)"/>
+        <text x="133" y="115" style="font-family:Caveat,cursive;font-size:13px;fill:var(--c-green)">O</text>
+        <!-- r label -->
+        <text x="160" y="78" style="font-family:Caveat,cursive;font-size:11px;fill:var(--c-gold)">r = 10 cm</text>
+      </svg>
+    </div>
+    <p class="diagram-cap">All 6 vertices are equidistant from centre O — distance = side = 10 cm</p>
+
+    <div class="step"><span class="step-n">①</span>
+      <div class="step-c">For a regular hexagon, each vertex is at distance $r = $ side $= 0.1$ m from the centre. Total potential:
+        $$V = 6\times\frac{kq}{r}$$
+      </div>
+    </div>
+    <div class="step"><span class="step-n">②</span>
+      <div class="step-c">$$V = 6\times\frac{9\times10^9 \times 5\times10^{-6}}{0.1} = 6\times 4.5\times10^5$$</div>
+    </div>
+    <div class="fbox result">
+      <span class="result-tag">★ Answer</span>
+      $$V = 2.7\times10^6 \text{ V} = 2.7 \text{ MV}$$
+    </div>
+  </div>
+
+  <!-- Q 2.3 -->
+  <div class="paper margin">
+    <div class="q-badge">Q 2.3</div>
+    <div class="q-text">Two charges $2\ \mu$C and $-2\ \mu$C are placed at points A and B 6 cm apart. (a) Identify an equipotential surface of the system. (b) What is the direction of the electric field at every point on this surface?</div>
+    <div class="given">$q_A = +2\,\mu$C, $q_B = -2\,\mu$C, $AB = 6$ cm — an electric dipole</div>
+
+    <div class="sub-title">Part (a) — Equipotential Surface</div>
+    <div class="step"><span class="step-n">①</span>
+      <div class="step-c">Since the charges are equal and opposite, the zero-potential surface is the plane that perpendicularly bisects the line segment AB. At any point P on this plane, $r_{PA} = r_{PB}$, so:
+        $$V = \frac{kq_A}{r_{PA}} + \frac{kq_B}{r_{PB}} = \frac{k(+2\mu C)}{r} + \frac{k(-2\mu C)}{r} = 0$$
+      </div>
+    </div>
+    <div class="fbox result">
+      <span class="result-tag">★ (a)</span>
+      <p style="margin:.3rem 0">The $V = 0$ equipotential surface is the plane passing through the midpoint of AB and perpendicular to AB.</p>
+    </div>
+
+    <div class="sub-title">Part (b) — Direction of E on the surface</div>
+    <div class="step"><span class="step-n">①</span>
+      <div class="step-c">Electric field is always perpendicular to an equipotential surface. On the perpendicular bisector plane, by symmetry, the resultant field points along the direction from $A\ (+)$ to $B\ (-)$, i.e., normal to this plane — from the positive charge to the negative charge.
+      </div>
+    </div>
+    <div class="fbox result">
+      <span class="result-tag">★ (b)</span>
+      <p style="margin:.3rem 0">The field $\vec{E}$ is perpendicular to the equipotential surface, directed from $A\ (+2\,\mu\text{C})$ toward $B\ (-2\,\mu\text{C})$.</p>
+    </div>
+  </div>
+
+  <!-- Q 2.4 -->
+  <div class="paper margin">
+    <div class="q-badge">Q 2.4</div>
+    <div class="q-text">A spherical conductor of radius 12 cm has a charge of $1.6\times10^{-7}$ C distributed uniformly on its surface. What is the electric field (a) inside the sphere, (b) just outside the sphere, (c) at a point 18 cm from the centre?</div>
+    <div class="given">$R = 0.12$ m, $q = 1.6\times10^{-7}$ C</div>
+
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 440 180" xmlns="http://www.w3.org/2000/svg" width="440" height="180">
+        <defs>
+          <marker id="eOut" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto"><path d="M0,0L0,7L7,3.5z" style="fill:var(--c-red)"/></marker>
+          <radialGradient id="sphGrad" cx="40%" cy="35%">
+            <stop offset="0%" style="stop-color:var(--c-blue);stop-opacity:.4"/>
+            <stop offset="100%" style="stop-color:var(--c-blue);stop-opacity:.12"/>
+          </radialGradient>
+        </defs>
+        <!-- Sphere -->
+        <circle cx="180" cy="90" r="70" style="fill:url(#sphGrad);stroke:var(--c-blue);stroke-width:2"/>
+        <!-- Inside: E = 0 label -->
+        <text x="180" y="88" text-anchor="middle" style="font-family:Caveat,cursive;font-size:18px;fill:var(--c-blue)">E = 0</text>
+        <text x="180" y="108" text-anchor="middle" style="font-family:Caveat,cursive;font-size:11px;fill:var(--text-muted)">(inside conductor)</text>
+        <!-- Surface arrows outward -->
+        <line x1="250" y1="90" x2="305" y2="90"  style="stroke:var(--c-red);stroke-width:2" marker-end="url(#eOut)" class="dp dp2"/>
+        <line x1="230" y1="41" x2="268" y2="11"  style="stroke:var(--c-red);stroke-width:2" marker-end="url(#eOut)" class="dp dp2"/>
+        <line x1="230" y1="138" x2="268" y2="168" style="stroke:var(--c-red);stroke-width:2" marker-end="url(#eOut)" class="dp dp2"/>
+        <text x="330" y="94" style="font-family:Caveat,cursive;font-size:11px;fill:var(--c-red)">(b) just outside</text>
+        <!-- Point at 18 cm -->
+        <circle cx="370" cy="90" r="5" style="fill:var(--c-green)"/>
+        <text x="370" y="78" text-anchor="middle" style="font-family:Caveat,cursive;font-size:11px;fill:var(--c-green)">P</text>
+        <text x="370" y="115" text-anchor="middle" style="font-family:Caveat,cursive;font-size:10px;fill:var(--c-green)">(c) r=18cm</text>
+        <line x1="180" y1="90" x2="370" y2="90" style="stroke:var(--c-gold);stroke-width:1;stroke-dasharray:4 3" class="dp dp3"/>
+        <text x="280" y="85" text-anchor="middle" style="font-family:Caveat,cursive;font-size:10px;fill:var(--c-gold)">18 cm</text>
+        <!-- R label -->
+        <line x1="180" y1="90" x2="247" y2="90" style="stroke:var(--c-blue);stroke-width:1;stroke-dasharray:3 3"/>
+        <text x="215" y="80" text-anchor="middle" style="font-family:Caveat,cursive;font-size:10px;fill:var(--c-blue)">R=12cm</text>
+      </svg>
+    </div>
+    <p class="diagram-cap">E is zero inside; field emerges radially outward from the surface</p>
+
+    <div class="sub-title">Part (a) — Inside</div>
+    <div class="fbox result">
+      <span class="result-tag">★ (a)</span>
+      $$E_{\text{inside}} = 0 \quad \text{(conductor: all charge resides on surface)}$$
+    </div>
+
+    <div class="sub-title">Part (b) — Just outside $(r = R = 0.12\text{ m})$</div>
+    <div class="step"><span class="step-n">①</span>
+      <div class="step-c">$$E = \frac{kq}{R^2} = \frac{9\times10^9\times1.6\times10^{-7}}{(0.12)^2} = \frac{1440}{0.0144}$$</div>
+    </div>
+    <div class="fbox result">
+      <span class="result-tag">★ (b)</span>
+      $$E = 1\times10^5 \text{ N/C, directed radially outward}$$
+    </div>
+
+    <div class="sub-title">Part (c) — At $r = 18$ cm $= 0.18$ m</div>
+    <div class="step"><span class="step-n">①</span>
+      <div class="step-c">$$E = \frac{kq}{r^2} = \frac{9\times10^9\times1.6\times10^{-7}}{(0.18)^2} = \frac{1440}{0.0324}$$</div>
+    </div>
+    <div class="fbox result">
+      <span class="result-tag">★ (c)</span>
+      $$E \approx 4.44\times10^4 \text{ N/C}$$
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 2 — CAPACITORS  (Q 2.5–2.11)
+============================================================= -->
+<section class="section" id="s2">
+  <div class="section-header">
+    <div class="s-num">02</div>
+    <div class="s-meta">
+      <div class="s-title">Capacitors &amp; Energy</div>
+      <span class="s-tag">Q 2.5 · 2.6 · 2.7 · 2.8 · 2.9 · 2.10 · 2.11</span>
+    </div>
+  </div>
+
+  <div class="theory-block">
+    $C = \varepsilon_0 A/d$ (parallel plate), $C_{\text{dielectric}} = \kappa C_0$. Series: $1/C = \sum 1/C_i$. Parallel: $C = \sum C_i$. Energy: $U = \tfrac{1}{2}CV^2 = Q^2/2C$.
+  </div>
+
+  <!-- Q 2.5 -->
+  <div class="paper margin">
+    <div class="q-badge">Q 2.5</div>
+    <div class="q-text">A parallel plate capacitor with air between the plates has a capacitance of 8 pF ($1\text{ pF} = 10^{-12}$ F). What will be the capacitance if the distance between the plates is reduced by half, and the space between them is filled with a substance of dielectric constant 6?</div>
+    <div class="given">$C_0 = 8$ pF, new $d' = d/2$, dielectric $\kappa = 6$</div>
+    <div class="step"><span class="step-n">①</span>
+      <div class="step-c">Original: $C_0 = \dfrac{\varepsilon_0 A}{d} = 8$ pF.
+        New: distance halved and dielectric inserted:
+        $$C' = \frac{\kappa\varepsilon_0 A}{d/2} = \frac{2\kappa\varepsilon_0 A}{d} = 2\kappa C_0$$
+      </div>
+    </div>
+    <div class="step"><span class="step-n">②</span>
+      <div class="step-c">$$C' = 2\times6\times8 = 96 \text{ pF}$$</div>
+    </div>
+    <div class="fbox result">
+      <span class="result-tag">★ Answer</span>
+      $$C' = 96 \text{ pF}$$
+    </div>
+  </div>
+
+  <!-- Q 2.6 -->
+  <div class="paper margin">
+    <div class="q-badge">Q 2.6</div>
+    <div class="q-text">Three capacitors each of capacitance 9 pF are connected in series. (a) What is the total capacitance of the combination? (b) What is the potential difference across each capacitor if the combination is connected to a 120 V supply?</div>
+    <div class="given">$C_1 = C_2 = C_3 = 9$ pF, series connection, $V = 120$ V</div>
+
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 500 100" xmlns="http://www.w3.org/2000/svg" width="500" height="100">
+        <defs>
+          <marker id="aArr" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto"><path d="M0,0L0,7L7,3.5z" style="fill:var(--c-gold)"/></marker>
+        </defs>
+        <!-- Wire -->
+        <line x1="30"  y1="50" x2="100" y2="50" style="stroke:var(--c-ink);stroke-width:2" class="dp"/>
+        <line x1="180" y1="50" x2="240" y2="50" style="stroke:var(--c-ink);stroke-width:2" class="dp"/>
+        <line x1="320" y1="50" x2="380" y2="50" style="stroke:var(--c-ink);stroke-width:2" class="dp"/>
+        <line x1="460" y1="50" x2="510" y2="50" style="stroke:var(--c-ink);stroke-width:2" class="dp"/>
+        <!-- Capacitor 1 -->
+        <line x1="100" y1="25" x2="100" y2="75" style="stroke:var(--c-blue);stroke-width:3"/>
+        <line x1="110" y1="25" x2="110" y2="75" style="stroke:var(--c-blue);stroke-width:3"/>
+        <line x1="110" y1="50" x2="180" y2="50" style="stroke:var(--c-ink);stroke-width:2" class="dp"/>
+        <!-- Capacitor 2 -->
+        <line x1="240" y1="25" x2="240" y2="75" style="stroke:var(--c-blue);stroke-width:3"/>
+        <line x1="250" y1="25" x2="250" y2="75" style="stroke:var(--c-blue);stroke-width:3"/>
+        <line x1="250" y1="50" x2="320" y2="50" style="stroke:var(--c-ink);stroke-width:2" class="dp"/>
+        <!-- Capacitor 3 -->
+        <line x1="380" y1="25" x2="380" y2="75" style="stroke:var(--c-blue);stroke-width:3"/>
+        <line x1="390" y1="25" x2="390" y2="75" style="stroke:var(--c-blue);stroke-width:3"/>
+        <line x1="390" y1="50" x2="460" y2="50" style="stroke:var(--c-ink);stroke-width:2" class="dp"/>
+        <!-- Labels -->
+        <text x="105" y="15" text-anchor="middle" style="font-family:Caveat,cursive;font-size:13px;fill:var(--c-blue)">9 pF</text>
+        <text x="245" y="15" text-anchor="middle" style="font-family:Caveat,cursive;font-size:13px;fill:var(--c-blue)">9 pF</text>
+        <text x="385" y="15" text-anchor="middle" style="font-family:Caveat,cursive;font-size:13px;fill:var(--c-blue)">9 pF</text>
+        <text x="30"  y="40" style="font-family:Caveat,cursive;font-size:12px;fill:var(--c-red)">+</text>
+        <text x="495" y="40" style="font-family:Caveat,cursive;font-size:12px;fill:var(--c-blue)">−</text>
+        <text x="265" y="88" text-anchor="middle" style="font-family:Caveat,cursive;font-size:12px;fill:var(--c-gold)">← 120 V →</text>
+      </svg>
+    </div>
+    <p class="diagram-cap">Three 9 pF capacitors in series — same charge on each, voltage divides equally</p>
+
+    <div class="sub-title">Part (a) — Total Capacitance</div>
+    <div class="step"><span class="step-n">①</span>
+      <div class="step-c">$$\frac{1}{C} = \frac{1}{9}+\frac{1}{9}+\frac{1}{9} = \frac{3}{9} = \frac{1}{3}$$</div>
+    </div>
+    <div class="fbox result">
+      <span class="result-tag">★ (a)</span>
+      $$C = 3 \text{ pF}$$
+    </div>
+    <div class="sub-title">Part (b) — Voltage across each</div>
+    <div class="step"><span class="step-n">①</span>
+      <div class="step-c">In series, same charge $Q = CV = 3\times10^{-12}\times120 = 3.6\times10^{-10}$ C on each. So $V_{\text{each}} = Q/C_i$:
+        $$V_{\text{each}} = \frac{120}{3} = 40 \text{ V}$$
+      </div>
+    </div>
+    <div class="fbox result">
+      <span class="result-tag">★ (b)</span>
+      $$V_{\text{across each}} = 40 \text{ V}$$
+    </div>
+  </div>
+
+  <!-- Q 2.7 -->
+  <div class="paper margin">
+    <div class="q-badge">Q 2.7</div>
+    <div class="q-text">Three capacitors of capacitances 2 pF, 3 pF and 4 pF are connected in parallel. (a) What is the total capacitance of the combination? (b) Determine the charge on each capacitor if the combination is connected to a 100 V supply.</div>
+    <div class="given">$C_1 = 2$ pF, $C_2 = 3$ pF, $C_3 = 4$ pF, parallel, $V = 100$ V</div>
+    <div class="sub-title">Part (a) — Total Capacitance</div>
+    <div class="step"><span class="step-n">①</span>
+      <div class="step-c">$$C = C_1 + C_2 + C_3 = 2 + 3 + 4 = 9 \text{ pF}$$</div>
+    </div>
+    <div class="fbox result">
+      <span class="result-tag">★ (a)</span>
+      $$C_{\text{total}} = 9 \text{ pF}$$
+    </div>
+    <div class="sub-title">Part (b) — Charge on each</div>
+    <div class="step"><span class="step-n">①</span>
+      <div class="step-c">In parallel, same $V = 100$ V across each:
+        $$Q_1 = C_1 V = 2\times10^{-12}\times100 = 2\times10^{-10} \text{ C} = 200 \text{ pC}$$
+        $$Q_2 = 3\times10^{-12}\times100 = 3\times10^{-10} \text{ C} = 300 \text{ pC}$$
+        $$Q_3 = 4\times10^{-12}\times100 = 4\times10^{-10} \text{ C} = 400 \text{ pC}$$
+      </div>
+    </div>
+    <div class="fbox result">
+      <span class="result-tag">★ (b)</span>
+      <p style="margin:.2rem 0">$Q_1 = 200$ pC, $Q_2 = 300$ pC, $Q_3 = 400$ pC</p>
+    </div>
+  </div>
+
+  <!-- Q 2.8 -->
+  <div class="paper margin">
+    <div class="q-badge">Q 2.8</div>
+    <div class="q-text">In a parallel plate capacitor with air between the plates, each plate has an area of $6\times10^{-3}$ m² and the distance between the plates is 3 mm. Calculate the capacitance of the capacitor. If this capacitor is connected to a 100 V supply, what is the charge on each plate?</div>
+    <div class="given">$A = 6\times10^{-3}$ m², $d = 3\times10^{-3}$ m, $V = 100$ V</div>
+    <div class="step"><span class="step-n">①</span>
+      <div class="step-c">$$C = \frac{\varepsilon_0 A}{d} = \frac{8.854\times10^{-12}\times6\times10^{-3}}{3\times10^{-3}} = 8.854\times10^{-12}\times2$$</div>
+    </div>
+    <div class="fbox result">
+      <span class="result-tag">★ C</span>
+      $$C = 17.71\times10^{-12} \text{ F} \approx 17.7 \text{ pF}$$
+    </div>
+    <div class="step"><span class="step-n">②</span>
+      <div class="step-c">$$Q = CV = 17.71\times10^{-12}\times100$$</div>
+    </div>
+    <div class="fbox result">
+      <span class="result-tag">★ Q</span>
+      $$Q = 1.771\times10^{-9} \text{ C} \approx 1.77 \text{ nC}$$
+    </div>
+  </div>
+
+  <!-- Q 2.9 -->
+  <div class="paper margin">
+    <div class="q-badge">Q 2.9</div>
+    <div class="q-text">Explain what would happen if in the capacitor given in Exercise 2.8, a 3 mm thick mica sheet (of dielectric constant $= 6$) were inserted between the plates, (a) while the voltage supply remained connected, (b) after the supply was disconnected.</div>
+    <div class="given">Same capacitor: $C_0 = 17.7$ pF, mica $\kappa = 6$, $d_{\text{mica}} = d = 3$ mm. New $C' = \kappa C_0 = 6\times17.7 = 106.2$ pF</div>
+
+    <div class="sub-title">Part (a) — Voltage supply remains connected</div>
+    <div class="step"><span class="step-n">①</span>
+      <div class="step-c">Voltage across plates stays fixed at $V = 100$ V (battery holds it). Capacitance increases to $C' = 106.2$ pF. New charge:
+        $$Q' = C'V = 106.2\times10^{-12}\times100 = 1.062\times10^{-8} \text{ C}$$
+      </div>
+    </div>
+    <div class="fbox result">
+      <span class="result-tag">★ (a)</span>
+      <p style="margin:.3rem 0">$V$ unchanged at 100 V. Capacitance increases to 106.2 pF. Charge increases from 1.77 nC to 10.62 nC — extra charge flows from battery.</p>
+    </div>
+
+    <div class="sub-title">Part (b) — Supply disconnected first</div>
+    <div class="step"><span class="step-n">①</span>
+      <div class="step-c">Charge $Q = 1.77$ nC is now fixed (no path for charge to change). Capacitance increases to $C' = 106.2$ pF. New voltage:
+        $$V' = \frac{Q}{C'} = \frac{1.771\times10^{-9}}{106.2\times10^{-12}} = \frac{1.771}{0.1062}\approx 16.7 \text{ V}$$
+      </div>
+    </div>
+    <div class="fbox result">
+      <span class="result-tag">★ (b)</span>
+      <p style="margin:.3rem 0">$Q$ unchanged. Capacitance rises to 106.2 pF. Voltage drops from 100 V to $\approx 16.7$ V.</p>
+    </div>
+  </div>
+
+  <!-- Q 2.10 -->
+  <div class="paper margin">
+    <div class="q-badge">Q 2.10</div>
+    <div class="q-text">A 12 pF capacitor is connected to a 50 V battery. How much electrostatic energy is stored in the capacitor?</div>
+    <div class="given">$C = 12\times10^{-12}$ F, $V = 50$ V</div>
+    <div class="step"><span class="step-n">①</span>
+      <div class="step-c">$$U = \frac{1}{2}CV^2 = \frac{1}{2}\times12\times10^{-12}\times(50)^2 = \frac{1}{2}\times12\times10^{-12}\times2500$$</div>
+    </div>
+    <div class="fbox result">
+      <span class="result-tag">★ Answer</span>
+      $$U = 1.5\times10^{-8} \text{ J} = 15 \text{ nJ}$$
+    </div>
+  </div>
+
+  <!-- Q 2.11 -->
+  <div class="paper margin">
+    <div class="q-badge">Q 2.11</div>
+    <div class="q-text">A 600 pF capacitor is charged by a 200 V supply. It is then disconnected from the supply and is connected to another uncharged 600 pF capacitor. How much electrostatic energy is lost in the process?</div>
+    <div class="given">$C = 600$ pF, $V_i = 200$ V; second capacitor $C = 600$ pF, uncharged</div>
+    <div class="step"><span class="step-n">①</span>
+      <div class="step-c">Initial charge and energy:
+        $$Q = CV = 600\times10^{-12}\times200 = 1.2\times10^{-7} \text{ C}$$
+        $$U_i = \tfrac{1}{2}CV^2 = \tfrac{1}{2}\times600\times10^{-12}\times(200)^2 = 1.2\times10^{-5} \text{ J}$$
+      </div>
+    </div>
+    <div class="step"><span class="step-n">②</span>
+      <div class="step-c">After connection, charge $Q$ distributes equally (identical capacitors). Common potential:
+        $$V_f = \frac{Q}{C_1+C_2} = \frac{1.2\times10^{-7}}{1200\times10^{-12}} = 100 \text{ V}$$
+      </div>
+    </div>
+    <div class="step"><span class="step-n">③</span>
+      <div class="step-c">Final energy:
+        $$U_f = \tfrac{1}{2}(C_1+C_2)V_f^2 = \tfrac{1}{2}\times1200\times10^{-12}\times(100)^2 = 6\times10^{-6} \text{ J}$$
+      </div>
+    </div>
+    <div class="step"><span class="step-n">④</span>
+      <div class="step-c">$$\Delta U = U_i - U_f = 1.2\times10^{-5} - 6\times10^{-6} = 6\times10^{-6} \text{ J}$$</div>
+    </div>
+    <div class="note"><strong>Note:</strong> This lost energy appears as heat and electromagnetic radiation during the transient redistribution of charge.</div>
+    <div class="fbox result">
+      <span class="result-tag">★ Answer</span>
+      $$\Delta U_{\text{lost}} = 6\times10^{-6} \text{ J} = 6\ \mu\text{J}$$
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CHAPTER 3 HEADER
+============================================================= -->
+<div class="chapter-divider">
+  <div class="chapter-divider-inner">🔋 Chapter 3 — Current Electricity</div>
+</div>
+
+<!-- ============================================================
+     SECTION 3 — EMF & RESISTANCE  (Q 3.1, 3.2, 3.3)
+============================================================= -->
+<section class="section" id="s3">
+  <div class="section-header">
+    <div class="s-num">03</div>
+    <div class="s-meta">
+      <div class="s-title">EMF, Terminal Voltage &amp; Resistance</div>
+      <span class="s-tag">Q 3.1 · 3.2 · 3.3</span>
+    </div>
+  </div>
+
+  <div class="theory-block">
+    Terminal voltage: $V = \mathcal{E} - Ir$ (discharging) or $V = \mathcal{E} + Ir$ (charging). Resistance variation with temperature: $R_T = R_0[1 + \alpha(T - T_0)]$.
+  </div>
+
+  <!-- Q 3.1 -->
+  <div class="paper margin">
+    <div class="q-badge">Q 3.1</div>
+    <div class="q-text">The storage battery of a car has an emf of 12 V. If the internal resistance of the battery is 0.4 Ω, what is the maximum current that can be drawn from the battery?</div>
+    <div class="given">$\mathcal{E} = 12$ V, $r = 0.4\ \Omega$</div>
+    <div class="step"><span class="step-n">①</span>
+      <div class="step-c">Maximum current is drawn when the external resistance is zero (short circuit):
+        $$I_{\max} = \frac{\mathcal{E}}{r} = \frac{12}{0.4}$$
+      </div>
+    </div>
+    <div class="fbox result">
+      <span class="result-tag">★ Answer</span>
+      $$I_{\max} = 30 \text{ A}$$
+    </div>
+  </div>
+
+  <!-- Q 3.2 -->
+  <div class="paper margin">
+    <div class="q-badge">Q 3.2</div>
+    <div class="q-text">A battery of emf 10 V and internal resistance 3 Ω is connected to a resistor. If the current in the circuit is 0.5 A, what is the resistance of the resistor? What is the terminal voltage of the battery when the circuit is closed?</div>
+    <div class="given">$\mathcal{E} = 10$ V, $r = 3\ \Omega$, $I = 0.5$ A</div>
+    <div class="sub-title">Resistance of Resistor</div>
+    <div class="step"><span class="step-n">①</span>
+      <div class="step-c">$$I = \frac{\mathcal{E}}{R+r} \implies R = \frac{\mathcal{E}}{I} - r = \frac{10}{0.5} - 3 = 20 - 3$$</div>
+    </div>
+    <div class="fbox result">
+      <span class="result-tag">★ R</span>
+      $$R = 17\ \Omega$$
+    </div>
+    <div class="sub-title">Terminal Voltage</div>
+    <div class="step"><span class="step-n">①</span>
+      <div class="step-c">$$V = \mathcal{E} - Ir = 10 - 0.5\times3 = 10 - 1.5$$</div>
+    </div>
+    <div class="fbox result">
+      <span class="result-tag">★ V_terminal</span>
+      $$V_T = 8.5 \text{ V}$$
+    </div>
+  </div>
+
+  <!-- Q 3.3 -->
+  <div class="paper margin">
+    <div class="q-badge">Q 3.3</div>
+    <div class="q-text">At room temperature (27.0 °C) the resistance of a heating element is 100 Ω. What is the temperature of the element if the resistance is found to be 117 Ω, given that the temperature coefficient of the material of the resistor is $1.70\times10^{-4}\ ^\circ$C$^{-1}$.</div>
+    <div class="given">$R_0 = 100\ \Omega$ at $T_0 = 27^\circ$C, $R_T = 117\ \Omega$, $\alpha = 1.70\times10^{-4}\ ^\circ\text{C}^{-1}$</div>
+    <div class="step"><span class="step-n">①</span>
+      <div class="step-c">Using $R_T = R_0[1 + \alpha(T-T_0)]$:
+        $$117 = 100\left[1 + 1.70\times10^{-4}(T-27)\right]$$
+        $$1.17 = 1 + 1.70\times10^{-4}(T-27)$$
+      </div>
+    </div>
+    <div class="step"><span class="step-n">②</span>
+      <div class="step-c">$$0.17 = 1.70\times10^{-4}(T-27) \implies T - 27 = \frac{0.17}{1.70\times10^{-4}} = 1000$$</div>
+    </div>
+    <div class="fbox result">
+      <span class="result-tag">★ Answer</span>
+      $$T = 1027\ ^\circ\text{C}$$
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 4 — RESISTIVITY  (Q 3.4, 3.5, 3.6)
+============================================================= -->
+<section class="section" id="s4">
+  <div class="section-header">
+    <div class="s-num">04</div>
+    <div class="s-meta">
+      <div class="s-title">Resistivity &amp; Temperature Dependence</div>
+      <span class="s-tag">Q 3.4 · 3.5 · 3.6</span>
+    </div>
+  </div>
+
+  <div class="theory-block">
+    Resistivity: $\rho = RA/L$. Temperature coeff: $\alpha = (R_2 - R_1)/[R_1(T_2 - T_1)]$. Drift time: $t = L/v_d$ where $v_d = I/(nAe)$.
+  </div>
+
+  <!-- Q 3.4 -->
+  <div class="paper margin">
+    <div class="q-badge">Q 3.4</div>
+    <div class="q-text">A negligibly small current is passed through a wire of length 15 m and uniform cross-section $6.0\times10^{-7}$ m², and its resistance is measured to be 5.0 Ω. What is the resistivity of the material at the temperature of the experiment?</div>
+    <div class="given">$L = 15$ m, $A = 6.0\times10^{-7}$ m², $R = 5.0\ \Omega$</div>
+    <div class="step"><span class="step-n">①</span>
+      <div class="step-c">$$\rho = \frac{RA}{L} = \frac{5.0\times6.0\times10^{-7}}{15} = \frac{30\times10^{-7}}{15}$$</div>
+    </div>
+    <div class="fbox result">
+      <span class="result-tag">★ Answer</span>
+      $$\rho = 2\times10^{-7}\ \Omega\cdot\text{m}$$
+    </div>
+  </div>
+
+  <!-- Q 3.5 -->
+  <div class="paper margin">
+    <div class="q-badge">Q 3.5</div>
+    <div class="q-text">A silver wire has a resistance of 2.1 Ω at 27.5 °C, and a resistance of 2.7 Ω at 100 °C. Determine the temperature coefficient of resistivity of silver.</div>
+    <div class="given">$R_1 = 2.1\ \Omega$ at $T_1 = 27.5^\circ$C, $R_2 = 2.7\ \Omega$ at $T_2 = 100^\circ$C</div>
+    <div class="step"><span class="step-n">①</span>
+      <div class="step-c">$$\alpha = \frac{R_2 - R_1}{R_1(T_2 - T_1)} = \frac{2.7 - 2.1}{2.1\times(100 - 27.5)}$$</div>
+    </div>
+    <div class="step"><span class="step-n">②</span>
+      <div class="step-c">$$\alpha = \frac{0.6}{2.1\times72.5} = \frac{0.6}{152.25}$$</div>
+    </div>
+    <div class="fbox result">
+      <span class="result-tag">★ Answer</span>
+      $$\alpha \approx 3.94\times10^{-3}\ ^\circ\text{C}^{-1}$$
+    </div>
+  </div>
+
+  <!-- Q 3.6 -->
+  <div class="paper margin">
+    <div class="q-badge">Q 3.6</div>
+    <div class="q-text">A heating element using nichrome connected to a 230 V supply draws an initial current of 3.2 A which settles after a few seconds to a steady value of 2.8 A. What is the steady temperature of the heating element if the room temperature is 27.0 °C? Temperature coefficient of resistance of nichrome averaged over the temperature range involved is $1.70\times10^{-4}\ ^\circ$C$^{-1}$.</div>
+    <div class="given">$V = 230$ V, $I_0 = 3.2$ A (at $27^\circ$C), $I_T = 2.8$ A (steady), $\alpha = 1.70\times10^{-4}\ ^\circ\text{C}^{-1}$</div>
+    <div class="step"><span class="step-n">①</span>
+      <div class="step-c">Cold resistance (at room temp):
+        $$R_0 = \frac{V}{I_0} = \frac{230}{3.2} = 71.875\ \Omega$$
+      </div>
+    </div>
+    <div class="step"><span class="step-n">②</span>
+      <div class="step-c">Steady resistance:
+        $$R_T = \frac{V}{I_T} = \frac{230}{2.8} = 82.14\ \Omega$$
+      </div>
+    </div>
+    <div class="step"><span class="step-n">③</span>
+      <div class="step-c">Applying $R_T = R_0[1+\alpha(T-27)]$:
+        $$82.14 = 71.875\left[1+1.70\times10^{-4}(T-27)\right]$$
+        $$\frac{82.14}{71.875} - 1 = 1.70\times10^{-4}(T-27)$$
+        $$0.1428 = 1.70\times10^{-4}(T-27) \implies T - 27 = 840$$
+      </div>
+    </div>
+    <div class="fbox result">
+      <span class="result-tag">★ Answer</span>
+      $$T \approx 867\ ^\circ\text{C}$$
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 5 — KIRCHHOFF & CHARGING  (Q 3.7, 3.8, 3.9)
+============================================================= -->
+<section class="section" id="s5">
+  <div class="section-header">
+    <div class="s-num">05</div>
+    <div class="s-meta">
+      <div class="s-title">Kirchhoff's Laws &amp; Drift</div>
+      <span class="s-tag">Q 3.7 · 3.8 · 3.9</span>
+    </div>
+  </div>
+
+  <div class="theory-block">
+    KCL: $\sum I_{\text{in}} = \sum I_{\text{out}}$ at each node. KVL: $\sum \mathcal{E} = \sum IR$ around any loop. Drift velocity: $v_d = I/(nAe)$, time $t = L/v_d$.
+  </div>
+
+  <!-- Q 3.7 -->
+  <div class="paper margin">
+    <div class="q-badge">Q 3.7</div>
+    <div class="q-text">Determine the current in each branch of the network shown in Fig. 3.20.</div>
+    <div class="given">5 resistors: B–A = 10 Ω, B–C = 5 Ω, A–C = 5 Ω (bridge), A–D = 5 Ω, C–D = 10 Ω. External: 10 Ω in series with 10 V battery (B to D).</div>
+
+    <!-- Circuit Diagram -->
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 500 320" xmlns="http://www.w3.org/2000/svg" width="500" height="320">
+        <defs>
+          <marker id="ci" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto"><path d="M0,0L0,7L7,3.5z" style="fill:var(--c-green)"/></marker>
+        </defs>
+
+        <!-- Nodes: B(top)=250,40, A(left)=100,160, C(right)=400,160, D(bot)=250,280 -->
+
+        <!-- B-A: 10Ω (top-left) -->
+        <line x1="250" y1="48" x2="108" y2="152" style="stroke:var(--c-ink);stroke-width:2.2" class="dp"/>
+        <text x="158" y="88" text-anchor="middle" style="font-family:Caveat,cursive;font-size:14px;fill:var(--c-blue)">10 Ω</text>
+
+        <!-- B-C: 5Ω (top-right) -->
+        <line x1="250" y1="48" x2="392" y2="152" style="stroke:var(--c-ink);stroke-width:2.2" class="dp dp2"/>
+        <text x="338" y="88" text-anchor="middle" style="font-family:Caveat,cursive;font-size:14px;fill:var(--c-blue)">5 Ω</text>
+
+        <!-- A-C: 5Ω (middle horizontal bridge) -->
+        <line x1="108" y1="160" x2="392" y2="160" style="stroke:var(--c-ink);stroke-width:2.2" class="dp dp2"/>
+        <text x="250" y="150" text-anchor="middle" style="font-family:Caveat,cursive;font-size:14px;fill:var(--c-red)">5 Ω</text>
+
+        <!-- A-D: 5Ω (bot-left) -->
+        <line x1="108" y1="168" x2="242" y2="272" style="stroke:var(--c-ink);stroke-width:2.2" class="dp dp3"/>
+        <text x="155" y="240" text-anchor="middle" style="font-family:Caveat,cursive;font-size:14px;fill:var(--c-blue)">5 Ω</text>
+
+        <!-- C-D: 10Ω (bot-right) -->
+        <line x1="392" y1="168" x2="258" y2="272" style="stroke:var(--c-ink);stroke-width:2.2" class="dp dp3"/>
+        <text x="345" y="240" text-anchor="middle" style="font-family:Caveat,cursive;font-size:14px;fill:var(--c-blue)">10 Ω</text>
+
+        <!-- External: D → battery → B (bottom loop) -->
+        <line x1="250" y1="280" x2="250" y2="310" style="stroke:var(--c-ink);stroke-width:2"/>
+        <line x1="250" y1="310" x2="30"  y2="310" style="stroke:var(--c-ink);stroke-width:2" class="dp dp4"/>
+        <!-- Battery symbol at left bottom -->
+        <line x1="30" y1="295" x2="30" y2="325" style="stroke:var(--c-ink);stroke-width:3"/>
+        <line x1="22" y1="304" x2="38" y2="304" style="stroke:var(--c-ink);stroke-width:1.5"/>
+        <line x1="18" y1="316" x2="42" y2="316" style="stroke:var(--c-ink);stroke-width:1.5"/>
+        <text x="48" y="308" style="font-family:Caveat,cursive;font-size:12px;fill:var(--c-red)">+</text>
+        <text x="48" y="322" style="font-family:Caveat,cursive;font-size:12px;fill:var(--c-blue)">−</text>
+        <text x="12" y="344" text-anchor="middle" style="font-family:Caveat,cursive;font-size:13px;fill:var(--c-gold)">10 V</text>
+        <!-- Wire from battery to top -->
+        <line x1="30"  y1="325" x2="30"  y2="40"  style="stroke:var(--c-ink);stroke-width:2" class="dp dp4"/>
+        <line x1="30"  y1="40"  x2="242" y2="40"  style="stroke:var(--c-ink);stroke-width:2" class="dp dp4"/>
+        <!-- 10Ω external on right side -->
+        <line x1="250" y1="310" x2="470" y2="310" style="stroke:var(--c-ink);stroke-width:2" class="dp dp4"/>
+        <line x1="470" y1="310" x2="470" y2="40"  style="stroke:var(--c-ink);stroke-width:2" class="dp dp4"/>
+        <line x1="470" y1="40"  x2="258" y2="40"  style="stroke:var(--c-ink);stroke-width:2" class="dp dp4"/>
+        <!-- 10Ω external label (on right wire) -->
+        <rect x="455" y="155" width="30" height="50" rx="3" style="fill:var(--paper-2);stroke:var(--c-blue);stroke-width:1.5"/>
+        <text x="470" y="185" text-anchor="middle" style="font-family:Caveat,cursive;font-size:11px;fill:var(--c-blue)">10Ω</text>
+
+        <!-- Node labels -->
+        <circle cx="250" cy="40"  r="7" style="fill:var(--c-gold)"/>
+        <text x="250" y="25" text-anchor="middle" style="font-family:Caveat,cursive;font-size:15px;font-weight:bold;fill:var(--c-gold)">B</text>
+        <circle cx="100" cy="160" r="7" style="fill:var(--c-gold)"/>
+        <text x="83"  y="165" text-anchor="middle" style="font-family:Caveat,cursive;font-size:15px;font-weight:bold;fill:var(--c-gold)">A</text>
+        <circle cx="400" cy="160" r="7" style="fill:var(--c-gold)"/>
+        <text x="418" y="165" text-anchor="middle" style="font-family:Caveat,cursive;font-size:15px;font-weight:bold;fill:var(--c-gold)">C</text>
+        <circle cx="250" cy="280" r="7" style="fill:var(--c-gold)"/>
+        <text x="250" y="300" text-anchor="middle" style="font-family:Caveat,cursive;font-size:15px;font-weight:bold;fill:var(--c-gold)">D</text>
+
+        <!-- Current arrows on branches -->
+        <text x="125" y="126" style="font-family:Caveat,cursive;font-size:11px;fill:var(--c-green)">4/17 A</text>
+        <text x="348" y="120" style="font-family:Caveat,cursive;font-size:11px;fill:var(--c-green)">6/17 A</text>
+        <text x="230" y="180" style="font-family:Caveat,cursive;font-size:11px;fill:var(--c-red)">2/17 A</text>
+        <text x="130" y="220" style="font-family:Caveat,cursive;font-size:11px;fill:var(--c-green)">6/17 A</text>
+        <text x="325" y="215" style="font-family:Caveat,cursive;font-size:11px;fill:var(--c-green)">4/17 A</text>
+      </svg>
+    </div>
+    <p class="diagram-cap">Fig 3.20 — Bridge network. Nodes B, A, C, D. Battery 10V + external 10Ω between B and D.</p>
+
+    <div class="note"><strong>Method:</strong> Nodal analysis. Set $V_D = 0$, $V_B = V$ (unknown). Solve KCL at nodes A and C, then find V from the battery equation.</div>
+
+    <div class="step"><span class="step-n">①</span>
+      <div class="step-c">Let $V_B = V$, $V_A$ and $V_C$ unknown. At node A (KCL):
+        $$\frac{V-V_A}{10} = \frac{V_A - V_C}{5} + \frac{V_A}{5}$$
+        Solving $\Rightarrow V = 5V_A - 2V_C \quad \cdots(1)$
+      </div>
+    </div>
+    <div class="step"><span class="step-n">②</span>
+      <div class="step-c">At node C (KCL):
+        $$\frac{V-V_C}{5} + \frac{V_A-V_C}{5} = \frac{V_C}{10}$$
+        Solving $\Rightarrow V_C = \dfrac{2V+2V_A}{5} \quad \cdots(2)$
+      </div>
+    </div>
+    <div class="step"><span class="step-n">③</span>
+      <div class="step-c">Substituting (2) into (1): $\;V_A = \dfrac{3V}{7}$, $\;V_C = \dfrac{4V}{7}$. 
+        Total current $I = \dfrac{V_B - V_A}{10} + \dfrac{V_B - V_C}{5} = \dfrac{V}{7}$.
+        Battery equation: $V = 10 - 10I = 10 - \dfrac{10V}{7}$
+        $$\Rightarrow 17V = 70 \Rightarrow V = \frac{70}{17},\quad I = \frac{10}{17} \text{ A}$$
+      </div>
+    </div>
+    <div class="fbox result">
+      <span class="result-tag">★ Branch Currents</span>
+      <div style="text-align:left;margin:.4rem 0">
+        $I_{\text{BA}} = \dfrac{4}{17}$ A &nbsp;(through 10 Ω, B→A) <br>
+        $I_{\text{BC}} = \dfrac{6}{17}$ A &nbsp;(through 5 Ω, B→C) <br>
+        $I_{\text{CA}} = \dfrac{2}{17}$ A &nbsp;(through 5 Ω bridge, C→A) <br>
+        $I_{\text{AD}} = \dfrac{6}{17}$ A &nbsp;(through 5 Ω, A→D) <br>
+        $I_{\text{CD}} = \dfrac{4}{17}$ A &nbsp;(through 10 Ω, C→D) <br>
+        $I_{\text{total}} = \dfrac{10}{17}$ A $\approx 0.59$ A
+      </div>
+    </div>
+  </div>
+
+  <!-- Q 3.8 -->
+  <div class="paper margin">
+    <div class="q-badge">Q 3.8</div>
+    <div class="q-text">A storage battery of emf 8.0 V and internal resistance 0.5 Ω is being charged by a 120 V dc supply using a series resistor of 15.5 Ω. What is the terminal voltage of the battery during charging? What is the purpose of having a series resistor in the charging circuit?</div>
+    <div class="given">$\mathcal{E}_{\text{batt}} = 8$ V (battery being charged), $r = 0.5\ \Omega$, $V_{\text{supply}} = 120$ V, $R_s = 15.5\ \Omega$</div>
+    <div class="step"><span class="step-n">①</span>
+      <div class="step-c">During charging, EMF of battery opposes current. Total resistance in circuit:
+        $$I = \frac{V_{\text{supply}} - \mathcal{E}_{\text{batt}}}{R_s + r} = \frac{120 - 8}{15.5 + 0.5} = \frac{112}{16} = 7 \text{ A}$$
+      </div>
+    </div>
+    <div class="step"><span class="step-n">②</span>
+      <div class="step-c">During charging, terminal voltage of battery (current forced in against EMF):
+        $$V_T = \mathcal{E} + Ir = 8 + 7\times0.5 = 8 + 3.5$$
+      </div>
+    </div>
+    <div class="fbox result">
+      <span class="result-tag">★ Terminal V</span>
+      $$V_T = 11.5 \text{ V}$$
+    </div>
+    <div class="note"><strong>Purpose of series resistor:</strong> To limit the charging current. Without it, the current $= (120-8)/0.5 = 224$ A — dangerously large and would damage the battery. The resistor reduces this to a safe 7 A.</div>
+  </div>
+
+  <!-- Q 3.9 -->
+  <div class="paper margin">
+    <div class="q-badge">Q 3.9</div>
+    <div class="q-text">The number density of free electrons in a copper conductor estimated in Example 3.1 is $8.5\times10^{28}$ m$^{-3}$. How long does an electron take to drift from one end of a wire 3.0 m long to its other end? The area of cross-section of the wire is $2.0\times10^{-6}$ m² and it is carrying a current of 3.0 A.</div>
+    <div class="given">$n = 8.5\times10^{28}$ m$^{-3}$, $L = 3.0$ m, $A = 2.0\times10^{-6}$ m², $I = 3.0$ A, $e = 1.6\times10^{-19}$ C</div>
+    <div class="step"><span class="step-n">①</span>
+      <div class="step-c">Drift velocity:
+        $$v_d = \frac{I}{nAe} = \frac{3.0}{8.5\times10^{28}\times2.0\times10^{-6}\times1.6\times10^{-19}}$$
+        $$= \frac{3.0}{8.5\times2.0\times1.6\times10^{28-6-19}} = \frac{3.0}{27.2\times10^{3}}$$
+      </div>
+    </div>
+    <div class="step"><span class="step-n">②</span>
+      <div class="step-c">$$v_d = 1.103\times10^{-4} \text{ m/s}$$</div>
+    </div>
+    <div class="step"><span class="step-n">③</span>
+      <div class="step-c">Time to drift across length $L$:
+        $$t = \frac{L}{v_d} = \frac{3.0}{1.103\times10^{-4}}$$
+      </div>
+    </div>
+    <div class="fbox result">
+      <span class="result-tag">★ Answer</span>
+      $$t \approx 2.72\times10^{4} \text{ s} \approx 7.56 \text{ hours}$$
+    </div>
+    <div class="note"><strong>Insight:</strong> Individual electrons drift extremely slowly — yet the electrical signal (field) propagates at near the speed of light. It is the wave, not the electrons, that travels fast!</div>
+  </div>
+
+</section>
+
+</div><!-- end container -->
+
+<footer class="footer">
+  <p>✏️ Made with ♥ by <span>Akshit Tyagi</span> &nbsp;·&nbsp; Class XII Physics · Ch 2 &amp; 3</p>
+  <p style="font-size:.82rem;margin-top:.4rem;opacity:.55">NCERT Physics Part I · Chapter 2 (Q 2.1–2.11) · Chapter 3 (Q 3.1–3.9) · All Exercise Questions Solved</p>
+</footer>
+
+<script>
+/* Progress bar */
+const bar = document.getElementById('progress');
+const nav = document.getElementById('nav');
+const heroH = document.querySelector('.hero').offsetHeight;
+window.addEventListener('scroll', () => {
+  const s = window.scrollY;
+  const h = document.body.scrollHeight - window.innerHeight;
+  bar.style.width = (s / h * 100) + '%';
+  nav.classList.toggle('show', s > heroH * 0.55);
+}, { passive: true });
+
+/* Scroll reveal */
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('reveal'); });
+}, { threshold: 0.08 });
+document.querySelectorAll('.section').forEach(el => observer.observe(el));
+
+/* Paper card reveal */
+const cardObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.style.opacity = '1';
+      e.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.06 });
+document.querySelectorAll('.paper').forEach((c, i) => {
+  c.style.opacity = '0';
+  c.style.transform = 'translateY(22px)';
+  c.style.transition = `opacity .6s ease ${i * 0.04}s, transform .6s ease ${i * 0.04}s`;
+  cardObs.observe(c);
+});
+
+/* Theme toggle */
+const toggle = document.getElementById('themeToggle');
+let dark = false;
+toggle.addEventListener('click', () => {
+  dark = !dark;
+  document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+});
+
+/* KaTeX render */
+document.addEventListener('DOMContentLoaded', () => {
+  if (typeof renderMathInElement !== 'undefined') {
+    renderMathInElement(document.body, {
+      delimiters: [
+        { left: '$$', right: '$$', display: true },
+        { left: '$',  right: '$',  display: false }
+      ],
+      throwOnError: false
+    });
+  }
+});
+
+/* Chip ripple */
+document.querySelectorAll('.chip').forEach(chip => {
+  chip.addEventListener('click', function(e) {
+    const r = document.createElement('span');
+    r.style.cssText = `position:absolute;width:8px;height:8px;border-radius:50%;
+      background:rgba(255,255,255,.6);pointer-events:none;
+      transform:scale(0);animation:ripple .5s ease;
+      left:${e.offsetX-4}px;top:${e.offsetY-4}px;`;
+    this.style.position = 'relative';
+    this.appendChild(r);
+    setTimeout(() => r.remove(), 500);
+  });
+});
+const s = document.createElement('style');
+s.textContent = '@keyframes ripple{to{transform:scale(18);opacity:0}}';
+document.head.appendChild(s);
+</script>
+</body>
+</html>
