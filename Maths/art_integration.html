@@ -61,15 +61,15 @@ body {
 }
 
 /* ── FLOATING NAV ──────────────────────────── */
-nav {
-  position:fixed; top:14px; left:50%; transform:translateX(-50%);
+#page-nav {
+  position:fixed; top:86px; left:50%; transform:translateX(-50%);
   z-index:200; display:flex; align-items:center; gap:10px;
   padding:9px 20px; border-radius:50px;
   background:rgba(8,9,15,.65); backdrop-filter:blur(18px);
   border:1px solid var(--border);
   transition: background .4s, border-color .3s;
 }
-[data-theme="light"] nav { background:rgba(248,249,255,.78); }
+[data-theme="light"] #page-nav { background:rgba(248,249,255,.78); }
 .nav-dot {
   width:9px; height:9px; border-radius:50%;
   background:var(--border); border:none; cursor:pointer;
@@ -80,7 +80,7 @@ nav {
 
 /* Theme btn */
 #thbtn {
-  position:fixed; top:14px; right:18px; z-index:201;
+  position:fixed; top:86px; right:18px; z-index:201;
   padding:7px 16px; border-radius:50px; cursor:pointer;
   border:1px solid var(--border); background:var(--surface);
   color:var(--text); font-family:'Outfit',sans-serif; font-size:13px;
@@ -439,7 +439,7 @@ canvas { position:relative; z-index:1; max-height:420px; }
 
 <div id="pbar"></div>
 
-<nav>
+<nav id="page-nav">
   <span class="nav-lbl">AP Literacy</span>
   <button class="nav-dot on" data-i="0" onclick="goTo('p1')"></button>
   <button class="nav-dot" data-i="1" onclick="goTo('p2')"></button>
@@ -908,5 +908,6 @@ setTimeout(()=>{
   document.querySelectorAll('.mini-fill').forEach(b=>{ const w=b.style.width; b.style.width='0'; setTimeout(()=>b.style.width=w,200); });
 },600);
 </script>
+<script src="../shared-nav.js"></script>
 </body>
 </html>
