@@ -639,6 +639,7 @@ body.sn-has-nav { padding-top: var(--snav-nav-h); }
         <div class="sn-mega-menu-header">Chemistry</div>
         <a href="${B}Chemistry/chemistry_formulas.html"><span class="sn-page-icon"><svg class="sn-icon sn-icon-sm" style="color:#10B981"><use href="#sn-ic-file"/></svg></span>Chemistry Formulas</a>
         <a href="${B}Chemistry/chemistry_pyq.html"><span class="sn-page-icon"><svg class="sn-icon sn-icon-sm" style="color:#10B981"><use href="#sn-ic-book-open"/></svg></span>Previous Year Questions</a>
+        <a href="${B}Chemistry/chemistry_project.html"><span class="sn-page-icon"><svg class="sn-icon sn-icon-sm" style="color:#10B981"><use href="#sn-ic-flask"/></svg></span>Investigatory Project</a>
       </div>
     </div>
     <div class="sn-nav-item" tabindex="0">
@@ -729,6 +730,7 @@ body.sn-has-nav { padding-top: var(--snav-nav-h); }
       <div class="sn-mob-sub-links">
         <a href="${B}Chemistry/chemistry_formulas.html"><span class="sn-page-icon"><svg class="sn-icon sn-icon-sm" style="color:#10B981"><use href="#sn-ic-file"/></svg></span>Chemistry Formulas</a>
         <a href="${B}Chemistry/chemistry_pyq.html"><span class="sn-page-icon"><svg class="sn-icon sn-icon-sm" style="color:#10B981"><use href="#sn-ic-book-open"/></svg></span>Previous Year Questions</a>
+        <a href="${B}Chemistry/chemistry_project.html"><span class="sn-page-icon"><svg class="sn-icon sn-icon-sm" style="color:#10B981"><use href="#sn-ic-flask"/></svg></span>Investigatory Project</a>
       </div>
     </div>
     <!-- Maths -->

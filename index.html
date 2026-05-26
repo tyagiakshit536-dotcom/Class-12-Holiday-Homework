@@ -1543,6 +1543,7 @@
         <div class="mega-menu-header">Chemistry</div>
         <a href="Chemistry/chemistry_formulas.html"><span class="page-icon"><svg class="icon icon-sm" style="color:#10B981"><use href="#ic-file"/></svg></span>Chemistry Formulas</a>
         <a href="Chemistry/chemistry_pyq.html"><span class="page-icon"><svg class="icon icon-sm" style="color:#10B981"><use href="#ic-book-open"/></svg></span>Previous Year Questions</a>
+        <a href="Chemistry/chemistry_project.html"><span class="page-icon"><svg class="icon icon-sm" style="color:#10B981"><use href="#ic-flask"/></svg></span>Investigatory Project</a>
       </div>
     </div>
 
@@ -1643,6 +1644,7 @@
       <div class="mob-sub-links">
         <a href="Chemistry/chemistry_formulas.html" onclick="closeMobileMenu()"><span class="page-icon"><svg class="icon icon-sm" style="color:#10B981"><use href="#ic-file"/></svg></span>Chemistry Formulas</a>
         <a href="Chemistry/chemistry_pyq.html" onclick="closeMobileMenu()"><span class="page-icon"><svg class="icon icon-sm" style="color:#10B981"><use href="#ic-book-open"/></svg></span>Previous Year Questions</a>
+        <a href="Chemistry/chemistry_project.html" onclick="closeMobileMenu()"><span class="page-icon"><svg class="icon icon-sm" style="color:#10B981"><use href="#ic-flask"/></svg></span>Investigatory Project</a>
       </div>
     </div>
 
@@ -1774,8 +1776,8 @@
     <div class="subject-card che" onclick="openPagePicker('chemistry')" role="button" tabindex="0">
       <div class="card-icon-wrap"><svg class="icon icon-xl" style="color:white"><use href="#ic-flask"/></svg></div>
       <div class="card-title">Chemistry</div>
-      <div class="card-desc">Formulas reference and previous year questions for exam preparation.</div>
-      <div class="card-pages"><svg class="icon icon-sm"><use href="#ic-file"/></svg> 2 Pages</div>
+      <div class="card-desc">Formulas, previous year questions, and the investigatory project on ions in toothpaste.</div>
+      <div class="card-pages"><svg class="icon icon-sm"><use href="#ic-file"/></svg> 3 Pages</div>
       <div class="card-arrow"><svg class="icon icon-sm"><use href="#ic-arrow-right"/></svg></div>
     </div>
     <div class="subject-card mat" onclick="openPagePicker('maths')" role="button" tabindex="0">
@@ -2422,10 +2424,11 @@ window.addEventListener('scroll', () => {
       ]
     },
     { label:'Chemistry', icon:'#ic-flask',     color:'#10B981', c1:'#10B981', c2:'#22C55E',
-      desc:'Formulas reference & previous year questions.',
+      desc:'Formulas, previous year questions, and investigatory project.',
       links:[
         {text:'Chemistry Formulas',   hint:'Reference', href:'Chemistry/chemistry_formulas.html'},
-        {text:'Previous Year Questions', hint:'PYQ',   href:'Chemistry/chemistry_pyq.html'}
+        {text:'Previous Year Questions', hint:'PYQ',   href:'Chemistry/chemistry_pyq.html'},
+        {text:'Investigatory Project',  hint:'Project', href:'Chemistry/chemistry_project.html'}
       ]
     },
     { label:'Maths',     icon:'#ic-sigma',     color:'#F59E0B', c1:'#F59E0B', c2:'#EF4444',
@@ -2625,7 +2628,7 @@ window.addEventListener('scroll', () => {
   const cards = [
     { label:'Physics', sub:'Chapter Derivations & Exercises',
       img:'https://as2.ftcdn.net/v2/jpg/09/46/33/19/1000_F_946331954_N8u3AAmHTEWHZc0FsukwppIXfTMaaGuj.jpg' },
-    { label:'Chemistry', sub:'Formulas & Previous Year Questions',
+    { label:'Chemistry', sub:'Formulas, previous year questions, and investigatory project',
       img:'https://static.vecteezy.com/system/resources/previews/022/006/638/large_2x/science-background-illustration-scientific-design-flasks-glass-and-chemistry-physics-elements-generative-ai-photo.jpeg' },
     { label:'Mathematics', sub:'RS Aggarwal & Art Integration',
       img:'https://www.keele.ac.uk/research/ourresearch/computerscienceandmathematics/maths-960x640.jpg' },
@@ -2786,11 +2789,12 @@ const PAGE_DATA = {
     ]
   },
   chemistry: {
-    title: 'Chemistry', icon: '#ic-flask', count: '2 pages available',
+    title: 'Chemistry', icon: '#ic-flask', count: '3 pages available',
     c1: '#10B981', c2: '#22C55E',
     pages: [
       { name:'Chemistry Formulas',        hint:'Complete formula reference', href:'Chemistry/chemistry_formulas.html', icon:'#ic-file' },
-      { name:'Previous Year Questions',   hint:'Exam preparation PYQs',     href:'Chemistry/chemistry_pyq.html', icon:'#ic-book-open' }
+      { name:'Previous Year Questions',   hint:'Exam preparation PYQs',     href:'Chemistry/chemistry_pyq.html', icon:'#ic-book-open' },
+      { name:'Investigatory Project',     hint:'Ions in toothpaste',        href:'Chemistry/chemistry_project.html', icon:'#ic-flask' }
     ]
   },
   maths: {

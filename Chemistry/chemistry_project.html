@@ -1,0 +1,2824 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Chemistry Investigatory Project - To Check the Ions Present in Toothpaste. Class 12 CBSE Chemistry Project by Akshit Tyagi.">
+    <title>Chemistry Project — Ions in Toothpaste</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* ==================== CSS CUSTOM PROPERTIES ==================== */
+        :root {
+            /* Water-inspired palette - Light Mode */
+            --bg-primary: #f0f7ff;
+            --bg-secondary: #e6f2ff;
+            --bg-card: rgba(255, 255, 255, 0.55);
+            --bg-card-hover: rgba(255, 255, 255, 0.75);
+            --bg-glass: rgba(255, 255, 255, 0.25);
+            --bg-glass-strong: rgba(255, 255, 255, 0.45);
+            --bg-nav: rgba(255, 255, 255, 0.6);
+            --text-primary: #0a1628;
+            --text-secondary: #3a5278;
+            --text-muted: #6b89b8;
+            --accent-1: #0077cc;
+            --accent-2: #00a8e8;
+            --accent-3: #00cfff;
+            --accent-4: #40e0d0;
+            --accent-gradient: linear-gradient(135deg, #0077cc, #00a8e8, #00cfff);
+            --accent-gradient-2: linear-gradient(135deg, #40e0d0, #00cfff, #0077cc);
+            --water-1: rgba(0, 168, 232, 0.08);
+            --water-2: rgba(0, 207, 255, 0.06);
+            --water-3: rgba(64, 224, 208, 0.05);
+            --border-color: rgba(0, 119, 204, 0.12);
+            --border-glass: rgba(255, 255, 255, 0.45);
+            --shadow-sm: 0 2px 8px rgba(0, 119, 204, 0.06);
+            --shadow-md: 0 8px 32px rgba(0, 119, 204, 0.08);
+            --shadow-lg: 0 16px 48px rgba(0, 119, 204, 0.12);
+            --shadow-glow: 0 0 40px rgba(0, 168, 232, 0.15);
+            --blur-amount: 20px;
+            --radius-sm: 12px;
+            --radius-md: 20px;
+            --radius-lg: 28px;
+            --radius-xl: 36px;
+            --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-medium: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            --cover-gradient: linear-gradient(160deg, #0077cc 0%, #00a8e8 30%, #00cfff 60%, #40e0d0 100%);
+            --svg-color: #0077cc;
+            --svg-secondary: #00a8e8;
+            --table-header-bg: rgba(0, 119, 204, 0.08);
+            --table-row-hover: rgba(0, 168, 232, 0.05);
+            --scrollbar-thumb: rgba(0, 119, 204, 0.25);
+            --scrollbar-track: rgba(0, 119, 204, 0.05);
+            --ripple-color: rgba(0, 168, 232, 0.3);
+            --badge-bg: rgba(0, 119, 204, 0.1);
+            --badge-text: #0077cc;
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: #060d18;
+            --bg-secondary: #0c1929;
+            --bg-card: rgba(12, 25, 50, 0.65);
+            --bg-card-hover: rgba(20, 40, 70, 0.75);
+            --bg-glass: rgba(12, 25, 50, 0.35);
+            --bg-glass-strong: rgba(12, 25, 50, 0.55);
+            --bg-nav: rgba(6, 13, 24, 0.75);
+            --text-primary: #e8f4ff;
+            --text-secondary: #8bb8e0;
+            --text-muted: #5a8ab8;
+            --accent-1: #38b6ff;
+            --accent-2: #00cfff;
+            --accent-3: #62efff;
+            --accent-4: #56ffe8;
+            --accent-gradient: linear-gradient(135deg, #38b6ff, #00cfff, #62efff);
+            --accent-gradient-2: linear-gradient(135deg, #56ffe8, #00cfff, #38b6ff);
+            --water-1: rgba(56, 182, 255, 0.06);
+            --water-2: rgba(0, 207, 255, 0.04);
+            --water-3: rgba(86, 255, 232, 0.03);
+            --border-color: rgba(56, 182, 255, 0.12);
+            --border-glass: rgba(56, 182, 255, 0.15);
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+            --shadow-md: 0 8px 32px rgba(0, 0, 0, 0.4);
+            --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.5);
+            --shadow-glow: 0 0 40px rgba(56, 182, 255, 0.1);
+            --cover-gradient: linear-gradient(160deg, #060d18 0%, #0c1929 30%, #102a45 60%, #0d3b5e 100%);
+            --svg-color: #38b6ff;
+            --svg-secondary: #00cfff;
+            --table-header-bg: rgba(56, 182, 255, 0.08);
+            --table-row-hover: rgba(56, 182, 255, 0.04);
+            --scrollbar-thumb: rgba(56, 182, 255, 0.3);
+            --scrollbar-track: rgba(56, 182, 255, 0.05);
+            --ripple-color: rgba(56, 182, 255, 0.25);
+            --badge-bg: rgba(56, 182, 255, 0.12);
+            --badge-text: #38b6ff;
+        }
+
+        /* ==================== RESET & BASE ==================== */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            overflow-x: hidden;
+            transition: background var(--transition-medium), color var(--transition-medium);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--scrollbar-track);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--scrollbar-thumb);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-2);
+        }
+
+        /* ==================== ANIMATED WATER BACKGROUND ==================== */
+        .water-bg {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: -1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .water-bg .bubble {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0;
+            animation: bubbleFloat linear infinite;
+        }
+
+        @keyframes bubbleFloat {
+            0% {
+                transform: translateY(100vh) scale(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.5;
+            }
+            90% {
+                opacity: 0.3;
+            }
+            100% {
+                transform: translateY(-10vh) scale(1);
+                opacity: 0;
+            }
+        }
+
+        .water-wave {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 200%;
+            height: 200px;
+            z-index: -1;
+            opacity: 0.04;
+            pointer-events: none;
+        }
+
+        .water-wave svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .wave-1 { animation: waveMove 8s ease-in-out infinite; }
+        .wave-2 { animation: waveMove 12s ease-in-out infinite reverse; bottom: -20px; opacity: 0.03; }
+        .wave-3 { animation: waveMove 16s ease-in-out infinite; bottom: -40px; opacity: 0.02; }
+
+        @keyframes waveMove {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(-25%); }
+        }
+
+        /* Floating Orbs */
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.07;
+            pointer-events: none;
+            z-index: -1;
+            animation: orbFloat 20s ease-in-out infinite;
+        }
+
+        .orb-1 {
+            width: 500px; height: 500px;
+            background: var(--accent-1);
+            top: -150px; right: -100px;
+            animation-delay: 0s;
+        }
+        .orb-2 {
+            width: 400px; height: 400px;
+            background: var(--accent-3);
+            bottom: -100px; left: -100px;
+            animation-delay: -7s;
+        }
+        .orb-3 {
+            width: 350px; height: 350px;
+            background: var(--accent-4);
+            top: 40%; right: -50px;
+            animation-delay: -14s;
+        }
+
+        @keyframes orbFloat {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(30px, -30px) scale(1.05); }
+            50% { transform: translate(-20px, 20px) scale(0.95); }
+            75% { transform: translate(15px, 15px) scale(1.02); }
+        }
+
+        /* ==================== NAVIGATION ==================== */
+        .navbar {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            background: var(--bg-nav);
+            backdrop-filter: blur(var(--blur-amount));
+            -webkit-backdrop-filter: blur(var(--blur-amount));
+            border-bottom: 1px solid var(--border-glass);
+            padding: 0 2rem;
+            transition: all var(--transition-medium);
+        }
+
+        .navbar.scrolled {
+            box-shadow: var(--shadow-md);
+        }
+
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+        }
+
+        .nav-brand svg {
+            width: 28px; height: 28px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            list-style: none;
+            overflow-x: auto;
+            max-width: 65%;
+            scrollbar-width: none;
+        }
+
+        .nav-links::-webkit-scrollbar { display: none; }
+
+        .nav-links a {
+            display: block;
+            padding: 6px 14px;
+            border-radius: var(--radius-sm);
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.82rem;
+            font-weight: 500;
+            white-space: nowrap;
+            transition: all var(--transition-fast);
+            position: relative;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--accent-1);
+            background: var(--water-1);
+        }
+
+        .nav-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            position: relative;
+            width: 52px;
+            height: 28px;
+            border-radius: 20px;
+            border: 2px solid var(--border-color);
+            background: var(--bg-glass);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            display: flex;
+            align-items: center;
+            padding: 0 3px;
+        }
+
+        .theme-toggle:hover {
+            border-color: var(--accent-2);
+        }
+
+        .theme-toggle .toggle-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--accent-gradient);
+            transition: transform var(--transition-medium);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        [data-theme="dark"] .theme-toggle .toggle-thumb {
+            transform: translateX(24px);
+        }
+
+        .theme-toggle svg {
+            width: 12px; height: 12px;
+            fill: white;
+        }
+
+        /* Hamburger */
+        .nav-hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 4px;
+            background: none;
+            border: none;
+        }
+
+        .nav-hamburger span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: var(--text-primary);
+            border-radius: 2px;
+            transition: all var(--transition-fast);
+        }
+
+        /* Mobile Nav */
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            top: 64px; left: 0; right: 0;
+            bottom: 0;
+            background: var(--bg-nav);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            z-index: 999;
+            padding: 1.5rem;
+            overflow-y: auto;
+            animation: slideDown 0.3s ease-out;
+        }
+
+        .mobile-nav.open { display: block; }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .mobile-nav a {
+            display: block;
+            padding: 12px 16px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            border-radius: var(--radius-sm);
+            transition: all var(--transition-fast);
+            margin-bottom: 4px;
+        }
+
+        .mobile-nav a:hover {
+            background: var(--water-1);
+            color: var(--accent-1);
+        }
+
+        /* ==================== GLASSMORPHISM CARDS ==================== */
+        .glass-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(var(--blur-amount));
+            -webkit-backdrop-filter: blur(var(--blur-amount));
+            border: 1px solid var(--border-glass);
+            border-radius: var(--radius-lg);
+            padding: 2.5rem;
+            transition: all var(--transition-medium);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--border-glass), transparent);
+        }
+
+        .glass-card:hover {
+            background: var(--bg-card-hover);
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-2px);
+        }
+
+        /* ==================== SECTIONS ==================== */
+        .section {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 4rem 1.5rem;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .section-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 16px;
+            border-radius: 50px;
+            background: var(--badge-bg);
+            color: var(--badge-text);
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .section-badge svg {
+            width: 14px; height: 14px;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.3;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-subtitle {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .section-divider {
+            width: 60px;
+            height: 3px;
+            background: var(--accent-gradient);
+            border-radius: 3px;
+            margin: 1rem auto 0;
+        }
+
+        /* ==================== COVER PAGE ==================== */
+        .cover-page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            padding: 2rem;
+        }
+
+        .cover-bg {
+            position: absolute;
+            inset: 0;
+            background: var(--cover-gradient);
+            z-index: 0;
+        }
+
+        .cover-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 800 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+            pointer-events: none;
+        }
+
+        .cover-particles {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .cover-particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            animation: particleFloat 15s linear infinite;
+        }
+
+        @keyframes particleFloat {
+            0% {
+                transform: translate(0, 100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% { opacity: 1; }
+            90% { opacity: 0.5; }
+            100% {
+                transform: translate(200px, -10vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        .cover-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 800px;
+            color: #fff;
+        }
+
+        .cover-school-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 24px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            animation: fadeInDown 1s ease-out 0.2s both;
+        }
+
+        .cover-icon-wrapper {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: fadeInUp 1s ease-out 0.4s both, pulse 3s ease-in-out infinite 1.5s;
+        }
+
+        .cover-icon-wrapper svg {
+            width: 60px;
+            height: 60px;
+            fill: none;
+            stroke: white;
+            stroke-width: 1.5;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255,255,255,0.2); }
+            50% { transform: scale(1.05); box-shadow: 0 0 30px 10px rgba(255,255,255,0.1); }
+        }
+
+        .cover-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 0.5rem;
+            animation: fadeInUp 1s ease-out 0.6s both;
+            text-shadow: 0 2px 20px rgba(0,0,0,0.2);
+        }
+
+        .cover-title span {
+            display: block;
+            font-size: 1.6rem;
+            font-weight: 400;
+            font-style: italic;
+            margin-top: 0.5rem;
+            opacity: 0.9;
+        }
+
+        .cover-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2.5rem;
+            animation: fadeInUp 1s ease-out 0.8s both;
+        }
+
+        .cover-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: var(--radius-md);
+            font-size: 0.88rem;
+            font-weight: 500;
+        }
+
+        .cover-meta-item svg {
+            width: 18px; height: 18px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+        }
+
+        .cover-scroll-hint {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            animation: fadeInUp 1s ease-out 1.2s both, bounce 2s ease-in-out infinite 2s;
+            cursor: pointer;
+        }
+
+        .cover-scroll-hint svg {
+            width: 32px; height: 32px;
+            stroke: rgba(255,255,255,0.7);
+            fill: none;
+            stroke-width: 2;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(10px); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ==================== STUDENT INTRO ==================== */
+        .student-card {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .student-photo {
+            flex-shrink: 0;
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid transparent;
+            background: var(--accent-gradient);
+            padding: 3px;
+            animation: photoGlow 4s ease-in-out infinite;
+        }
+
+        .student-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        @keyframes photoGlow {
+            0%, 100% { box-shadow: 0 0 20px rgba(0,168,232,0.2); }
+            50% { box-shadow: 0 0 40px rgba(0,168,232,0.35); }
+        }
+
+        .student-info h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .student-details {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.8rem;
+            margin-top: 1rem;
+        }
+
+        .student-detail-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .student-detail-item svg {
+            width: 18px; height: 18px;
+            stroke: var(--accent-2);
+            fill: none;
+            stroke-width: 2;
+            flex-shrink: 0;
+        }
+
+        .student-detail-item strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        /* ==================== ACKNOWLEDGEMENT & CERTIFICATE ==================== */
+        .ack-content, .cert-content {
+            text-align: center;
+            max-width: 650px;
+            margin: 0 auto;
+        }
+
+        .ack-content p, .cert-content p {
+            color: var(--text-secondary);
+            line-height: 1.9;
+            margin-bottom: 1.2rem;
+            font-size: 0.95rem;
+        }
+
+        .ack-quote {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-style: italic;
+            color: var(--accent-1);
+            padding: 1.5rem 2rem;
+            border-left: 3px solid var(--accent-2);
+            text-align: left;
+            margin: 2rem 0;
+            background: var(--water-1);
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+        }
+
+        .signature-block {
+            margin-top: 2.5rem;
+            display: flex;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+
+        .signature-item {
+            flex: 1;
+            text-align: center;
+            padding: 1.5rem;
+            border-top: 2px dashed var(--border-color);
+        }
+
+        .signature-item .sig-line {
+            width: 120px;
+            height: 2px;
+            background: var(--accent-gradient);
+            margin: 1rem auto 0.5rem;
+            border-radius: 2px;
+        }
+
+        .signature-item .sig-name {
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .signature-item .sig-role {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* Certificate Frame */
+        .cert-frame {
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 3rem 2.5rem;
+            position: relative;
+            background: var(--bg-card);
+        }
+
+        .cert-frame::before, .cert-frame::after {
+            content: '';
+            position: absolute;
+            width: 40px; height: 40px;
+            border: 2px solid var(--accent-2);
+        }
+
+        .cert-frame::before {
+            top: 12px; left: 12px;
+            border-right: none; border-bottom: none;
+            border-radius: 8px 0 0 0;
+        }
+
+        .cert-frame::after {
+            bottom: 12px; right: 12px;
+            border-left: none; border-top: none;
+            border-radius: 0 0 8px 0;
+        }
+
+        .cert-seal {
+            width: 80px; height: 80px;
+            margin: 0 auto 1.5rem;
+            background: var(--accent-gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: rotateSeal 20s linear infinite;
+        }
+
+        .cert-seal svg {
+            width: 40px; height: 40px;
+            fill: white;
+        }
+
+        @keyframes rotateSeal {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .cert-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1.5rem;
+        }
+
+        /* ==================== INDEX TABLE ==================== */
+        .index-table-wrapper {
+            overflow-x: auto;
+            border-radius: var(--radius-md);
+        }
+
+        .index-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.92rem;
+        }
+
+        .index-table thead th {
+            background: var(--table-header-bg);
+            padding: 14px 20px;
+            text-align: left;
+            font-weight: 600;
+            color: var(--accent-1);
+            font-size: 0.82rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .index-table tbody td {
+            padding: 12px 20px;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            transition: all var(--transition-fast);
+        }
+
+        .index-table tbody tr {
+            transition: all var(--transition-fast);
+            cursor: pointer;
+        }
+
+        .index-table tbody tr:hover {
+            background: var(--table-row-hover);
+        }
+
+        .index-table tbody tr:hover td {
+            color: var(--text-primary);
+        }
+
+        .index-table .index-num {
+            width: 60px;
+            font-weight: 700;
+            color: var(--accent-1);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .index-table .index-link {
+            color: var(--accent-1);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color var(--transition-fast);
+        }
+
+        .index-table .index-link:hover {
+            color: var(--accent-3);
+        }
+
+        /* ==================== CONTENT CARDS ==================== */
+        .content-card {
+            margin-bottom: 1.5rem;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.2rem;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            padding: 1.2rem;
+            background: var(--bg-glass);
+            border: 1px solid var(--border-glass);
+            border-radius: var(--radius-md);
+            transition: all var(--transition-fast);
+        }
+
+        .info-item:hover {
+            background: var(--bg-glass-strong);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .info-icon {
+            width: 44px;
+            height: 44px;
+            flex-shrink: 0;
+            border-radius: var(--radius-sm);
+            background: var(--badge-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .info-icon svg {
+            width: 22px; height: 22px;
+            stroke: var(--accent-1);
+            fill: none;
+            stroke-width: 2;
+        }
+
+        .info-text h4 {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .info-text p {
+            font-size: 0.84rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        /* ==================== MATERIAL REQUIRED ==================== */
+        .material-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .material-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 1rem 1.2rem;
+            background: var(--bg-glass);
+            border: 1px solid var(--border-glass);
+            border-radius: var(--radius-md);
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            transition: all var(--transition-fast);
+        }
+
+        .material-item:hover {
+            background: var(--bg-glass-strong);
+            transform: translateX(4px);
+            color: var(--text-primary);
+        }
+
+        .material-item svg {
+            width: 20px; height: 20px;
+            stroke: var(--accent-2);
+            fill: none;
+            stroke-width: 2;
+            flex-shrink: 0;
+        }
+
+        /* ==================== THEORY CONTENT ==================== */
+        .theory-text {
+            color: var(--text-secondary);
+            line-height: 1.9;
+            font-size: 0.93rem;
+        }
+
+        .theory-text p {
+            margin-bottom: 1rem;
+        }
+
+        .theory-text strong {
+            color: var(--text-primary);
+        }
+
+        .highlight-box {
+            padding: 1.2rem 1.5rem;
+            background: var(--water-1);
+            border-left: 3px solid var(--accent-2);
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            margin: 1.2rem 0;
+            font-size: 0.9rem;
+        }
+
+        .highlight-box strong {
+            color: var(--accent-1);
+        }
+
+        .chemical-formula {
+            font-family: 'JetBrains Mono', monospace;
+            background: var(--badge-bg);
+            padding: 2px 8px;
+            border-radius: 6px;
+            font-size: 0.88em;
+            color: var(--accent-1);
+            white-space: nowrap;
+        }
+
+        sub, sup {
+            font-size: 0.7em;
+        }
+
+        /* ==================== EXPERIMENT STEPS ==================== */
+        .experiment-steps {
+            position: relative;
+        }
+
+        .experiment-steps::before {
+            content: '';
+            position: absolute;
+            left: 22px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--accent-1), var(--accent-3), var(--accent-4));
+            border-radius: 2px;
+        }
+
+        .step-item {
+            position: relative;
+            padding: 1.2rem 1.5rem 1.2rem 60px;
+            margin-bottom: 1rem;
+            background: var(--bg-glass);
+            border: 1px solid var(--border-glass);
+            border-radius: var(--radius-md);
+            transition: all var(--transition-fast);
+        }
+
+        .step-item:hover {
+            background: var(--bg-glass-strong);
+            transform: translateX(4px);
+        }
+
+        .step-num {
+            position: absolute;
+            left: -2px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--accent-gradient);
+            color: #fff;
+            font-weight: 700;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0,168,232,0.3);
+            z-index: 1;
+        }
+
+        .step-item h4 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+
+        .step-item p {
+            color: var(--text-muted);
+            font-size: 0.88rem;
+            line-height: 1.6;
+        }
+
+        /* ==================== OBSERVATION TABLE ==================== */
+        .obs-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.88rem;
+        }
+
+        .obs-table thead th {
+            background: var(--table-header-bg);
+            padding: 12px 16px;
+            font-weight: 600;
+            color: var(--accent-1);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            text-align: left;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .obs-table tbody td {
+            padding: 10px 16px;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            vertical-align: top;
+        }
+
+        .obs-table tbody tr:hover {
+            background: var(--table-row-hover);
+        }
+
+        .obs-result {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 2px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .obs-result.positive {
+            background: rgba(34, 197, 94, 0.1);
+            color: #22c55e;
+        }
+
+        .obs-result.negative {
+            background: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+        }
+
+        /* ==================== PRECAUTIONS ==================== */
+        .precaution-list {
+            display: grid;
+            gap: 0.8rem;
+        }
+
+        .precaution-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 1rem 1.2rem;
+            background: var(--bg-glass);
+            border: 1px solid var(--border-glass);
+            border-radius: var(--radius-md);
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            transition: all var(--transition-fast);
+        }
+
+        .precaution-item:hover {
+            background: var(--bg-glass-strong);
+            transform: translateX(4px);
+        }
+
+        .precaution-item .prec-icon {
+            width: 28px;
+            height: 28px;
+            flex-shrink: 0;
+            border-radius: 50%;
+            background: rgba(251, 191, 36, 0.12);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+        }
+
+        /* ==================== IMAGE GALLERY ==================== */
+        .image-card {
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            border: 1px solid var(--border-glass);
+            margin: 1.5rem 0;
+            background: var(--bg-glass);
+        }
+
+        .image-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+            transition: transform var(--transition-slow);
+        }
+
+        .image-card:hover img {
+            transform: scale(1.03);
+        }
+
+        .image-card .caption {
+            padding: 0.8rem 1rem;
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            text-align: center;
+            font-style: italic;
+        }
+
+        .image-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.2rem;
+        }
+
+        /* ==================== SVG DIAGRAM STYLES ==================== */
+        .svg-diagram {
+            width: 100%;
+            max-width: 600px;
+            margin: 1.5rem auto;
+            display: block;
+        }
+
+        .svg-diagram text {
+            fill: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+        }
+
+        .svg-diagram .diagram-line {
+            stroke: var(--svg-color);
+            fill: none;
+            stroke-width: 2;
+        }
+
+        .svg-diagram .diagram-fill {
+            fill: var(--svg-color);
+            opacity: 0.1;
+        }
+
+        .svg-diagram .diagram-accent {
+            fill: var(--svg-secondary);
+            opacity: 0.15;
+        }
+
+        /* ==================== BIBLIOGRAPHY ==================== */
+        .bib-list {
+            display: grid;
+            gap: 0.8rem;
+        }
+
+        .bib-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 1rem 1.2rem;
+            background: var(--bg-glass);
+            border: 1px solid var(--border-glass);
+            border-radius: var(--radius-md);
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            transition: all var(--transition-fast);
+        }
+
+        .bib-item:hover {
+            background: var(--bg-glass-strong);
+            transform: translateX(4px);
+            color: var(--accent-1);
+        }
+
+        .bib-item svg {
+            width: 20px; height: 20px;
+            stroke: var(--accent-2);
+            fill: none;
+            stroke-width: 2;
+            flex-shrink: 0;
+        }
+
+        /* ==================== CONCLUSION ==================== */
+        .conclusion-box {
+            padding: 2rem;
+            background: var(--water-1);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-glass);
+            text-align: center;
+        }
+
+        .conclusion-box .conclusion-icon {
+            width: 64px; height: 64px;
+            margin: 0 auto 1rem;
+            border-radius: 50%;
+            background: var(--accent-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .conclusion-box .conclusion-icon svg {
+            width: 32px; height: 32px;
+            stroke: white;
+            fill: none;
+            stroke-width: 2;
+        }
+
+        /* ==================== FOOTER / MADE BY ==================== */
+        .footer-section {
+            padding: 4rem 1.5rem;
+            text-align: center;
+        }
+
+        .footer-card {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 3rem 2.5rem;
+            background: var(--bg-card);
+            backdrop-filter: blur(var(--blur-amount));
+            border: 1px solid var(--border-glass);
+            border-radius: var(--radius-xl);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 4px;
+            background: var(--accent-gradient);
+        }
+
+        .footer-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 3px solid transparent;
+            background: var(--accent-gradient);
+            padding: 3px;
+            margin: 0 auto 1rem;
+            overflow: hidden;
+        }
+
+        .footer-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .footer-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .footer-card .footer-subtitle {
+            color: var(--text-muted);
+            font-size: 0.88rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 20px;
+            background: var(--accent-gradient);
+            color: white;
+            border-radius: 50px;
+            font-size: 0.82rem;
+            font-weight: 600;
+        }
+
+        .footer-badge svg {
+            width: 16px; height: 16px;
+            fill: white;
+        }
+
+        /* ==================== WATER RIPPLE EFFECT ==================== */
+        .ripple-container {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: var(--ripple-color);
+            pointer-events: none;
+            animation: rippleEffect 0.6s ease-out forwards;
+        }
+
+        @keyframes rippleEffect {
+            from { width: 0; height: 0; opacity: 0.5; }
+            to { width: 300px; height: 300px; opacity: 0; }
+        }
+
+        /* ==================== PROGRESS BAR ==================== */
+        .progress-bar {
+            position: fixed;
+            top: 64px;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: var(--accent-gradient);
+            z-index: 999;
+            transition: width 0.1s linear;
+        }
+
+        /* ==================== BACK TO TOP ==================== */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--accent-gradient);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-md);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: all var(--transition-medium);
+            z-index: 100;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .back-to-top svg {
+            width: 22px; height: 22px;
+            stroke: white;
+            fill: none;
+            stroke-width: 2.5;
+        }
+
+        /* ==================== CERTIFICATE ONLY (MOBILE) ==================== */
+        @media (max-width: 768px) {
+            .cert-frame { padding: 2rem 1.2rem; }
+            .signature-block {
+                display: grid;
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+                gap: 0.6rem;
+            }
+            .signature-item { padding: 0.9rem 0.6rem; }
+            .signature-item .sig-line { width: 80px; }
+            .signature-item .sig-name { font-size: 0.82rem; }
+            .signature-item .sig-role { font-size: 0.7rem; }
+        }
+
+        @media (max-width: 480px) {
+            .cert-frame { padding: 1.6rem 1rem; }
+            .signature-block { gap: 0.4rem; }
+            .signature-item { padding: 0.7rem 0.4rem; }
+            .signature-item .sig-line { width: 70px; }
+            .signature-item .sig-name { font-size: 0.78rem; }
+            .signature-item .sig-role { font-size: 0.66rem; }
+        }
+
+        /* ==================== ANIMATION CLASSES ==================== */
+        .fade-in { animation: fadeIn 0.8s ease-out both; }
+        .slide-up { animation: fadeInUp 0.8s ease-out both; }
+        .slide-down { animation: fadeInDown 0.8s ease-out both; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .stagger-1 { animation-delay: 0.1s; }
+        .stagger-2 { animation-delay: 0.2s; }
+        .stagger-3 { animation-delay: 0.3s; }
+        .stagger-4 { animation-delay: 0.4s; }
+        .stagger-5 { animation-delay: 0.5s; }
+
+        /* Typewriter */
+        .typewriter {
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 2px solid rgba(255,255,255,0.7);
+            animation: typewriter 3s steps(40) 1s both, blinkCaret 0.75s step-end infinite;
+            max-width: fit-content;
+            margin: 0 auto;
+        }
+
+        @keyframes typewriter {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blinkCaret {
+            50% { border-color: transparent; }
+        }
+
+        /* Water Droplet animation on section headers */
+        .water-drop {
+            position: relative;
+        }
+
+        .water-drop::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 8px;
+            height: 8px;
+            background: var(--accent-2);
+            border-radius: 50% 50% 50% 0;
+            transform: translateX(-50%) rotate(-45deg);
+            animation: dropPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes dropPulse {
+            0%, 100% { transform: translateX(-50%) rotate(-45deg) scale(1); opacity: 1; }
+            50% { transform: translateX(-50%) rotate(-45deg) scale(1.3); opacity: 0.7; }
+        }
+
+        /* Floating animation */
+        .float-anim {
+            animation: floatAnim 6s ease-in-out infinite;
+        }
+
+        @keyframes floatAnim {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Shimmer */
+        .shimmer {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .shimmer::after {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+            animation: shimmerMove 3s infinite;
+        }
+
+        @keyframes shimmerMove {
+            0% { left: -100%; }
+            100% { left: 200%; }
+        }
+
+        /* Gradient text animation */
+        .gradient-text-anim {
+            background-size: 200% 200%;
+            animation: gradientShift 4s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        /* Scale on hover */
+        .hover-scale {
+            transition: transform var(--transition-fast);
+        }
+
+        .hover-scale:hover {
+            transform: scale(1.02);
+        }
+
+        /* Rotate on hover */
+        .hover-rotate:hover svg {
+            transform: rotate(15deg);
+            transition: transform var(--transition-fast);
+        }
+
+        /* Print Styles */
+        @media print {
+            .navbar, .progress-bar, .back-to-top, .theme-toggle,
+            .water-bg, .orb, .water-wave, .cover-scroll-hint,
+            .nav-hamburger, .mobile-nav { display: none !important; }
+            .section { opacity: 1 !important; transform: none !important; }
+            .glass-card { backdrop-filter: none; background: white; border: 1px solid #ddd; }
+            body { background: white; color: #222; }
+            .cover-page { min-height: auto; page-break-after: always; }
+        }
+    </style>
+</head>
+<body>
+    <!-- ==================== ANIMATED BACKGROUND ==================== -->
+    <div class="water-bg" id="waterBg"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <!-- Water Waves -->
+    <div class="water-wave wave-1">
+        <svg viewBox="0 0 1440 200" preserveAspectRatio="none">
+            <path d="M0,80 C360,160 720,0 1080,80 C1260,120 1380,100 1440,90 L1440,200 L0,200 Z" fill="currentColor" style="color: var(--accent-1);"/>
+        </svg>
+    </div>
+    <div class="water-wave wave-2">
+        <svg viewBox="0 0 1440 200" preserveAspectRatio="none">
+            <path d="M0,100 C240,40 480,160 720,100 C960,40 1200,160 1440,100 L1440,200 L0,200 Z" fill="currentColor" style="color: var(--accent-3);"/>
+        </svg>
+    </div>
+
+
+
+    <!-- ==================== 1. COVER PAGE ==================== -->
+    <section class="cover-page" id="cover">
+        <div class="cover-bg"></div>
+
+        <div class="cover-particles" id="coverParticles"></div>
+
+        <div class="cover-content">
+            <div class="cover-school-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                    <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+                    <path d="M6 12v5c0 1.1 2.7 3 6 3s6-1.9 6-3v-5"/>
+                </svg>
+                CBSE — Class XII — Chemistry Investigatory Project
+            </div>
+
+            <div class="cover-icon-wrapper float-anim">
+                <!-- Erlenmeyer Flask SVG -->
+                <svg viewBox="0 0 64 64">
+                    <path d="M24 8 L24 26 L10 52 C8 56 11 60 16 60 L48 60 C53 60 56 56 54 52 L40 26 L40 8" stroke-linejoin="round"/>
+                    <line x1="20" y1="8" x2="44" y2="8" stroke-linecap="round"/>
+                    <path d="M18 44 Q32 38 46 44" stroke-linecap="round" opacity="0.5"/>
+                    <circle cx="28" cy="48" r="2" fill="white" opacity="0.4"/>
+                    <circle cx="36" cy="50" r="1.5" fill="white" opacity="0.3"/>
+                    <circle cx="32" cy="44" r="1" fill="white" opacity="0.3"/>
+                </svg>
+            </div>
+
+            <h1 class="cover-title gradient-text-anim" style="background: linear-gradient(135deg, #fff, #c0e8ff, #fff); -webkit-background-clip: text; background-clip: text; background-size: 200% 200%;">
+                Ions in Toothpaste
+                <span>To Check the Ions Present in the Toothpaste</span>
+            </h1>
+
+            <div class="cover-meta">
+                <div class="cover-meta-item">
+                    <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    Akshit Tyagi
+                </div>
+                <div class="cover-meta-item">
+                    <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+                    Subject: Chemistry
+                </div>
+                <div class="cover-meta-item">
+                    <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                    Session: 2026–27
+                </div>
+            </div>
+        </div>
+
+        <div class="cover-scroll-hint" onclick="document.getElementById('student').scrollIntoView({behavior:'smooth'})">
+            <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+        </div>
+    </section>
+
+    <!-- ==================== 2. STUDENT INTRO ==================== -->
+    <section class="section" id="student">
+        <div class="section-header">
+            <div class="section-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                Student Profile
+            </div>
+            <h2 class="section-title water-drop">Student Introduction</h2>
+            <p class="section-subtitle">About the researcher behind this investigatory project</p>
+            <div class="section-divider"></div>
+        </div>
+
+        <div class="glass-card shimmer ripple-container">
+            <div class="student-card">
+                <div class="student-photo">
+                    <img src="https://plain-apac-prod-public.komododecks.com/202605/22/nHDi45aen4uwI6zP8WGI/image.jpg" alt="Akshit Tyagi" loading="lazy">
+                </div>
+                <div class="student-info">
+                    <h3>Akshit Tyagi</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 0.3rem;">Class XII — Science Stream</p>
+                    <div class="student-details">
+                        <div class="student-detail-item">
+                            <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                            <div><small style="color: var(--text-muted);">Name</small><br><strong>Akshit Tyagi</strong></div>
+                        </div>
+                        <div class="student-detail-item">
+                            <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                            <div><small style="color: var(--text-muted);">Session</small><br><strong>2025–26</strong></div>
+                        </div>
+                        <div class="student-detail-item">
+                            <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+                            <div><small style="color: var(--text-muted);">Subject</small><br><strong>Chemistry</strong></div>
+                        </div>
+                        <div class="student-detail-item">
+                            <svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1.1 2.7 3 6 3s6-1.9 6-3v-5"/></svg>
+                            <div><small style="color: var(--text-muted);">Board</small><br><strong>CBSE</strong></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 3. ACKNOWLEDGEMENT ==================== -->
+    <section class="section" id="acknowledgement">
+        <div class="section-header">
+            <div class="section-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+                Gratitude
+            </div>
+            <h2 class="section-title water-drop">Acknowledgement</h2>
+            <p class="section-subtitle">Heartfelt thanks to those who guided this journey</p>
+            <div class="section-divider"></div>
+        </div>
+
+        <div class="glass-card ripple-container">
+            <div class="ack-content">
+                <p>I would like to express my sincere gratitude to my <strong>Chemistry Teacher</strong> for their invaluable guidance, constant encouragement, and patience throughout this investigatory project. Their expertise in the subject and insightful suggestions made this project possible.</p>
+
+                <p>I am also thankful to our <strong>Principal</strong> for providing the laboratory facilities and resources necessary for conducting the experiments. The school laboratory was instrumental in the successful completion of this work.</p>
+
+                <div class="ack-quote">
+                    "In the middle of difficulty lies opportunity." — Albert Einstein
+                </div>
+
+                <p>I extend my gratitude to my <strong>parents and friends</strong> who supported me throughout the project and helped me in gathering information and materials. Their moral support was a constant source of motivation.</p>
+
+                <p>Finally, I thank the <strong>lab assistant</strong> for ensuring a safe and well-equipped laboratory environment during the practical sessions.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 4. CERTIFICATE ==================== -->
+    <section class="section" id="certificate">
+        <div class="section-header">
+            <div class="section-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                Official
+            </div>
+            <h2 class="section-title water-drop">Certificate</h2>
+            <p class="section-subtitle">Authentication of this investigatory project</p>
+            <div class="section-divider"></div>
+        </div>
+
+        <div class="glass-card ripple-container">
+            <div class="cert-frame">
+                <div class="cert-seal">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                    </svg>
+                </div>
+
+                <div class="cert-content">
+                    <h3 class="cert-title">Certificate</h3>
+
+                    <p>This is to certify that <strong>Akshit Tyagi</strong>, a student of <strong>Class XII</strong>, has successfully completed the Chemistry Investigatory Project on the topic:</p>
+
+                    <div class="highlight-box" style="text-align: center; margin: 1.5rem 0;">
+                        <strong style="font-size: 1.1rem;">"To Check the Ions Present in the Toothpaste"</strong>
+                    </div>
+
+                    <p>during the academic session <strong>2025–26</strong>. This project has been carried out under my supervision and is a bonafide record of the work done by the student.</p>
+
+                    <p style="margin-top: 0.5rem;">I certify that the project is up to the required standard for submission as prescribed by the CBSE Board.</p>
+                </div>
+
+                <div class="signature-block">
+                    <div class="signature-item">
+                        <div class="sig-line"></div>
+                        <div class="sig-name">Teacher's Signature</div>
+                        <div class="sig-role">Chemistry Department</div>
+                    </div>
+                    <div class="signature-item">
+                        <div class="sig-line"></div>
+                        <div class="sig-name">External Examiner</div>
+                        <div class="sig-role">Examiner Signature</div>
+                    </div>
+                    <div class="signature-item">
+                        <div class="sig-line"></div>
+                        <div class="sig-name">Principal</div>
+                        <div class="sig-role">School Seal & Signature</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 5. INDEX ==================== -->
+    <section class="section" id="index">
+        <div class="section-header">
+            <div class="section-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+                Contents
+            </div>
+            <h2 class="section-title water-drop">Index</h2>
+            <p class="section-subtitle">Navigate through the project sections</p>
+            <div class="section-divider"></div>
+        </div>
+
+        <div class="glass-card ripple-container">
+            <div class="index-table-wrapper">
+                <table class="index-table">
+                    <thead>
+                        <tr>
+                            <th>S.No.</th>
+                            <th>Topic</th>
+                            <th>Navigate</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr onclick="document.getElementById('cover').scrollIntoView({behavior:'smooth'})">
+                            <td class="index-num">01</td>
+                            <td>Cover Page</td>
+                            <td><a href="#cover" class="index-link">View →</a></td>
+                        </tr>
+                        <tr onclick="document.getElementById('student').scrollIntoView({behavior:'smooth'})">
+                            <td class="index-num">02</td>
+                            <td>Student Introduction</td>
+                            <td><a href="#student" class="index-link">View →</a></td>
+                        </tr>
+                        <tr onclick="document.getElementById('acknowledgement').scrollIntoView({behavior:'smooth'})">
+                            <td class="index-num">03</td>
+                            <td>Acknowledgement</td>
+                            <td><a href="#acknowledgement" class="index-link">View →</a></td>
+                        </tr>
+                        <tr onclick="document.getElementById('certificate').scrollIntoView({behavior:'smooth'})">
+                            <td class="index-num">04</td>
+                            <td>Certificate</td>
+                            <td><a href="#certificate" class="index-link">View →</a></td>
+                        </tr>
+                        <tr onclick="document.getElementById('index').scrollIntoView({behavior:'smooth'})">
+                            <td class="index-num">05</td>
+                            <td>Index</td>
+                            <td><a href="#index" class="index-link">View →</a></td>
+                        </tr>
+                        <tr onclick="document.getElementById('aim').scrollIntoView({behavior:'smooth'})">
+                            <td class="index-num">06</td>
+                            <td>Aim</td>
+                            <td><a href="#aim" class="index-link">View →</a></td>
+                        </tr>
+                        <tr onclick="document.getElementById('introduction').scrollIntoView({behavior:'smooth'})">
+                            <td class="index-num">07</td>
+                            <td>Introduction</td>
+                            <td><a href="#introduction" class="index-link">View →</a></td>
+                        </tr>
+                        <tr onclick="document.getElementById('materials').scrollIntoView({behavior:'smooth'})">
+                            <td class="index-num">08</td>
+                            <td>Materials Required</td>
+                            <td><a href="#materials" class="index-link">View →</a></td>
+                        </tr>
+                        <tr onclick="document.getElementById('theory').scrollIntoView({behavior:'smooth'})">
+                            <td class="index-num">09</td>
+                            <td>Theory</td>
+                            <td><a href="#theory" class="index-link">View →</a></td>
+                        </tr>
+                        <tr onclick="document.getElementById('experiment').scrollIntoView({behavior:'smooth'})">
+                            <td class="index-num">10</td>
+                            <td>Experiment / Procedure</td>
+                            <td><a href="#experiment" class="index-link">View →</a></td>
+                        </tr>
+                        <tr onclick="document.getElementById('observations').scrollIntoView({behavior:'smooth'})">
+                            <td class="index-num">11</td>
+                            <td>Observations</td>
+                            <td><a href="#observations" class="index-link">View →</a></td>
+                        </tr>
+                        <tr onclick="document.getElementById('precautions').scrollIntoView({behavior:'smooth'})">
+                            <td class="index-num">12</td>
+                            <td>Precautions</td>
+                            <td><a href="#precautions" class="index-link">View →</a></td>
+                        </tr>
+                        <tr onclick="document.getElementById('conclusion').scrollIntoView({behavior:'smooth'})">
+                            <td class="index-num">13</td>
+                            <td>Conclusion</td>
+                            <td><a href="#conclusion" class="index-link">View →</a></td>
+                        </tr>
+                        <tr onclick="document.getElementById('bibliography').scrollIntoView({behavior:'smooth'})">
+                            <td class="index-num">14</td>
+                            <td>Bibliography</td>
+                            <td><a href="#bibliography" class="index-link">View →</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 6. AIM ==================== -->
+    <section class="section" id="aim">
+        <div class="section-header">
+            <div class="section-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+                Objective
+            </div>
+            <h2 class="section-title water-drop">Aim</h2>
+            <p class="section-subtitle">The core objective of this investigation</p>
+            <div class="section-divider"></div>
+        </div>
+
+        <div class="glass-card ripple-container hover-scale">
+            <div class="conclusion-box" style="background: var(--water-1);">
+                <div class="conclusion-icon" style="margin-bottom: 1.2rem;">
+                    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+                </div>
+                <p style="font-size: 1.1rem; font-weight: 500; color: var(--text-primary); line-height: 1.8;">
+                    To detect and identify the various <strong>cations</strong> (positive ions) and <strong>anions</strong> (negative ions) present in a given sample of <strong>toothpaste</strong> using systematic qualitative inorganic analysis.
+                </p>
+            </div>
+        </div>
+
+        <!-- SVG Target Diagram -->
+        <div style="margin-top: 2rem;">
+            <svg class="svg-diagram" viewBox="0 0 500 200" style="max-width: 500px;">
+                <!-- Target rings -->
+                <circle cx="100" cy="100" r="80" class="diagram-fill" stroke="var(--svg-color)" stroke-width="1.5" fill="var(--svg-color)" opacity="0.05"/>
+                <circle cx="100" cy="100" r="55" class="diagram-fill" stroke="var(--svg-color)" stroke-width="1.5" fill="var(--svg-color)" opacity="0.1"/>
+                <circle cx="100" cy="100" r="30" class="diagram-fill" stroke="var(--svg-color)" stroke-width="1.5" fill="var(--svg-color)" opacity="0.15"/>
+                <circle cx="100" cy="100" r="8" fill="var(--svg-color)" opacity="0.8"/>
+
+                <!-- Arrows -->
+                <line x1="200" y1="50" x2="250" y2="50" stroke="var(--svg-color)" stroke-width="2" stroke-dasharray="4,3"/>
+                <line x1="200" y1="100" x2="250" y2="100" stroke="var(--svg-color)" stroke-width="2" stroke-dasharray="4,3"/>
+                <line x1="200" y1="150" x2="250" y2="150" stroke="var(--svg-color)" stroke-width="2" stroke-dasharray="4,3"/>
+
+                <!-- Labels -->
+                <text x="260" y="55" font-size="13" font-weight="600" fill="var(--text-primary)">Identify Cations (Ca²⁺, Na⁺, K⁺)</text>
+                <text x="260" y="105" font-size="13" font-weight="600" fill="var(--text-primary)">Identify Anions (CO₃²⁻, PO₄³⁻, F⁻)</text>
+                <text x="260" y="155" font-size="13" font-weight="600" fill="var(--text-primary)">Confirm via Specific Tests</text>
+            </svg>
+        </div>
+    </section>
+
+    <!-- ==================== 7. INTRODUCTION ==================== -->
+    <section class="section" id="introduction">
+        <div class="section-header">
+            <div class="section-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+                Overview
+            </div>
+            <h2 class="section-title water-drop">Introduction</h2>
+            <p class="section-subtitle">Understanding toothpaste composition and its chemistry</p>
+            <div class="section-divider"></div>
+        </div>
+
+        <div class="glass-card ripple-container">
+            <div class="theory-text">
+                <p><strong>Toothpaste</strong> is a gel or paste-based dentifrice used for cleaning and maintaining oral hygiene. It typically contains a mixture of <strong>abrasives, fluorides, detergents,</strong> and <strong>flavoring agents</strong>. These ingredients are formulated with various ionic compounds that serve specific functions.</p>
+
+                <div class="highlight-box">
+                    <strong>Key Ionic Components:</strong> Most toothpastes contain calcium (<span class="chemical-formula">Ca<sup>2+</sup></span>), sodium (<span class="chemical-formula">Na<sup>+</sup></span>), fluoride (<span class="chemical-formula">F<sup>−</sup></span>), phosphate (<span class="chemical-formula">PO<sub>4</sub><sup>3−</sup></span>), and carbonate (<span class="chemical-formula">CO<sub>3</sub><sup>2−</sup></span>) ions.
+                </div>
+
+                <p>The <strong>abrasives</strong> such as calcium carbonate (<span class="chemical-formula">CaCO<sub>3</sub></span>) and calcium phosphate help remove plaque. <strong>Fluorides</strong> like sodium fluoride (<span class="chemical-formula">NaF</span>) strengthen enamel. Other components like humectants (e.g., glycerol) prevent the paste from drying out, while detergents (e.g., sodium lauryl sulphate) create the foaming action that helps in cleaning. The qualitative analysis of these ions helps us understand the composition and chemical nature of commercially available toothpaste.</p>
+                <p>Beyond cleaning, toothpaste is a small chemical system where ions stabilize, protect, and remineralize enamel, while surfactants and humectants control texture and spread for use.</p>
+            </div>
+        </div>
+
+        <!-- Images -->
+        <div class="image-row" style="margin-top: 1.5rem;">
+            <div class="image-card">
+                <img src="https://images.unsplash.com/photo-1609840114035-3c981b782dfe?w=600&q=80" alt="Toothpaste and toothbrush" loading="lazy">
+                <div class="caption">Toothpaste — A daily-use dentifrice with ionic compounds</div>
+            </div>
+            <div class="image-card">
+                <img src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=600&q=80" alt="Chemistry laboratory" loading="lazy">
+                <div class="caption">Laboratory setup for qualitative analysis</div>
+            </div>
+        </div>
+
+        <!-- Composition SVG Diagram -->
+        <div class="glass-card" style="margin-top: 1.5rem; text-align: center;">
+            <h4 style="margin-bottom: 1rem; font-size: 1rem; color: var(--accent-1);">Toothpaste Composition Breakdown</h4>
+            <svg class="svg-diagram" viewBox="0 0 500 280" style="max-width: 520px;">
+                <!-- Bar chart -->
+                <!-- Labels on left -->
+                <text x="120" y="45" font-size="12" text-anchor="end" fill="var(--text-secondary)">Abrasives</text>
+                <text x="120" y="90" font-size="12" text-anchor="end" fill="var(--text-secondary)">Water</text>
+                <text x="120" y="135" font-size="12" text-anchor="end" fill="var(--text-secondary)">Fluorides</text>
+                <text x="120" y="180" font-size="12" text-anchor="end" fill="var(--text-secondary)">Humectants</text>
+                <text x="120" y="225" font-size="12" text-anchor="end" fill="var(--text-secondary)">Detergents</text>
+                <text x="120" y="270" font-size="12" text-anchor="end" fill="var(--text-secondary)">Others</text>
+
+                <!-- Bars -->
+                <rect x="130" y="30" width="220" height="22" rx="6" fill="var(--svg-color)" opacity="0.7">
+                    <animate attributeName="width" from="0" to="220" dur="1s" begin="0.2s" fill="freeze"/>
+                </rect>
+                <rect x="130" y="75" width="160" height="22" rx="6" fill="var(--svg-color)" opacity="0.55">
+                    <animate attributeName="width" from="0" to="160" dur="1s" begin="0.4s" fill="freeze"/>
+                </rect>
+                <rect x="130" y="120" width="60" height="22" rx="6" fill="var(--svg-color)" opacity="0.8">
+                    <animate attributeName="width" from="0" to="60" dur="1s" begin="0.6s" fill="freeze"/>
+                </rect>
+                <rect x="130" y="165" width="120" height="22" rx="6" fill="var(--svg-secondary)" opacity="0.5">
+                    <animate attributeName="width" from="0" to="120" dur="1s" begin="0.8s" fill="freeze"/>
+                </rect>
+                <rect x="130" y="210" width="80" height="22" rx="6" fill="var(--svg-secondary)" opacity="0.4">
+                    <animate attributeName="width" from="0" to="80" dur="1s" begin="1s" fill="freeze"/>
+                </rect>
+                <rect x="130" y="255" width="50" height="22" rx="6" fill="var(--svg-secondary)" opacity="0.3">
+                    <animate attributeName="width" from="0" to="50" dur="1s" begin="1.2s" fill="freeze"/>
+                </rect>
+
+                <!-- Percentages -->
+                <text x="360" y="46" font-size="11" font-weight="600" fill="var(--accent-1)">~50%</text>
+                <text x="300" y="91" font-size="11" font-weight="600" fill="var(--accent-1)">~30%</text>
+                <text x="200" y="136" font-size="11" font-weight="600" fill="var(--accent-1)">~1–2%</text>
+                <text x="260" y="181" font-size="11" font-weight="600" fill="var(--accent-1)">~20%</text>
+                <text x="220" y="226" font-size="11" font-weight="600" fill="var(--accent-1)">~2%</text>
+                <text x="190" y="271" font-size="11" font-weight="600" fill="var(--accent-1)">~1%</text>
+            </svg>
+        </div>
+    </section>
+
+    <!-- ==================== 8. MATERIALS REQUIRED ==================== -->
+    <section class="section" id="materials">
+        <div class="section-header">
+            <div class="section-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+                Equipment
+            </div>
+            <h2 class="section-title water-drop">Materials Required</h2>
+            <p class="section-subtitle">Apparatus and chemicals needed for the analysis</p>
+            <div class="section-divider"></div>
+        </div>
+
+        <div class="glass-card ripple-container">
+            <h4 style="margin-bottom: 1rem; color: var(--accent-1); font-size: 0.95rem;">🧪 Apparatus</h4>
+            <div class="material-grid" style="margin-bottom: 2rem;">
+                <div class="material-item hover-rotate">
+                    <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
+                    Test Tubes & Stand
+                </div>
+                <div class="material-item hover-rotate">
+                    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                    Beakers (250 mL)
+                </div>
+                <div class="material-item hover-rotate">
+                    <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/></svg>
+                    Bunsen Burner
+                </div>
+                <div class="material-item hover-rotate">
+                    <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                    Filter Paper
+                </div>
+                <div class="material-item hover-rotate">
+                    <svg viewBox="0 0 24 24"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/></svg>
+                    Watch Glass
+                </div>
+                <div class="material-item hover-rotate">
+                    <svg viewBox="0 0 24 24"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/></svg>
+                    Dropper / Pipette
+                </div>
+                <div class="material-item hover-rotate">
+                    <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
+                    Spatula
+                </div>
+                <div class="material-item hover-rotate">
+                    <svg viewBox="0 0 24 24"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
+                    Litmus Paper
+                </div>
+            </div>
+
+            <h4 style="margin-bottom: 1rem; color: var(--accent-1); font-size: 0.95rem;">⚗️ Chemicals / Reagents</h4>
+            <div class="material-grid">
+                <div class="material-item">
+                    <svg viewBox="0 0 24 24"><path d="M8 2h8l4 10H4L8 2z"/><path d="M4 12v6a4 4 0 004 4h8a4 4 0 004-4v-6"/></svg>
+                    Toothpaste Sample
+                </div>
+                <div class="material-item">
+                    <svg viewBox="0 0 24 24"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2"/><path d="M12 6v6"/></svg>
+                    Dilute HCl
+                </div>
+                <div class="material-item">
+                    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg>
+                    Dilute H₂SO₄
+                </div>
+                <div class="material-item">
+                    <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="15" rx="2"/><path d="M16 7V5a4 4 0 00-8 0v2"/></svg>
+                    NaOH Solution
+                </div>
+                <div class="material-item">
+                    <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    Na₂CO₃ Solution
+                </div>
+                <div class="material-item">
+                    <svg viewBox="0 0 24 24"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+                    AgNO₃ Solution
+                </div>
+                <div class="material-item">
+                    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83"/></svg>
+                    BaCl₂ Solution
+                </div>
+                <div class="material-item">
+                    <svg viewBox="0 0 24 24"><path d="M20.24 12.24a6 6 0 00-8.49-8.49L5 10.5V19h8.5z"/></svg>
+                    Ammonium Oxalate
+                </div>
+                <div class="material-item">
+                    <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                    Distilled Water
+                </div>
+                <div class="material-item">
+                    <svg viewBox="0 0 24 24"><path d="M14.5 10c-.83 0-1.5-.67-1.5-1.5v-5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5z"/><path d="M20 15.5c0 3.59-2.91 6.5-6.5 6.5S7 19.09 7 15.5V14h13v1.5z"/></svg>
+                    Conc. HNO₃
+                </div>
+            </div>
+        </div>
+
+        <!-- Lab Images -->
+        <div class="image-row" style="margin-top: 1.5rem;">
+            <div class="image-card">
+                <img src="https://images.unsplash.com/photo-1616400619175-5beda3a17896?w=600&q=80" alt="Chemistry lab equipment" loading="lazy">
+                <div class="caption">Test tubes and laboratory glassware used in analysis</div>
+            </div>
+            <div class="image-card">
+                <img src="https://images.unsplash.com/photo-1603126857599-f6e157fa2fe6?w=600&q=80" alt="Chemical reagents" loading="lazy">
+                <div class="caption">Chemical reagents for qualitative analysis</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 9. THEORY ==================== -->
+    <section class="section" id="theory">
+        <div class="section-header">
+            <div class="section-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                Concept
+            </div>
+            <h2 class="section-title water-drop">Theory</h2>
+            <p class="section-subtitle">The chemical principles behind ion detection</p>
+            <div class="section-divider"></div>
+        </div>
+
+        <div class="glass-card ripple-container">
+            <div class="theory-text">
+                <p><strong>Qualitative inorganic analysis</strong> involves the identification of cations and anions in a given sample by performing systematic group-separation tests followed by confirmatory tests. It is based on the principles of solubility product and selective precipitation.</p>
+
+                <div class="highlight-box">
+                    <strong>Toothpaste typically contains:</strong><br>
+                    <strong>Cations:</strong> Ca<sup>2+</sup>, Na<sup>+</sup>, K<sup>+</sup>, Sn<sup>2+</sup> (in some brands)<br>
+                    <strong>Anions:</strong> CO<sub>3</sub><sup>2−</sup>, PO<sub>4</sub><sup>3−</sup>, F<sup>−</sup>, SO<sub>4</sub><sup>2−</sup>, Cl<sup>−</sup>
+                </div>
+
+                <p>Qualitative tests rely on equilibrium shifts: adding reagents drives selective precipitation, while complex ions can keep certain cations in solution. Heating accelerates reactions and clarifies color changes. By comparing expected reactions with observed precipitates, we narrow possibilities before confirmatory tests give a final identification for each suspected ion in sample.</p>
+                <p>The sample is first dissolved in dilute acid to prepare the solution. <strong>Anion analysis</strong> begins with preliminary tests (e.g., effervescence with HCl suggests carbonates, which are commonly present as abrasives). <strong>Cation analysis</strong> uses group reagents — HCl, H₂S, NH₄OH, (NH₄)₂CO₃ — to separate ions into analytical groups based on their solubility products, followed by specific confirmatory tests for each suspected ion.</p>
+
+                <p><strong>Flame test</strong> helps identify Na<sup>+</sup> (persistent yellow) and K<sup>+</sup> (violet / lilac). Calcium gives a <strong>brick-red</strong> flame. These visual tests complement the wet-chemical analysis by providing immediate qualitative confirmation.</p>
+            </div>
+        </div>
+
+        <!-- Ion Classification SVG -->
+        <div class="glass-card" style="margin-top: 1.5rem;">
+            <h4 style="margin-bottom: 1rem; color: var(--accent-1); font-size: 1rem; text-align: center;">Ion Classification in Toothpaste</h4>
+            <svg class="svg-diagram" viewBox="0 0 600 300" style="max-width: 620px;">
+                <!-- Central node -->
+                <rect x="220" y="10" width="160" height="40" rx="20" fill="var(--svg-color)" opacity="0.15" stroke="var(--svg-color)" stroke-width="1.5"/>
+                <text x="300" y="35" text-anchor="middle" font-size="13" font-weight="700" fill="var(--svg-color)">Toothpaste Sample</text>
+
+                <!-- Branches -->
+                <line x1="250" y1="50" x2="140" y2="100" stroke="var(--svg-color)" stroke-width="1.5" stroke-dasharray="4,3"/>
+                <line x1="350" y1="50" x2="460" y2="100" stroke="var(--svg-secondary)" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+                <!-- Cation Box -->
+                <rect x="60" y="90" width="160" height="36" rx="18" fill="var(--svg-color)" opacity="0.12" stroke="var(--svg-color)" stroke-width="1.5"/>
+                <text x="140" y="113" text-anchor="middle" font-size="12" font-weight="700" fill="var(--svg-color)">Cations (+)</text>
+
+                <!-- Anion Box -->
+                <rect x="380" y="90" width="160" height="36" rx="18" fill="var(--svg-secondary)" opacity="0.12" stroke="var(--svg-secondary)" stroke-width="1.5"/>
+                <text x="460" y="113" text-anchor="middle" font-size="12" font-weight="700" fill="var(--svg-secondary)">Anions (−)</text>
+
+                <!-- Cation children -->
+                <line x1="100" y1="126" x2="70" y2="160" stroke="var(--svg-color)" stroke-width="1" opacity="0.5"/>
+                <line x1="140" y1="126" x2="140" y2="160" stroke="var(--svg-color)" stroke-width="1" opacity="0.5"/>
+                <line x1="180" y1="126" x2="210" y2="160" stroke="var(--svg-color)" stroke-width="1" opacity="0.5"/>
+
+                <rect x="30" y="160" width="80" height="30" rx="15" fill="var(--svg-color)" opacity="0.08" stroke="var(--svg-color)" stroke-width="1"/>
+                <text x="70" y="180" text-anchor="middle" font-size="11" fill="var(--text-primary)">Ca²⁺</text>
+
+                <rect x="100" y="160" width="80" height="30" rx="15" fill="var(--svg-color)" opacity="0.08" stroke="var(--svg-color)" stroke-width="1"/>
+                <text x="140" y="180" text-anchor="middle" font-size="11" fill="var(--text-primary)">Na⁺</text>
+
+                <rect x="170" y="160" width="80" height="30" rx="15" fill="var(--svg-color)" opacity="0.08" stroke="var(--svg-color)" stroke-width="1"/>
+                <text x="210" y="180" text-anchor="middle" font-size="11" fill="var(--text-primary)">K⁺</text>
+
+                <!-- Cation tests -->
+                <line x1="70" y1="190" x2="70" y2="220" stroke="var(--svg-color)" stroke-width="1" opacity="0.3"/>
+                <line x1="140" y1="190" x2="140" y2="220" stroke="var(--svg-color)" stroke-width="1" opacity="0.3"/>
+                <line x1="210" y1="190" x2="210" y2="220" stroke="var(--svg-color)" stroke-width="1" opacity="0.3"/>
+
+                <text x="70" y="236" text-anchor="middle" font-size="9" fill="var(--text-muted)">Brick-red</text>
+                <text x="70" y="248" text-anchor="middle" font-size="9" fill="var(--text-muted)">flame</text>
+                <text x="140" y="236" text-anchor="middle" font-size="9" fill="var(--text-muted)">Golden</text>
+                <text x="140" y="248" text-anchor="middle" font-size="9" fill="var(--text-muted)">yellow flame</text>
+                <text x="210" y="236" text-anchor="middle" font-size="9" fill="var(--text-muted)">Violet</text>
+                <text x="210" y="248" text-anchor="middle" font-size="9" fill="var(--text-muted)">flame</text>
+
+                <!-- Anion children -->
+                <line x1="420" y1="126" x2="380" y2="160" stroke="var(--svg-secondary)" stroke-width="1" opacity="0.5"/>
+                <line x1="460" y1="126" x2="460" y2="160" stroke="var(--svg-secondary)" stroke-width="1" opacity="0.5"/>
+                <line x1="500" y1="126" x2="540" y2="160" stroke="var(--svg-secondary)" stroke-width="1" opacity="0.5"/>
+
+                <rect x="340" y="160" width="80" height="30" rx="15" fill="var(--svg-secondary)" opacity="0.08" stroke="var(--svg-secondary)" stroke-width="1"/>
+                <text x="380" y="180" text-anchor="middle" font-size="11" fill="var(--text-primary)">CO₃²⁻</text>
+
+                <rect x="420" y="160" width="80" height="30" rx="15" fill="var(--svg-secondary)" opacity="0.08" stroke="var(--svg-secondary)" stroke-width="1"/>
+                <text x="460" y="180" text-anchor="middle" font-size="11" fill="var(--text-primary)">PO₄³⁻</text>
+
+                <rect x="500" y="160" width="80" height="30" rx="15" fill="var(--svg-secondary)" opacity="0.08" stroke="var(--svg-secondary)" stroke-width="1"/>
+                <text x="540" y="180" text-anchor="middle" font-size="11" fill="var(--text-primary)">F⁻</text>
+
+                <!-- Anion tests -->
+                <line x1="380" y1="190" x2="380" y2="220" stroke="var(--svg-secondary)" stroke-width="1" opacity="0.3"/>
+                <line x1="460" y1="190" x2="460" y2="220" stroke="var(--svg-secondary)" stroke-width="1" opacity="0.3"/>
+                <line x1="540" y1="190" x2="540" y2="220" stroke="var(--svg-secondary)" stroke-width="1" opacity="0.3"/>
+
+                <text x="380" y="236" text-anchor="middle" font-size="9" fill="var(--text-muted)">Effervescence</text>
+                <text x="380" y="248" text-anchor="middle" font-size="9" fill="var(--text-muted)">with dil. HCl</text>
+                <text x="460" y="236" text-anchor="middle" font-size="9" fill="var(--text-muted)">Yellow ppt</text>
+                <text x="460" y="248" text-anchor="middle" font-size="9" fill="var(--text-muted)">with NH₄MoO₄</text>
+                <text x="540" y="236" text-anchor="middle" font-size="9" fill="var(--text-muted)">White ppt</text>
+                <text x="540" y="248" text-anchor="middle" font-size="9" fill="var(--text-muted)">with CaCl₂</text>
+            </svg>
+        </div>
+    </section>
+
+    <!-- ==================== 10. EXPERIMENT ==================== -->
+    <section class="section" id="experiment">
+        <div class="section-header">
+            <div class="section-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+                Procedure
+            </div>
+            <h2 class="section-title water-drop">Experiment</h2>
+            <p class="section-subtitle">Step-by-step procedure for ion detection</p>
+            <div class="section-divider"></div>
+        </div>
+
+        <div class="glass-card ripple-container">
+            <h4 style="color: var(--accent-1); margin-bottom: 1.5rem; font-size: 1rem;">Step-by-Step Procedure</h4>
+
+            <div class="experiment-steps">
+                <div class="step-item">
+                    <div class="step-num">1</div>
+                    <h4>Sample Preparation</h4>
+                    <p>Take about 5 g of toothpaste in a beaker. Add 50 mL of distilled water and stir thoroughly. Warm gently, filter if necessary, and use the filtrate as the test solution.</p>
+                </div>
+
+                <div class="step-item">
+                    <div class="step-num">2</div>
+                    <h4>Test for Carbonate (CO₃²⁻)</h4>
+                    <p>Add dilute HCl to the test solution. Brisk effervescence with evolution of a colourless, odourless gas that turns lime water milky confirms <strong>CO₃²⁻</strong> ions.</p>
+                </div>
+
+                <div class="step-item">
+                    <div class="step-num">3</div>
+                    <h4>Test for Phosphate (PO₄³⁻)</h4>
+                    <p>Add concentrated HNO₃ and ammonium molybdate solution to the test solution and heat. A canary-yellow precipitate confirms <strong>PO₄³⁻</strong> ions.</p>
+                </div>
+
+                <div class="step-item">
+                    <div class="step-num">4</div>
+                    <h4>Test for Fluoride (F⁻)</h4>
+                    <p>Add calcium chloride solution. A white gelatinous precipitate of CaF₂ confirms <strong>F⁻</strong> ions.</p>
+                </div>
+
+                <div class="step-item">
+                    <div class="step-num">5</div>
+                    <h4>Test for Sulphate (SO₄²⁻)</h4>
+                    <p>Add dilute HCl followed by BaCl₂ solution. A white precipitate insoluble in conc. HCl confirms <strong>SO₄²⁻</strong> ions.</p>
+                </div>
+
+                <div class="step-item">
+                    <div class="step-num">6</div>
+                    <h4>Test for Calcium (Ca²⁺)</h4>
+                    <p>Add ammonium oxalate to the test solution. A white precipitate of calcium oxalate confirms <strong>Ca²⁺</strong> ions. Flame test shows brick-red colour.</p>
+                </div>
+
+                <div class="step-item">
+                    <div class="step-num">7</div>
+                    <h4>Test for Sodium (Na⁺)</h4>
+                    <p>Perform flame test using a platinum wire dipped in the test solution. A persistent golden-yellow flame confirms <strong>Na⁺</strong> ions.</p>
+                </div>
+
+                <div class="step-item">
+                    <div class="step-num">8</div>
+                    <h4>Test for Potassium (K⁺)</h4>
+                    <p>Perform flame test. A violet/lilac flame (best seen through cobalt blue glass) confirms <strong>K⁺</strong> ions.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Experiment Images -->
+        <div class="image-row" style="margin-top: 1.5rem;">
+            <div class="image-card">
+                <img src="https://images.unsplash.com/photo-1582719471384-894fbb16e074?w=600&q=80" alt="Lab experiment" loading="lazy">
+                <div class="caption">Flame test revealing characteristic ion colours</div>
+            </div>
+            <div class="image-card">
+                <img src="https://images.unsplash.com/photo-1628863353691-0071c8c1874c?w=600&q=80" alt="Chemical analysis" loading="lazy">
+                <div class="caption">Adding reagents for precipitation tests</div>
+            </div>
+        </div>
+
+        <!-- Experiment Flow SVG -->
+        <div class="glass-card" style="margin-top: 1.5rem; text-align: center;">
+            <h4 style="margin-bottom: 1rem; color: var(--accent-1); font-size: 1rem;">Experiment Workflow</h4>
+            <svg class="svg-diagram" viewBox="0 0 600 120" style="max-width: 620px;">
+                <!-- Flow boxes -->
+                <rect x="10" y="35" width="100" height="50" rx="12" fill="var(--svg-color)" opacity="0.12" stroke="var(--svg-color)" stroke-width="1.5"/>
+                <text x="60" y="57" text-anchor="middle" font-size="10" font-weight="600" fill="var(--svg-color)">Sample</text>
+                <text x="60" y="72" text-anchor="middle" font-size="10" font-weight="600" fill="var(--svg-color)">Prep</text>
+
+                <path d="M115 60 L140 60" stroke="var(--svg-color)" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+
+                <rect x="145" y="35" width="100" height="50" rx="12" fill="var(--svg-color)" opacity="0.12" stroke="var(--svg-color)" stroke-width="1.5"/>
+                <text x="195" y="57" text-anchor="middle" font-size="10" font-weight="600" fill="var(--svg-color)">Dissolve</text>
+                <text x="195" y="72" text-anchor="middle" font-size="10" font-weight="600" fill="var(--svg-color)">& Filter</text>
+
+                <path d="M250 60 L275 60" stroke="var(--svg-color)" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+
+                <rect x="280" y="35" width="100" height="50" rx="12" fill="var(--svg-secondary)" opacity="0.12" stroke="var(--svg-secondary)" stroke-width="1.5"/>
+                <text x="330" y="57" text-anchor="middle" font-size="10" font-weight="600" fill="var(--svg-secondary)">Anion</text>
+                <text x="330" y="72" text-anchor="middle" font-size="10" font-weight="600" fill="var(--svg-secondary)">Tests</text>
+
+                <path d="M385 60 L410 60" stroke="var(--svg-secondary)" stroke-width="1.5" marker-end="url(#arrowhead2)"/>
+
+                <rect x="415" y="35" width="100" height="50" rx="12" fill="var(--svg-secondary)" opacity="0.12" stroke="var(--svg-secondary)" stroke-width="1.5"/>
+                <text x="465" y="57" text-anchor="middle" font-size="10" font-weight="600" fill="var(--svg-secondary)">Cation</text>
+                <text x="465" y="72" text-anchor="middle" font-size="10" font-weight="600" fill="var(--svg-secondary)">Tests</text>
+
+                <path d="M520 60 L545 60" stroke="var(--svg-color)" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+
+                <rect x="550" y="35" width="45" height="50" rx="12" fill="var(--svg-color)" opacity="0.2" stroke="var(--svg-color)" stroke-width="2"/>
+                <text x="572" y="65" text-anchor="middle" font-size="11" font-weight="700" fill="var(--svg-color)">✓</text>
+
+                <!-- Arrowhead defs -->
+                <defs>
+                    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+                        <polygon points="0 0, 10 3.5, 0 7" fill="var(--svg-color)"/>
+                    </marker>
+                    <marker id="arrowhead2" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+                        <polygon points="0 0, 10 3.5, 0 7" fill="var(--svg-secondary)"/>
+                    </marker>
+                </defs>
+            </svg>
+        </div>
+    </section>
+
+    <!-- ==================== 11. OBSERVATIONS ==================== -->
+    <section class="section" id="observations">
+        <div class="section-header">
+            <div class="section-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                Data
+            </div>
+            <h2 class="section-title water-drop">Observations</h2>
+            <p class="section-subtitle">Recorded results from the qualitative analysis</p>
+            <div class="section-divider"></div>
+        </div>
+
+        <div class="glass-card ripple-container">
+            <h4 style="color: var(--accent-1); margin-bottom: 1rem; font-size: 1rem;">Anion Analysis Results</h4>
+            <div class="index-table-wrapper" style="margin-bottom: 2rem;">
+                <table class="obs-table">
+                    <thead>
+                        <tr>
+                            <th>S.No.</th>
+                            <th>Ion Tested</th>
+                            <th>Reagent Used</th>
+                            <th>Observation</th>
+                            <th>Inference</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td><span class="chemical-formula">CO<sub>3</sub><sup>2−</sup></span></td>
+                            <td>Dil. HCl</td>
+                            <td>Brisk effervescence, gas turns lime water milky</td>
+                            <td><span class="obs-result positive">✓ Present</span></td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td><span class="chemical-formula">PO<sub>4</sub><sup>3−</sup></span></td>
+                            <td>Conc. HNO₃ + Ammonium Molybdate</td>
+                            <td>Canary-yellow precipitate formed</td>
+                            <td><span class="obs-result positive">✓ Present</span></td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td><span class="chemical-formula">F<sup>−</sup></span></td>
+                            <td>CaCl₂ solution</td>
+                            <td>White gelatinous ppt observed</td>
+                            <td><span class="obs-result positive">✓ Present</span></td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td><span class="chemical-formula">SO<sub>4</sub><sup>2−</sup></span></td>
+                            <td>Dil. HCl + BaCl₂</td>
+                            <td>White ppt insoluble in HCl</td>
+                            <td><span class="obs-result positive">✓ Present</span></td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td><span class="chemical-formula">Cl<sup>−</sup></span></td>
+                            <td>Dil. HNO₃ + AgNO₃</td>
+                            <td>No curdy white ppt</td>
+                            <td><span class="obs-result negative">✗ Absent</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h4 style="color: var(--accent-1); margin-bottom: 1rem; font-size: 1rem;">Cation Analysis Results</h4>
+            <div class="index-table-wrapper">
+                <table class="obs-table">
+                    <thead>
+                        <tr>
+                            <th>S.No.</th>
+                            <th>Ion Tested</th>
+                            <th>Method / Reagent</th>
+                            <th>Observation</th>
+                            <th>Inference</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td><span class="chemical-formula">Ca<sup>2+</sup></span></td>
+                            <td>Ammonium Oxalate + Flame Test</td>
+                            <td>White ppt; Brick-red flame</td>
+                            <td><span class="obs-result positive">✓ Present</span></td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td><span class="chemical-formula">Na<sup>+</sup></span></td>
+                            <td>Flame Test</td>
+                            <td>Persistent golden-yellow flame</td>
+                            <td><span class="obs-result positive">✓ Present</span></td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td><span class="chemical-formula">K<sup>+</sup></span></td>
+                            <td>Flame Test (Cobalt blue glass)</td>
+                            <td>Violet / Lilac flame</td>
+                            <td><span class="obs-result positive">✓ Present</span></td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td><span class="chemical-formula">Mg<sup>2+</sup></span></td>
+                            <td>NaOH excess</td>
+                            <td>No white ppt observed</td>
+                            <td><span class="obs-result negative">✗ Absent</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Results Summary SVG -->
+        <div class="glass-card" style="margin-top: 1.5rem; text-align: center;">
+            <h4 style="margin-bottom: 1rem; color: var(--accent-1); font-size: 1rem;">Ion Detection Summary</h4>
+            <svg class="svg-diagram" viewBox="0 0 500 200" style="max-width: 500px;">
+                <!-- Icons for detected ions -->
+                <circle cx="70" cy="60" r="35" fill="var(--svg-color)" opacity="0.1" stroke="var(--svg-color)" stroke-width="1.5"/>
+                <text x="70" y="58" text-anchor="middle" font-size="11" font-weight="700" fill="var(--svg-color)">Ca²⁺</text>
+                <text x="70" y="73" text-anchor="middle" font-size="8" fill="var(--text-muted)">✓ Found</text>
+
+                <circle cx="160" cy="60" r="35" fill="var(--svg-color)" opacity="0.1" stroke="var(--svg-color)" stroke-width="1.5"/>
+                <text x="160" y="58" text-anchor="middle" font-size="11" font-weight="700" fill="var(--svg-color)">Na⁺</text>
+                <text x="160" y="73" text-anchor="middle" font-size="8" fill="var(--text-muted)">✓ Found</text>
+
+                <circle cx="250" cy="60" r="35" fill="var(--svg-color)" opacity="0.1" stroke="var(--svg-color)" stroke-width="1.5"/>
+                <text x="250" y="58" text-anchor="middle" font-size="11" font-weight="700" fill="var(--svg-color)">K⁺</text>
+                <text x="250" y="73" text-anchor="middle" font-size="8" fill="var(--text-muted)">✓ Found</text>
+
+                <circle cx="340" cy="60" r="35" fill="var(--svg-secondary)" opacity="0.1" stroke="var(--svg-secondary)" stroke-width="1.5"/>
+                <text x="340" y="55" text-anchor="middle" font-size="10" font-weight="700" fill="var(--svg-secondary)">CO₃²⁻</text>
+                <text x="340" y="73" text-anchor="middle" font-size="8" fill="var(--text-muted)">✓ Found</text>
+
+                <circle cx="430" cy="60" r="35" fill="var(--svg-secondary)" opacity="0.1" stroke="var(--svg-secondary)" stroke-width="1.5"/>
+                <text x="430" y="55" text-anchor="middle" font-size="10" font-weight="700" fill="var(--svg-secondary)">PO₄³⁻</text>
+                <text x="430" y="73" text-anchor="middle" font-size="8" fill="var(--text-muted)">✓ Found</text>
+
+                <!-- Second row -->
+                <circle cx="160" cy="150" r="35" fill="var(--svg-secondary)" opacity="0.1" stroke="var(--svg-secondary)" stroke-width="1.5"/>
+                <text x="160" y="148" text-anchor="middle" font-size="11" font-weight="700" fill="var(--svg-secondary)">F⁻</text>
+                <text x="160" y="163" text-anchor="middle" font-size="8" fill="var(--text-muted)">✓ Found</text>
+
+                <circle cx="250" cy="150" r="35" fill="var(--svg-secondary)" opacity="0.1" stroke="var(--svg-secondary)" stroke-width="1.5"/>
+                <text x="250" y="145" text-anchor="middle" font-size="10" font-weight="700" fill="var(--svg-secondary)">SO₄²⁻</text>
+                <text x="250" y="163" text-anchor="middle" font-size="8" fill="var(--text-muted)">✓ Found</text>
+
+                <!-- Not found -->
+                <circle cx="340" cy="150" r="35" fill="none" stroke="var(--text-muted)" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.4"/>
+                <text x="340" y="148" text-anchor="middle" font-size="11" font-weight="600" fill="var(--text-muted)">Cl⁻</text>
+                <text x="340" y="163" text-anchor="middle" font-size="8" fill="var(--text-muted)">✗ Absent</text>
+            </svg>
+        </div>
+    </section>
+
+    <!-- ==================== 12. PRECAUTIONS ==================== -->
+    <section class="section" id="precautions">
+        <div class="section-header">
+            <div class="section-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                Safety
+            </div>
+            <h2 class="section-title water-drop">Precautions</h2>
+            <p class="section-subtitle">Safety measures to follow during the experiment</p>
+            <div class="section-divider"></div>
+        </div>
+
+        <div class="glass-card ripple-container">
+            <div class="precaution-list">
+                <div class="precaution-item">
+                    <div class="prec-icon">🥽</div>
+                    <span>Always wear <strong>safety goggles</strong> and a <strong>lab coat</strong> while performing experiments with acids and chemicals.</span>
+                </div>
+                <div class="precaution-item">
+                    <div class="prec-icon">🧪</div>
+                    <span>Handle <strong>concentrated acids</strong> (HCl, HNO₃, H₂SO₄) with extreme care. Use a dropper and avoid direct contact with skin.</span>
+                </div>
+                <div class="precaution-item">
+                    <div class="prec-icon">🔥</div>
+                    <span>Use the <strong>Bunsen burner</strong> carefully during flame tests. Keep flammable materials away from the flame.</span>
+                </div>
+                <div class="precaution-item">
+                    <div class="prec-icon">💧</div>
+                    <span>Use only <strong>distilled water</strong> for preparing solutions and cleaning apparatus to avoid contamination.</span>
+                </div>
+                <div class="precaution-item">
+                    <div class="prec-icon">🧹</div>
+                    <span>Clean all test tubes and apparatus <strong>thoroughly before use</strong> to prevent errors from residual chemicals.</span>
+                </div>
+                <div class="precaution-item">
+                    <div class="prec-icon">📏</div>
+                    <span>Use <strong>small quantities</strong> of reagents. Excess reagents can interfere with test results and produce ambiguous observations.</span>
+                </div>
+                <div class="precaution-item">
+                    <div class="prec-icon">🚫</div>
+                    <span>Do <strong>not taste or smell</strong> any chemical directly. Use the wafting technique to detect odours.</span>
+                </div>
+                <div class="precaution-item">
+                    <div class="prec-icon">📝</div>
+                    <span>Record all observations <strong>immediately</strong> after performing each test. Do not rely on memory.</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 13. CONCLUSION ==================== -->
+    <section class="section" id="conclusion">
+        <div class="section-header">
+            <div class="section-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                Result
+            </div>
+            <h2 class="section-title water-drop">Conclusion</h2>
+            <p class="section-subtitle">Summary of findings from the investigation</p>
+            <div class="section-divider"></div>
+        </div>
+
+        <div class="glass-card ripple-container">
+            <div class="conclusion-box">
+                <div class="conclusion-icon">
+                    <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                </div>
+
+                <p style="font-size: 1rem; line-height: 1.9; color: var(--text-secondary); max-width: 650px; margin: 0 auto;">
+                    Through systematic qualitative analysis, the following ions were successfully detected in the toothpaste sample:
+                </p>
+
+                <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 0.8rem; margin: 1.5rem 0;">
+                    <span class="section-badge" style="font-size: 0.85rem; padding: 8px 18px;">Ca²⁺</span>
+                    <span class="section-badge" style="font-size: 0.85rem; padding: 8px 18px;">Na⁺</span>
+                    <span class="section-badge" style="font-size: 0.85rem; padding: 8px 18px;">K⁺</span>
+                    <span class="section-badge" style="font-size: 0.85rem; padding: 8px 18px;">CO₃²⁻</span>
+                    <span class="section-badge" style="font-size: 0.85rem; padding: 8px 18px;">PO₄³⁻</span>
+                    <span class="section-badge" style="font-size: 0.85rem; padding: 8px 18px;">F⁻</span>
+                    <span class="section-badge" style="font-size: 0.85rem; padding: 8px 18px;">SO₄²⁻</span>
+                </div>
+
+                <p style="font-size: 0.93rem; line-height: 1.9; color: var(--text-secondary); max-width: 650px; margin: 0 auto;">
+                    These ions originate from ingredients like <strong>calcium carbonate</strong> (abrasive), <strong>sodium fluoride</strong> (anti-cavity agent), <strong>sodium lauryl sulphate</strong> (foaming agent), and <strong>calcium phosphate</strong> (remineralizer). The presence of carbonate and phosphate ions primarily contributes to the cleaning and polishing action, while calcium and fluoride ions play a crucial role in enamel remineralization and cavity protection. Overall, the experiment confirms that toothpaste is a complex mixture of several ionic compounds carefully balanced for effective oral care and hygiene.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 14. BIBLIOGRAPHY ==================== -->
+    <section class="section" id="bibliography">
+        <div class="section-header">
+            <div class="section-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+                References
+            </div>
+            <h2 class="section-title water-drop">Bibliography</h2>
+            <p class="section-subtitle">Sources and references used in this project</p>
+            <div class="section-divider"></div>
+        </div>
+
+        <div class="glass-card ripple-container">
+            <div class="bib-list">
+                <a href="https://class-12-hhw.pages.dev/" class="bib-item" target="_blank" rel="noopener">
+                    <svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
+                    <span><strong>class-12-hhw.pages.dev</strong> — Class 12 Holiday Homework Reference Portal</span>
+                </a>
+                <a href="https://ncert.nic.in/" class="bib-item" target="_blank" rel="noopener">
+                    <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+                    <span><strong>NCERT Chemistry Textbook</strong> — Class XII, Part I & II</span>
+                </a>
+                <div class="bib-item">
+                    <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                    <span><strong>Laboratory Manual</strong> — Chemistry Practical for Class XII (CBSE)</span>
+                </div>
+                <div class="bib-item">
+                    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+                    <span><strong>Comprehensive Practical Chemistry</strong> — Dr. N.K. Verma (Laxmi Publications)</span>
+                </div>
+                <a href="https://www.sciencedirect.com/" class="bib-item" target="_blank" rel="noopener">
+                    <svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
+                    <span><strong>ScienceDirect</strong> — Research articles on toothpaste chemical composition</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== MADE BY FOOTER ==================== -->
+    <section class="footer-section" id="madeby">
+        <div class="footer-card shimmer">
+            <div class="footer-avatar">
+                <img src="https://plain-apac-prod-public.komododecks.com/202605/22/nHDi45aen4uwI6zP8WGI/image.jpg" alt="Akshit Tyagi" loading="lazy">
+            </div>
+            <h3>Made by Akshit Tyagi</h3>
+            <p class="footer-subtitle">Chemistry Investigatory Project — Class XII — Session 2026–27</p>
+            <div class="footer-badge">
+                <svg viewBox="0 0 24 24">
+                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>
+                </svg>
+                Crafted with Passion
+            </div>
+            <p style="margin-top: 1.5rem; font-size: 0.8rem; color: var(--text-muted);">
+                © 2026–27 Akshit Tyagi. All rights reserved.
+            </p>
+        </div>
+    </section>
+
+    <!-- Back to Top -->
+    <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" aria-label="Back to top">
+        <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+    </button>
+
+    <!-- ==================== JAVASCRIPT ==================== -->
+    <script>
+    (function() {
+        'use strict';
+
+        // ---- BACK TO TOP SCROLL EFFECT ----
+        const backToTop = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', () => {
+            const scrollY = window.scrollY;
+            // Back to top
+            if (backToTop) backToTop.classList.toggle('visible', scrollY > 600);
+        }, { passive: true });
+
+        // ---- INTERSECTION OBSERVER (Scroll Animations) ----
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // ---- WATER BUBBLES ----
+        function createBubbles() {
+            const waterBg = document.getElementById('waterBg');
+            const colors = ['var(--accent-1)', 'var(--accent-2)', 'var(--accent-3)', 'var(--accent-4)'];
+
+            for (let i = 0; i < 20; i++) {
+                const bubble = document.createElement('div');
+                bubble.classList.add('bubble');
+                const size = Math.random() * 8 + 3;
+                bubble.style.width = size + 'px';
+                bubble.style.height = size + 'px';
+                bubble.style.left = Math.random() * 100 + '%';
+                bubble.style.background = colors[Math.floor(Math.random() * colors.length)];
+                bubble.style.animationDuration = (Math.random() * 15 + 10) + 's';
+                bubble.style.animationDelay = (Math.random() * 10) + 's';
+                waterBg.appendChild(bubble);
+            }
+        }
+        createBubbles();
+
+        // ---- COVER PARTICLES ----
+        function createCoverParticles() {
+            const container = document.getElementById('coverParticles');
+            for (let i = 0; i < 30; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('cover-particle');
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                const size = Math.random() * 4 + 2;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                particle.style.animationDuration = (Math.random() * 15 + 10) + 's';
+                particle.style.animationDelay = (Math.random() * 10) + 's';
+                container.appendChild(particle);
+            }
+        }
+        createCoverParticles();
+
+        // ---- WATER RIPPLE ON CLICK ----
+        document.querySelectorAll('.ripple-container').forEach(container => {
+            container.addEventListener('click', function(e) {
+                const rect = this.getBoundingClientRect();
+                const ripple = document.createElement('div');
+                ripple.classList.add('ripple');
+                ripple.style.left = (e.clientX - rect.left - 150) + 'px';
+                ripple.style.top = (e.clientY - rect.top - 150) + 'px';
+                this.appendChild(ripple);
+                setTimeout(() => ripple.remove(), 600);
+            });
+        });
+
+        // ---- SMOOTH SCROLL for Index Table ----
+        document.querySelectorAll('.index-table a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href').substring(1);
+                const target = document.getElementById(targetId);
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // ---- STAGGER ANIMATION for Material Items ----
+        const staggerObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const items = entry.target.querySelectorAll('.material-item, .precaution-item, .step-item, .info-item, .bib-item');
+                    items.forEach((item, index) => {
+                        item.style.opacity = '0';
+                        item.style.transform = 'translateY(20px)';
+                        setTimeout(() => {
+                            item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                            item.style.opacity = '1';
+                            item.style.transform = 'translateY(0)';
+                        }, index * 80);
+                    });
+                    staggerObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.2 });
+
+        document.querySelectorAll('.glass-card').forEach(card => {
+            staggerObserver.observe(card);
+        });
+
+    })();
+    </script>
+    <script src="../shared-nav.js"></script>
+</body>
+</html>
