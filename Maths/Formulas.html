@@ -479,6 +479,23 @@
   .scroll-top.show { opacity: 1; transform: translateY(0); }
   .scroll-top:hover { transform: translateY(-3px) scale(1.05); }
 </style>
+
+<!-- MathJax -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      packages: {'[+]': ['noerrors']}
+    },
+    chtml: {
+      displayAlign: 'left',
+      displayIndent: '2em'
+    }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+
 </head>
 <body>
 
@@ -590,77 +607,101 @@
 
         <div class="section">
           <div class="section-title">1.1 Euclid's Division Lemma</div>
-          <div class="formula-block">a = bq + r,   where 0 ≤ r &lt; b
-
-→ b = (a - r) / q
-→ q = (a - r) / b
-→ r = a - bq
-→ a - r = bq
-→ a mod b = r</div>
+          <div class="formula-block">
+\begin{gather*}
+a = bq + r,   \text{where} 0 \le  r < b \\
+\\
+\Rightarrow  b = (a - r) / q \\
+\Rightarrow  q = (a - r) / b \\
+\Rightarrow  r = a - bq \\
+\Rightarrow  a - r = bq \\
+\Rightarrow  a mod b = r
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">1.2 HCF &amp; LCM Relationship</div>
-          <div class="formula-block">HCF(a, b) × LCM(a, b) = a × b
-
-→ LCM(a, b) = (a × b) / HCF(a, b)
-→ HCF(a, b) = (a × b) / LCM(a, b)
-→ a = HCF × (a/HCF)
-→ b = HCF × (b/HCF)
-→ LCM = HCF × (a/HCF) × (b/HCF)
-
-For three numbers:
-HCF(a,b,c) × LCM(a,b,c) ≠ a×b×c  [NOT directly]
-
-LCM(a,b,c) = (a×b×c × HCF(a,b,c)) / [HCF(a,b) × HCF(b,c) × HCF(a,c)]</div>
+          <div class="formula-block">
+\begin{gather*}
+HCF(a, b) \times  LCM(a, b) = a \times  b \\
+\\
+\Rightarrow  LCM(a, b) = (a \times  b) / HCF(a, b) \\
+\Rightarrow  HCF(a, b) = (a \times  b) / LCM(a, b) \\
+\Rightarrow  a = HCF \times  (a/HCF) \\
+\Rightarrow  b = HCF \times  (b/HCF) \\
+\Rightarrow  LCM = HCF \times  (a/HCF) \times  (b/HCF) \\
+\\
+\text{For} three numbers: \\
+HCF(a,b,c) \times  LCM(a,b,c) \neq  a\times b\times c  [\text{NOT} directly] \\
+\\
+LCM(a,b,c) = (a\times b\times c \times  HCF(a,b,c)) / [HCF(a,b) \times  HCF(b,c) \times  HCF(a,c)]
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">1.3 Fundamental Theorem of Arithmetic</div>
-          <div class="formula-block">Every composite number = product of primes (unique, order aside)
-n = p₁^a₁ × p₂^a₂ × p₃^a₃ × ... × pₖ^aₖ
-
-HCF = product of SMALLEST powers of common prime factors
-LCM = product of GREATEST powers of all prime factors</div>
+          <div class="formula-block">
+\begin{gather*}
+Every composite number = product of primes (unique, order aside) \\
+n = p_1^a_1 \times  p_2^a_2 \times  p_3^a_3 \times  ... \times  p_k^a_k \\
+\\
+HCF = product of SMALLEST powers of common prime factors \\
+LCM = product of GREATEST powers of all prime factors
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">1.4 Rational &amp; Irrational Numbers</div>
-          <div class="formula-block">Rational number p/q terminates iff q = 2^m × 5^n
-
-Number of decimal places = max(m, n)
-
-If q has prime factor other than 2 or 5 → non-terminating repeating
-
-√p is irrational if p is a prime number
-√(a/b) is irrational if a/b is not a perfect square of rationals</div>
+          <div class="formula-block">
+\begin{gather*}
+Rational number p/q terminates iff q = 2^m \times  5^n \\
+\\
+Number of decimal places = max(m, n) \\
+\\
+\text{If} q has prime factor other than 2 \text{or} 5 \Rightarrow  non-terminating repeating \\
+\\
+\sqrt{p} \text{is} irrational \text{if} p \text{is} a prime number \\
+\sqrt{a/b} \text{is} irrational \text{if} a/b \text{is} \text{not} a perfect square of rationals
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">1.5 Divisibility Conditions</div>
-          <div class="formula-block">n² - 1 = (n-1)(n+1)
-n(n+1) = always even
-n(n+1)(n+2) = always divisible by 6
-n(n+1)(2n+1)/6 = sum of squares of first n natural numbers</div>
+          <div class="formula-block">
+\begin{gather*}
+n^2 - 1 = (n-1)(n+1) \\
+n(n+1) = always even \\
+n(n+1)(n+2) = always divisible by 6 \\
+n(n+1)(2n+1)/6 = sum of squares of first n natural numbers
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">1.6 Key Number Theory Identities</div>
-          <div class="formula-block">(a + b)² = a² + 2ab + b²
-(a - b)² = a² - 2ab + b²
-a² - b² = (a+b)(a-b)
-(a + b)³ = a³ + 3a²b + 3ab² + b³
-(a - b)³ = a³ - 3a²b + 3ab² - b³
-a³ + b³ = (a+b)(a² - ab + b²)
-a³ - b³ = (a-b)(a² + ab + b²)
-
-Twisted Forms:
-ab = [(a+b)² - a² - b²] / 2
-ab = [(a+b)² - (a-b)²] / 4
-a² + b² = (a+b)² - 2ab
-a² + b² = (a-b)² + 2ab
-(a+b)² - (a-b)² = 4ab
-(a+b)² + (a-b)² = 2(a²+b²)</div>
+          <div class="formula-block">
+\begin{gather*}
+(a + b)^2 = a^2 + 2ab + b^2 \\
+(a - b)^2 = a^2 - 2ab + b^2 \\
+a^2 - b^2 = (a+b)(a-b) \\
+(a + b)^3 = a^3 + 3a^2b + 3ab^2 + b^3 \\
+(a - b)^3 = a^3 - 3a^2b + 3ab^2 - b^3 \\
+a^3 + b^3 = (a+b)(a^2 - ab + b^2) \\
+a^3 - b^3 = (a-b)(a^2 + ab + b^2) \\
+\\
+Twisted Forms: \\
+ab = [(a+b)^2 - a^2 - b^2] / 2 \\
+ab = [(a+b)^2 - (a-b)^2] / 4 \\
+a^2 + b^2 = (a+b)^2 - 2ab \\
+a^2 + b^2 = (a-b)^2 + 2ab \\
+(a+b)^2 - (a-b)^2 = 4ab \\
+(a+b)^2 + (a-b)^2 = 2(a^2+b^2)
+\end{gather*}
+</div>
         </div>
       </div>
 
@@ -673,93 +714,117 @@ a² + b² = (a-b)² + 2ab
 
         <div class="section">
           <div class="section-title">2.1 Degree and Types</div>
-          <div class="formula-block">Linear:    ax + b = 0         (degree 1)  → 1 zero
-Quadratic: ax² + bx + c = 0  (degree 2)  → 2 zeros
-Cubic:     ax³+bx²+cx+d = 0  (degree 3)  → 3 zeros</div>
+          <div class="formula-block">
+\begin{gather*}
+Linear:    ax + b = 0         (degree 1)  \Rightarrow  1 zero \\
+Quadratic: ax^2 + bx + c = 0  (degree 2)  \Rightarrow  2 zeros \\
+Cubic:     ax^3+bx^2+cx+d = 0  (degree 3)  \Rightarrow  3 zeros
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">2.2 Quadratic Polynomial — Relationship Between Zeros and Coefficients</div>
-          <div class="formula-block">p(x) = ax² + bx + c,  zeros: α, β
-
-Sum of zeros:     α + β = -b/a
-Product of zeros: α × β = c/a
-
-→ b = -a(α + β)
-→ c = a(α × β)
-→ a/b = -1/(α+β)
-→ b/c = -(α+β)/(αβ)
-
-Twisted Derived Forms:
-α² + β²     = (α+β)² - 2αβ  = b²/a² - 2c/a  = (b² - 2ac)/a²
-(α - β)²    = (α+β)² - 4αβ  = b²/a² - 4c/a  = (b² - 4ac)/a²
-|α - β|     = √[(α+β)² - 4αβ] = √(b²-4ac) / |a|
-α² - β²     = (α+β)(α-β)
-1/α + 1/β   = (α+β)/(αβ) = -b/c
-1/(αβ)      = a/c
-α/β + β/α   = (α²+β²)/(αβ) = (b²-2ac)/(ac)
-α² × β²     = (αβ)² = c²/a²
-α³ + β³     = (α+β)³ - 3αβ(α+β) = (-b/a)³ - 3(c/a)(-b/a)
-            = (-b³ + 3abc) / a³
-α³ - β³     = (α-β)[(α+β)²-αβ]
-1/α² + 1/β² = (α²+β²)/(αβ)² = (b²-2ac)/c²
-(α+1)(β+1) = αβ + α + β + 1 = c/a - b/a + 1 = (c - b + a)/a
-(α-1)(β-1) = αβ - (α+β) + 1 = c/a + b/a + 1 = (c + b + a)/a
-α²β + αβ²  = αβ(α+β) = (c/a)(-b/a) = -bc/a²</div>
+          <div class="formula-block">
+\begin{gather*}
+p(x) = ax^2 + bx + c,  zeros: \alpha , \beta \\
+\\
+Sum of zeros:     \alpha  + \beta  = -b/a \\
+Product of zeros: \alpha  \times  \beta  = c/a \\
+\\
+\Rightarrow  b = -a(\alpha  + \beta ) \\
+\Rightarrow  c = a(\alpha  \times  \beta ) \\
+\Rightarrow  a/b = -1/(\alpha +\beta ) \\
+\Rightarrow  b/c = -(\alpha +\beta )/(\alpha \beta ) \\
+\\
+Twisted Derived Forms: \\
+\alpha ^2 + \beta ^2     = (\alpha +\beta )^2 - 2\alpha \beta   = b^2/a^2 - 2c/a  = (b^2 - 2ac)/a^2 \\
+(\alpha  - \beta )^2    = (\alpha +\beta )^2 - 4\alpha \beta   = b^2/a^2 - 4c/a  = (b^2 - 4ac)/a^2 \\
+|\alpha  - \beta |     = √[(\alpha +\beta )^2 - 4\alpha \beta ] = \sqrt{b^2-4ac} / |a| \\
+\alpha ^2 - \beta ^2     = (\alpha +\beta )(\alpha -\beta ) \\
+1/\alpha  + 1/\beta    = (\alpha +\beta )/(\alpha \beta ) = -b/c \\
+1/(\alpha \beta )      = a/c \\
+\alpha /\beta  + \beta /\alpha    = (\alpha ^2+\beta ^2)/(\alpha \beta ) = (b^2-2ac)/(ac) \\
+\alpha ^2 \times  \beta ^2     = (\alpha \beta )^2 = c^2/a^2 \\
+\alpha ^3 + \beta ^3     = (\alpha +\beta )^3 - 3\alpha \beta (\alpha +\beta ) = (-b/a)^3 - 3(c/a)(-b/a) \\
+= (-b^3 + 3abc) / a^3 \\
+\alpha ^3 - \beta ^3     = (\alpha -\beta )[(\alpha +\beta )^2-\alpha \beta ] \\
+1/\alpha ^2 + 1/\beta ^2 = (\alpha ^2+\beta ^2)/(\alpha \beta )^2 = (b^2-2ac)/c^2 \\
+(\alpha +1)(\beta +1) = \alpha \beta  + \alpha  + \beta  + 1 = c/a - b/a + 1 = (c - b + a)/a \\
+(\alpha -1)(\beta -1) = \alpha \beta  - (\alpha +\beta ) + 1 = c/a + b/a + 1 = (c + b + a)/a \\
+\alpha ^2\beta  + \alpha \beta ^2  = \alpha \beta (\alpha +\beta ) = (c/a)(-b/a) = -bc/a^2
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">2.3 Formation of Quadratic from Given Zeros</div>
-          <div class="formula-block">p(x) = x² - (α+β)x + αβ  [when a=1]
-p(x) = k[x² - (α+β)x + αβ]  [general, k ≠ 0]
-p(x) = k[x² - (sum of zeros)x + (product of zeros)]</div>
+          <div class="formula-block">
+\begin{gather*}
+p(x) = x^2 - (\alpha +\beta )x + \alpha \beta   [\text{when} a=1] \\
+p(x) = k[x^2 - (\alpha +\beta )x + \alpha \beta ]  [general, k \neq  0] \\
+p(x) = k[x^2 - (sum of zeros)x + (product of zeros)]
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">2.4 Cubic Polynomial — Relationship with Zeros</div>
-          <div class="formula-block">p(x) = ax³ + bx² + cx + d,  zeros: α, β, γ
-
-α + β + γ       = -b/a
-αβ + βγ + γα    = c/a
-αβγ             = -d/a
-
-Twisted Forms:
-α² + β² + γ²   = (α+β+γ)² - 2(αβ+βγ+γα)
-                = b²/a² - 2c/a = (b²-2ac)/a²
-
-α³+β³+γ³-3αβγ = (α+β+γ)(α²+β²+γ²-αβ-βγ-γα)
-
-1/α + 1/β + 1/γ = (αβ+βγ+γα)/(αβγ) = -c/d
-
-Formation:
-p(x) = x³ - (α+β+γ)x² + (αβ+βγ+γα)x - αβγ</div>
+          <div class="formula-block">
+\begin{gather*}
+p(x) = ax^3 + bx^2 + cx + d,  zeros: \alpha , \beta , \gamma \\
+\\
+\alpha  + \beta  + \gamma        = -b/a \\
+\alpha \beta  + \beta \gamma  + \gamma \alpha     = c/a \\
+\alpha \beta \gamma              = -d/a \\
+\\
+Twisted Forms: \\
+\alpha ^2 + \beta ^2 + \gamma ^2   = (\alpha +\beta +\gamma )^2 - 2(\alpha \beta +\beta \gamma +\gamma \alpha ) \\
+= b^2/a^2 - 2c/a = (b^2-2ac)/a^2 \\
+\\
+\alpha ^3+\beta ^3+\gamma ^3-3\alpha \beta \gamma  = (\alpha +\beta +\gamma )(\alpha ^2+\beta ^2+\gamma ^2-\alpha \beta -\beta \gamma -\gamma \alpha ) \\
+\\
+1/\alpha  + 1/\beta  + 1/\gamma  = (\alpha \beta +\beta \gamma +\gamma \alpha )/(\alpha \beta \gamma ) = -c/d \\
+\\
+Formation: \\
+p(x) = x^3 - (\alpha +\beta +\gamma )x^2 + (\alpha \beta +\beta \gamma +\gamma \alpha )x - \alpha \beta \gamma
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">2.5 Division Algorithm</div>
-          <div class="formula-block">Dividend = Divisor × Quotient + Remainder
-p(x) = g(x) × q(x) + r(x)
-
-where deg[r(x)] &lt; deg[g(x)]
-
-→ p(x) - r(x) = g(x) × q(x)   [p-r is divisible by g]
-→ q(x) = [p(x) - r(x)] / g(x)</div>
+          <div class="formula-block">
+\begin{gather*}
+Dividend = Divisor \times  Quotient + Remainder \\
+p(x) = g(x) \times  q(x) + r(x) \\
+\\
+\text{where} deg[r(x)] < deg[g(x)] \\
+\\
+\Rightarrow  p(x) - r(x) = g(x) \times  q(x)   [p-r \text{is} divisible by g] \\
+\Rightarrow  q(x) = [p(x) - r(x)] / g(x)
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">2.6 Discriminant (Δ)</div>
-          <div class="formula-block">Δ = b² - 4ac
-
-Δ > 0  → two distinct real zeros
-Δ = 0  → two equal real zeros (coincident)
-Δ &lt; 0  → no real zeros (complex)
-
-Zeros: α, β = [-b ± √(b²-4ac)] / 2a  [Quadratic Formula]
-
-→ α + β = -b/a     (verify)
-→ α - β = √Δ / a  (difference of roots)
-→ 2α = (-b/a) + √Δ/a = (-b + √Δ)/a
-→ 2β = (-b/a) - √Δ/a = (-b - √Δ)/a</div>
+          <div class="formula-block">
+\begin{gather*}
+\Delta  = b^2 - 4ac \\
+\\
+\Delta  > 0  \Rightarrow  two distinct real zeros \\
+\Delta  = 0  \Rightarrow  two equal real zeros (coincident) \\
+\Delta  < 0  \Rightarrow  no real zeros (complex) \\
+\\
+Zeros: \alpha , \beta  = [-b ± \sqrt{b^2-4ac}] / 2a  [Quadratic Formula] \\
+\\
+\Rightarrow  \alpha  + \beta  = -b/a     (verify) \\
+\Rightarrow  \alpha  - \beta  = √\Delta  / a  (difference of roots) \\
+\Rightarrow  2\alpha  = (-b/a) + √\Delta /a = (-b + √\Delta )/a \\
+\Rightarrow  2\beta  = (-b/a) - √\Delta /a = (-b - √\Delta )/a
+\end{gather*}
+</div>
         </div>
       </div>
 
@@ -772,55 +837,79 @@ Zeros: α, β = [-b ± √(b²-4ac)] / 2a  [Quadratic Formula]
 
         <div class="section">
           <div class="section-title">3.1 Standard Form</div>
-          <div class="formula-block">a₁x + b₁y + c₁ = 0
-a₂x + b₂y + c₂ = 0</div>
+          <div class="formula-block">
+\begin{gather*}
+a_1x + b_1y + c_1 = 0 \\
+a_2x + b_2y + c_2 = 0
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">3.2 Consistency Conditions</div>
-          <div class="formula-block">Unique solution (consistent):    a₁/a₂ ≠ b₁/b₂
-Infinitely many (consistent):    a₁/a₂ = b₁/b₂ = c₁/c₂
-No solution (inconsistent):      a₁/a₂ = b₁/b₂ ≠ c₁/c₂</div>
+          <div class="formula-block">
+\begin{gather*}
+Unique solution (consistent):    a_1/a_2 \neq  b_1/b_2 \\
+Infinitely many (consistent):    a_1/a_2 = b_1/b_2 = c_1/c_2 \\
+No solution (inconsistent):      a_1/a_2 = b_1/b_2 \neq  c_1/c_2
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">3.3 Cross-Multiplication Method</div>
-          <div class="formula-block">  x          y          1
-———————  = ———————  = ————————
-b₁c₂-b₂c₁  c₁a₂-c₂a₁  a₁b₂-a₂b₁
-
-→ x = (b₁c₂ - b₂c₁) / (a₁b₂ - a₂b₁)
-→ y = (c₁a₂ - c₂a₁) / (a₁b₂ - a₂b₁)
-
-Let D  = a₁b₂ - a₂b₁
-    Dx = b₁c₂ - b₂c₁    [replace a-column with c values, negated]
-    Dy = c₁a₂ - c₂a₁
-x = Dx/D,  y = Dy/D</div>
+          <div class="formula-block">
+\begin{gather*}
+x          y          1 \\
+-------  = -------  = -------- \\
+b_1c_2-b_2c_1  c_1a_2-c_2a_1  a_1b_2-a_2b_1 \\
+\\
+\Rightarrow  x = (b_1c_2 - b_2c_1) / (a_1b_2 - a_2b_1) \\
+\Rightarrow  y = (c_1a_2 - c_2a_1) / (a_1b_2 - a_2b_1) \\
+\\
+Let D  = a_1b_2 - a_2b_1 \\
+Dx = b_1c_2 - b_2c_1    [replace a-column with c values, negated] \\
+Dy = c_1a_2 - c_2a_1 \\
+x = Dx/D,  y = Dy/D
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">3.4 Substitution Method (Steps)</div>
-          <div class="formula-block">From eq1: y = (c₁ - a₁x) / b₁
-Substitute in eq2: a₂x + b₂[(c₁-a₁x)/b₁] + c₂ = 0
-Solve for x, then back-substitute for y</div>
+          <div class="formula-block">
+\begin{gather*}
+From eq1: y = (c_1 - a_1x) / b_1 \\
+Substitute in eq2: a_2x + b_2[(c_1-a_1x)/b_1] + c_2 = 0 \\
+Solve \text{for} x, then back-substitute \text{for} y
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">3.5 Elimination Method</div>
-          <div class="formula-block">Multiply eq1 by a₂, eq2 by a₁:
-a₁a₂x + b₁a₂y = -c₁a₂
-a₁a₂x + b₂a₁y = -c₂a₁
-Subtract: y(b₁a₂ - b₂a₁) = c₂a₁ - c₁a₂
-→ y = (c₂a₁ - c₁a₂)/(b₁a₂ - b₂a₁)</div>
+          <div class="formula-block">
+\begin{gather*}
+Multiply eq1 by a_2, eq2 by a_1: \\
+a_1a_2x + b_1a_2y = -c_1a_2 \\
+a_1a_2x + b_2a_1y = -c_2a_1 \\
+Subtract: y(b_1a_2 - b_2a_1) = c_2a_1 - c_1a_2 \\
+\Rightarrow  y = (c_2a_1 - c_1a_2)/(b_1a_2 - b_2a_1)
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">3.6 Graphical Interpretation</div>
-          <div class="formula-block">Lines intersect   → unique solution     → (x,y) = point of intersection
-Lines parallel    → no solution         → slopes equal, y-intercepts differ
-Lines coincident  → infinite solutions  → same line
-
-Slope of a₁x + b₁y + c₁ = 0  is  m = -a₁/b₁</div>
+          <div class="formula-block">
+\begin{gather*}
+Lines intersect   \Rightarrow  unique solution     \Rightarrow  (x,y) = point of intersection \\
+Lines parallel    \Rightarrow  no solution         \Rightarrow  slopes equal, y-intercepts differ \\
+Lines coincident  \Rightarrow  infinite solutions  \Rightarrow  same line \\
+\\
+Slope of a_1x + b_1y + c_1 = 0  \text{is}  m = -a_1/b_1
+\end{gather*}
+</div>
         </div>
       </div>
 
@@ -833,63 +922,87 @@ Slope of a₁x + b₁y + c₁ = 0  is  m = -a₁/b₁</div>
 
         <div class="section">
           <div class="section-title">4.1 Standard Form &amp; Quadratic Formula</div>
-          <div class="formula-block">ax² + bx + c = 0  (a ≠ 0)
-
-x = [-b ± √(b² - 4ac)] / 2a
-
-x₁ = (-b + √D) / 2a
-x₂ = (-b - √D) / 2a
-
-where D = b² - 4ac (Discriminant)</div>
+          <div class="formula-block">
+\begin{gather*}
+ax^2 + bx + c = 0  (a \neq  0) \\
+\\
+x = [-b ± \sqrt{b^2 - 4ac}] / 2a \\
+\\
+x_1 = (-b + \sqrt{D}) / 2a \\
+x_2 = (-b - \sqrt{D}) / 2a \\
+\\
+\text{where} D = b^2 - 4ac (Discriminant)
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">4.2 Nature of Roots</div>
-          <div class="formula-block">D > 0  → two distinct real roots
-D = 0  → two equal real roots: x = -b/2a
-D &lt; 0  → no real roots (imaginary)
-D is perfect square → rational roots
-D > 0 but not perfect square → irrational roots</div>
+          <div class="formula-block">
+\begin{gather*}
+D > 0  \Rightarrow  two distinct real roots \\
+D = 0  \Rightarrow  two equal real roots: x = -b/2a \\
+D < 0  \Rightarrow  no real roots (imaginary) \\
+D \text{is} perfect square \Rightarrow  rational roots \\
+D > 0 but \text{not} perfect square \Rightarrow  irrational roots
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">4.3 Sum and Product of Roots</div>
-          <div class="formula-block">x₁ + x₂ = -b/a
-x₁ × x₂ = c/a
-x₁ - x₂ = √D/a  = √(b²-4ac)/a
-
-Equation from roots:  x² - (x₁+x₂)x + x₁x₂ = 0</div>
+          <div class="formula-block">
+\begin{gather*}
+x_1 + x_2 = -b/a \\
+x_1 \times  x_2 = c/a \\
+x_1 - x_2 = \sqrt{D}/a  = \sqrt{b^2-4ac}/a \\
+\\
+Equation from roots:  x^2 - (x_1+x_2)x + x_1x_2 = 0
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">4.4 Completing the Square</div>
-          <div class="formula-block">ax² + bx + c = 0
-x² + (b/a)x + c/a = 0
-(x + b/2a)² = b²/4a² - c/a = (b²-4ac)/4a²
-x + b/2a = ± √(b²-4ac) / 2a
-x = -b/2a ± √(b²-4ac)/2a</div>
+          <div class="formula-block">
+\begin{gather*}
+ax^2 + bx + c = 0 \\
+x^2 + (b/a)x + c/a = 0 \\
+(x + b/2a)^2 = b^2/4a^2 - c/a = (b^2-4ac)/4a^2 \\
+x + b/2a = ± \sqrt{b^2-4ac} / 2a \\
+x = -b/2a ± \sqrt{b^2-4ac}/2a
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">4.5 Special Cases &amp; Factoring Tricks</div>
-          <div class="formula-block">If sum of coefficients = 0:  x=1 is always a root
-  i.e., a + b + c = 0  →  x=1 and x=c/a
-
-If a + c = b:  x = -1 is always a root
-
-For x² - Sx + P = 0: roots are S±√(S²-4P)/2
-
-Factoring: ax²+bx+c = a(x-x₁)(x-x₂)
-                     = a[x² - (x₁+x₂)x + x₁x₂]</div>
+          <div class="formula-block">
+\begin{gather*}
+\text{If} sum of coefficients = 0:  x=1 \text{is} always a root \\
+i.e., a + b + c = 0  \Rightarrow   x=1 \text{and} x=c/a \\
+\\
+\text{If} a + c = b:  x = -1 \text{is} always a root \\
+\\
+\text{For} x^2 - Sx + P = 0: roots are S±\sqrt{S^2-4P}/2 \\
+\\
+Factoring: ax^2+bx+c = a(x-x_1)(x-x_2) \\
+= a[x^2 - (x_1+x_2)x + x_1x_2]
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">4.6 Common Root Condition</div>
-          <div class="formula-block">If ax²+bx+c=0 and dx²+ex+f=0 share a common root r:
-ar²+br+c=0 and dr²+er+f=0
-→ r = (bf-ce)/(cd-af) = (ae-bd)/(bf-ce)  [cross multiply]
-
-Condition: (bf-ce)(ae-bd) = (cd-af)²</div>
+          <div class="formula-block">
+\begin{gather*}
+\text{If} ax^2+bx+c=0 \text{and} dx^2+ex+f=0 share a common root r: \\
+ar^2+br+c=0 \text{and} dr^2+er+f=0 \\
+\Rightarrow  r = (bf-ce)/(cd-af) = (ae-bd)/(bf-ce)  [cross multiply] \\
+\\
+Condition: (bf-ce)(ae-bd) = (cd-af)^2
+\end{gather*}
+</div>
         </div>
       </div>
 
@@ -902,98 +1015,122 @@ Condition: (bf-ce)(ae-bd) = (cd-af)²</div>
 
         <div class="section">
           <div class="section-title">5.1 General Term (nth Term)</div>
-          <div class="formula-block">aₙ = a + (n-1)d
-
-where:  a = first term
-        d = common difference = aₙ - aₙ₋₁
-        n = number of terms
-
-→ n  = (aₙ - a)/d + 1
-→ d  = (aₙ - a)/(n-1)
-→ a  = aₙ - (n-1)d
-→ aₙ = l = last term
-
-Last term: l = a + (n-1)d
-Number of terms: n = (l-a)/d + 1</div>
+          <div class="formula-block">
+\begin{gather*}
+aₙ = a + (n-1)d \\
+\\
+\text{where}:  a = first term \\
+d = common difference = aₙ - aₙ₋_1 \\
+n = number of terms \\
+\\
+\Rightarrow  n  = (aₙ - a)/d + 1 \\
+\Rightarrow  d  = (aₙ - a)/(n-1) \\
+\Rightarrow  a  = aₙ - (n-1)d \\
+\Rightarrow  aₙ = l = last term \\
+\\
+Last term: l = a + (n-1)d \\
+Number of terms: n = (l-a)/d + 1
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">5.2 Sum of n Terms</div>
-          <div class="formula-block">Sₙ = n/2 [2a + (n-1)d]
-Sₙ = n/2 [a + l]          (when last term l is known)
-Sₙ = n/2 [a + aₙ]
-
-→ aₙ = Sₙ - Sₙ₋₁           (nth term from sum)
-→ 2a + (n-1)d = 2Sₙ/n
-→ d = 2(Sₙ - na) / [n(n-1)]
-→ a = [2Sₙ - n(n-1)d] / 2n
-
-If Sₙ = An² + Bn:
-  aₙ = A(2n-1) + B          (nth term)
-  a₁ = A + B
-  d  = 2A</div>
+          <div class="formula-block">
+\begin{gather*}
+Sₙ = n/2 [2a + (n-1)d] \\
+Sₙ = n/2 [a + l]          (\text{when} last term l \text{is} known) \\
+Sₙ = n/2 [a + aₙ] \\
+\\
+\Rightarrow  aₙ = Sₙ - Sₙ₋_1           (nth term from sum) \\
+\Rightarrow  2a + (n-1)d = 2Sₙ/n \\
+\Rightarrow  d = 2(Sₙ - na) / [n(n-1)] \\
+\Rightarrow  a = [2Sₙ - n(n-1)d] / 2n \\
+\\
+\text{If} Sₙ = An^2 + Bn: \\
+aₙ = A(2n-1) + B          (nth term) \\
+a_1 = A + B \\
+d  = 2A
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">5.3 Important Sum Formulas</div>
-          <div class="formula-block">Sum of first n natural numbers:
-  Σn = n(n+1)/2
-
-Sum of first n odd numbers:
-  1+3+5+...+(2n-1) = n²
-
-Sum of first n even numbers:
-  2+4+6+...+2n = n(n+1)
-
-Sum of squares of first n naturals:
-  Σn² = n(n+1)(2n+1)/6
-
-Sum of cubes of first n naturals:
-  Σn³ = [n(n+1)/2]²</div>
+          <div class="formula-block">
+\begin{gather*}
+Sum of first n natural numbers: \\
+\Sigma n = n(n+1)/2 \\
+\\
+Sum of first n odd numbers: \\
+1+3+5+...+(2n-1) = n^2 \\
+\\
+Sum of first n even numbers: \\
+2+4+6+...+2n = n(n+1) \\
+\\
+Sum of squares of first n naturals: \\
+\Sigma n^2 = n(n+1)(2n+1)/6 \\
+\\
+Sum of cubes of first n naturals: \\
+\Sigma n^3 = [n(n+1)/2]^2
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">5.4 Arithmetic Mean</div>
-          <div class="formula-block">AM between a and b: A = (a+b)/2
-→ a, A, b are in AP  ↔  A-a = b-A  ↔  2A = a+b
-
-n AMs between a and b:
-  A₁ = a + d,  A₂ = a + 2d, ..., Aₙ = a + nd
-  where d = (b-a)/(n+1)
-
-Sum of n AMs between a and b = n(a+b)/2</div>
+          <div class="formula-block">
+\begin{gather*}
+AM between a \text{and} b: A = (a+b)/2 \\
+\Rightarrow  a, A, b are in AP  ↔  A-a = b-A  ↔  2A = a+b \\
+\\
+n AMs between a \text{and} b: \\
+A_1 = a + d,  A_2 = a + 2d, ..., Aₙ = a + nd \\
+\text{where} d = (b-a)/(n+1) \\
+\\
+Sum of n AMs between a \text{and} b = n(a+b)/2
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">5.5 Properties of AP</div>
-          <div class="formula-block">If a, b, c are in AP:  2b = a + c  →  b-a = c-b
-
-If each term multiplied by k → still AP with same ratio
-If constant added → still AP with same d
-If reversed → still AP with common difference -d
-
-aₘ + aₙ = aₚ + aₚ  where m+n = p+q (same sum of indices → same sum of terms)
-
-Middle term of AP with odd n = Sₙ/n = average
-
-3 numbers in AP: a-d, a, a+d  [sum = 3a]
-4 numbers in AP: a-3d, a-d, a+d, a+3d  [sum = 4a]
-5 numbers in AP: a-2d, a-d, a, a+d, a+2d  [sum = 5a]</div>
+          <div class="formula-block">
+\begin{gather*}
+\text{If} a, b, c are in AP:  2b = a + c  \Rightarrow   b-a = c-b \\
+\\
+\text{If} each term multiplied by k \Rightarrow  still AP with same ratio \\
+\text{If} constant added \Rightarrow  still AP with same d \\
+\text{If} reversed \Rightarrow  still AP with common difference -d \\
+\\
+aₘ + aₙ = aₚ + aₚ  \text{where} m+n = p+q (same sum of indices \Rightarrow  same sum of terms) \\
+\\
+Middle term of AP with odd n = Sₙ/n = average \\
+\\
+3 numbers in AP: a-d, a, a+d  [sum = 3a] \\
+4 numbers in AP: a-3d, a-d, a+d, a+3d  [sum = 4a] \\
+5 numbers in AP: a-2d, a-d, a, a+d, a+2d  [sum = 5a]
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">5.6 Twisted AP Identities</div>
-          <div class="formula-block">aₘ - aₙ = (m-n)d
-aₘ/aₙ = [a+(m-1)d] / [a+(n-1)d]
-
-If aₘ = n and aₙ = m:
-  d = (n-m)/(m-n) = -1
-  aₘ₊ₙ = 0
-
-If Sₘ/Sₙ = (am+b)/(cm+d) [ratio of sums given]:
-  aₘ/aₙ = [a(2m-1)+b] / [c(2m-1)+d]  [replace n by 2n-1]
-
-Sₘ = Sₙ  (m≠n)  →  Sₘ₊ₙ = 0  →  aₘ₊ₙ₊₁ = 0</div>
+          <div class="formula-block">
+\begin{gather*}
+aₘ - aₙ = (m-n)d \\
+aₘ/aₙ = [a+(m-1)d] / [a+(n-1)d] \\
+\\
+\text{If} aₘ = n \text{and} aₙ = m: \\
+d = (n-m)/(m-n) = -1 \\
+aₘ₊ₙ = 0 \\
+\\
+\text{If} Sₘ/Sₙ = (am+b)/(cm+d) [ratio of sums given]: \\
+aₘ/aₙ = [a(2m-1)+b] / [c(2m-1)+d]  [replace n by 2n-1] \\
+\\
+Sₘ = Sₙ  (m\neq n)  \Rightarrow   Sₘ₊ₙ = 0  \Rightarrow   aₘ₊ₙ₊_1 = 0
+\end{gather*}
+</div>
         </div>
       </div>
 
@@ -1006,98 +1143,130 @@ Sₘ = Sₙ  (m≠n)  →  Sₘ₊ₙ = 0  →  aₘ₊ₙ₊₁ = 0</div>
 
         <div class="section">
           <div class="section-title">6.1 Basic Proportionality Theorem (Thales' Theorem)</div>
-          <div class="formula-block">If DE ∥ BC in △ABC, D on AB, E on AC:
-AD/DB = AE/EC
-
-Equivalent Forms:
-AD/AB = AE/AC       (part/whole ratio)
-DB/AB = EC/AC
-AB/AD = AC/AE
-AB/DB = AC/EC
-DB/AD = EC/AE</div>
+          <div class="formula-block">
+\begin{gather*}
+\text{If} DE ∥ BC in △ABC, D on AB, E on AC: \\
+AD/DB = AE/EC \\
+\\
+Equivalent Forms: \\
+AD/AB = AE/AC       (part/whole ratio) \\
+DB/AB = EC/AC \\
+AB/AD = AC/AE \\
+AB/DB = AC/EC \\
+DB/AD = EC/AE
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">6.2 Converse of BPT</div>
-          <div class="formula-block">If AD/DB = AE/EC, then DE ∥ BC</div>
+          <div class="formula-block">
+\begin{gather*}
+\text{If} AD/DB = AE/EC, then DE ∥ BC
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">6.3 Angle Bisector Theorem</div>
-          <div class="formula-block">If AD bisects ∠A in △ABC:
-BD/DC = AB/AC
-
-→ BD = (AB × BC)/(AB + AC)
-→ DC = (AC × BC)/(AB + AC)</div>
+          <div class="formula-block">
+\begin{gather*}
+\text{If} AD bisects ∠A in △ABC: \\
+BD/DC = AB/AC \\
+\\
+\Rightarrow  BD = (AB \times  BC)/(AB + AC) \\
+\Rightarrow  DC = (AC \times  BC)/(AB + AC)
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">6.4 Criteria for Similarity</div>
-          <div class="formula-block">AAA / AA:  two pairs of equal angles → similar
-SSS:       all three sides proportional → similar
-SAS:       two sides proportional and included angle equal → similar
-
-If △ABC ~ △DEF:
-AB/DE = BC/EF = CA/FD = k  (scale factor)
-∠A = ∠D, ∠B = ∠E, ∠C = ∠F</div>
+          <div class="formula-block">
+\begin{gather*}
+AAA / AA:  two pairs of equal angles \Rightarrow  similar \\
+SSS:       all three sides proportional \Rightarrow  similar \\
+SAS:       two sides proportional \text{and} included angle equal \Rightarrow  similar \\
+\\
+\text{If} △ABC ~ △DEF: \\
+AB/DE = BC/EF = CA/FD = k  (scale factor) \\
+∠A = ∠D, ∠B = ∠E, ∠C = ∠F
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">6.5 Properties of Similar Triangles</div>
-          <div class="formula-block">If △ABC ~ △DEF with ratio k:
-
-Ratio of perimeters   = k = AB/DE
-Ratio of areas        = k² = (AB/DE)²
-Ratio of altitudes    = k
-Ratio of medians      = k
-Ratio of angle bisectors = k
-Ratio of circumradii  = k
-Ratio of inradii      = k
-
-Area(△ABC)/Area(△DEF) = (AB/DE)² = (BC/EF)² = (CA/FD)²</div>
+          <div class="formula-block">
+\begin{gather*}
+\text{If} △ABC ~ △DEF with ratio k: \\
+\\
+Ratio of perimeters   = k = AB/DE \\
+Ratio of areas        = k^2 = (AB/DE)^2 \\
+Ratio of altitudes    = k \\
+Ratio of medians      = k \\
+Ratio of angle bisectors = k \\
+Ratio of circumradii  = k \\
+Ratio of inradii      = k \\
+\\
+Area(△ABC)/Area(△DEF) = (AB/DE)^2 = (BC/EF)^2 = (CA/FD)^2
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">6.6 Pythagoras Theorem &amp; Converse</div>
-          <div class="formula-block">In right △ABC (right angle at C):
-AB² = BC² + AC²
-(Hypotenuse)² = (Base)² + (Perpendicular)²
-
-→ BC² = AB² - AC²
-→ AC² = AB² - BC²
-→ BC = √(AB² - AC²)
-
-Converse: If AB² = BC² + AC², then ∠C = 90°
-
-Pythagorean Triplets (a,b,c) where a²+b²=c²:
-(3,4,5), (5,12,13), (8,15,17), (7,24,25), (9,40,41)
-(6,8,10), (10,24,26) [multiples of above]
-General: (m²-n², 2mn, m²+n²) for m>n>0</div>
+          <div class="formula-block">
+\begin{gather*}
+In right △ABC (right angle at C): \\
+AB^2 = BC^2 + AC^2 \\
+(Hypotenuse)^2 = (Base)^2 + (Perpendicular)^2 \\
+\\
+\Rightarrow  BC^2 = AB^2 - AC^2 \\
+\Rightarrow  AC^2 = AB^2 - BC^2 \\
+\Rightarrow  BC = \sqrt{AB^2 - AC^2} \\
+\\
+Converse: \text{If} AB^2 = BC^2 + AC^2, then ∠C = 90° \\
+\\
+Pythagorean Triplets (a,b,c) \text{where} a^2+b^2=c^2: \\
+(3,4,5), (5,12,13), (8,15,17), (7,24,25), (9,40,41) \\
+(6,8,10), (10,24,26) [multiples of above] \\
+General: (m^2-n^2, 2mn, m^2+n^2) \text{for} m>n>0
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">6.7 Important Results from Pythagoras</div>
-          <div class="formula-block">In △ABC, if altitude CD ⊥ AB:
-  CD² = AD × DB          [geometric mean relation]
-  BC² = BD × BA          [altitude on hypotenuse]
-  AC² = AD × AB
-  CD = (AC × BC)/AB
-
-Median formula (in △ABC, m_a = median from A):
-  m_a² = (2b² + 2c² - a²)/4
-
-Stewart's Theorem:
-  b²m + c²n - a(mn + d²) = 0
-  [cevian d divides BC into m and n]</div>
+          <div class="formula-block">
+\begin{gather*}
+In △ABC, \text{if} altitude CD ⊥ AB: \\
+CD^2 = AD \times  DB          [geometric mean relation] \\
+BC^2 = BD \times  BA          [altitude on hypotenuse] \\
+AC^2 = AD \times  AB \\
+CD = (AC \times  BC)/AB \\
+\\
+Median formula (in △ABC, m_a = median from A): \\
+m_a^2 = (2b^2 + 2c^2 - a^2)/4 \\
+\\
+Stewart's Theorem: \\
+b^2m + c^2n - a(mn + d^2) = 0 \\
+[cevian d divides BC into m \text{and} n]
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">6.8 Congruence Criteria</div>
-          <div class="formula-block">SSS: three sides equal
-SAS: two sides and included angle equal
-ASA: two angles and included side equal
-AAS: two angles and non-included side equal
-RHS: right angle, hypotenuse, one side equal</div>
+          <div class="formula-block">
+\begin{gather*}
+SSS: three sides equal \\
+SAS: two sides \text{and} included angle equal \\
+ASA: two angles \text{and} included side equal \\
+AAS: two angles \text{and} non-included side equal \\
+RHS: right angle, hypotenuse, one side equal
+\end{gather*}
+</div>
         </div>
       </div>
 
@@ -1110,101 +1279,133 @@ RHS: right angle, hypotenuse, one side equal</div>
 
         <div class="section">
           <div class="section-title">7.1 Distance Formula</div>
-          <div class="formula-block">d = √[(x₂-x₁)² + (y₂-y₁)²]
-
-→ d² = (x₂-x₁)² + (y₂-y₁)²
-→ (x₂-x₁)² = d² - (y₂-y₁)²
-
-Distance from origin O(0,0) to P(x,y):
-d = √(x² + y²)
-
-Distance between P(x₁,y₁) and Q(x₂,y₂):
-PQ = √[(x₁-x₂)² + (y₁-y₂)²]</div>
+          <div class="formula-block">
+\begin{gather*}
+d = √[(x_2-x_1)^2 + (y_2-y_1)^2] \\
+\\
+\Rightarrow  d^2 = (x_2-x_1)^2 + (y_2-y_1)^2 \\
+\Rightarrow  (x_2-x_1)^2 = d^2 - (y_2-y_1)^2 \\
+\\
+Distance from origin O(0,0) to P(x,y): \\
+d = \sqrt{x^2 + y^2} \\
+\\
+Distance between P(x_1,y_1) \text{and} Q(x_2,y_2): \\
+PQ = √[(x_1-x_2)^2 + (y_1-y_2)^2]
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">7.2 Section Formula</div>
-          <div class="formula-block">Point P dividing A(x₁,y₁) and B(x₂,y₂) in ratio m:n
-
-INTERNAL division:
-P = [(mx₂ + nx₁)/(m+n), (my₂ + ny₁)/(m+n)]
-
-EXTERNAL division:
-P = [(mx₂ - nx₁)/(m-n), (my₂ - ny₁)/(m-n)]
-
-Finding ratio m:n given P(x,y) on AB:
-m/n = (x - x₁)/(x₂ - x)  [using x-coordinate]
-m/n = (y - y₁)/(y₂ - y)  [using y-coordinate]</div>
+          <div class="formula-block">
+\begin{gather*}
+Point P dividing A(x_1,y_1) \text{and} B(x_2,y_2) in ratio m:n \\
+\\
+INTERNAL division: \\
+P = [(mx_2 + nx_1)/(m+n), (my_2 + ny_1)/(m+n)] \\
+\\
+EXTERNAL division: \\
+P = [(mx_2 - nx_1)/(m-n), (my_2 - ny_1)/(m-n)] \\
+\\
+Finding ratio m:n given P(x,y) on AB: \\
+m/n = (x - x_1)/(x_2 - x)  [using x-coordinate] \\
+m/n = (y - y_1)/(y_2 - y)  [using y-coordinate]
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">7.3 Midpoint Formula</div>
-          <div class="formula-block">Midpoint M of A(x₁,y₁) and B(x₂,y₂):
-M = [(x₁+x₂)/2, (y₁+y₂)/2]
-
-→ x₁ + x₂ = 2xₘ
-→ x₁ = 2xₘ - x₂  [find other endpoint if midpoint known]</div>
+          <div class="formula-block">
+\begin{gather*}
+Midpoint M of A(x_1,y_1) \text{and} B(x_2,y_2): \\
+M = [(x_1+x_2)/2, (y_1+y_2)/2] \\
+\\
+\Rightarrow  x_1 + x_2 = 2xₘ \\
+\Rightarrow  x_1 = 2xₘ - x_2  [find other endpoint \text{if} midpoint known]
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">7.4 Centroid of Triangle</div>
-          <div class="formula-block">G = [(x₁+x₂+x₃)/3, (y₁+y₂+y₃)/3]
-
-→ x₁+x₂+x₃ = 3xG
-→ If G = (0,0): x₁+x₂+x₃ = 0, y₁+y₂+y₃ = 0</div>
+          <div class="formula-block">
+\begin{gather*}
+G = [(x_1+x_2+x_3)/3, (y_1+y_2+y_3)/3] \\
+\\
+\Rightarrow  x_1+x_2+x_3 = 3xG \\
+\Rightarrow  \text{If} G = (0,0): x_1+x_2+x_3 = 0, y_1+y_2+y_3 = 0
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">7.5 Area of Triangle</div>
-          <div class="formula-block">Area = ½ |x₁(y₂-y₃) + x₂(y₃-y₁) + x₃(y₁-y₂)|
-
-Expanded:
-= ½ |x₁y₂ - x₁y₃ + x₂y₃ - x₂y₁ + x₃y₁ - x₃y₂|
-
-Shoelace form:
-= ½ |(x₁y₂ - x₂y₁) + (x₂y₃ - x₃y₂) + (x₃y₁ - x₁y₃)|
-
-Collinearity condition (Area = 0):
-x₁(y₂-y₃) + x₂(y₃-y₁) + x₃(y₁-y₂) = 0</div>
+          <div class="formula-block">
+\begin{gather*}
+Area = ½ |x_1(y_2-y_3) + x_2(y_3-y_1) + x_3(y_1-y_2)| \\
+\\
+Expanded: \\
+= ½ |x_1y_2 - x_1y_3 + x_2y_3 - x_2y_1 + x_3y_1 - x_3y_2| \\
+\\
+Shoelace form: \\
+= ½ |(x_1y_2 - x_2y_1) + (x_2y_3 - x_3y_2) + (x_3y_1 - x_1y_3)| \\
+\\
+Collinearity condition (Area = 0): \\
+x_1(y_2-y_3) + x_2(y_3-y_1) + x_3(y_1-y_2) = 0
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">7.6 Slope of a Line</div>
-          <div class="formula-block">m = (y₂-y₁)/(x₂-x₁) = tan θ
-
-→ θ = arctan(m)  (angle with positive x-axis)
-
-Parallel lines:    m₁ = m₂
-Perpendicular:     m₁ × m₂ = -1  →  m₂ = -1/m₁
-
-Slope-intercept form: y = mx + c
-Point-slope form:     y - y₁ = m(x - x₁)
-Two-point form:       (y-y₁)/(y₂-y₁) = (x-x₁)/(x₂-x₁)
-Intercept form:       x/a + y/b = 1</div>
+          <div class="formula-block">
+\begin{gather*}
+m = (y_2-y_1)/(x_2-x_1) = tan \theta \\
+\\
+\Rightarrow  \theta  = arctan(m)  (angle with positive x-axis) \\
+\\
+Parallel lines:    m_1 = m_2 \\
+Perpendicular:     m_1 \times  m_2 = -1  \Rightarrow   m_2 = -1/m_1 \\
+\\
+Slope-intercept form: y = mx + c \\
+Point-slope form:     y - y_1 = m(x - x_1) \\
+Two-point form:       (y-y_1)/(y_2-y_1) = (x-x_1)/(x_2-x_1) \\
+Intercept form:       x/a + y/b = 1
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">7.7 Area of Quadrilateral &amp; Polygon</div>
-          <div class="formula-block">Area of quadrilateral ABCD:
-= ½ |d₁ × d₂ × sin θ|  (diagonals d₁, d₂ at angle θ)
-
-Or using vertices A,B,C,D:
-= ½ |(x₁-x₃)(y₂-y₄) - (x₂-x₄)(y₁-y₃)|  [diagonals AC, BD]
-
-Using Shoelace:
-= ½ |(x₁y₂-x₂y₁) + (x₂y₃-x₃y₂) + (x₃y₄-x₄y₃) + (x₄y₁-x₁y₄)|</div>
+          <div class="formula-block">
+\begin{gather*}
+Area of quadrilateral ABCD: \\
+= ½ |d_1 \times  d_2 \times  sin \theta |  (diagonals d_1, d_2 at angle \theta ) \\
+\\
+\text{Or} using vertices A,B,C,D: \\
+= ½ |(x_1-x_3)(y_2-y₄) - (x_2-x₄)(y_1-y_3)|  [diagonals AC, BD] \\
+\\
+Using Shoelace: \\
+= ½ |(x_1y_2-x_2y_1) + (x_2y_3-x_3y_2) + (x_3y₄-x₄y_3) + (x₄y_1-x_1y₄)|
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">7.8 Key Distance Facts</div>
-          <div class="formula-block">Collinear: AB + BC = AC  (if B is between A and C)
-Isosceles: two distances equal
-Equilateral: all three distances equal, each = same
-Right angle: (longest)² = (other)² + (other)²
-Rectangle: diagonals equal and bisect each other
-Rhombus: all sides equal, diagonals bisect perpendicularly
-Square: all sides equal + diagonals equal
-Parallelogram: diagonals bisect each other (midpoints same)</div>
+          <div class="formula-block">
+\begin{gather*}
+Collinear: AB + BC = AC  (\text{if} B \text{is} between A \text{and} C) \\
+Isosceles: two distances equal \\
+Equilateral: all three distances equal, each = same \\
+Right angle: (longest)^2 = (other)^2 + (other)^2 \\
+Rectangle: diagonals equal \text{and} bisect each other \\
+Rhombus: all sides equal, diagonals bisect perpendicularly \\
+Square: all sides equal + diagonals equal \\
+Parallelogram: diagonals bisect each other (midpoints same)
+\end{gather*}
+</div>
         </div>
       </div>
 
@@ -1217,112 +1418,140 @@ Parallelogram: diagonals bisect each other (midpoints same)</div>
 
         <div class="section">
           <div class="section-title">8.1 Trigonometric Ratios (Right Triangle)</div>
-          <div class="formula-block">sin θ = Opposite/Hypotenuse = P/H
-cos θ = Adjacent/Hypotenuse = B/H
-tan θ = Opposite/Adjacent   = P/B
-
-cosec θ = 1/sin θ = H/P
-sec θ   = 1/cos θ = H/B
-cot θ   = 1/tan θ = B/P = cos θ/sin θ
-
-tan θ = sin θ/cos θ
-cot θ = cos θ/sin θ</div>
+          <div class="formula-block">
+\begin{gather*}
+sin \theta  = Opposite/Hypotenuse = P/H \\
+cos \theta  = Adjacent/Hypotenuse = B/H \\
+tan \theta  = Opposite/Adjacent   = P/B \\
+\\
+cosec \theta  = 1/sin \theta  = H/P \\
+sec \theta    = 1/cos \theta  = H/B \\
+cot \theta    = 1/tan \theta  = B/P = cos \theta /sin \theta \\
+\\
+tan \theta  = sin \theta /cos \theta \\
+cot \theta  = cos \theta /sin \theta
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">8.2 Reciprocal Relations</div>
-          <div class="formula-block">sin θ × cosec θ = 1   →  cosec θ = 1/sin θ
-cos θ × sec θ = 1     →  sec θ = 1/cos θ
-tan θ × cot θ = 1     →  cot θ = 1/tan θ</div>
+          <div class="formula-block">
+\begin{gather*}
+sin \theta  \times  cosec \theta  = 1   \Rightarrow   cosec \theta  = 1/sin \theta \\
+cos \theta  \times  sec \theta  = 1     \Rightarrow   sec \theta  = 1/cos \theta \\
+tan \theta  \times  cot \theta  = 1     \Rightarrow   cot \theta  = 1/tan \theta
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">8.3 Pythagorean Identities</div>
-          <div class="formula-block">sin²θ + cos²θ = 1      ← PRIMARY
-
-→ sin²θ = 1 - cos²θ
-→ cos²θ = 1 - sin²θ
-→ sinθ = √(1-cos²θ)
-→ cosθ = √(1-sin²θ)
-
-1 + tan²θ = sec²θ      ← SECONDARY
-
-→ sec²θ - tan²θ = 1
-→ sec²θ - 1 = tan²θ
-→ tan²θ = sec²θ - 1
-→ (secθ + tanθ)(secθ - tanθ) = 1
-→ secθ + tanθ = 1/(secθ - tanθ)
-
-1 + cot²θ = cosec²θ    ← TERTIARY
-
-→ cosec²θ - cot²θ = 1
-→ cosec²θ - 1 = cot²θ
-→ (cosecθ + cotθ)(cosecθ - cotθ) = 1
-→ cosecθ + cotθ = 1/(cosecθ - cotθ)</div>
+          <div class="formula-block">
+\begin{gather*}
+sin^2\theta  + cos^2\theta  = 1      ← PRIMARY \\
+\\
+\Rightarrow  sin^2\theta  = 1 - cos^2\theta \\
+\Rightarrow  cos^2\theta  = 1 - sin^2\theta \\
+\Rightarrow  sin\theta  = \sqrt{1-cos^2\theta } \\
+\Rightarrow  cos\theta  = \sqrt{1-sin^2\theta } \\
+\\
+1 + tan^2\theta  = sec^2\theta       ← SECONDARY \\
+\\
+\Rightarrow  sec^2\theta  - tan^2\theta  = 1 \\
+\Rightarrow  sec^2\theta  - 1 = tan^2\theta \\
+\Rightarrow  tan^2\theta  = sec^2\theta  - 1 \\
+\Rightarrow  (sec\theta  + tan\theta )(sec\theta  - tan\theta ) = 1 \\
+\Rightarrow  sec\theta  + tan\theta  = 1/(sec\theta  - tan\theta ) \\
+\\
+1 + cot^2\theta  = cosec^2\theta     ← TERTIARY \\
+\\
+\Rightarrow  cosec^2\theta  - cot^2\theta  = 1 \\
+\Rightarrow  cosec^2\theta  - 1 = cot^2\theta \\
+\Rightarrow  (cosec\theta  + cot\theta )(cosec\theta  - cot\theta ) = 1 \\
+\Rightarrow  cosec\theta  + cot\theta  = 1/(cosec\theta  - cot\theta )
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">8.4 Standard Angle Values Table</div>
-          <div class="formula-block">Angle θ:    0°      30°      45°      60°      90°
-─────────────────────────────────────────────────────
-sin θ:      0       1/2      1/√2     √3/2     1
-cos θ:      1       √3/2     1/√2     1/2      0
-tan θ:      0       1/√3     1        √3       ∞
-cosec θ:    ∞       2        √2       2/√3     1
-sec θ:      1       2/√3     √2       2        ∞
-cot θ:      ∞       √3       1        1/√3     0
-
-Memory trick for sin: √0/2, √1/2, √2/2, √3/2, √4/2
-                    = 0, 1/2, 1/√2, √3/2, 1</div>
+          <div class="formula-block">
+\begin{gather*}
+Angle \theta :    0°      30°      45°      60°      90° \\
+───────────────────────────────────────────────────── \\
+sin \theta :      0       1/2      1/\sqrt{2}     \sqrt{3}/2     1 \\
+cos \theta :      1       \sqrt{3}/2     1/\sqrt{2}     1/2      0 \\
+tan \theta :      0       1/\sqrt{3}     1        \sqrt{3}       ∞ \\
+cosec \theta :    ∞       2        \sqrt{2}       2/\sqrt{3}     1 \\
+sec \theta :      1       2/\sqrt{3}     \sqrt{2}       2        ∞ \\
+cot \theta :      ∞       \sqrt{3}       1        1/\sqrt{3}     0 \\
+\\
+Memory trick \text{for} sin: \sqrt{0}/2, \sqrt{1}/2, \sqrt{2}/2, \sqrt{3}/2, \sqrt{4}/2 \\
+= 0, 1/2, 1/\sqrt{2}, \sqrt{3}/2, 1
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">8.5 Complementary Angle Relations</div>
-          <div class="formula-block">sin(90°-θ) = cosθ       →  cosθ = sin(90°-θ)
-cos(90°-θ) = sinθ       →  sinθ = cos(90°-θ)
-tan(90°-θ) = cotθ       →  cotθ = tan(90°-θ)
-cot(90°-θ) = tanθ       →  tanθ = cot(90°-θ)
-sec(90°-θ) = cosecθ     →  cosecθ = sec(90°-θ)
-cosec(90°-θ) = secθ     →  secθ = cosec(90°-θ)</div>
+          <div class="formula-block">
+\begin{gather*}
+sin(90°-\theta ) = cos\theta        \Rightarrow   cos\theta  = sin(90°-\theta ) \\
+cos(90°-\theta ) = sin\theta        \Rightarrow   sin\theta  = cos(90°-\theta ) \\
+tan(90°-\theta ) = cot\theta        \Rightarrow   cot\theta  = tan(90°-\theta ) \\
+cot(90°-\theta ) = tan\theta        \Rightarrow   tan\theta  = cot(90°-\theta ) \\
+sec(90°-\theta ) = cosec\theta      \Rightarrow   cosec\theta  = sec(90°-\theta ) \\
+cosec(90°-\theta ) = sec\theta      \Rightarrow   sec\theta  = cosec(90°-\theta )
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">8.6 Useful Identity Proofs (Templates)</div>
-          <div class="formula-block">(sinθ + cosθ)² = 1 + 2sinθcosθ
-(sinθ - cosθ)² = 1 - 2sinθcosθ
-(sinθ + cosθ)² + (sinθ - cosθ)² = 2
-sin⁴θ + cos⁴θ = 1 - 2sin²θcos²θ = 1 - 2sin²θ(1-sin²θ)
-sin⁶θ + cos⁶θ = 1 - 3sin²θcos²θ
-
-tanθ + cotθ = 1/(sinθcosθ) = secθcosecθ
-tanθ - cotθ = (sin²θ-cos²θ)/(sinθcosθ) = -cos2θ/(sinθcosθ)
-secθ + tanθ = (1+sinθ)/cosθ
-secθ - tanθ = (1-sinθ)/cosθ = 1/(secθ+tanθ)
-cosecθ + cotθ = (1+cosθ)/sinθ
-cosecθ - cotθ = (1-cosθ)/sinθ = 1/(cosecθ+cotθ)</div>
+          <div class="formula-block">
+\begin{gather*}
+(sin\theta  + cos\theta )^2 = 1 + 2sin\theta cos\theta \\
+(sin\theta  - cos\theta )^2 = 1 - 2sin\theta cos\theta \\
+(sin\theta  + cos\theta )^2 + (sin\theta  - cos\theta )^2 = 2 \\
+sin⁴\theta  + cos⁴\theta  = 1 - 2sin^2\theta cos^2\theta  = 1 - 2sin^2\theta (1-sin^2\theta ) \\
+sin⁶\theta  + cos⁶\theta  = 1 - 3sin^2\theta cos^2\theta \\
+\\
+tan\theta  + cot\theta  = 1/(sin\theta cos\theta ) = sec\theta cosec\theta \\
+tan\theta  - cot\theta  = (sin^2\theta -cos^2\theta )/(sin\theta cos\theta ) = -cos2\theta /(sin\theta cos\theta ) \\
+sec\theta  + tan\theta  = (1+sin\theta )/cos\theta \\
+sec\theta  - tan\theta  = (1-sin\theta )/cos\theta  = 1/(sec\theta +tan\theta ) \\
+cosec\theta  + cot\theta  = (1+cos\theta )/sin\theta \\
+cosec\theta  - cot\theta  = (1-cos\theta )/sin\theta  = 1/(cosec\theta +cot\theta )
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">8.7 Heights and Distances (Chapter 9)</div>
-          <div class="formula-block">Angle of Elevation: angle from horizontal UP to object
-Angle of Depression: angle from horizontal DOWN to object
-
-tan(angle of elevation)   = Height / Horizontal Distance
-tan(angle of depression)  = Height / Horizontal Distance
-
-Height  h = d × tan θ
-Distance d = h / tan θ = h × cot θ
-
-If angle of elevation from A is α, from B (further) is β:
-  (α > β  since A is closer)
-  Let AB = x, object height = h, base of object foot = C
-  h/BC = tan α  →  BC = h/tanα = h cotα
-  h/AC = tan β  →  AC = h cotβ
-  AB = AC - BC = h(cotβ - cotα)
-  → h = AB/(cotβ - cotα) = AB tanα tanβ/(tanα - tanβ)
-
-Two buildings problem:
-  Height of taller - shorter = d × (tanα - tanβ) [careful about geometry]</div>
+          <div class="formula-block">
+\begin{gather*}
+Angle of Elevation: angle from horizontal UP to object \\
+Angle of Depression: angle from horizontal DOWN to object \\
+\\
+tan(angle of elevation)   = Height / Horizontal Distance \\
+tan(angle of depression)  = Height / Horizontal Distance \\
+\\
+Height  h = d \times  tan \theta \\
+Distance d = h / tan \theta  = h \times  cot \theta \\
+\\
+\text{If} angle of elevation from A \text{is} \alpha , from B (further) \text{is} \beta : \\
+(\alpha  > \beta   since A \text{is} closer) \\
+Let AB = x, object height = h, base of object foot = C \\
+h/BC = tan \alpha   \Rightarrow   BC = h/tan\alpha  = h cot\alpha \\
+h/AC = tan \beta   \Rightarrow   AC = h cot\beta \\
+AB = AC - BC = h(cot\beta  - cot\alpha ) \\
+\Rightarrow  h = AB/(cot\beta  - cot\alpha ) = AB tan\alpha  tan\beta /(tan\alpha  - tan\beta ) \\
+\\
+Two buildings problem: \\
+Height of taller - shorter = d \times  (tan\alpha  - tan\beta ) [careful about geometry]
+\end{gather*}
+</div>
         </div>
       </div>
 
@@ -1335,48 +1564,64 @@ Two buildings problem:
 
         <div class="section">
           <div class="section-title">10.1 Tangent Properties</div>
-          <div class="formula-block">Tangent ⊥ radius at point of contact
-
-Length of tangent from external point P to circle (center O, radius r):
-PQ = PT = √(PO² - r²)
-
-→ PO² = PQ² + r²   (Pythagoras)
-→ r² = PO² - PQ²
-
-Tangents from same external point are equal:
-PA = PB  (A,B are points of tangency)</div>
+          <div class="formula-block">
+\begin{gather*}
+Tangent ⊥ radius at point of contact \\
+\\
+Length of tangent from external point P to circle (center O, radius r): \\
+PQ = PT = \sqrt{PO^2 - r^2} \\
+\\
+\Rightarrow  PO^2 = PQ^2 + r^2   (Pythagoras) \\
+\Rightarrow  r^2 = PO^2 - PQ^2 \\
+\\
+Tangents from same external point are equal: \\
+PA = PB  (A,B are points of tangency)
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">10.2 Angle Properties of Tangent</div>
-          <div class="formula-block">∠OAP = ∠OBP = 90° (tangent-radius angle)
-
-In quadrilateral OAPB (P external, A,B tangent points):
-∠APB + ∠AOB = 180°  [opposite angles supplementary]
-∠APO = ∠BPO  [OP bisects angle between tangents]
-∠AOT = ∠BOT  [OP bisects angle between radii]
-
-OA = OB = r
-PA = PB
-OP = OP (common)
-→ △OAP ≅ △OBP (RHS congruence)</div>
+          <div class="formula-block">
+\begin{gather*}
+∠OAP = ∠OBP = 90° (tangent-radius angle) \\
+\\
+In quadrilateral OAPB (P external, A,B tangent points): \\
+∠APB + ∠AOB = 180°  [opposite angles supplementary] \\
+∠APO = ∠BPO  [OP bisects angle between tangents] \\
+∠AOT = ∠BOT  [OP bisects angle between radii] \\
+\\
+OA = OB = r \\
+PA = PB \\
+OP = OP (common) \\
+\Rightarrow  △OAP ≅ △OBP (RHS congruence)
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">10.3 Circle Theorems</div>
-          <div class="formula-block">Angle in semicircle = 90°
-Angles in same segment are equal
-Angle at center = 2 × angle at circumference (same arc)
-Opposite angles of cyclic quadrilateral sum to 180°
-Exterior angle of cyclic quadrilateral = interior opposite angle
-Equal chords subtend equal angles at center
-Perpendicular from center to chord bisects the chord</div>
+          <div class="formula-block">
+\begin{gather*}
+Angle in semicircle = 90° \\
+Angles in same segment are equal \\
+Angle at center = 2 \times  angle at circumference (same arc) \\
+Opposite angles of cyclic quadrilateral sum to 180° \\
+Exterior angle of cyclic quadrilateral = interior opposite angle \\
+Equal chords subtend equal angles at center \\
+Perpendicular from center to chord bisects the chord
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">10.4 Chord-Tangent Angle</div>
-          <div class="formula-block">Angle between tangent and chord = angle in alternate segment
-(Tangent-chord angle = inscribed angle on opposite side)</div>
+          <div class="formula-block">
+\begin{gather*}
+Angle between tangent \text{and} chord = angle in alternate segment \\
+(Tangent-chord angle = inscribed angle on opposite side)
+\end{gather*}
+</div>
         </div>
       </div>
 
@@ -1389,56 +1634,72 @@ Perpendicular from center to chord bisects the chord</div>
 
         <div class="section">
           <div class="section-title">11.1 Basic Circle Formulas</div>
-          <div class="formula-block">Area of circle          = πr²
-Circumference           = 2πr = πd
-Diameter d              = 2r
-Area                    = π(d/2)² = πd²/4
-r                       = √(Area/π)
-r                       = Circumference/(2π)</div>
+          <div class="formula-block">
+\begin{gather*}
+Area of circle          = \pi r^2 \\
+Circumference           = 2\pi r = \pi d \\
+Diameter d              = 2r \\
+Area                    = \pi (d/2)^2 = \pi d^2/4 \\
+r                       = \sqrt{Area/\pi } \\
+r                       = Circumference/(2\pi )
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">11.2 Sector Formulas</div>
-          <div class="formula-block">Area of sector          = (θ/360°) × πr²   [θ in degrees]
-                        = (1/2)r²θ           [θ in radians]
-                        = (1/2) × l × r      [l = arc length]
-
-Arc length              = (θ/360°) × 2πr = (θ/180°) × πr
-                        = rθ               [θ in radians]
-
-Perimeter of sector     = 2r + l = 2r + (θ/360°)×2πr
-                        = 2r + (πrθ/180°)
-
-→ r = 2 × Area / l     [from A = ½lr]
-→ θ = (l/r) radians = (l/r) × (180°/π) degrees</div>
+          <div class="formula-block">
+\begin{gather*}
+Area of sector          = (\theta /360°) \times  \pi r^2   [\theta  in degrees] \\
+= (1/2)r^2\theta            [\theta  in radians] \\
+= (1/2) \times  l \times  r      [l = arc length] \\
+\\
+Arc length              = (\theta /360°) \times  2\pi r = (\theta /180°) \times  \pi r \\
+= r\theta                [\theta  in radians] \\
+\\
+Perimeter of sector     = 2r + l = 2r + (\theta /360°)\times 2\pi r \\
+= 2r + (\pi r\theta /180°) \\
+\\
+\Rightarrow  r = 2 \times  Area / l     [from A = ½lr] \\
+\Rightarrow  \theta  = (l/r) radians = (l/r) \times  (180°/\pi ) degrees
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">11.3 Segment Formulas</div>
-          <div class="formula-block">Area of minor segment   = Area of sector - Area of triangle
-                        = (θ/360°)πr² - (1/2)r² sin θ
-                        = r²[(πθ/360°) - (sinθ/2)]
-                        = (r²/2)[θ_rad - sinθ]   [θ in radians]
-
-Area of major segment   = πr² - Area of minor segment
-
-Chord length            = 2r sin(θ/2)
-Height of segment       = r(1 - cosθ/2) = r - r cos(θ/2)</div>
+          <div class="formula-block">
+\begin{gather*}
+Area of minor segment   = Area of sector - Area of triangle \\
+= (\theta /360°)\pi r^2 - (1/2)r^2 sin \theta \\
+= r^2[(\pi \theta /360°) - (sin\theta /2)] \\
+= (r^2/2)[\theta _rad - sin\theta ]   [\theta  in radians] \\
+\\
+Area of major segment   = \pi r^2 - Area of minor segment \\
+\\
+Chord length            = 2r sin(\theta /2) \\
+Height of segment       = r(1 - cos\theta /2) = r - r cos(\theta /2)
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">11.4 Combination Formulas</div>
-          <div class="formula-block">Area of ring (annulus)  = π(R²-r²) = π(R+r)(R-r)
-                          where R=outer radius, r=inner radius
-
-Area of semi-circle     = πr²/2
-Perimeter of semi-circle = πr + 2r = r(π+2)
-
-Area of quadrant        = πr²/4
-Perimeter of quadrant   = πr/2 + 2r = r(π/2 + 2)
-
-Shaded region problems:
-Area of figure = Area₁ ± Area₂ ± Area₃...</div>
+          <div class="formula-block">
+\begin{gather*}
+Area of ring (annulus)  = \pi (R^2-r^2) = \pi (R+r)(R-r) \\
+\text{where} R=outer radius, r=inner radius \\
+\\
+Area of semi-circle     = \pi r^2/2 \\
+Perimeter of semi-circle = \pi r + 2r = r(\pi +2) \\
+\\
+Area of quadrant        = \pi r^2/4 \\
+Perimeter of quadrant   = \pi r/2 + 2r = r(\pi /2 + 2) \\
+\\
+Shaded region problems: \\
+Area of figure = Area_1 ± Area_2 ± Area_3...
+\end{gather*}
+</div>
         </div>
       </div>
 
@@ -1451,119 +1712,155 @@ Area of figure = Area₁ ± Area₂ ± Area₃...</div>
 
         <div class="section">
           <div class="section-title">12.1 Cuboid</div>
-          <div class="formula-block">LSA (Lateral Surface Area)   = 2h(l+b)
-TSA (Total Surface Area)     = 2(lb + bh + hl)
-Volume                       = l × b × h
-Diagonal                     = √(l²+b²+h²)
-Face diagonal (on lb face)   = √(l²+b²)
-
-→ l = V/(bh)
-→ LSA = TSA - 2lb  [remove top and bottom]</div>
+          <div class="formula-block">
+\begin{gather*}
+LSA (Lateral Surface Area)   = 2h(l+b) \\
+TSA (Total Surface Area)     = 2(lb + bh + hl) \\
+Volume                       = l \times  b \times  h \\
+Diagonal                     = \sqrt{l^2+b^2+h^2} \\
+Face diagonal (on lb face)   = \sqrt{l^2+b^2} \\
+\\
+\Rightarrow  l = V/(bh) \\
+\Rightarrow  LSA = TSA - 2lb  [remove top \text{and} bottom]
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">12.2 Cube (side = a)</div>
-          <div class="formula-block">LSA                 = 4a²
-TSA                 = 6a²
-Volume              = a³
-Diagonal            = a√3
-Face diagonal       = a√2
-
-→ a = (V)^(1/3)
-→ a = √(TSA/6)</div>
+          <div class="formula-block">
+\begin{gather*}
+LSA                 = 4a^2 \\
+TSA                 = 6a^2 \\
+Volume              = a^3 \\
+Diagonal            = a\sqrt{3} \\
+Face diagonal       = a\sqrt{2} \\
+\\
+\Rightarrow  a = (V)^(1/3) \\
+\Rightarrow  a = \sqrt{TSA/6}
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">12.3 Cylinder (radius r, height h)</div>
-          <div class="formula-block">CSA (Curved SA)      = 2πrh
-TSA                  = 2πr(r+h) = 2πr² + 2πrh
-Volume               = πr²h
-
-→ r = CSA/(2πh)
-→ h = CSA/(2πr)
-→ h = V/(πr²)
-→ r = √(V/πh)
-→ r+h = TSA/(2πr)   [if r known]</div>
+          <div class="formula-block">
+\begin{gather*}
+CSA (Curved SA)      = 2\pi rh \\
+TSA                  = 2\pi r(r+h) = 2\pi r^2 + 2\pi rh \\
+Volume               = \pi r^2h \\
+\\
+\Rightarrow  r = CSA/(2\pi h) \\
+\Rightarrow  h = CSA/(2\pi r) \\
+\Rightarrow  h = V/(\pi r^2) \\
+\Rightarrow  r = \sqrt{V/\pi h} \\
+\Rightarrow  r+h = TSA/(2\pi r)   [\text{if} r known]
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">12.4 Cone (radius r, height h, slant l)</div>
-          <div class="formula-block">Slant height         l = √(r²+h²)
-CSA                  = πrl = πr√(r²+h²)
-TSA                  = πrl + πr² = πr(l+r)
-Volume               = (1/3)πr²h
-
-→ h = √(l²-r²)
-→ r = √(l²-h²)
-→ l = √(r²+h²)
-→ r = CSA/(πl)
-→ h = 3V/(πr²)
-→ r = √(3V/(πh))</div>
+          <div class="formula-block">
+\begin{gather*}
+Slant height         l = \sqrt{r^2+h^2} \\
+CSA                  = \pi rl = \pi r\sqrt{r^2+h^2} \\
+TSA                  = \pi rl + \pi r^2 = \pi r(l+r) \\
+Volume               = (1/3)\pi r^2h \\
+\\
+\Rightarrow  h = \sqrt{l^2-r^2} \\
+\Rightarrow  r = \sqrt{l^2-h^2} \\
+\Rightarrow  l = \sqrt{r^2+h^2} \\
+\Rightarrow  r = CSA/(\pi l) \\
+\Rightarrow  h = 3V/(\pi r^2) \\
+\Rightarrow  r = \sqrt{3V/(\pi h})
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">12.5 Sphere (radius r)</div>
-          <div class="formula-block">SA (Surface Area)    = 4πr²
-Volume               = (4/3)πr³
-
-→ r = √(SA/4π)
-→ r = (3V/4π)^(1/3)
-→ V = (SA)^(3/2) / (6√π)  [from eliminating r]
-→ SA³ = 36π V²             [classic relation]</div>
+          <div class="formula-block">
+\begin{gather*}
+SA (Surface Area)    = 4\pi r^2 \\
+Volume               = (4/3)\pi r^3 \\
+\\
+\Rightarrow  r = \sqrt{SA/4\pi } \\
+\Rightarrow  r = (3V/4\pi )^(1/3) \\
+\Rightarrow  V = (SA)^(3/2) / (6√\pi )  [from eliminating r] \\
+\Rightarrow  SA^3 = 36\pi  V^2             [classic relation]
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">12.6 Hemisphere (radius r)</div>
-          <div class="formula-block">CSA                  = 2πr²
-TSA                  = 3πr²       [CSA + base circle πr²]
-Volume               = (2/3)πr³
-
-→ r = √(CSA/2π)
-→ r = √(TSA/3π)
-→ r = (3V/2π)^(1/3)</div>
+          <div class="formula-block">
+\begin{gather*}
+CSA                  = 2\pi r^2 \\
+TSA                  = 3\pi r^2       [CSA + base circle \pi r^2] \\
+Volume               = (2/3)\pi r^3 \\
+\\
+\Rightarrow  r = \sqrt{CSA/2\pi } \\
+\Rightarrow  r = \sqrt{TSA/3\pi } \\
+\Rightarrow  r = (3V/2\pi )^(1/3)
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">12.7 Frustum of Cone (R=bigger radius, r=smaller, h=height, l=slant)</div>
-          <div class="formula-block">Slant height         l = √[h² + (R-r)²]
-CSA                  = π(R+r)l
-TSA                  = π(R+r)l + πR² + πr² = π[(R+r)l + R² + r²]
-Volume               = (πh/3)(R² + r² + Rr)
-
-→ h = 3V / [π(R²+r²+Rr)]
-→ l = √[h²+(R-r)²]
-
-When r=0 → cone: V = πR²h/3  ✓
-When r=R → cylinder: V = πR²h  ✓</div>
+          <div class="formula-block">
+\begin{gather*}
+Slant height         l = √[h^2 + (R-r)^2] \\
+CSA                  = \pi (R+r)l \\
+TSA                  = \pi (R+r)l + \pi R^2 + \pi r^2 = \pi [(R+r)l + R^2 + r^2] \\
+Volume               = (\pi h/3)(R^2 + r^2 + Rr) \\
+\\
+\Rightarrow  h = 3V / [\pi (R^2+r^2+Rr)] \\
+\Rightarrow  l = √[h^2+(R-r)^2] \\
+\\
+\text{When} r=0 \Rightarrow  cone: V = \pi R^2h/3  ✓ \\
+\text{When} r=R \Rightarrow  cylinder: V = \pi R^2h  ✓
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">12.8 Combination of Solids</div>
-          <div class="formula-block">Total Volume = V₁ + V₂ + ...
-Total SA = SA of outer surface only (remove hidden parts)
-
-Hemisphere on cylinder:
-  TSA = CSA of cylinder + CSA of hemisphere + base circle
-      = 2πrh + 2πr² + πr²
-      = πr(2h + 3r)
-  Volume = πr²h + (2/3)πr³ = πr²(h + 2r/3)
-
-Cone on cylinder:
-  TSA = base of cylinder + CSA cylinder + CSA cone
-      = πr² + 2πrh + πrl
-  Volume = πr²H + (1/3)πr²h_cone</div>
+          <div class="formula-block">
+\begin{gather*}
+Total Volume = V_1 + V_2 + ... \\
+Total SA = SA of outer surface only (remove hidden parts) \\
+\\
+Hemisphere on cylinder: \\
+TSA = CSA of cylinder + CSA of hemisphere + base circle \\
+= 2\pi rh + 2\pi r^2 + \pi r^2 \\
+= \pi r(2h + 3r) \\
+Volume = \pi r^2h + (2/3)\pi r^3 = \pi r^2(h + 2r/3) \\
+\\
+Cone on cylinder: \\
+TSA = base of cylinder + CSA cylinder + CSA cone \\
+= \pi r^2 + 2\pi rh + \pi rl \\
+Volume = \pi r^2H + (1/3)\pi r^2h_cone
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">12.9 Volume Conversion Formulas</div>
-          <div class="formula-block">If solid A melted and recast into solid B:
-Volume of A = Volume of B  (if no wastage)
-n × Volume of B = Volume of A  (n pieces of B from A)
-
-If melted cube of side a → n spheres of radius r:
-a³ = n × (4/3)πr³
-→ n = 3a³/(4πr³)
-→ r = a × (3/4πn)^(1/3)</div>
+          <div class="formula-block">
+\begin{gather*}
+\text{If} solid A melted \text{and} recast into solid B: \\
+Volume of A = Volume of B  (\text{if} no wastage) \\
+n \times  Volume of B = Volume of A  (n pieces of B from A) \\
+\\
+\text{If} melted cube of side a \Rightarrow  n spheres of radius r: \\
+a^3 = n \times  (4/3)\pi r^3 \\
+\Rightarrow  n = 3a^3/(4\pi r^3) \\
+\Rightarrow  r = a \times  (3/4\pi n)^(1/3)
+\end{gather*}
+</div>
         </div>
       </div>
 
@@ -1576,95 +1873,127 @@ a³ = n × (4/3)πr³
 
         <div class="section">
           <div class="section-title">13.1 Mean (Ungrouped)</div>
-          <div class="formula-block">x̄ = (x₁+x₂+...+xₙ)/n = Σxᵢ/n = Σfᵢxᵢ/Σfᵢ  [frequency dist]
-
-→ Σxᵢ = n × x̄
-→ n = Σxᵢ/x̄</div>
+          <div class="formula-block">
+\begin{gather*}
+x̄ = (x_1+x_2+...+xₙ)/n = \Sigma xᵢ/n = \Sigma fᵢxᵢ/\Sigma fᵢ  [frequency dist] \\
+\\
+\Rightarrow  \Sigma xᵢ = n \times  x̄ \\
+\Rightarrow  n = \Sigma xᵢ/x̄
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">13.2 Mean (Grouped Data — Direct Method)</div>
-          <div class="formula-block">x̄ = Σfᵢxᵢ / Σfᵢ = Σfᵢxᵢ / N
-
-where xᵢ = class mark = (lower limit + upper limit)/2
-      fᵢ = frequency of ith class
-      N = Σfᵢ = total frequency</div>
+          <div class="formula-block">
+\begin{gather*}
+x̄ = \Sigma fᵢxᵢ / \Sigma fᵢ = \Sigma fᵢxᵢ / N \\
+\\
+\text{where} xᵢ = class mark = (lower limit + upper limit)/2 \\
+fᵢ = frequency of ith class \\
+N = \Sigma fᵢ = total frequency
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">13.3 Assumed Mean (Shortcut) Method</div>
-          <div class="formula-block">x̄ = A + (Σfᵢdᵢ/N)
-
-where A = assumed mean (usually central class mark)
-      dᵢ = xᵢ - A  (deviation from assumed mean)
-      N = Σfᵢ</div>
+          <div class="formula-block">
+\begin{gather*}
+x̄ = A + (\Sigma fᵢdᵢ/N) \\
+\\
+\text{where} A = assumed mean (usually central class mark) \\
+dᵢ = xᵢ - A  (deviation from assumed mean) \\
+N = \Sigma fᵢ
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">13.4 Step Deviation Method</div>
-          <div class="formula-block">x̄ = A + [(Σfᵢuᵢ/N) × h]
-
-where uᵢ = (xᵢ - A)/h
-      h = class width (size)
-      A = assumed mean
-
-→ dᵢ = uᵢ × h
-→ xᵢ = A + uᵢh</div>
+          <div class="formula-block">
+\begin{gather*}
+x̄ = A + [(\Sigma fᵢuᵢ/N) \times  h] \\
+\\
+\text{where} uᵢ = (xᵢ - A)/h \\
+h = class width (size) \\
+A = assumed mean \\
+\\
+\Rightarrow  dᵢ = uᵢ \times  h \\
+\Rightarrow  xᵢ = A + uᵢh
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">13.5 Median (Grouped Data)</div>
-          <div class="formula-block">Median = L + [(N/2 - cf)/f] × h
-
-where L  = lower limit of median class
-      N  = Σfᵢ (total frequency)
-      cf = cumulative frequency of class before median class
-      f  = frequency of median class
-      h  = class width
-
-Steps:
-1. Find N/2
-2. Find class with cf ≥ N/2 → median class
-3. Apply formula
-
-Twisted:
-→ L = Median - [(N/2 - cf)/f] × h
-→ cf = N/2 - f(Median - L)/h</div>
+          <div class="formula-block">
+\begin{gather*}
+Median = L + [(N/2 - cf)/f] \times  h \\
+\\
+\text{where} L  = lower limit of median class \\
+N  = \Sigma fᵢ (total frequency) \\
+cf = cumulative frequency of class before median class \\
+f  = frequency of median class \\
+h  = class width \\
+\\
+Steps: \\
+1. Find N/2 \\
+2. Find class with cf \ge  N/2 \Rightarrow  median class \\
+3. Apply formula \\
+\\
+Twisted: \\
+\Rightarrow  L = Median - [(N/2 - cf)/f] \times  h \\
+\Rightarrow  cf = N/2 - f(Median - L)/h
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">13.6 Mode (Grouped Data)</div>
-          <div class="formula-block">Mode = L + [f₁-f₀ / (2f₁-f₀-f₂)] × h
-
-where L  = lower limit of modal class
-      f₁ = frequency of modal class (highest frequency)
-      f₀ = frequency of class before modal class
-      f₂ = frequency of class after modal class
-      h  = class width
-
-Twisted:
-→ L = Mode - [(f₁-f₀)/(2f₁-f₀-f₂)] × h
-→ If f₀ = f₂: Mode = L + h/2  [symmetric case]</div>
+          <div class="formula-block">
+\begin{gather*}
+Mode = L + [f_1-f₀ / (2f_1-f₀-f_2)] \times  h \\
+\\
+\text{where} L  = lower limit of modal class \\
+f_1 = frequency of modal class (highest frequency) \\
+f₀ = frequency of class before modal class \\
+f_2 = frequency of class after modal class \\
+h  = class width \\
+\\
+Twisted: \\
+\Rightarrow  L = Mode - [(f_1-f₀)/(2f_1-f₀-f_2)] \times  h \\
+\Rightarrow  \text{If} f₀ = f_2: Mode = L + h/2  [symmetric case]
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">13.7 Empirical Relationship</div>
-          <div class="formula-block">Mode = 3 × Median - 2 × Mean
-
-→ Mean = (3 × Median - Mode)/2
-→ Median = (Mode + 2 × Mean)/3
-→ Mean - Mode = 3(Mean - Median)
-→ Mean - Median = (1/3)(Mean - Mode)
-
-[This holds approximately for moderately skewed distributions]</div>
+          <div class="formula-block">
+\begin{gather*}
+Mode = 3 \times  Median - 2 \times  Mean \\
+\\
+\Rightarrow  Mean = (3 \times  Median - Mode)/2 \\
+\Rightarrow  Median = (Mode + 2 \times  Mean)/3 \\
+\Rightarrow  Mean - Mode = 3(Mean - Median) \\
+\Rightarrow  Mean - Median = (1/3)(Mean - Mode) \\
+\\
+[This holds approximately \text{for} moderately skewed distributions]
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">13.8 Ogive and Cumulative Frequency</div>
-          <div class="formula-block">Less-than ogive: plot (upper limit, cf)
-More-than ogive: plot (lower limit, N - cf)
-
-Median = x-coordinate where two ogives intersect</div>
+          <div class="formula-block">
+\begin{gather*}
+Less-than ogive: plot (upper limit, cf) \\
+More-than ogive: plot (lower limit, N - cf) \\
+\\
+Median = x-coordinate \text{where} two ogives intersect
+\end{gather*}
+</div>
         </div>
       </div>
 
@@ -1677,76 +2006,100 @@ Median = x-coordinate where two ogives intersect</div>
 
         <div class="section">
           <div class="section-title">14.1 Classical (Theoretical) Probability</div>
-          <div class="formula-block">P(E) = n(E)/n(S) = Number of favorable outcomes / Total outcomes
-
-0 ≤ P(E) ≤ 1
-P(certain event) = 1
-P(impossible event) = 0</div>
+          <div class="formula-block">
+\begin{gather*}
+P(E) = n(E)/n(S) = Number of favorable outcomes / Total outcomes \\
+\\
+0 \le  P(E) \le  1 \\
+P(certain event) = 1 \\
+P(impossible event) = 0
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">14.2 Complementary Probability</div>
-          <div class="formula-block">P(Ē) = 1 - P(E)     (E-bar = complement of E)
-P(E) + P(Ē) = 1
-→ P(E) = 1 - P(Ē)
-→ P(Ē) = 1 - P(E)
-
-P(not E) = 1 - P(E)
-P(at least one) = 1 - P(none)</div>
+          <div class="formula-block">
+\begin{gather*}
+P(Ē) = 1 - P(E)     (E-bar = complement of E) \\
+P(E) + P(Ē) = 1 \\
+\Rightarrow  P(E) = 1 - P(Ē) \\
+\Rightarrow  P(Ē) = 1 - P(E) \\
+\\
+P(\text{not} E) = 1 - P(E) \\
+P(at least one) = 1 - P(none)
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">14.3 Standard Sample Spaces</div>
-          <div class="formula-block">Coin toss:            S = {H, T},           n(S) = 2
-Two coins:            S = {HH,HT,TH,TT},    n(S) = 4
-Three coins:          n(S) = 8
-n coins:              n(S) = 2ⁿ
-
-One die:              n(S) = 6
-Two dice:             n(S) = 36
-Cards (full deck):    n(S) = 52
-  - Hearts: 13, Diamonds: 13, Clubs: 13, Spades: 13
-  - Red cards: 26, Black cards: 26
-  - Face cards (J,Q,K): 12 (3 per suit)
-  - Aces: 4, Kings: 4, Queens: 4, Jacks: 4
-  - Non-face number cards: 36</div>
+          <div class="formula-block">
+\begin{gather*}
+Coin toss:            S = {H, T},           n(S) = 2 \\
+Two coins:            S = {HH,HT,TH,TT},    n(S) = 4 \\
+Three coins:          n(S) = 8 \\
+n coins:              n(S) = 2ⁿ \\
+\\
+One die:              n(S) = 6 \\
+Two dice:             n(S) = 36 \\
+Cards (full deck):    n(S) = 52 \\
+- Hearts: 13, Diamonds: 13, Clubs: 13, Spades: 13 \\
+- Red cards: 26, Black cards: 26 \\
+- Face cards (J,Q,K): 12 (3 per suit) \\
+- Aces: 4, Kings: 4, Queens: 4, Jacks: 4 \\
+- Non-face number cards: 36
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">14.4 Two Dice Probability Reference</div>
-          <div class="formula-block">Sum = 2:  {(1,1)}                        → P = 1/36
-Sum = 3:  {(1,2),(2,1)}                  → P = 2/36 = 1/18
-Sum = 4:  3 ways                         → P = 3/36 = 1/12
-Sum = 5:  4 ways                         → P = 4/36 = 1/9
-Sum = 6:  5 ways                         → P = 5/36
-Sum = 7:  6 ways (MAXIMUM)               → P = 6/36 = 1/6
-Sum = 8:  5 ways                         → P = 5/36
-Sum = 9:  4 ways                         → P = 4/36
-Sum = 10: 3 ways                         → P = 3/36 = 1/12
-Sum = 11: 2 ways                         → P = 2/36 = 1/18
-Sum = 12: {(6,6)}                        → P = 1/36
-
-Doublets: (1,1),(2,2),(3,3),(4,4),(5,5),(6,6) → P = 6/36 = 1/6</div>
+          <div class="formula-block">
+\begin{gather*}
+Sum = 2:  {(1,1)}                        \Rightarrow  P = 1/36 \\
+Sum = 3:  {(1,2),(2,1)}                  \Rightarrow  P = 2/36 = 1/18 \\
+Sum = 4:  3 ways                         \Rightarrow  P = 3/36 = 1/12 \\
+Sum = 5:  4 ways                         \Rightarrow  P = 4/36 = 1/9 \\
+Sum = 6:  5 ways                         \Rightarrow  P = 5/36 \\
+Sum = 7:  6 ways (MAXIMUM)               \Rightarrow  P = 6/36 = 1/6 \\
+Sum = 8:  5 ways                         \Rightarrow  P = 5/36 \\
+Sum = 9:  4 ways                         \Rightarrow  P = 4/36 \\
+Sum = 10: 3 ways                         \Rightarrow  P = 3/36 = 1/12 \\
+Sum = 11: 2 ways                         \Rightarrow  P = 2/36 = 1/18 \\
+Sum = 12: {(6,6)}                        \Rightarrow  P = 1/36 \\
+\\
+Doublets: (1,1),(2,2),(3,3),(4,4),(5,5),(6,6) \Rightarrow  P = 6/36 = 1/6
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">14.5 Addition Rule</div>
-          <div class="formula-block">P(A∪B) = P(A) + P(B) - P(A∩B)
-
-If A and B are mutually exclusive: P(A∩B) = 0
-  P(A∪B) = P(A) + P(B)
-
-P(A∩B) = P(A) + P(B) - P(A∪B)</div>
+          <div class="formula-block">
+\begin{gather*}
+P(A∪B) = P(A) + P(B) - P(A∩B) \\
+\\
+\text{If} A \text{and} B are mutually exclusive: P(A∩B) = 0 \\
+P(A∪B) = P(A) + P(B) \\
+\\
+P(A∩B) = P(A) + P(B) - P(A∪B)
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">14.6 Odds</div>
-          <div class="formula-block">Odds in favor of E    = P(E) : P(Ē) = n(E) : n(Ē)
-Odds against E        = P(Ē) : P(E) = n(Ē) : n(E)
-
-If odds in favor = m:n:
-  P(E) = m/(m+n)
-  P(Ē) = n/(m+n)</div>
+          <div class="formula-block">
+\begin{gather*}
+Odds in favor of E    = P(E) : P(Ē) = n(E) : n(Ē) \\
+Odds against E        = P(Ē) : P(E) = n(Ē) : n(E) \\
+\\
+\text{If} odds in favor = m:n: \\
+P(E) = m/(m+n) \\
+P(Ē) = n/(m+n)
+\end{gather*}
+</div>
         </div>
       </div>
 
@@ -1768,59 +2121,79 @@ If odds in favor = m:n:
 
         <div class="section">
           <div class="section-title">1.1 Types of Relations</div>
-          <div class="formula-block">Empty Relation: R = ∅
-Universal Relation: R = A × A
-Reflexive: (a,a) ∈ R for all a ∈ A
-Symmetric: (a,b) ∈ R → (b,a) ∈ R
-Transitive: (a,b)∈R and (b,c)∈R → (a,c)∈R
-Equivalence: Reflexive + Symmetric + Transitive</div>
+          <div class="formula-block">
+\begin{gather*}
+Empty Relation: R = ∅ \\
+Universal Relation: R = A \times  A \\
+Reflexive: (a,a) ∈ R \text{for} all a ∈ A \\
+Symmetric: (a,b) ∈ R \Rightarrow  (b,a) ∈ R \\
+Transitive: (a,b)∈R \text{and} (b,c)∈R \Rightarrow  (a,c)∈R \\
+Equivalence: Reflexive + Symmetric + Transitive
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">1.2 Types of Functions</div>
-          <div class="formula-block">One-one (injective):  f(a)=f(b) ⟹ a=b
-Onto (surjective):    Range = Codomain
-Bijective:            One-one + Onto
-
-Number of functions from A to B:   |B|^|A| = n(B)^n(A)
-Number of one-one functions:       ⁿ⁽ᴮ⁾Pₙ₍ₐ₎ = P(n(B), n(A))  [if n(B)≥n(A)]
-Number of onto functions (|A|=m, |B|=n): Σ(-1)^k C(n,k)(n-k)^m  [inclusion-exclusion]</div>
+          <div class="formula-block">
+\begin{gather*}
+One-one (injective):  f(a)=f(b) ⟹ a=b \\
+Onto (surjective):    Range = Codomain \\
+Bijective:            One-one + Onto \\
+\\
+Number of functions from A to B:   |B|^|A| = n(B)^n(A) \\
+Number of one-one functions:       ⁿ⁽ᴮ⁾Pₙ₍ₐ₎ = P(n(B), n(A))  [\text{if} n(B)\ge n(A)] \\
+Number of onto functions (|A|=m, |B|=n): \Sigma (-1)^k C(n,k)(n-k)^m  [inclusion-exclusion]
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">1.3 Composition of Functions</div>
-          <div class="formula-block">(g∘f)(x) = g(f(x))
-(f∘g)(x) = f(g(x))
-
-(g∘f) ≠ (f∘g) in general  [not commutative]
-(h∘g)∘f = h∘(g∘f)         [associative]
-
-If f and g both one-one → g∘f one-one
-If f and g both onto → g∘f onto
-If g∘f one-one → f is one-one
-If g∘f onto → g is onto</div>
+          <div class="formula-block">
+\begin{gather*}
+(g∘f)(x) = g(f(x)) \\
+(f∘g)(x) = f(g(x)) \\
+\\
+(g∘f) \neq  (f∘g) in general  [\text{not} commutative] \\
+(h∘g)∘f = h∘(g∘f)         [associative] \\
+\\
+\text{If} f \text{and} g both one-one \Rightarrow  g∘f one-one \\
+\text{If} f \text{and} g both onto \Rightarrow  g∘f onto \\
+\text{If} g∘f one-one \Rightarrow  f \text{is} one-one \\
+\text{If} g∘f onto \Rightarrow  g \text{is} onto
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">1.4 Inverse Function</div>
-          <div class="formula-block">If f: A→B bijective, then f⁻¹: B→A exists
-f⁻¹(f(x)) = x
-f(f⁻¹(y)) = y
-f∘f⁻¹ = f⁻¹∘f = I  (identity)
-
-To find f⁻¹: let y = f(x), solve for x in terms of y</div>
+          <div class="formula-block">
+\begin{gather*}
+\text{If} f: A\Rightarrow B bijective, then f⁻¹: B\Rightarrow A exists \\
+f⁻¹(f(x)) = x \\
+f(f⁻¹(y)) = y \\
+f∘f⁻¹ = f⁻¹∘f = I  (identity) \\
+\\
+To find f⁻¹: let y = f(x), solve \text{for} x in terms of y
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">1.5 Binary Operations</div>
-          <div class="formula-block">Closure: a*b ∈ A for all a,b ∈ A
-Commutative: a*b = b*a
-Associative: (a*b)*c = a*(b*c)
-Identity element e: a*e = e*a = a
-Inverse of a: a*a⁻¹ = e  (if identity exists)
-
-Number of binary operations on set with n elements = n^(n²)
-Number of commutative binary operations = n^(n(n+1)/2)</div>
+          <div class="formula-block">
+\begin{gather*}
+Closure: a*b ∈ A \text{for} all a,b ∈ A \\
+Commutative: a*b = b*a \\
+Associative: (a*b)*c = a*(b*c) \\
+Identity element e: a*e = e*a = a \\
+Inverse of a: a*a⁻¹ = e  (\text{if} identity exists) \\
+\\
+Number of binary operations on set with n elements = n^(n^2) \\
+Number of commutative binary operations = n^(n(n+1)/2)
+\end{gather*}
+</div>
         </div>
       </div>
 
@@ -1833,97 +2206,125 @@ Number of commutative binary operations = n^(n(n+1)/2)</div>
 
         <div class="section">
           <div class="section-title">2.1 Domain and Range</div>
-          <div class="formula-block">Function        Domain                Range (Principal)
-sin⁻¹x          [-1, 1]              [-π/2, π/2]
-cos⁻¹x          [-1, 1]              [0, π]
-tan⁻¹x          (-∞, ∞) = ℝ         (-π/2, π/2)
-cosec⁻¹x        (-∞,-1]∪[1,∞)       [-π/2,π/2]\{0}
-sec⁻¹x          (-∞,-1]∪[1,∞)       [0,π]\{π/2}
-cot⁻¹x          (-∞, ∞) = ℝ         (0, π)</div>
+          <div class="formula-block">
+\begin{gather*}
+Function        Domain                Range (Principal) \\
+sin⁻¹x          [-1, 1]              [-\pi /2, \pi /2] \\
+cos⁻¹x          [-1, 1]              [0, \pi ] \\
+tan⁻¹x          (-∞, ∞) = ℝ         (-\pi /2, \pi /2) \\
+cosec⁻¹x        (-∞,-1]∪[1,∞)       [-\pi /2,\pi /2]\{0} \\
+sec⁻¹x          (-∞,-1]∪[1,∞)       [0,\pi ]\{\pi /2} \\
+cot⁻¹x          (-∞, ∞) = ℝ         (0, \pi )
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">2.2 Basic Identities</div>
-          <div class="formula-block">sin⁻¹x + cos⁻¹x = π/2           (|x| ≤ 1)
-tan⁻¹x + cot⁻¹x = π/2           (x ∈ ℝ)
-sec⁻¹x + cosec⁻¹x = π/2         (|x| ≥ 1)
-
-→ cos⁻¹x = π/2 - sin⁻¹x
-→ sin⁻¹x = π/2 - cos⁻¹x
-→ cot⁻¹x = π/2 - tan⁻¹x
-→ tan⁻¹x = π/2 - cot⁻¹x</div>
+          <div class="formula-block">
+\begin{gather*}
+sin⁻¹x + cos⁻¹x = \pi /2           (|x| \le  1) \\
+tan⁻¹x + cot⁻¹x = \pi /2           (x ∈ ℝ) \\
+sec⁻¹x + cosec⁻¹x = \pi /2         (|x| \ge  1) \\
+\\
+\Rightarrow  cos⁻¹x = \pi /2 - sin⁻¹x \\
+\Rightarrow  sin⁻¹x = \pi /2 - cos⁻¹x \\
+\Rightarrow  cot⁻¹x = \pi /2 - tan⁻¹x \\
+\Rightarrow  tan⁻¹x = \pi /2 - cot⁻¹x
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">2.3 Negative Argument</div>
-          <div class="formula-block">sin⁻¹(-x) = -sin⁻¹x             (odd function)
-tan⁻¹(-x) = -tan⁻¹x             (odd function)
-cosec⁻¹(-x) = -cosec⁻¹x         (odd function)
-
-cos⁻¹(-x) = π - cos⁻¹x          (not odd!)
-sec⁻¹(-x) = π - sec⁻¹x
-cot⁻¹(-x) = π - cot⁻¹x</div>
+          <div class="formula-block">
+\begin{gather*}
+sin⁻¹(-x) = -sin⁻¹x             (odd function) \\
+tan⁻¹(-x) = -tan⁻¹x             (odd function) \\
+cosec⁻¹(-x) = -cosec⁻¹x         (odd function) \\
+\\
+cos⁻¹(-x) = \pi  - cos⁻¹x          (\text{not} odd!) \\
+sec⁻¹(-x) = \pi  - sec⁻¹x \\
+cot⁻¹(-x) = \pi  - cot⁻¹x
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">2.4 Reciprocal Relations</div>
-          <div class="formula-block">sin⁻¹(1/x) = cosec⁻¹x          (x ≥ 1 or x ≤ -1)
-cos⁻¹(1/x) = sec⁻¹x            (x ≥ 1 or x ≤ -1)
-tan⁻¹(1/x) = cot⁻¹x            (x > 0)
-tan⁻¹(1/x) = cot⁻¹x - π       (x &lt; 0)
-
-→ cosec⁻¹x = sin⁻¹(1/x)
-→ sec⁻¹x = cos⁻¹(1/x)
-→ cot⁻¹x = tan⁻¹(1/x) for x>0, cot⁻¹x = π + tan⁻¹(1/x) for x&lt;0</div>
+          <div class="formula-block">
+\begin{gather*}
+sin⁻¹(1/x) = cosec⁻¹x          (x \ge  1 \text{or} x \le  -1) \\
+cos⁻¹(1/x) = sec⁻¹x            (x \ge  1 \text{or} x \le  -1) \\
+tan⁻¹(1/x) = cot⁻¹x            (x > 0) \\
+tan⁻¹(1/x) = cot⁻¹x - \pi        (x < 0) \\
+\\
+\Rightarrow  cosec⁻¹x = sin⁻¹(1/x) \\
+\Rightarrow  sec⁻¹x = cos⁻¹(1/x) \\
+\Rightarrow  cot⁻¹x = tan⁻¹(1/x) \text{for} x>0, cot⁻¹x = \pi  + tan⁻¹(1/x) \text{for} x<0
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">2.5 Double Angle Formulas</div>
-          <div class="formula-block">2sin⁻¹x = sin⁻¹(2x√(1-x²))              (|x| ≤ 1/√2)
-2cos⁻¹x = cos⁻¹(2x²-1)                  (0 ≤ x ≤ 1)
-2tan⁻¹x = tan⁻¹(2x/(1-x²))             (|x| &lt; 1)
-2tan⁻¹x = sin⁻¹(2x/(1+x²))             (|x| ≤ 1)
-2tan⁻¹x = cos⁻¹((1-x²)/(1+x²))         (x ≥ 0)
-3tan⁻¹x = tan⁻¹(3x-x³)/(1-3x²)         (|x|&lt;1/√3)</div>
+          <div class="formula-block">
+\begin{gather*}
+2sin⁻¹x = sin⁻¹(2x\sqrt{1-x^2})              (|x| \le  1/\sqrt{2}) \\
+2cos⁻¹x = cos⁻¹(2x^2-1)                  (0 \le  x \le  1) \\
+2tan⁻¹x = tan⁻¹(2x/(1-x^2))             (|x| < 1) \\
+2tan⁻¹x = sin⁻¹(2x/(1+x^2))             (|x| \le  1) \\
+2tan⁻¹x = cos⁻¹((1-x^2)/(1+x^2))         (x \ge  0) \\
+3tan⁻¹x = tan⁻¹(3x-x^3)/(1-3x^2)         (|x|<1/\sqrt{3})
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">2.6 Sum and Difference Formulas</div>
-          <div class="formula-block">sin⁻¹x ± sin⁻¹y = sin⁻¹[x√(1-y²) ± y√(1-x²)]
-cos⁻¹x ± cos⁻¹y = cos⁻¹[xy ∓ √(1-x²)√(1-y²)]
-
-tan⁻¹x + tan⁻¹y = tan⁻¹[(x+y)/(1-xy)]       (xy &lt; 1)
-                 = π + tan⁻¹[(x+y)/(1-xy)]    (xy > 1, x>0, y>0)
-                 = -π + tan⁻¹[(x+y)/(1-xy)]   (xy > 1, x&lt;0, y&lt;0)
-
-tan⁻¹x - tan⁻¹y = tan⁻¹[(x-y)/(1+xy)]       (xy > -1)
-                 = π + tan⁻¹[(x-y)/(1+xy)]    (x>0, xy&lt;-1)
-                 = -π + tan⁻¹[(x-y)/(1+xy)]   (x&lt;0, xy&lt;-1)
-
-Derived:
-tan⁻¹(1/2) + tan⁻¹(1/3) = π/4
-tan⁻¹1 + tan⁻¹2 + tan⁻¹3 = π</div>
+          <div class="formula-block">
+\begin{gather*}
+sin⁻¹x ± sin⁻¹y = sin⁻¹[x\sqrt{1-y^2} ± y\sqrt{1-x^2}] \\
+cos⁻¹x ± cos⁻¹y = cos⁻¹[xy ∓ \sqrt{1-x^2}\sqrt{1-y^2}] \\
+\\
+tan⁻¹x + tan⁻¹y = tan⁻¹[(x+y)/(1-xy)]       (xy < 1) \\
+= \pi  + tan⁻¹[(x+y)/(1-xy)]    (xy > 1, x>0, y>0) \\
+= -\pi  + tan⁻¹[(x+y)/(1-xy)]   (xy > 1, x<0, y<0) \\
+\\
+tan⁻¹x - tan⁻¹y = tan⁻¹[(x-y)/(1+xy)]       (xy > -1) \\
+= \pi  + tan⁻¹[(x-y)/(1+xy)]    (x>0, xy<-1) \\
+= -\pi  + tan⁻¹[(x-y)/(1+xy)]   (x<0, xy<-1) \\
+\\
+Derived: \\
+tan⁻¹(1/2) + tan⁻¹(1/3) = \pi /4 \\
+tan⁻¹1 + tan⁻¹2 + tan⁻¹3 = \pi
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">2.7 Conversion Formulas</div>
-          <div class="formula-block">sin⁻¹x = cos⁻¹(√(1-x²))        (x ≥ 0)
-        = tan⁻¹(x/√(1-x²))     (|x|&lt;1)
-
-cos⁻¹x = sin⁻¹(√(1-x²))        (x ≥ 0)
-        = tan⁻¹(√(1-x²)/x)
-
-tan⁻¹x = sin⁻¹(x/√(1+x²))
-        = cos⁻¹(1/√(1+x²))
-
-For θ = sin⁻¹x:
-  sinθ=x, cosθ=√(1-x²), tanθ=x/√(1-x²)
-
-For θ = cos⁻¹x:
-  cosθ=x, sinθ=√(1-x²), tanθ=√(1-x²)/x
-
-For θ = tan⁻¹x:
-  tanθ=x, sinθ=x/√(1+x²), cosθ=1/√(1+x²)</div>
+          <div class="formula-block">
+\begin{gather*}
+sin⁻¹x = cos⁻¹(\sqrt{1-x^2})        (x \ge  0) \\
+= tan⁻¹(x/\sqrt{1-x^2})     (|x|<1) \\
+\\
+cos⁻¹x = sin⁻¹(\sqrt{1-x^2})        (x \ge  0) \\
+= tan⁻¹(\sqrt{1-x^2}/x) \\
+\\
+tan⁻¹x = sin⁻¹(x/\sqrt{1+x^2}) \\
+= cos⁻¹(1/\sqrt{1+x^2}) \\
+\\
+\text{For} \theta  = sin⁻¹x: \\
+sin\theta =x, cos\theta =\sqrt{1-x^2}, tan\theta =x/\sqrt{1-x^2} \\
+\\
+\text{For} \theta  = cos⁻¹x: \\
+cos\theta =x, sin\theta =\sqrt{1-x^2}, tan\theta =\sqrt{1-x^2}/x \\
+\\
+\text{For} \theta  = tan⁻¹x: \\
+tan\theta =x, sin\theta =x/\sqrt{1+x^2}, cos\theta =1/\sqrt{1+x^2}
+\end{gather*}
+</div>
         </div>
       </div>
 
@@ -1936,85 +2337,113 @@ For θ = tan⁻¹x:
 
         <div class="section">
           <div class="section-title">3.1 Matrix Notation</div>
-          <div class="formula-block">A = [aᵢⱼ]ₘₓₙ  (m rows, n columns)
-Order = m × n,  Total elements = mn
-aᵢⱼ = element in ith row, jth column</div>
+          <div class="formula-block">
+\begin{gather*}
+A = [aᵢⱼ]ₘₓₙ  (m rows, n columns) \\
+Order = m \times  n,  Total elements = mn \\
+aᵢⱼ = element in ith row, jth column
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">3.2 Types of Matrices</div>
-          <div class="formula-block">Row matrix:      1 × n
-Column matrix:   m × 1
-Square matrix:   m = n
-Diagonal matrix: aᵢⱼ = 0 if i ≠ j
-Scalar matrix:   Diagonal with all diagonal elements equal
-Identity matrix: I, diagonal with all 1s
-Zero matrix:     O, all elements 0
-Upper triangular: aᵢⱼ = 0 if i > j
-Lower triangular: aᵢⱼ = 0 if i &lt; j</div>
+          <div class="formula-block">
+\begin{gather*}
+Row matrix:      1 \times  n \\
+Column matrix:   m \times  1 \\
+Square matrix:   m = n \\
+Diagonal matrix: aᵢⱼ = 0 \text{if} i \neq  j \\
+Scalar matrix:   Diagonal with all diagonal elements equal \\
+Identity matrix: I, diagonal with all 1s \\
+Zero matrix:     O, all elements 0 \\
+Upper triangular: aᵢⱼ = 0 \text{if} i > j \\
+Lower triangular: aᵢⱼ = 0 \text{if} i < j
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">3.3 Transpose</div>
-          <div class="formula-block">If A = [aᵢⱼ]ₘₓₙ, then Aᵀ = [aⱼᵢ]ₙₓₘ
-
-Properties:
-(Aᵀ)ᵀ = A
-(A+B)ᵀ = Aᵀ + Bᵀ
-(kA)ᵀ = kAᵀ
-(AB)ᵀ = BᵀAᵀ   ← REVERSED ORDER!
-
-Symmetric matrix:     A = Aᵀ  →  aᵢⱼ = aⱼᵢ
-Skew-symmetric:       A = -Aᵀ →  aᵢⱼ = -aⱼᵢ, diagonal = 0
-
-Any square matrix A:
-A = ½(A+Aᵀ) + ½(A-Aᵀ)  [symmetric + skew-symmetric]</div>
+          <div class="formula-block">
+\begin{gather*}
+\text{If} A = [aᵢⱼ]ₘₓₙ, then Aᵀ = [aⱼᵢ]ₙₓₘ \\
+\\
+Properties: \\
+(Aᵀ)ᵀ = A \\
+(A+B)ᵀ = Aᵀ + Bᵀ \\
+(kA)ᵀ = kAᵀ \\
+(AB)ᵀ = BᵀAᵀ   ← REVERSED ORDER! \\
+\\
+Symmetric matrix:     A = Aᵀ  \Rightarrow   aᵢⱼ = aⱼᵢ \\
+Skew-symmetric:       A = -Aᵀ \Rightarrow   aᵢⱼ = -aⱼᵢ, diagonal = 0 \\
+\\
+Any square matrix A: \\
+A = ½(A+Aᵀ) + ½(A-Aᵀ)  [symmetric + skew-symmetric]
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">3.4 Matrix Operations</div>
-          <div class="formula-block">Addition: (A+B)ᵢⱼ = aᵢⱼ + bᵢⱼ  [same order]
-Scalar: (kA)ᵢⱼ = kaᵢⱼ
-Multiplication: (AB)ᵢⱼ = Σₖ aᵢₖbₖⱼ  [A: m×n, B: n×p → AB: m×p]
-
-AB ≠ BA in general  [not commutative]
-A(BC) = (AB)C       [associative]
-A(B+C) = AB+AC      [distributive]
-AO = OA = O
-AI = IA = A</div>
+          <div class="formula-block">
+\begin{gather*}
+Addition: (A+B)ᵢⱼ = aᵢⱼ + bᵢⱼ  [same order] \\
+Scalar: (kA)ᵢⱼ = kaᵢⱼ \\
+Multiplication: (AB)ᵢⱼ = \Sigma _k aᵢ_kb_kⱼ  [A: m\times n, B: n\times p \Rightarrow  AB: m\times p] \\
+\\
+AB \neq  BA in general  [\text{not} commutative] \\
+A(BC) = (AB)C       [associative] \\
+A(B+C) = AB+AC      [distributive] \\
+AO = OA = O \\
+AI = IA = A
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">3.5 Elementary Row/Column Operations</div>
-          <div class="formula-block">Rᵢ ↔ Rⱼ     [swap rows i and j]
-Rᵢ → kRᵢ    [multiply row i by k ≠ 0]
-Rᵢ → Rᵢ + kRⱼ  [add k times row j to row i]</div>
+          <div class="formula-block">
+\begin{gather*}
+Rᵢ ↔ Rⱼ     [swap rows i \text{and} j] \\
+Rᵢ \Rightarrow  kRᵢ    [multiply row i by k \neq  0] \\
+Rᵢ \Rightarrow  Rᵢ + kRⱼ  [add k times row j to row i]
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">3.6 Invertible Matrix</div>
-          <div class="formula-block">AA⁻¹ = A⁻¹A = I
-A⁻¹ = adjA / |A|  (if |A| ≠ 0)
-
-(A⁻¹)⁻¹ = A
-(AB)⁻¹ = B⁻¹A⁻¹   ← REVERSED!
-(Aᵀ)⁻¹ = (A⁻¹)ᵀ
-(kA)⁻¹ = (1/k)A⁻¹
-|A⁻¹| = 1/|A|</div>
+          <div class="formula-block">
+\begin{gather*}
+AA⁻¹ = A⁻¹A = I \\
+A⁻¹ = adjA / |A|  (\text{if} |A| \neq  0) \\
+\\
+(A⁻¹)⁻¹ = A \\
+(AB)⁻¹ = B⁻¹A⁻¹   ← REVERSED! \\
+(Aᵀ)⁻¹ = (A⁻¹)ᵀ \\
+(kA)⁻¹ = (1/k)A⁻¹ \\
+|A⁻¹| = 1/|A|
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">3.7 2×2 Matrix — Quick Formulas</div>
-          <div class="formula-block">A = [a b; c d]
-
-|A| = ad - bc
-A⁻¹ = (1/(ad-bc)) × [d -b; -c a]
-
-adj A = [d -b; -c a]   (transpose of cofactor matrix)
-
-For 2×2: adj A is obtained by:
-  swapping diagonal elements
-  negating off-diagonal elements</div>
+          <div class="formula-block">
+\begin{gather*}
+A = [a b; c d] \\
+\\
+|A| = ad - bc \\
+A⁻¹ = (1/(ad-bc)) \times  [d -b; -c a] \\
+\\
+adj A = [d -b; -c a]   (transpose of cofactor matrix) \\
+\\
+\text{For} 2\times 2: adj A \text{is} obtained by: \\
+swapping diagonal elements \\
+negating off-diagonal elements
+\end{gather*}
+</div>
         </div>
       </div>
 
@@ -2027,89 +2456,113 @@ For 2×2: adj A is obtained by:
 
         <div class="section">
           <div class="section-title">4.1 Determinant of 2×2</div>
-          <div class="formula-block">|A| = |a b| = ad - bc
-      |c d|</div>
+          <div class="formula-block">
+\begin{gather*}
+|A| = |a b| = ad - bc \\
+|c d|
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">4.2 Determinant of 3×3 (Expansion along R₁)</div>
-          <div class="formula-block">|a₁ b₁ c₁|
-|a₂ b₂ c₂| = a₁(b₂c₃-b₃c₂) - b₁(a₂c₃-a₃c₂) + c₁(a₂b₃-a₃b₂)
-|a₃ b₃ c₃|
-
-= a₁M₁₁ - b₁M₁₂ + c₁M₁₃
-(Mᵢⱼ = minor of element aᵢⱼ)
-
-Cofactor Cᵢⱼ = (-1)^(i+j) Mᵢⱼ
-Sign pattern for cofactors:
+          <div class="formula-block">
+\begin{gather*}
+|a_1 b_1 c_1| \\
+|a_2 b_2 c_2| = a_1(b_2c_3-b_3c_2) - b_1(a_2c_3-a_3c_2) + c_1(a_2b_3-a_3b_2) \\
+|a_3 b_3 c_3| \\
+\\
+= a_1M_1_1 - b_1M_1_2 + c_1M_1_3 \\
+(Mᵢⱼ = minor of element aᵢⱼ) \\
+\\
+Cofactor Cᵢⱼ = (-1)^(i+j) Mᵢⱼ \\
+Sign pattern \text{for} cofactors: \\
++ - + \\
+- + - \\
 + - +
-- + -
-+ - +</div>
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">4.3 Properties of Determinants</div>
-          <div class="formula-block">|Aᵀ| = |A|
-|kA|ₙₓₙ = kⁿ|A|
-|AB| = |A||B|
-|A⁻¹| = 1/|A|
-|A²| = |A|²
-|Aⁿ| = |A|ⁿ
-|adj A| = |A|^(n-1)  [for n×n matrix]
-
-If any row/column = 0 → |A| = 0
-If two rows/columns identical → |A| = 0
-If one row is k×another row → |A| = 0
-Swapping two rows/columns → |A| changes sign</div>
+          <div class="formula-block">
+\begin{gather*}
+|Aᵀ| = |A| \\
+|kA|ₙₓₙ = kⁿ|A| \\
+|AB| = |A||B| \\
+|A⁻¹| = 1/|A| \\
+|A^2| = |A|^2 \\
+|Aⁿ| = |A|ⁿ \\
+|adj A| = |A|^(n-1)  [\text{for} n\times n matrix] \\
+\\
+\text{If} any row/column = 0 \Rightarrow  |A| = 0 \\
+\text{If} two rows/columns identical \Rightarrow  |A| = 0 \\
+\text{If} one row \text{is} k\times another row \Rightarrow  |A| = 0 \\
+Swapping two rows/columns \Rightarrow  |A| changes sign
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">4.4 Adjoint and Inverse</div>
-          <div class="formula-block">adj A = transpose of cofactor matrix
-A(adj A) = (adj A)A = |A| × I
-
-A⁻¹ = adj A / |A|  (|A| ≠ 0)
-
-|adj A| = |A|^(n-1)
-adj(AB) = (adj B)(adj A)
-adj(adj A) = |A|^(n-2) × A  [n×n]
-adj(Aᵀ) = (adj A)ᵀ
-adj(kA) = k^(n-1) adj A</div>
+          <div class="formula-block">
+\begin{gather*}
+adj A = transpose of cofactor matrix \\
+A(adj A) = (adj A)A = |A| \times  I \\
+\\
+A⁻¹ = adj A / |A|  (|A| \neq  0) \\
+\\
+|adj A| = |A|^(n-1) \\
+adj(AB) = (adj B)(adj A) \\
+adj(adj A) = |A|^(n-2) \times  A  [n\times n] \\
+adj(Aᵀ) = (adj A)ᵀ \\
+adj(kA) = k^(n-1) adj A
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">4.5 Cramer's Rule</div>
-          <div class="formula-block">For AX = B:
-x = D₁/D,  y = D₂/D,  z = D₃/D
-
-D = |A|  (coefficient determinant)
-D₁ = replace column 1 of A by B
-D₂ = replace column 2 of A by B
-D₃ = replace column 3 of A by B
-
-If D ≠ 0 → unique solution
-If D = 0 and D₁ = D₂ = D₃ = 0 → infinitely many / no solution
-If D = 0 and any Dᵢ ≠ 0 → no solution (inconsistent)</div>
+          <div class="formula-block">
+\begin{gather*}
+\text{For} AX = B: \\
+x = D_1/D,  y = D_2/D,  z = D_3/D \\
+\\
+D = |A|  (coefficient determinant) \\
+D_1 = replace column 1 of A by B \\
+D_2 = replace column 2 of A by B \\
+D_3 = replace column 3 of A by B \\
+\\
+\text{If} D \neq  0 \Rightarrow  unique solution \\
+\text{If} D = 0 \text{and} D_1 = D_2 = D_3 = 0 \Rightarrow  infinitely many / no solution \\
+\text{If} D = 0 \text{and} any Dᵢ \neq  0 \Rightarrow  no solution (inconsistent)
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">4.6 Area Using Determinants</div>
-          <div class="formula-block">Area of △ with vertices (x₁,y₁), (x₂,y₂), (x₃,y₃):
-
-Area = ½ |x₁ y₁ 1|
-         |x₂ y₂ 1|
-         |x₃ y₃ 1|
-
-Collinear if Area = 0:
-|x₁ y₁ 1|
-|x₂ y₂ 1| = 0
-|x₃ y₃ 1|
-
-Equation of line through (x₁,y₁) and (x₂,y₂):
-|x  y  1|
-|x₁ y₁ 1| = 0
-|x₂ y₂ 1|
-→ (y-y₁)(x₂-x₁) = (x-x₁)(y₂-y₁)</div>
+          <div class="formula-block">
+\begin{gather*}
+Area of △ with vertices (x_1,y_1), (x_2,y_2), (x_3,y_3): \\
+\\
+Area = ½ |x_1 y_1 1| \\
+|x_2 y_2 1| \\
+|x_3 y_3 1| \\
+\\
+Collinear \text{if} Area = 0: \\
+|x_1 y_1 1| \\
+|x_2 y_2 1| = 0 \\
+|x_3 y_3 1| \\
+\\
+Equation of line through (x_1,y_1) \text{and} (x_2,y_2): \\
+|x  y  1| \\
+|x_1 y_1 1| = 0 \\
+|x_2 y_2 1| \\
+\Rightarrow  (y-y_1)(x_2-x_1) = (x-x_1)(y_2-y_1)
+\end{gather*}
+</div>
         </div>
       </div>
 
@@ -2122,128 +2575,164 @@ Equation of line through (x₁,y₁) and (x₂,y₂):
 
         <div class="section">
           <div class="section-title">5.1 Continuity Condition</div>
-          <div class="formula-block">f is continuous at x=a if:
-1. f(a) is defined
-2. lim[x→a] f(x) exists
-3. lim[x→a] f(x) = f(a)
-
-LHL = lim[x→a⁻] f(x) = lim[h→0] f(a-h)
-RHL = lim[x→a⁺] f(x) = lim[h→0] f(a+h)
-Continuous ↔ LHL = RHL = f(a)</div>
+          <div class="formula-block">
+\begin{gather*}
+f \text{is} continuous at x=a \text{if}: \\
+1. f(a) \text{is} defined \\
+2. lim[x\Rightarrow a] f(x) exists \\
+3. lim[x\Rightarrow a] f(x) = f(a) \\
+\\
+LHL = lim[x\Rightarrow a⁻] f(x) = lim[h\Rightarrow 0] f(a-h) \\
+RHL = lim[x\Rightarrow a⁺] f(x) = lim[h\Rightarrow 0] f(a+h) \\
+Continuous ↔ LHL = RHL = f(a)
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">5.2 Standard Derivatives</div>
-          <div class="formula-block">d/dx (constant) = 0
-d/dx (x) = 1
-d/dx (xⁿ) = nxⁿ⁻¹
-d/dx (√x) = 1/(2√x)
-d/dx (1/x) = -1/x²
-d/dx (1/xⁿ) = -n/x^(n+1)
-
-Exponential &amp; Log:
-d/dx (eˣ) = eˣ
-d/dx (aˣ) = aˣ ln a
-d/dx (ln x) = 1/x
-d/dx (log_a x) = 1/(x ln a)
-
-Trigonometric:
-d/dx (sin x) = cos x
-d/dx (cos x) = -sin x
-d/dx (tan x) = sec²x
-d/dx (cot x) = -cosec²x
-d/dx (sec x) = sec x tan x
-d/dx (cosec x) = -cosec x cot x
-
-Inverse Trig:
-d/dx (sin⁻¹x) = 1/√(1-x²)
-d/dx (cos⁻¹x) = -1/√(1-x²)
-d/dx (tan⁻¹x) = 1/(1+x²)
-d/dx (cot⁻¹x) = -1/(1+x²)
-d/dx (sec⁻¹x) = 1/(|x|√(x²-1))
-d/dx (cosec⁻¹x) = -1/(|x|√(x²-1))</div>
+          <div class="formula-block">
+\begin{gather*}
+d/dx (constant) = 0 \\
+d/dx (x) = 1 \\
+d/dx (xⁿ) = nxⁿ⁻¹ \\
+d/dx (\sqrt{x}) = 1/(2\sqrt{x}) \\
+d/dx (1/x) = -1/x^2 \\
+d/dx (1/xⁿ) = -n/x^(n+1) \\
+\\
+Exponential & Log: \\
+d/dx (eˣ) = eˣ \\
+d/dx (aˣ) = aˣ ln a \\
+d/dx (ln x) = 1/x \\
+d/dx (log_a x) = 1/(x ln a) \\
+\\
+Trigonometric: \\
+d/dx (sin x) = cos x \\
+d/dx (cos x) = -sin x \\
+d/dx (tan x) = sec^2x \\
+d/dx (cot x) = -cosec^2x \\
+d/dx (sec x) = sec x tan x \\
+d/dx (cosec x) = -cosec x cot x \\
+\\
+Inverse Trig: \\
+d/dx (sin⁻¹x) = 1/\sqrt{1-x^2} \\
+d/dx (cos⁻¹x) = -1/\sqrt{1-x^2} \\
+d/dx (tan⁻¹x) = 1/(1+x^2) \\
+d/dx (cot⁻¹x) = -1/(1+x^2) \\
+d/dx (sec⁻¹x) = 1/(|x|\sqrt{x^2-1}) \\
+d/dx (cosec⁻¹x) = -1/(|x|\sqrt{x^2-1})
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">5.3 Rules of Differentiation</div>
-          <div class="formula-block">Sum/Difference: (u ± v)' = u' ± v'
-Scalar:         (cu)' = cu'
-Product:        (uv)' = u'v + uv'       ← Product Rule (Leibniz)
-Quotient:       (u/v)' = (u'v - uv')/v²  ← Quotient Rule (v≠0)
-Chain:          d/dx[f(g(x))] = f'(g(x))·g'(x)  ← Chain Rule
-
-Extended Product Rule:
-(uvw)' = u'vw + uv'w + uvw'
-
-Extended Chain Rule:
-d/dx[f(g(h(x)))] = f'(g(h(x)))·g'(h(x))·h'(x)</div>
+          <div class="formula-block">
+\begin{gather*}
+Sum/Difference: (u ± v)' = u' ± v' \\
+Scalar:         (cu)' = cu' \\
+Product:        (uv)' = u'v + uv'       ← Product Rule (Leibniz) \\
+Quotient:       (u/v)' = (u'v - uv')/v^2  ← Quotient Rule (v\neq 0) \\
+Chain:          d/dx[f(g(x))] = f'(g(x))·g'(x)  ← Chain Rule \\
+\\
+Extended Product Rule: \\
+(uvw)' = u'vw + uv'w + uvw' \\
+\\
+Extended Chain Rule: \\
+d/dx[f(g(h(x)))] = f'(g(h(x)))·g'(h(x))·h'(x)
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">5.4 Implicit Differentiation</div>
-          <div class="formula-block">For F(x,y) = 0:
-dy/dx = -(∂F/∂x)/(∂F/∂y)  [partial derivatives method]
-
-Or differentiate both sides w.r.t. x, treating y as function of x
-
-Example: x² + y² = r²
-→ 2x + 2y(dy/dx) = 0
-→ dy/dx = -x/y</div>
+          <div class="formula-block">
+\begin{gather*}
+\text{For} F(x,y) = 0: \\
+dy/dx = -(∂F/∂x)/(∂F/∂y)  [partial derivatives method] \\
+\\
+\text{Or} differentiate both sides w.r.t. x, treating y as function of x \\
+\\
+Example: x^2 + y^2 = r^2 \\
+\Rightarrow  2x + 2y(dy/dx) = 0 \\
+\Rightarrow  dy/dx = -x/y
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">5.5 Parametric Differentiation</div>
-          <div class="formula-block">x = f(t), y = g(t)
-dy/dx = (dy/dt)/(dx/dt) = g'(t)/f'(t)
-
-d²y/dx² = (d/dt[dy/dx]) / (dx/dt)</div>
+          <div class="formula-block">
+\begin{gather*}
+x = f(t), y = g(t) \\
+dy/dx = (dy/dt)/(dx/dt) = g'(t)/f'(t) \\
+\\
+d^2y/dx^2 = (d/dt[dy/dx]) / (dx/dt)
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">5.6 Logarithmic Differentiation</div>
-          <div class="formula-block">For y = [f(x)]^g(x):
-ln y = g(x) ln[f(x)]
-(1/y)(dy/dx) = g'(x)ln[f(x)] + g(x)·f'(x)/f(x)
-dy/dx = y × [g'(x)ln f(x) + g(x)f'(x)/f(x)]
-
-For y = (f₁·f₂·...)/(g₁·g₂·...):
-ln y = ln f₁ + ln f₂ + ... - ln g₁ - ln g₂ - ...
-(1/y)y' = f₁'/f₁ + f₂'/f₂ + ... - g₁'/g₁ - ...</div>
+          <div class="formula-block">
+\begin{gather*}
+\text{For} y = [f(x)]^g(x): \\
+ln y = g(x) ln[f(x)] \\
+(1/y)(dy/dx) = g'(x)ln[f(x)] + g(x)·f'(x)/f(x) \\
+dy/dx = y \times  [g'(x)ln f(x) + g(x)f'(x)/f(x)] \\
+\\
+\text{For} y = (f_1·f_2·...)/(g_1·g_2·...): \\
+ln y = ln f_1 + ln f_2 + ... - ln g_1 - ln g_2 - ... \\
+(1/y)y' = f_1'/f_1 + f_2'/f_2 + ... - g_1'/g_1 - ...
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">5.7 Higher Order Derivatives</div>
-          <div class="formula-block">y = f(x)
-y' = f'(x) = dy/dx         [first derivative]
-y'' = f''(x) = d²y/dx²     [second derivative]
-y''' = f'''(x) = d³y/dx³   [third derivative]
-yⁿ = f⁽ⁿ⁾(x) = dⁿy/dxⁿ    [nth derivative]
-
-Leibniz Formula (nth derivative of product):
-(uv)ⁿ = Σₖ₌₀ⁿ C(n,k) u⁽ᵏ⁾ v⁽ⁿ⁻ᵏ⁾</div>
+          <div class="formula-block">
+\begin{gather*}
+y = f(x) \\
+y' = f'(x) = dy/dx         [first derivative] \\
+y'' = f''(x) = d^2y/dx^2     [second derivative] \\
+y''' = f'''(x) = d^3y/dx^3   [third derivative] \\
+yⁿ = f⁽ⁿ⁾(x) = dⁿy/dxⁿ    [nth derivative] \\
+\\
+Leibniz Formula (nth derivative of product): \\
+(uv)ⁿ = \Sigma _k₌₀ⁿ C(n,k) u⁽ᵏ⁾ v⁽ⁿ⁻ᵏ⁾
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">5.8 Rolle's Theorem</div>
-          <div class="formula-block">If f: [a,b]→ℝ is:
-1. Continuous on [a,b]
-2. Differentiable on (a,b)
-3. f(a) = f(b)
-Then ∃ c ∈ (a,b) such that f'(c) = 0</div>
+          <div class="formula-block">
+\begin{gather*}
+\text{If} f: [a,b]\Rightarrow ℝ \text{is}: \\
+1. Continuous on [a,b] \\
+2. Differentiable on (a,b) \\
+3. f(a) = f(b) \\
+Then ∃ c ∈ (a,b) such that f'(c) = 0
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">5.9 Mean Value Theorem (Lagrange's MVT)</div>
-          <div class="formula-block">If f: [a,b]→ℝ is:
-1. Continuous on [a,b]
-2. Differentiable on (a,b)
-Then ∃ c ∈ (a,b) such that:
-f'(c) = [f(b)-f(a)] / (b-a)
-
-→ f(b) - f(a) = f'(c)(b-a)
-→ c = value(s) satisfying the above
-
-[Geometric meaning: slope of chord = slope of tangent at c]</div>
+          <div class="formula-block">
+\begin{gather*}
+\text{If} f: [a,b]\Rightarrow ℝ \text{is}: \\
+1. Continuous on [a,b] \\
+2. Differentiable on (a,b) \\
+Then ∃ c ∈ (a,b) such that: \\
+f'(c) = [f(b)-f(a)] / (b-a) \\
+\\
+\Rightarrow  f(b) - f(a) = f'(c)(b-a) \\
+\Rightarrow  c = value(s) satisfying the above \\
+\\
+[Geometric meaning: slope of chord = slope of tangent at c]
+\end{gather*}
+</div>
         </div>
       </div>
 
@@ -2256,116 +2745,140 @@ f'(c) = [f(b)-f(a)] / (b-a)
 
         <div class="section">
           <div class="section-title">6.1 Rate of Change</div>
-          <div class="formula-block">Rate of change of y w.r.t. x = dy/dx
-Rate of change of y w.r.t. t = dy/dt
-
-If y = f(x) and x = g(t):
-dy/dt = (dy/dx)(dx/dt)
-
-Rate of change of area of circle w.r.t. radius:
-dA/dr = 2πr
-
-Rate of change of volume of sphere w.r.t. radius:
-dV/dr = 4πr²
-
-Rate of change of volume of cube w.r.t. side:
-dV/da = 3a²</div>
+          <div class="formula-block">
+\begin{gather*}
+Rate of change of y w.r.t. x = dy/dx \\
+Rate of change of y w.r.t. t = dy/dt \\
+\\
+\text{If} y = f(x) \text{and} x = g(t): \\
+dy/dt = (dy/dx)(dx/dt) \\
+\\
+Rate of change of area of circle w.r.t. radius: \\
+dA/dr = 2\pi r \\
+\\
+Rate of change of volume of sphere w.r.t. radius: \\
+dV/dr = 4\pi r^2 \\
+\\
+Rate of change of volume of cube w.r.t. side: \\
+dV/da = 3a^2
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">6.2 Tangent and Normal</div>
-          <div class="formula-block">Equation of tangent at (x₁,y₁):
-y - y₁ = m(x - x₁),  where m = (dy/dx) at (x₁,y₁)
-
-Equation of normal at (x₁,y₁):
-y - y₁ = -1/m (x - x₁),  where m = (dy/dx) at (x₁,y₁)
-
-Slope of tangent: m_t = f'(x₁)
-Slope of normal:  m_n = -1/f'(x₁)
-
-m_t × m_n = -1  (tangent ⊥ normal)
-
-Length of tangent   = y√(1+m²)/m
-Length of normal    = y√(1+m²)
-Length of subtangent = y/m = y/(dy/dx)
-Length of subnormal = y × m = y(dy/dx)
-
-Tangent parallel to x-axis: dy/dx = 0
-Tangent parallel to y-axis: dy/dx → ∞  (dx/dy = 0)
-Tangent passes through origin: y/x = dy/dx  (i.e., y=mx, m=dy/dx)</div>
+          <div class="formula-block">
+\begin{gather*}
+Equation of tangent at (x_1,y_1): \\
+y - y_1 = m(x - x_1),  \text{where} m = (dy/dx) at (x_1,y_1) \\
+\\
+Equation of normal at (x_1,y_1): \\
+y - y_1 = -1/m (x - x_1),  \text{where} m = (dy/dx) at (x_1,y_1) \\
+\\
+Slope of tangent: m_t = f'(x_1) \\
+Slope of normal:  m_n = -1/f'(x_1) \\
+\\
+m_t \times  m_n = -1  (tangent ⊥ normal) \\
+\\
+Length of tangent   = y\sqrt{1+m^2}/m \\
+Length of normal    = y\sqrt{1+m^2} \\
+Length of subtangent = y/m = y/(dy/dx) \\
+Length of subnormal = y \times  m = y(dy/dx) \\
+\\
+Tangent parallel to x-axis: dy/dx = 0 \\
+Tangent parallel to y-axis: dy/dx \Rightarrow  ∞  (dx/dy = 0) \\
+Tangent passes through origin: y/x = dy/dx  (i.e., y=mx, m=dy/dx)
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">6.3 Increasing and Decreasing Functions</div>
-          <div class="formula-block">f is strictly increasing on (a,b) if f'(x) > 0 ∀ x∈(a,b)
-f is strictly decreasing on (a,b) if f'(x) &lt; 0 ∀ x∈(a,b)
-f is constant on (a,b) if f'(x) = 0 ∀ x∈(a,b)
-
-At a critical point: f'(c) = 0
-
-Monotonically increasing: f(x₁) &lt; f(x₂) whenever x₁ &lt; x₂
-Monotonically decreasing: f(x₁) > f(x₂) whenever x₁ &lt; x₂</div>
+          <div class="formula-block">
+\begin{gather*}
+f \text{is} strictly increasing on (a,b) \text{if} f'(x) > 0 ∀ x∈(a,b) \\
+f \text{is} strictly decreasing on (a,b) \text{if} f'(x) < 0 ∀ x∈(a,b) \\
+f \text{is} constant on (a,b) \text{if} f'(x) = 0 ∀ x∈(a,b) \\
+\\
+At a critical point: f'(c) = 0 \\
+\\
+Monotonically increasing: f(x_1) < f(x_2) whenever x_1 < x_2 \\
+Monotonically decreasing: f(x_1) > f(x_2) whenever x_1 < x_2
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">6.4 Maxima and Minima</div>
-          <div class="formula-block">First Derivative Test:
-  f'(c) = 0 and
-  f' changes + to -  at c → local maximum
-  f' changes - to +  at c → local minimum
-  f' doesn't change sign → neither (inflection point)
-
-Second Derivative Test:
-  f'(c) = 0 and
-  f''(c) &lt; 0 → local maximum at x=c;  f(c) = local max value
-  f''(c) > 0 → local minimum at x=c;  f(c) = local min value
-  f''(c) = 0 → test inconclusive (use first derivative test)
-
-Global/Absolute maximum/minimum on [a,b]:
-  Compare f(a), f(b), and all f(c) where f'(c)=0</div>
+          <div class="formula-block">
+\begin{gather*}
+First Derivative Test: \\
+f'(c) = 0 \text{and} \\
+f' changes + to -  at c \Rightarrow  local maximum \\
+f' changes - to +  at c \Rightarrow  local minimum \\
+f' doesn't change sign \Rightarrow  neither (inflection point) \\
+\\
+Second Derivative Test: \\
+f'(c) = 0 \text{and} \\
+f''(c) < 0 \Rightarrow  local maximum at x=c;  f(c) = local max value \\
+f''(c) > 0 \Rightarrow  local minimum at x=c;  f(c) = local min value \\
+f''(c) = 0 \Rightarrow  test inconclusive (use first derivative test) \\
+\\
+Global/Absolute maximum/minimum on [a,b]: \\
+Compare f(a), f(b), \text{and} all f(c) \text{where} f'(c)=0
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">6.5 Optimization Formulas</div>
-          <div class="formula-block">Rectangle of maximum area for given perimeter P:
-  Square: side = P/4, Area = P²/16
-
-Rectangle of minimum perimeter for given area A:
-  Square: side = √A, Perimeter = 4√A
-
-Cylinder of maximum volume: r = h
-
-Cone of maximum volume inscribed in sphere of radius R:
-  h = 4R/3, r = 2R√2/3
-
-Rectangle inscribed in circle of radius R:
-  Maximum area square: side = R√2, Area = 2R²
-
-Cylinder inscribed in sphere of radius R:
-  Maximum volume: h = 2R/√3, r = R√(2/3)
-  V_max = 4πR³/(3√3)
-
-Wire of length L bent to maximize area:
-  If circle: r = L/2π, A = L²/4π
-  If square: side = L/4, A = L²/16
-  Circle has more area than square for same perimeter
-
-Box (open top) from square sheet of side a, corners cut x:
-  V = x(a-2x)²
-  dV/dx = 0 → x = a/6 for max volume
-  V_max = 2a³/27</div>
+          <div class="formula-block">
+\begin{gather*}
+Rectangle of maximum area \text{for} given perimeter P: \\
+Square: side = P/4, Area = P^2/16 \\
+\\
+Rectangle of minimum perimeter \text{for} given area A: \\
+Square: side = \sqrt{A}, Perimeter = 4\sqrt{A} \\
+\\
+Cylinder of maximum volume: r = h \\
+\\
+Cone of maximum volume inscribed in sphere of radius R: \\
+h = 4R/3, r = 2R\sqrt{2}/3 \\
+\\
+Rectangle inscribed in circle of radius R: \\
+Maximum area square: side = R\sqrt{2}, Area = 2R^2 \\
+\\
+Cylinder inscribed in sphere of radius R: \\
+Maximum volume: h = 2R/\sqrt{3}, r = R\sqrt{2/3} \\
+V_max = 4\pi R^3/(3\sqrt{3}) \\
+\\
+Wire of length L bent to maximize area: \\
+\text{If} circle: r = L/2\pi , A = L^2/4\pi \\
+\text{If} square: side = L/4, A = L^2/16 \\
+Circle has more area than square \text{for} same perimeter \\
+\\
+Box (open top) from square sheet of side a, corners cut x: \\
+V = x(a-2x)^2 \\
+dV/dx = 0 \Rightarrow  x = a/6 \text{for} max volume \\
+V_max = 2a^3/27
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">6.6 Approximations (Linear Approximation)</div>
-          <div class="formula-block">Δy ≈ dy = f'(x)·Δx  [for small Δx]
-
-f(x + Δx) ≈ f(x) + f'(x)·Δx
-
-Relative error: dy/y
-Percentage error: (dy/y)×100
-
-If y = xⁿ: Δy/y ≈ n(Δx/x)  [percentage error multiplied by n]</div>
+          <div class="formula-block">
+\begin{gather*}
+\Delta y ≈ dy = f'(x)·\Delta x  [\text{for} small \Delta x] \\
+\\
+f(x + \Delta x) ≈ f(x) + f'(x)·\Delta x \\
+\\
+Relative error: dy/y \\
+Percentage error: (dy/y)\times 100 \\
+\\
+\text{If} y = xⁿ: \Delta y/y ≈ n(\Delta x/x)  [percentage error multiplied by n]
+\end{gather*}
+</div>
         </div>
       </div>
 
@@ -2378,175 +2891,215 @@ If y = xⁿ: Δy/y ≈ n(Δx/x)  [percentage error multiplied by n]</div>
 
         <div class="section">
           <div class="section-title">7.1 Standard Integration Formulas</div>
-          <div class="formula-block">∫ xⁿ dx = xⁿ⁺¹/(n+1) + C       (n ≠ -1)
-∫ 1/x dx = ln|x| + C
-∫ eˣ dx = eˣ + C
-∫ aˣ dx = aˣ/ln a + C
-∫ 1 dx = x + C
-
-Trigonometric:
-∫ sin x dx = -cos x + C
-∫ cos x dx = sin x + C
-∫ tan x dx = ln|sec x| + C     = -ln|cos x| + C
-∫ cot x dx = ln|sin x| + C
-∫ sec x dx = ln|sec x + tan x| + C
-∫ cosec x dx = ln|cosec x - cot x| + C
-
-∫ sec²x dx = tan x + C
-∫ cosec²x dx = -cot x + C
-∫ sec x tan x dx = sec x + C
-∫ cosec x cot x dx = -cosec x + C
-
-Special:
-∫ 1/√(1-x²) dx = sin⁻¹x + C   = -cos⁻¹x + C
-∫ -1/√(1-x²) dx = cos⁻¹x + C
-∫ 1/(1+x²) dx = tan⁻¹x + C    = -cot⁻¹x + C
-∫ 1/(x√(x²-1)) dx = sec⁻¹x + C = -cosec⁻¹x + C</div>
+          <div class="formula-block">
+\begin{gather*}
+∫ xⁿ dx = xⁿ⁺¹/(n+1) + C       (n \neq  -1) \\
+∫ 1/x dx = ln|x| + C \\
+∫ eˣ dx = eˣ + C \\
+∫ aˣ dx = aˣ/ln a + C \\
+∫ 1 dx = x + C \\
+\\
+Trigonometric: \\
+∫ sin x dx = -cos x + C \\
+∫ cos x dx = sin x + C \\
+∫ tan x dx = ln|sec x| + C     = -ln|cos x| + C \\
+∫ cot x dx = ln|sin x| + C \\
+∫ sec x dx = ln|sec x + tan x| + C \\
+∫ cosec x dx = ln|cosec x - cot x| + C \\
+\\
+∫ sec^2x dx = tan x + C \\
+∫ cosec^2x dx = -cot x + C \\
+∫ sec x tan x dx = sec x + C \\
+∫ cosec x cot x dx = -cosec x + C \\
+\\
+Special: \\
+∫ 1/\sqrt{1-x^2} dx = sin⁻¹x + C   = -cos⁻¹x + C \\
+∫ -1/\sqrt{1-x^2} dx = cos⁻¹x + C \\
+∫ 1/(1+x^2) dx = tan⁻¹x + C    = -cot⁻¹x + C \\
+∫ 1/(x\sqrt{x^2-1}) dx = sec⁻¹x + C = -cosec⁻¹x + C
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">7.2 Standard Forms (Key Templates)</div>
-          <div class="formula-block">∫ 1/(x²+a²) dx = (1/a)tan⁻¹(x/a) + C
-
-∫ 1/(x²-a²) dx = (1/2a)ln|(x-a)/(x+a)| + C     (|x|>a)
-
-∫ 1/(a²-x²) dx = (1/2a)ln|(a+x)/(a-x)| + C     (|x|&lt;a)
-
-∫ 1/√(x²+a²) dx = ln|x + √(x²+a²)| + C
-
-∫ 1/√(x²-a²) dx = ln|x + √(x²-a²)| + C
-
-∫ 1/√(a²-x²) dx = sin⁻¹(x/a) + C
-
-∫ √(a²-x²) dx = (x/2)√(a²-x²) + (a²/2)sin⁻¹(x/a) + C
-
-∫ √(x²+a²) dx = (x/2)√(x²+a²) + (a²/2)ln|x+√(x²+a²)| + C
-
-∫ √(x²-a²) dx = (x/2)√(x²-a²) - (a²/2)ln|x+√(x²-a²)| + C</div>
+          <div class="formula-block">
+\begin{gather*}
+∫ 1/(x^2+a^2) dx = (1/a)tan⁻¹(x/a) + C \\
+\\
+∫ 1/(x^2-a^2) dx = (1/2a)ln|(x-a)/(x+a)| + C     (|x|>a) \\
+\\
+∫ 1/(a^2-x^2) dx = (1/2a)ln|(a+x)/(a-x)| + C     (|x|<a) \\
+\\
+∫ 1/\sqrt{x^2+a^2} dx = ln|x + \sqrt{x^2+a^2}| + C \\
+\\
+∫ 1/\sqrt{x^2-a^2} dx = ln|x + \sqrt{x^2-a^2}| + C \\
+\\
+∫ 1/\sqrt{a^2-x^2} dx = sin⁻¹(x/a) + C \\
+\\
+∫ \sqrt{a^2-x^2} dx = (x/2)\sqrt{a^2-x^2} + (a^2/2)sin⁻¹(x/a) + C \\
+\\
+∫ \sqrt{x^2+a^2} dx = (x/2)\sqrt{x^2+a^2} + (a^2/2)ln|x+\sqrt{x^2+a^2}| + C \\
+\\
+∫ \sqrt{x^2-a^2} dx = (x/2)\sqrt{x^2-a^2} - (a^2/2)ln|x+\sqrt{x^2-a^2}| + C
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">7.3 (a) Substitution Method (u-substitution)</div>
-          <div class="formula-block">∫ f(g(x))·g'(x) dx = ∫ f(u) du  [let u = g(x)]
-
-Common substitutions:
-√(a²-x²)  →  x = a sinθ
-√(a²+x²)  →  x = a tanθ
-√(x²-a²)  →  x = a secθ
-(a-x)/(a+x) or similar → x = a cos2θ</div>
+          <div class="formula-block">
+\begin{gather*}
+∫ f(g(x))·g'(x) dx = ∫ f(u) du  [let u = g(x)] \\
+\\
+Common substitutions: \\
+\sqrt{a^2-x^2}  \Rightarrow   x = a sin\theta \\
+\sqrt{a^2+x^2}  \Rightarrow   x = a tan\theta \\
+\sqrt{x^2-a^2}  \Rightarrow   x = a sec\theta \\
+(a-x)/(a+x) \text{or} similar \Rightarrow  x = a cos2\theta
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">7.3 (b) Integration by Parts (IBP)</div>
-          <div class="formula-block">∫ u dv = uv - ∫ v du
-
-or  ∫ u·v dx = u(∫v dx) - ∫[u'(∫v dx)] dx
-
-ILATE priority rule (choose u in this order):
-I — Inverse trig (sin⁻¹x, tan⁻¹x...)
-L — Logarithmic (ln x, log x)
-A — Algebraic (xⁿ, polynomials)
-T — Trigonometric (sin x, cos x...)
-E — Exponential (eˣ, aˣ)
-
-Standard IBP results:
-∫ xeˣ dx = eˣ(x-1) + C
-∫ x²eˣ dx = eˣ(x²-2x+2) + C
-∫ xⁿeˣ dx = eˣ[xⁿ - nxⁿ⁻¹ + n(n-1)xⁿ⁻² - ...] + C
-∫ x sin x dx = -x cos x + sin x + C
-∫ x cos x dx = x sin x + cos x + C
-∫ x² sin x dx = -x²cos x + 2x sin x + 2cos x + C
-∫ ln x dx = x ln x - x + C
-∫ x ln x dx = x²/2 ln x - x²/4 + C
-∫ sin⁻¹x dx = x sin⁻¹x + √(1-x²) + C
-∫ cos⁻¹x dx = x cos⁻¹x - √(1-x²) + C
-∫ tan⁻¹x dx = x tan⁻¹x - (1/2)ln(1+x²) + C
-
-Special formula:
-∫ eˣ[f(x) + f'(x)] dx = eˣ f(x) + C</div>
+          <div class="formula-block">
+\begin{gather*}
+∫ u dv = uv - ∫ v du \\
+\\
+\text{or}  ∫ u·v dx = u(∫v dx) - ∫[u'(∫v dx)] dx \\
+\\
+ILATE priority rule (choose u in this order): \\
+I - Inverse trig (sin⁻¹x, tan⁻¹x...) \\
+L - Logarithmic (ln x, log x) \\
+A - Algebraic (xⁿ, polynomials) \\
+T - Trigonometric (sin x, cos x...) \\
+E - Exponential (eˣ, aˣ) \\
+\\
+Standard IBP results: \\
+∫ xeˣ dx = eˣ(x-1) + C \\
+∫ x^2eˣ dx = eˣ(x^2-2x+2) + C \\
+∫ xⁿeˣ dx = eˣ[xⁿ - nxⁿ⁻¹ + n(n-1)xⁿ⁻^2 - ...] + C \\
+∫ x sin x dx = -x cos x + sin x + C \\
+∫ x cos x dx = x sin x + cos x + C \\
+∫ x^2 sin x dx = -x^2cos x + 2x sin x + 2cos x + C \\
+∫ ln x dx = x ln x - x + C \\
+∫ x ln x dx = x^2/2 ln x - x^2/4 + C \\
+∫ sin⁻¹x dx = x sin⁻¹x + \sqrt{1-x^2} + C \\
+∫ cos⁻¹x dx = x cos⁻¹x - \sqrt{1-x^2} + C \\
+∫ tan⁻¹x dx = x tan⁻¹x - (1/2)ln(1+x^2) + C \\
+\\
+Special formula: \\
+∫ eˣ[f(x) + f'(x)] dx = eˣ f(x) + C
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">7.3 (c) Partial Fractions</div>
-          <div class="formula-block">Proper fraction: degree(numerator) &lt; degree(denominator)
-
-Case 1: Distinct linear factors
-P(x)/[(ax+b)(cx+d)] = A/(ax+b) + B/(cx+d)
-
-Case 2: Repeated linear factors
-P(x)/(ax+b)² = A/(ax+b) + B/(ax+b)²
-P(x)/(ax+b)³ = A/(ax+b) + B/(ax+b)² + C/(ax+b)³
-
-Case 3: Irreducible quadratic
-P(x)/[(ax+b)(x²+bx+c)] = A/(ax+b) + (Bx+C)/(x²+bx+c)
-
-Case 4: Improper → divide first
-If degree(P) ≥ degree(Q): P/Q = quotient + remainder/Q</div>
+          <div class="formula-block">
+\begin{gather*}
+Proper fraction: degree(numerator) < degree(denominator) \\
+\\
+Case 1: Distinct linear factors \\
+P(x)/[(ax+b)(cx+d)] = A/(ax+b) + B/(cx+d) \\
+\\
+Case 2: Repeated linear factors \\
+P(x)/(ax+b)^2 = A/(ax+b) + B/(ax+b)^2 \\
+P(x)/(ax+b)^3 = A/(ax+b) + B/(ax+b)^2 + C/(ax+b)^3 \\
+\\
+Case 3: Irreducible quadratic \\
+P(x)/[(ax+b)(x^2+bx+c)] = A/(ax+b) + (Bx+C)/(x^2+bx+c) \\
+\\
+Case 4: Improper \Rightarrow  divide first \\
+\text{If} degree(P) \ge  degree(Q): P/Q = quotient + remainder/Q
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">7.3 (d) Integration of Rational Trig Functions</div>
-          <div class="formula-block">∫ 1/(a + b sinx) dx:  let t = tan(x/2)
-  sinx = 2t/(1+t²), cosx = (1-t²)/(1+t²), dx = 2dt/(1+t²)
-
-∫ 1/(a sinx + b cosx) dx = (1/√(a²+b²)) ln|tan(x/2 + α)| + C
-  where tan α = a/b
-
-R sin(x+α) form: a sinx + b cosx = R sin(x+α)
-  R = √(a²+b²), tan α = b/a
-
-R cos(x-α) form: a cosx + b sinx = R cos(x-α)
-  R = √(a²+b²), tan α = b/a</div>
+          <div class="formula-block">
+\begin{gather*}
+∫ 1/(a + b sinx) dx:  let t = tan(x/2) \\
+sinx = 2t/(1+t^2), cosx = (1-t^2)/(1+t^2), dx = 2dt/(1+t^2) \\
+\\
+∫ 1/(a sinx + b cosx) dx = (1/\sqrt{a^2+b^2}) ln|tan(x/2 + \alpha )| + C \\
+\text{where} tan \alpha  = a/b \\
+\\
+R sin(x+\alpha ) form: a sinx + b cosx = R sin(x+\alpha ) \\
+R = \sqrt{a^2+b^2}, tan \alpha  = b/a \\
+\\
+R cos(x-\alpha ) form: a cosx + b sinx = R cos(x-\alpha ) \\
+R = \sqrt{a^2+b^2}, tan \alpha  = b/a
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">7.4 Definite Integral Properties</div>
-          <div class="formula-block">∫ₐᵇ f(x) dx = F(b) - F(a)   [where F'(x)=f(x)]
-
-P1: ∫ₐᵇ f(x) dx = -∫ᵦₐ f(x) dx
-P2: ∫ₐᵃ f(x) dx = 0
-P3: ∫ₐᵇ f(x) dx = ∫ₐᶜ f(x) dx + ∫ᶜᵇ f(x) dx
-P4: ∫ₐᵇ f(x) dx = ∫ₐᵇ f(a+b-x) dx   ← KING Property
-P5: ∫₀ᵃ f(x) dx = ∫₀ᵃ f(a-x) dx     ← Special King
-P6: ∫₀²ᵃ f(x) dx = 2∫₀ᵃ f(x) dx  [if f(2a-x) = f(x)]
-                  = 0               [if f(2a-x) = -f(x)]
-P7: ∫₋ₐᵃ f(x) dx = 2∫₀ᵃ f(x) dx  [if f even: f(-x)=f(x)]
-                  = 0               [if f odd: f(-x)=-f(x)]
-P8: ∫₀ⁿᵀ f(x) dx = n∫₀ᵀ f(x) dx  [if f periodic with period T]</div>
+          <div class="formula-block">
+\begin{gather*}
+∫ₐᵇ f(x) dx = F(b) - F(a)   [\text{where} F'(x)=f(x)] \\
+\\
+P1: ∫ₐᵇ f(x) dx = -∫ᵦₐ f(x) dx \\
+P2: ∫ₐᵃ f(x) dx = 0 \\
+P3: ∫ₐᵇ f(x) dx = ∫ₐᶜ f(x) dx + ∫ᶜᵇ f(x) dx \\
+P4: ∫ₐᵇ f(x) dx = ∫ₐᵇ f(a+b-x) dx   ← KING Property \\
+P5: ∫₀ᵃ f(x) dx = ∫₀ᵃ f(a-x) dx     ← Special King \\
+P6: ∫₀^2ᵃ f(x) dx = 2∫₀ᵃ f(x) dx  [\text{if} f(2a-x) = f(x)] \\
+= 0               [\text{if} f(2a-x) = -f(x)] \\
+P7: ∫₋ₐᵃ f(x) dx = 2∫₀ᵃ f(x) dx  [\text{if} f even: f(-x)=f(x)] \\
+= 0               [\text{if} f odd: f(-x)=-f(x)] \\
+P8: ∫₀ⁿᵀ f(x) dx = n∫₀ᵀ f(x) dx  [\text{if} f periodic with period T]
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">7.5 Definite Integral as Limit of Sum</div>
-          <div class="formula-block">∫ₐᵇ f(x) dx = lim[n→∞] h Σₖ₌₀ⁿ⁻¹ f(a+kh)
-
-where h = (b-a)/n
-
-Or: ∫₀¹ f(x) dx = lim[n→∞] (1/n) Σₖ₌₁ⁿ f(k/n)</div>
+          <div class="formula-block">
+\begin{gather*}
+∫ₐᵇ f(x) dx = lim[n\Rightarrow ∞] h \Sigma _k₌₀ⁿ⁻¹ f(a+kh) \\
+\\
+\text{where} h = (b-a)/n \\
+\\
+\text{Or}: ∫₀¹ f(x) dx = lim[n\Rightarrow ∞] (1/n) \Sigma _k₌_1ⁿ f(k/n)
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">7.6 Important Definite Integrals</div>
-          <div class="formula-block">∫₀^(π/2) sin x dx = ∫₀^(π/2) cos x dx = 1
-
-∫₀^π sin x dx = 2,  ∫₀^π cos x dx = 0
-
-∫₀^(π/2) sin²x dx = ∫₀^(π/2) cos²x dx = π/4
-
-∫₀^(π/2) sinⁿx dx:
-  n=2: π/4
-  n=3: 2/3
-  n=4: 3π/16
-
-∫₀^(π/2) ln(sinx) dx = ∫₀^(π/2) ln(cosx) dx = -(π/2)ln2
-
-∫₀^π x f(sinx) dx = (π/2)∫₀^π f(sinx) dx  [using King property]</div>
+          <div class="formula-block">
+\begin{gather*}
+∫₀^(\pi /2) sin x dx = ∫₀^(\pi /2) cos x dx = 1 \\
+\\
+∫₀^\pi  sin x dx = 2,  ∫₀^\pi  cos x dx = 0 \\
+\\
+∫₀^(\pi /2) sin^2x dx = ∫₀^(\pi /2) cos^2x dx = \pi /4 \\
+\\
+∫₀^(\pi /2) sinⁿx dx: \\
+n=2: \pi /4 \\
+n=3: 2/3 \\
+n=4: 3\pi /16 \\
+\\
+∫₀^(\pi /2) ln(sinx) dx = ∫₀^(\pi /2) ln(cosx) dx = -(\pi /2)ln2 \\
+\\
+∫₀^\pi  x f(sinx) dx = (\pi /2)∫₀^\pi  f(sinx) dx  [using King property]
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">7.7 Walli's Formula</div>
-          <div class="formula-block">∫₀^(π/2) sinⁿx dx = ∫₀^(π/2) cosⁿx dx =
-  [(n-1)(n-3)...3·1]/[n(n-2)...4·2] × π/2   (n even)
-  [(n-1)(n-3)...4·2]/[n(n-2)...3·1]          (n odd)</div>
+          <div class="formula-block">
+\begin{gather*}
+∫₀^(\pi /2) sinⁿx dx = ∫₀^(\pi /2) cosⁿx dx = \\
+[(n-1)(n-3)...3·1]/[n(n-2)...4·2] \times  \pi /2   (n even) \\
+[(n-1)(n-3)...4·2]/[n(n-2)...3·1]          (n odd)
+\end{gather*}
+</div>
         </div>
       </div>
 
@@ -2559,39 +3112,51 @@ Or: ∫₀¹ f(x) dx = lim[n→∞] (1/n) Σₖ₌₁ⁿ f(k/n)</div>
 
         <div class="section">
           <div class="section-title">8.1 Area Under a Curve</div>
-          <div class="formula-block">Area between y=f(x) and x-axis, from x=a to x=b:
-A = ∫ₐᵇ |f(x)| dx
-
-If f(x) ≥ 0:   A = ∫ₐᵇ f(x) dx
-If f(x) ≤ 0:   A = -∫ₐᵇ f(x) dx  = ∫ₐᵇ |f(x)| dx
-
-Area between x=g(y) and y-axis, from y=c to y=d:
-A = ∫ᶜᵈ |g(y)| dy</div>
+          <div class="formula-block">
+\begin{gather*}
+Area between y=f(x) \text{and} x-axis, from x=a to x=b: \\
+A = ∫ₐᵇ |f(x)| dx \\
+\\
+\text{If} f(x) \ge  0:   A = ∫ₐᵇ f(x) dx \\
+\text{If} f(x) \le  0:   A = -∫ₐᵇ f(x) dx  = ∫ₐᵇ |f(x)| dx \\
+\\
+Area between x=g(y) \text{and} y-axis, from y=c to y=d: \\
+A = ∫ᶜᵈ |g(y)| dy
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">8.2 Area Between Two Curves</div>
-          <div class="formula-block">Area between y=f(x) and y=g(x), a to b [f(x) ≥ g(x)]:
-A = ∫ₐᵇ [f(x) - g(x)] dx
-
-Area between x=f(y) and x=g(y) [f(y) ≥ g(y)]:
-A = ∫ᶜᵈ [f(y) - g(y)] dy
-
-Finding intersection points: solve f(x) = g(x)</div>
+          <div class="formula-block">
+\begin{gather*}
+Area between y=f(x) \text{and} y=g(x), a to b [f(x) \ge  g(x)]: \\
+A = ∫ₐᵇ [f(x) - g(x)] dx \\
+\\
+Area between x=f(y) \text{and} x=g(y) [f(y) \ge  g(y)]: \\
+A = ∫ᶜᵈ [f(y) - g(y)] dy \\
+\\
+Finding intersection points: solve f(x) = g(x)
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">8.3 Standard Areas</div>
-          <div class="formula-block">Circle x²+y²=r²:          Area = πr²   (full)
-                           Area = πr²/2 (semicircle)
-
-Ellipse x²/a²+y²/b²=1:   Area = πab
-
-Area of parabola y=x² and y=x:
-  Intersect at x=0,1
-  A = ∫₀¹(x-x²)dx = [x²/2 - x³/3]₀¹ = 1/2-1/3 = 1/6
-
-Area of ellipse arc with x-axis: ∫₀ᵃ b√(1-x²/a²)dx = πab/4 [first quadrant]</div>
+          <div class="formula-block">
+\begin{gather*}
+Circle x^2+y^2=r^2:          Area = \pi r^2   (full) \\
+Area = \pi r^2/2 (semicircle) \\
+\\
+Ellipse x^2/a^2+y^2/b^2=1:   Area = \pi ab \\
+\\
+Area of parabola y=x^2 \text{and} y=x: \\
+Intersect at x=0,1 \\
+A = ∫₀¹(x-x^2)dx = [x^2/2 - x^3/3]₀¹ = 1/2-1/3 = 1/6 \\
+\\
+Area of ellipse arc with x-axis: ∫₀ᵃ b\sqrt{1-x^2/a^2}dx = \pi ab/4 [first quadrant]
+\end{gather*}
+</div>
         </div>
       </div>
 
@@ -2604,84 +3169,112 @@ Area of ellipse arc with x-axis: ∫₀ᵃ b√(1-x²/a²)dx = πab/4 [first qua
 
         <div class="section">
           <div class="section-title">9.1 Order, Degree, and Type</div>
-          <div class="formula-block">Order = highest derivative present
-Degree = power of highest order derivative (when polynomial in derivatives)
-Degree undefined if sin(y'), eʸ' etc.
-
-Linear DE: highest power of y and its derivatives is 1
-Non-linear: otherwise</div>
+          <div class="formula-block">
+\begin{gather*}
+Order = highest derivative present \\
+Degree = power of highest order derivative (\text{when} polynomial in derivatives) \\
+Degree undefined \text{if} sin(y'), eʸ' etc. \\
+\\
+Linear DE: highest power of y \text{and} its derivatives \text{is} 1 \\
+Non-linear: otherwise
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">9.2 Variable Separable Method</div>
-          <div class="formula-block">dy/dx = f(x)·g(y)
-
-→ dy/g(y) = f(x)dx
-→ ∫ dy/g(y) = ∫ f(x)dx + C
-
-Particular solution: use initial condition to find C</div>
+          <div class="formula-block">
+\begin{gather*}
+dy/dx = f(x)·g(y) \\
+\\
+\Rightarrow  dy/g(y) = f(x)dx \\
+\Rightarrow  ∫ dy/g(y) = ∫ f(x)dx + C \\
+\\
+Particular solution: use initial condition to find C
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">9.3 Homogeneous Differential Equation</div>
-          <div class="formula-block">dy/dx = f(x,y)/g(x,y)  where f,g are homogeneous of same degree
-
-Substitution: y = vx  →  dy/dx = v + x(dv/dx)
-
-v + x(dv/dx) = F(v)
-x(dv/dx) = F(v) - v
-∫ dv/[F(v)-v] = ∫ dx/x + C
-
-[After integrating, back-substitute v = y/x]</div>
+          <div class="formula-block">
+\begin{gather*}
+dy/dx = f(x,y)/g(x,y)  \text{where} f,g are homogeneous of same degree \\
+\\
+Substitution: y = vx  \Rightarrow   dy/dx = v + x(dv/dx) \\
+\\
+v + x(dv/dx) = F(v) \\
+x(dv/dx) = F(v) - v \\
+∫ dv/[F(v)-v] = ∫ dx/x + C \\
+\\
+[After integrating, back-substitute v = y/x]
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">9.4 Linear Differential Equation (First Order)</div>
-          <div class="formula-block">dy/dx + P(x)y = Q(x)
-
-Integrating Factor (IF) = e^(∫P dx)
-
-Solution: y × IF = ∫[Q × IF] dx + C
-
-→ ye^(∫Pdx) = ∫[Q·e^(∫Pdx)] dx + C
-
-For dx/dy + P(y)x = Q(y) [x as dependent]:
-IF = e^(∫P(y)dy)
-x × IF = ∫[Q(y)·IF] dy + C</div>
+          <div class="formula-block">
+\begin{gather*}
+dy/dx + P(x)y = Q(x) \\
+\\
+Integrating Factor (\text{IF}) = e^(∫P dx) \\
+\\
+Solution: y \times  \text{IF} = ∫[Q \times  \text{IF}] dx + C \\
+\\
+\Rightarrow  ye^(∫Pdx) = ∫[Q·e^(∫Pdx)] dx + C \\
+\\
+\text{For} dx/dy + P(y)x = Q(y) [x as dependent]: \\
+\text{IF} = e^(∫P(y)dy) \\
+x \times  \text{IF} = ∫[Q(y)·\text{IF}] dy + C
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">9.5 Bernoulli's Equation</div>
-          <div class="formula-block">dy/dx + P(x)y = Q(x)yⁿ  (n ≠ 0, 1)
-
-Substitution: z = y^(1-n)
-dz/dx = (1-n)y^(-n)(dy/dx)
-
-Becomes linear: dz/dx + (1-n)P(x)z = (1-n)Q(x)</div>
+          <div class="formula-block">
+\begin{gather*}
+dy/dx + P(x)y = Q(x)yⁿ  (n \neq  0, 1) \\
+\\
+Substitution: z = y^(1-n) \\
+dz/dx = (1-n)y^(-n)(dy/dx) \\
+\\
+Becomes linear: dz/dx + (1-n)P(x)z = (1-n)Q(x)
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">9.6 General Solutions</div>
-          <div class="formula-block">∫ dy/y = ln|y|
-∫ dy/y² = -1/y
-∫ dy/(1+y²) = tan⁻¹y
-
-For xdy + ydx = d(xy)  [exact differential]
-For (xdy-ydx)/x² = d(y/x)
-For (ydx-xdy)/y² = d(x/y)
-For (xdx+ydy) = (1/2)d(x²+y²)</div>
+          <div class="formula-block">
+\begin{gather*}
+∫ dy/y = ln|y| \\
+∫ dy/y^2 = -1/y \\
+∫ dy/(1+y^2) = tan⁻¹y \\
+\\
+\text{For} xdy + ydx = d(xy)  [exact differential] \\
+\text{For} (xdy-ydx)/x^2 = d(y/x) \\
+\text{For} (ydx-xdy)/y^2 = d(x/y) \\
+\text{For} (xdx+ydy) = (1/2)d(x^2+y^2)
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">9.7 Important Differential Equations and Solutions</div>
-          <div class="formula-block">dy/dx = ky:            y = Ce^(kx)    [growth/decay]
-d²y/dx² + n²y = 0:    y = A cos(nx) + B sin(nx)
-d²y/dx² - n²y = 0:    y = Ae^(nx) + Be^(-nx)
-d²y/dx² = f(x):       integrate twice
-
-Population: dP/dt = kP → P = P₀e^(kt)
-Radioactive: dN/dt = -λN → N = N₀e^(-λt)
-Newton's cooling: dT/dt = -k(T-T₀) → T-T₀ = (T₁-T₀)e^(-kt)</div>
+          <div class="formula-block">
+\begin{gather*}
+dy/dx = ky:            y = Ce^(kx)    [growth/decay] \\
+d^2y/dx^2 + n^2y = 0:    y = A cos(nx) + B sin(nx) \\
+d^2y/dx^2 - n^2y = 0:    y = Ae^(nx) + Be^(-nx) \\
+d^2y/dx^2 = f(x):       integrate twice \\
+\\
+Population: dP/dt = kP \Rightarrow  P = P₀e^(kt) \\
+Radioactive: dN/dt = -λN \Rightarrow  N = N₀e^(-λt) \\
+Newton's cooling: dT/dt = -k(T-T₀) \Rightarrow  T-T₀ = (T_1-T₀)e^(-kt)
+\end{gather*}
+</div>
         </div>
       </div>
 
@@ -2694,109 +3287,137 @@ Newton's cooling: dT/dt = -k(T-T₀) → T-T₀ = (T₁-T₀)e^(-kt)</div>
 
         <div class="section">
           <div class="section-title">10.1 Vector Notation</div>
-          <div class="formula-block">Position vector of A(x,y,z): a⃗ = xî + yĵ + zk̂
-
-Magnitude:  |a⃗| = √(x²+y²+z²)
-
-Unit vector: â = a⃗/|a⃗|
-
-Zero vector: 0⃗ = 0î + 0ĵ + 0k̂
-
-Direction cosines: l = x/|a⃗|, m = y/|a⃗|, n = z/|a⃗|
-l² + m² + n² = 1
-
-Direction ratios: proportional to (x,y,z)</div>
+          <div class="formula-block">
+\begin{gather*}
+Position vector of A(x,y,z): a⃗ = xî + yĵ + zk̂ \\
+\\
+Magnitude:  |a⃗| = \sqrt{x^2+y^2+z^2} \\
+\\
+Unit vector: â = a⃗/|a⃗| \\
+\\
+Zero vector: 0⃗ = 0î + 0ĵ + 0k̂ \\
+\\
+Direction cosines: l = x/|a⃗|, m = y/|a⃗|, n = z/|a⃗| \\
+l^2 + m^2 + n^2 = 1 \\
+\\
+Direction ratios: proportional to (x,y,z)
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">10.2 Vector Operations</div>
-          <div class="formula-block">Addition: a⃗ + b⃗ = (a₁+b₁)î + (a₂+b₂)ĵ + (a₃+b₃)k̂
-Subtraction: a⃗ - b⃗ = (a₁-b₁)î + (a₂-b₂)ĵ + (a₃-b₃)k̂
-Scalar multiple: ka⃗ = ka₁î + ka₂ĵ + ka₃k̂
-
-|a⃗ + b⃗|² = |a⃗|² + 2a⃗·b⃗ + |b⃗|²
-|a⃗ - b⃗|² = |a⃗|² - 2a⃗·b⃗ + |b⃗|²
-|a⃗ + b⃗|² + |a⃗ - b⃗|² = 2(|a⃗|² + |b⃗|²)  [Parallelogram law]
-|a⃗ + b⃗|² - |a⃗ - b⃗|² = 4(a⃗·b⃗)</div>
+          <div class="formula-block">
+\begin{gather*}
+Addition: a⃗ + b⃗ = (a_1+b_1)î + (a_2+b_2)ĵ + (a_3+b_3)k̂ \\
+Subtraction: a⃗ - b⃗ = (a_1-b_1)î + (a_2-b_2)ĵ + (a_3-b_3)k̂ \\
+Scalar multiple: ka⃗ = ka_1î + ka_2ĵ + ka_3k̂ \\
+\\
+|a⃗ + b⃗|^2 = |a⃗|^2 + 2a⃗·b⃗ + |b⃗|^2 \\
+|a⃗ - b⃗|^2 = |a⃗|^2 - 2a⃗·b⃗ + |b⃗|^2 \\
+|a⃗ + b⃗|^2 + |a⃗ - b⃗|^2 = 2(|a⃗|^2 + |b⃗|^2)  [Parallelogram law] \\
+|a⃗ + b⃗|^2 - |a⃗ - b⃗|^2 = 4(a⃗·b⃗)
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">10.3 Dot Product (Scalar Product)</div>
-          <div class="formula-block">a⃗·b⃗ = |a⃗||b⃗|cosθ = a₁b₁ + a₂b₂ + a₃b₃
-
-→ cosθ = a⃗·b⃗ / (|a⃗||b⃗|)
-→ θ = cos⁻¹[a⃗·b⃗ / (|a⃗||b⃗|)]
-
-Perpendicular ↔ a⃗·b⃗ = 0  (a⃗ ≠ 0⃗, b⃗ ≠ 0⃗)
-Parallel ↔ a⃗×b⃗ = 0⃗
-
-î·î = ĵ·ĵ = k̂·k̂ = 1
-î·ĵ = ĵ·k̂ = k̂·î = 0
-
-a⃗·a⃗ = |a⃗|²
-a⃗·b⃗ = b⃗·a⃗  [commutative]
-
-Projection of a⃗ on b⃗ = (a⃗·b⃗)/|b⃗|
-Component of a⃗ along b⃗ = (a⃗·b⃗)/|b⃗|  [scalar]
-Vector projection = [(a⃗·b⃗)/|b⃗|²] b⃗</div>
+          <div class="formula-block">
+\begin{gather*}
+a⃗·b⃗ = |a⃗||b⃗|cos\theta  = a_1b_1 + a_2b_2 + a_3b_3 \\
+\\
+\Rightarrow  cos\theta  = a⃗·b⃗ / (|a⃗||b⃗|) \\
+\Rightarrow  \theta  = cos⁻¹[a⃗·b⃗ / (|a⃗||b⃗|)] \\
+\\
+Perpendicular ↔ a⃗·b⃗ = 0  (a⃗ \neq  0⃗, b⃗ \neq  0⃗) \\
+Parallel ↔ a⃗\times b⃗ = 0⃗ \\
+\\
+î·î = ĵ·ĵ = k̂·k̂ = 1 \\
+î·ĵ = ĵ·k̂ = k̂·î = 0 \\
+\\
+a⃗·a⃗ = |a⃗|^2 \\
+a⃗·b⃗ = b⃗·a⃗  [commutative] \\
+\\
+Projection of a⃗ on b⃗ = (a⃗·b⃗)/|b⃗| \\
+Component of a⃗ along b⃗ = (a⃗·b⃗)/|b⃗|  [scalar] \\
+Vector projection = [(a⃗·b⃗)/|b⃗|^2] b⃗
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">10.4 Cross Product (Vector Product)</div>
-          <div class="formula-block">a⃗×b⃗ = |a⃗||b⃗|sinθ n̂
-
-|a⃗×b⃗| = |a⃗||b⃗|sinθ
-
-→ sinθ = |a⃗×b⃗| / (|a⃗||b⃗|)
-
-a⃗×b⃗ = |î  ĵ  k̂ |
-         |a₁ a₂ a₃|
-         |b₁ b₂ b₃|
-
-= î(a₂b₃-a₃b₂) - ĵ(a₁b₃-a₃b₁) + k̂(a₁b₂-a₂b₁)
-
-î×î = ĵ×ĵ = k̂×k̂ = 0⃗
-î×ĵ = k̂,  ĵ×k̂ = î,  k̂×î = ĵ  [cyclic]
-ĵ×î = -k̂, k̂×ĵ = -î, î×k̂ = -ĵ  [anti-cyclic]
-
-a⃗×b⃗ = -(b⃗×a⃗)  [anti-commutative]
-
-Area of parallelogram = |a⃗×b⃗|
-Area of triangle = ½|a⃗×b⃗|
-Area of △ABC = ½|AB⃗×AC⃗|</div>
+          <div class="formula-block">
+\begin{gather*}
+a⃗\times b⃗ = |a⃗||b⃗|sin\theta  n̂ \\
+\\
+|a⃗\times b⃗| = |a⃗||b⃗|sin\theta \\
+\\
+\Rightarrow  sin\theta  = |a⃗\times b⃗| / (|a⃗||b⃗|) \\
+\\
+a⃗\times b⃗ = |î  ĵ  k̂ | \\
+|a_1 a_2 a_3| \\
+|b_1 b_2 b_3| \\
+\\
+= î(a_2b_3-a_3b_2) - ĵ(a_1b_3-a_3b_1) + k̂(a_1b_2-a_2b_1) \\
+\\
+î\times î = ĵ\times ĵ = k̂\times k̂ = 0⃗ \\
+î\times ĵ = k̂,  ĵ\times k̂ = î,  k̂\times î = ĵ  [cyclic] \\
+ĵ\times î = -k̂, k̂\times ĵ = -î, î\times k̂ = -ĵ  [anti-cyclic] \\
+\\
+a⃗\times b⃗ = -(b⃗\times a⃗)  [anti-commutative] \\
+\\
+Area of parallelogram = |a⃗\times b⃗| \\
+Area of triangle = ½|a⃗\times b⃗| \\
+Area of △ABC = ½|AB⃗\times AC⃗|
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">10.5 Scalar Triple Product</div>
-          <div class="formula-block">[a⃗ b⃗ c⃗] = a⃗·(b⃗×c⃗) = scalar
-
-= |a₁ a₂ a₃|
-  |b₁ b₂ b₃|
-  |c₁ c₂ c₃|
-
-Volume of parallelepiped = |[a⃗ b⃗ c⃗]|
-Volume of tetrahedron = (1/6)|[a⃗ b⃗ c⃗]|
-
-Coplanar vectors ↔ [a⃗ b⃗ c⃗] = 0
-
-[a⃗ b⃗ c⃗] = [b⃗ c⃗ a⃗] = [c⃗ a⃗ b⃗]  [cyclic]
-[a⃗ b⃗ c⃗] = -[b⃗ a⃗ c⃗]  [swap any two → sign changes]</div>
+          <div class="formula-block">
+\begin{gather*}
+[a⃗ b⃗ c⃗] = a⃗·(b⃗\times c⃗) = scalar \\
+\\
+= |a_1 a_2 a_3| \\
+|b_1 b_2 b_3| \\
+|c_1 c_2 c_3| \\
+\\
+Volume of parallelepiped = |[a⃗ b⃗ c⃗]| \\
+Volume of tetrahedron = (1/6)|[a⃗ b⃗ c⃗]| \\
+\\
+Coplanar vectors ↔ [a⃗ b⃗ c⃗] = 0 \\
+\\
+[a⃗ b⃗ c⃗] = [b⃗ c⃗ a⃗] = [c⃗ a⃗ b⃗]  [cyclic] \\
+[a⃗ b⃗ c⃗] = -[b⃗ a⃗ c⃗]  [swap any two \Rightarrow  sign changes]
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">10.6 Vector Triple Product</div>
-          <div class="formula-block">a⃗×(b⃗×c⃗) = (a⃗·c⃗)b⃗ - (a⃗·b⃗)c⃗   [BAC-CAB rule]
-(a⃗×b⃗)×c⃗ = (a⃗·c⃗)b⃗ - (b⃗·c⃗)a⃗</div>
+          <div class="formula-block">
+\begin{gather*}
+a⃗\times (b⃗\times c⃗) = (a⃗·c⃗)b⃗ - (a⃗·b⃗)c⃗   [BAC-CAB rule] \\
+(a⃗\times b⃗)\times c⃗ = (a⃗·c⃗)b⃗ - (b⃗·c⃗)a⃗
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">10.7 Section Formula in Vectors</div>
-          <div class="formula-block">If P divides AB in ratio m:n internally:
-p⃗ = (mb⃗ + na⃗)/(m+n)
-
-Midpoint: p⃗ = (a⃗ + b⃗)/2
-
-Externally: p⃗ = (mb⃗ - na⃗)/(m-n)</div>
+          <div class="formula-block">
+\begin{gather*}
+\text{If} P divides AB in ratio m:n internally: \\
+p⃗ = (mb⃗ + na⃗)/(m+n) \\
+\\
+Midpoint: p⃗ = (a⃗ + b⃗)/2 \\
+\\
+Externally: p⃗ = (mb⃗ - na⃗)/(m-n)
+\end{gather*}
+</div>
         </div>
       </div>
 
@@ -2809,118 +3430,154 @@ Externally: p⃗ = (mb⃗ - na⃗)/(m-n)</div>
 
         <div class="section">
           <div class="section-title">11.1 Direction Cosines and Ratios</div>
-          <div class="formula-block">For line with direction ratios (a,b,c):
-l = a/√(a²+b²+c²)
-m = b/√(a²+b²+c²)
-n = c/√(a²+b²+c²)
-
-l²+m²+n² = 1 always
-
-cos α = l, cos β = m, cos γ = n
-(α, β, γ = angles with x,y,z axes)
-
-cos²α + cos²β + cos²γ = 1
-sin²α + sin²β + sin²γ = 2  [derived]</div>
+          <div class="formula-block">
+\begin{gather*}
+\text{For} line with direction ratios (a,b,c): \\
+l = a/\sqrt{a^2+b^2+c^2} \\
+m = b/\sqrt{a^2+b^2+c^2} \\
+n = c/\sqrt{a^2+b^2+c^2} \\
+\\
+l^2+m^2+n^2 = 1 always \\
+\\
+cos \alpha  = l, cos \beta  = m, cos \gamma  = n \\
+(\alpha , \beta , \gamma  = angles with x,y,z axes) \\
+\\
+cos^2\alpha  + cos^2\beta  + cos^2\gamma  = 1 \\
+sin^2\alpha  + sin^2\beta  + sin^2\gamma  = 2  [derived]
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">11.2 Angle Between Two Lines</div>
-          <div class="formula-block">Lines with DRs (a₁,b₁,c₁) and (a₂,b₂,c₂):
-cos θ = |a₁a₂+b₁b₂+c₁c₂| / [√(a₁²+b₁²+c₁²)·√(a₂²+b₂²+c₂²)]
-
-Parallel:      a₁/a₂ = b₁/b₂ = c₁/c₂
-Perpendicular: a₁a₂ + b₁b₂ + c₁c₂ = 0
-
-With DCs (l₁,m₁,n₁) and (l₂,m₂,n₂):
-cos θ = |l₁l₂ + m₁m₂ + n₁n₂|</div>
+          <div class="formula-block">
+\begin{gather*}
+Lines with DRs (a_1,b_1,c_1) \text{and} (a_2,b_2,c_2): \\
+cos \theta  = |a_1a_2+b_1b_2+c_1c_2| / [\sqrt{a_1^2+b_1^2+c_1^2}·\sqrt{a_2^2+b_2^2+c_2^2}] \\
+\\
+Parallel:      a_1/a_2 = b_1/b_2 = c_1/c_2 \\
+Perpendicular: a_1a_2 + b_1b_2 + c_1c_2 = 0 \\
+\\
+With DCs (l_1,m_1,n_1) \text{and} (l_2,m_2,n_2): \\
+cos \theta  = |l_1l_2 + m_1m_2 + n_1n_2|
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">11.3 Equation of a Line</div>
-          <div class="formula-block">Vector Form:
-r⃗ = a⃗ + λb⃗   [passing through point a⃗, direction b⃗]
-r⃗ = a⃗ + λ(b⃗-a⃗)  [passing through a⃗ and b⃗]
-
-Cartesian/Symmetric Form:
-(x-x₁)/a = (y-y₁)/b = (z-z₁)/c = λ
-x = x₁+aλ, y = y₁+bλ, z = z₁+cλ</div>
+          <div class="formula-block">
+\begin{gather*}
+Vector Form: \\
+r⃗ = a⃗ + λb⃗   [passing through point a⃗, direction b⃗] \\
+r⃗ = a⃗ + λ(b⃗-a⃗)  [passing through a⃗ \text{and} b⃗] \\
+\\
+Cartesian/Symmetric Form: \\
+(x-x_1)/a = (y-y_1)/b = (z-z_1)/c = λ \\
+x = x_1+aλ, y = y_1+bλ, z = z_1+cλ
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">11.4 Distance Between Two Lines</div>
-          <div class="formula-block">Skew lines (r⃗=a⃗₁+λb⃗₁ and r⃗=a⃗₂+μb⃗₂):
-d = |(a⃗₂-a⃗₁)·(b⃗₁×b⃗₂)| / |b⃗₁×b⃗₂|
-
-Parallel lines (b⃗₁ ∥ b⃗₂=b⃗):
-d = |(a⃗₂-a⃗₁)×b⃗| / |b⃗|
-
-Intersecting lines: d = 0
-Coplanar lines: (a⃗₂-a⃗₁)·(b⃗₁×b⃗₂) = 0</div>
+          <div class="formula-block">
+\begin{gather*}
+Skew lines (r⃗=a⃗_1+λb⃗_1 \text{and} r⃗=a⃗_2+μb⃗_2): \\
+d = |(a⃗_2-a⃗_1)·(b⃗_1\times b⃗_2)| / |b⃗_1\times b⃗_2| \\
+\\
+Parallel lines (b⃗_1 ∥ b⃗_2=b⃗): \\
+d = |(a⃗_2-a⃗_1)\times b⃗| / |b⃗| \\
+\\
+Intersecting lines: d = 0 \\
+Coplanar lines: (a⃗_2-a⃗_1)·(b⃗_1\times b⃗_2) = 0
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">11.5 Equation of a Plane</div>
-          <div class="formula-block">Vector Form:
-r⃗·n̂ = d           [n̂ = unit normal, d = distance from origin]
-r⃗·n⃗ = D           [n⃗ = normal vector (not unit)]
-
-Cartesian Form:
-ax + by + cz = d    [a,b,c = normal direction]
-ax + by + cz + d = 0
-
-Normal form: lx + my + nz = p
-
-Intercept Form:
-x/α + y/β + z/γ = 1  [α,β,γ = x,y,z intercepts]
-
-Plane through 3 points A(x₁,y₁,z₁), B, C:
-|x-x₁  y-y₁  z-z₁|
-|x₂-x₁ y₂-y₁ z₂-z₁| = 0
-|x₃-x₁ y₃-y₁ z₃-z₁|</div>
+          <div class="formula-block">
+\begin{gather*}
+Vector Form: \\
+r⃗·n̂ = d           [n̂ = unit normal, d = distance from origin] \\
+r⃗·n⃗ = D           [n⃗ = normal vector (\text{not} unit)] \\
+\\
+Cartesian Form: \\
+ax + by + cz = d    [a,b,c = normal direction] \\
+ax + by + cz + d = 0 \\
+\\
+Normal form: lx + my + nz = p \\
+\\
+Intercept Form: \\
+x/\alpha  + y/\beta  + z/\gamma  = 1  [\alpha ,\beta ,\gamma  = x,y,z intercepts] \\
+\\
+Plane through 3 points A(x_1,y_1,z_1), B, C: \\
+|x-x_1  y-y_1  z-z_1| \\
+|x_2-x_1 y_2-y_1 z_2-z_1| = 0 \\
+|x_3-x_1 y_3-y_1 z_3-z_1|
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">11.6 Angle Between Two Planes</div>
-          <div class="formula-block">Planes a₁x+b₁y+c₁z+d₁=0 and a₂x+b₂y+c₂z+d₂=0:
-cos θ = |a₁a₂+b₁b₂+c₁c₂| / [√(a₁²+b₁²+c₁²)·√(a₂²+b₂²+c₂²)]
-
-Parallel:      a₁/a₂ = b₁/b₂ = c₁/c₂
-Perpendicular: a₁a₂ + b₁b₂ + c₁c₂ = 0</div>
+          <div class="formula-block">
+\begin{gather*}
+Planes a_1x+b_1y+c_1z+d_1=0 \text{and} a_2x+b_2y+c_2z+d_2=0: \\
+cos \theta  = |a_1a_2+b_1b_2+c_1c_2| / [\sqrt{a_1^2+b_1^2+c_1^2}·\sqrt{a_2^2+b_2^2+c_2^2}] \\
+\\
+Parallel:      a_1/a_2 = b_1/b_2 = c_1/c_2 \\
+Perpendicular: a_1a_2 + b_1b_2 + c_1c_2 = 0
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">11.7 Distance Formulas in 3D</div>
-          <div class="formula-block">Distance between P(x₁,y₁,z₁) and Q(x₂,y₂,z₂):
-d = √[(x₂-x₁)²+(y₂-y₁)²+(z₂-z₁)²]
-
-Distance from point P(x₁,y₁,z₁) to plane ax+by+cz+d=0:
-d = |ax₁+by₁+cz₁+d| / √(a²+b²+c²)
-
-Distance between parallel planes ax+by+cz=d₁ and ax+by+cz=d₂:
-d = |d₁-d₂| / √(a²+b²+c²)
-
-Foot of perpendicular from P(x₁,y₁,z₁) to plane ax+by+cz+d=0:
-(x-x₁)/a = (y-y₁)/b = (z-z₁)/c = -(ax₁+by₁+cz₁+d)/(a²+b²+c²)</div>
+          <div class="formula-block">
+\begin{gather*}
+Distance between P(x_1,y_1,z_1) \text{and} Q(x_2,y_2,z_2): \\
+d = √[(x_2-x_1)^2+(y_2-y_1)^2+(z_2-z_1)^2] \\
+\\
+Distance from point P(x_1,y_1,z_1) to plane ax+by+cz+d=0: \\
+d = |ax_1+by_1+cz_1+d| / \sqrt{a^2+b^2+c^2} \\
+\\
+Distance between parallel planes ax+by+cz=d_1 \text{and} ax+by+cz=d_2: \\
+d = |d_1-d_2| / \sqrt{a^2+b^2+c^2} \\
+\\
+Foot of perpendicular from P(x_1,y_1,z_1) to plane ax+by+cz+d=0: \\
+(x-x_1)/a = (y-y_1)/b = (z-z_1)/c = -(ax_1+by_1+cz_1+d)/(a^2+b^2+c^2)
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">11.8 Angle Between Line and Plane</div>
-          <div class="formula-block">Line: r⃗ = a⃗ + λb⃗, Plane: r⃗·n⃗ = d
-
-sin φ = |b⃗·n⃗| / (|b⃗||n⃗|)   [φ = angle with plane]
-cos θ = |b⃗·n⃗| / (|b⃗||n⃗|)   [θ = angle with normal]
-
-Line ∥ plane ↔ b⃗·n⃗ = 0
-Line ⊥ plane ↔ b⃗ ∥ n⃗ ↔ b⃗×n⃗ = 0⃗
-Line in plane ↔ b⃗·n⃗=0 AND a⃗·n⃗=d</div>
+          <div class="formula-block">
+\begin{gather*}
+Line: r⃗ = a⃗ + λb⃗, Plane: r⃗·n⃗ = d \\
+\\
+sin φ = |b⃗·n⃗| / (|b⃗||n⃗|)   [φ = angle with plane] \\
+cos \theta  = |b⃗·n⃗| / (|b⃗||n⃗|)   [\theta  = angle with normal] \\
+\\
+Line ∥ plane ↔ b⃗·n⃗ = 0 \\
+Line ⊥ plane ↔ b⃗ ∥ n⃗ ↔ b⃗\times n⃗ = 0⃗ \\
+Line in plane ↔ b⃗·n⃗=0 \text{AND} a⃗·n⃗=d
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">11.9 Family of Planes</div>
-          <div class="formula-block">Plane through intersection of P₁=0 and P₂=0:
-P₁ + λP₂ = 0   (for varying λ)
-
-(a₁x+b₁y+c₁z+d₁) + λ(a₂x+b₂y+c₂z+d₂) = 0</div>
+          <div class="formula-block">
+\begin{gather*}
+Plane through intersection of P_1=0 \text{and} P_2=0: \\
+P_1 + λP_2 = 0   (\text{for} varying λ) \\
+\\
+(a_1x+b_1y+c_1z+d_1) + λ(a_2x+b_2y+c_2z+d_2) = 0
+\end{gather*}
+</div>
         </div>
       </div>
 
@@ -2933,42 +3590,54 @@ P₁ + λP₂ = 0   (for varying λ)
 
         <div class="section">
           <div class="section-title">12.1 Standard Formulation</div>
-          <div class="formula-block">Objective Function: Z = ax + by  (maximize or minimize)
-Subject to constraints: a₁x+b₁y ≤/≥/= c₁ etc.
-Non-negativity: x ≥ 0, y ≥ 0
-
-Feasible Region: set of all points satisfying all constraints
-Optimal Solution: max/min value of Z at a corner point
-
-Corner Point Method:
-1. Graph all constraints
-2. Find feasible region
-3. Find corner points (vertices)
-4. Evaluate Z at each corner point
-5. Max/min Z is the answer</div>
+          <div class="formula-block">
+\begin{gather*}
+Objective Function: Z = ax + by  (maximize \text{or} minimize) \\
+Subject to constraints: a_1x+b_1y \le /\ge /= c_1 etc. \\
+Non-negativity: x \ge  0, y \ge  0 \\
+\\
+Feasible Region: set of all points satisfying all constraints \\
+Optimal Solution: max/min value of Z at a corner point \\
+\\
+Corner Point Method: \\
+1. Graph all constraints \\
+2. Find feasible region \\
+3. Find corner points (vertices) \\
+4. Evaluate Z at each corner point \\
+5. Max/min Z \text{is} the answer
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">12.2 Fundamental Theorem</div>
-          <div class="formula-block">If optimal solution exists → it is at a corner point of feasible region
-
-If Z = c (constant) is parallel to a boundary → Z takes same value
-along that boundary (infinite solutions)
-
-Unbounded feasible region → Z may or may not have optimum</div>
+          <div class="formula-block">
+\begin{gather*}
+\text{If} optimal solution exists \Rightarrow  it \text{is} at a corner point of feasible region \\
+\\
+\text{If} Z = c (constant) \text{is} parallel to a boundary \Rightarrow  Z takes same value \\
+along that boundary (infinite solutions) \\
+\\
+Unbounded feasible region \Rightarrow  Z may \text{or} may \text{not} have optimum
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">12.3 Key Results</div>
-          <div class="formula-block">For maximize Z = ax+by:
-  → Look for corner with largest x if a>b, etc.
-
-For minimize Z = ax+by:
-  → Look for corner nearest to origin (usually)
-
-If feasible region is empty → no solution (infeasible problem)
-If feasible region is bounded → both max and min exist
-If unbounded → only one of max/min may exist</div>
+          <div class="formula-block">
+\begin{gather*}
+\text{For} maximize Z = ax+by: \\
+\Rightarrow  Look \text{for} corner with largest x \text{if} a>b, etc. \\
+\\
+\text{For} minimize Z = ax+by: \\
+\Rightarrow  Look \text{for} corner nearest to origin (usually) \\
+\\
+\text{If} feasible region \text{is} empty \Rightarrow  no solution (infeasible problem) \\
+\text{If} feasible region \text{is} bounded \Rightarrow  both max \text{and} min exist \\
+\text{If} unbounded \Rightarrow  only one of max/min may exist
+\end{gather*}
+</div>
         </div>
       </div>
 
@@ -2981,120 +3650,148 @@ If unbounded → only one of max/min may exist</div>
 
         <div class="section">
           <div class="section-title">13.1 Conditional Probability</div>
-          <div class="formula-block">P(A|B) = P(A∩B)/P(B)    [probability of A given B, P(B)≠0]
-
-→ P(A∩B) = P(B)·P(A|B) = P(A)·P(B|A)
-→ P(B|A) = P(A∩B)/P(A)
-→ P(A|B) · P(B) = P(B|A) · P(A)
-
-Properties:
-0 ≤ P(A|B) ≤ 1
-P(S|B) = 1
-P(A'|B) = 1 - P(A|B)
-P(A∪C|B) = P(A|B) + P(C|B) - P(A∩C|B)</div>
+          <div class="formula-block">
+\begin{gather*}
+P(A|B) = P(A∩B)/P(B)    [probability of A given B, P(B)\neq 0] \\
+\\
+\Rightarrow  P(A∩B) = P(B)·P(A|B) = P(A)·P(B|A) \\
+\Rightarrow  P(B|A) = P(A∩B)/P(A) \\
+\Rightarrow  P(A|B) · P(B) = P(B|A) · P(A) \\
+\\
+Properties: \\
+0 \le  P(A|B) \le  1 \\
+P(S|B) = 1 \\
+P(A'|B) = 1 - P(A|B) \\
+P(A∪C|B) = P(A|B) + P(C|B) - P(A∩C|B)
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">13.2 Multiplication Theorem</div>
-          <div class="formula-block">P(A∩B) = P(A)·P(B|A) = P(B)·P(A|B)
-
-P(A∩B∩C) = P(A)·P(B|A)·P(C|A∩B)
-
-Independent events A and B:
-P(A|B) = P(A)  and  P(B|A) = P(B)
-P(A∩B) = P(A)·P(B)
-
-Pairwise independent ≠ mutually independent
-Mutually independent ↔ every subset satisfies multiplication rule</div>
+          <div class="formula-block">
+\begin{gather*}
+P(A∩B) = P(A)·P(B|A) = P(B)·P(A|B) \\
+\\
+P(A∩B∩C) = P(A)·P(B|A)·P(C|A∩B) \\
+\\
+Independent events A \text{and} B: \\
+P(A|B) = P(A)  \text{and}  P(B|A) = P(B) \\
+P(A∩B) = P(A)·P(B) \\
+\\
+Pairwise independent \neq  mutually independent \\
+Mutually independent ↔ every subset satisfies multiplication rule
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">13.3 Total Probability Theorem</div>
-          <div class="formula-block">If B₁, B₂, ..., Bₙ are mutually exclusive and exhaustive events:
-P(A) = Σᵢ P(Bᵢ)·P(A|Bᵢ)
-     = P(B₁)P(A|B₁) + P(B₂)P(A|B₂) + ... + P(Bₙ)P(A|Bₙ)</div>
+          <div class="formula-block">
+\begin{gather*}
+\text{If} B_1, B_2, ..., Bₙ are mutually exclusive \text{and} exhaustive events: \\
+P(A) = \Sigma ᵢ P(Bᵢ)·P(A|Bᵢ) \\
+= P(B_1)P(A|B_1) + P(B_2)P(A|B_2) + ... + P(Bₙ)P(A|Bₙ)
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">13.4 Bayes' Theorem</div>
-          <div class="formula-block">P(Bᵢ|A) = P(Bᵢ)·P(A|Bᵢ) / Σⱼ P(Bⱼ)·P(A|Bⱼ)
-
-           P(Bᵢ)·P(A|Bᵢ)
-         = ─────────────────────────────────────────────
-           P(B₁)P(A|B₁) + P(B₂)P(A|B₂) + ... + P(Bₙ)P(A|Bₙ)
-
-Two hypotheses B₁, B₂ (prior probs p₁, p₂ = 1-p₁):
-P(B₁|A) = p₁·P(A|B₁) / [p₁·P(A|B₁) + p₂·P(A|B₂)]</div>
+          <div class="formula-block">
+\begin{gather*}
+P(Bᵢ|A) = P(Bᵢ)·P(A|Bᵢ) / \Sigma ⱼ P(Bⱼ)·P(A|Bⱼ) \\
+\\
+P(Bᵢ)·P(A|Bᵢ) \\
+= ───────────────────────────────────────────── \\
+P(B_1)P(A|B_1) + P(B_2)P(A|B_2) + ... + P(Bₙ)P(A|Bₙ) \\
+\\
+Two hypotheses B_1, B_2 (prior probs p_1, p_2 = 1-p_1): \\
+P(B_1|A) = p_1·P(A|B_1) / [p_1·P(A|B_1) + p_2·P(A|B_2)]
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">13.5 Random Variables and Probability Distribution</div>
-          <div class="formula-block">If X is a random variable taking values x₁, x₂, ..., xₙ with
-probabilities p₁, p₂, ..., pₙ:
-
-Conditions: pᵢ ≥ 0 for all i,  Σpᵢ = 1
-
-Mean (Expected Value):
-E(X) = μ = Σxᵢpᵢ = x₁p₁ + x₂p₂ + ... + xₙpₙ
-
-Variance:
-Var(X) = σ² = E(X²) - [E(X)]²
-       = Σxᵢ²pᵢ - (Σxᵢpᵢ)²
-       = E[(X-μ)²] = Σ(xᵢ-μ)²pᵢ
-
-Standard Deviation:
-σ = √Var(X) = √[E(X²) - (E(X))²]
-
-Properties:
-E(aX+b) = aE(X) + b
-Var(aX+b) = a²Var(X)
-Var(aX) = a²Var(X)
-Var(X+b) = Var(X)</div>
+          <div class="formula-block">
+\begin{gather*}
+\text{If} X \text{is} a random variable taking values x_1, x_2, ..., xₙ with \\
+probabilities p_1, p_2, ..., pₙ: \\
+\\
+Conditions: pᵢ \ge  0 \text{for} all i,  \Sigma pᵢ = 1 \\
+\\
+Mean (Expected Value): \\
+E(X) = μ = \Sigma xᵢpᵢ = x_1p_1 + x_2p_2 + ... + xₙpₙ \\
+\\
+Variance: \\
+Var(X) = \sigma ^2 = E(X^2) - [E(X)]^2 \\
+= \Sigma xᵢ^2pᵢ - (\Sigma xᵢpᵢ)^2 \\
+= E[(X-μ)^2] = \Sigma (xᵢ-μ)^2pᵢ \\
+\\
+Standard Deviation: \\
+\sigma  = \sqrt{Var}(X) = √[E(X^2) - (E(X))^2] \\
+\\
+Properties: \\
+E(aX+b) = aE(X) + b \\
+Var(aX+b) = a^2Var(X) \\
+Var(aX) = a^2Var(X) \\
+Var(X+b) = Var(X)
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">13.6 Binomial Distribution</div>
-          <div class="formula-block">X ~ B(n, p)   [n = trials, p = success prob, q = 1-p]
-
-P(X = r) = C(n,r) · pʳ · qⁿ⁻ʳ   (r = 0,1,2,...,n)
-
-where C(n,r) = n! / [r!(n-r)!] = ⁿCᵣ
-
-Mean:     E(X) = np
-Variance: Var(X) = npq = np(1-p)
-SD:       σ = √(npq)
-
-Mode: (n+1)p  [if integer, two modes: (n+1)p and (n+1)p-1]
-      ⌊(n+1)p⌋  [if not integer]
-
-P(X=0) = qⁿ
-P(X=n) = pⁿ
-P(X≥1) = 1 - P(X=0) = 1 - qⁿ
-
-Recurrence: P(X=r+1)/P(X=r) = [(n-r)/(r+1)] × (p/q)
-
-For large n, small p (np=λ fixed) → Poisson approximation:
-P(X=r) ≈ e^(-λ)λʳ/r!</div>
+          <div class="formula-block">
+\begin{gather*}
+X ~ B(n, p)   [n = trials, p = success prob, q = 1-p] \\
+\\
+P(X = r) = C(n,r) · pʳ · qⁿ⁻ʳ   (r = 0,1,2,...,n) \\
+\\
+\text{where} C(n,r) = n! / [r!(n-r)!] = ⁿCᵣ \\
+\\
+Mean:     E(X) = np \\
+Variance: Var(X) = npq = np(1-p) \\
+SD:       \sigma  = \sqrt{npq} \\
+\\
+Mode: (n+1)p  [\text{if} integer, two modes: (n+1)p \text{and} (n+1)p-1] \\
+⌊(n+1)p⌋  [\text{if} \text{not} integer] \\
+\\
+P(X=0) = qⁿ \\
+P(X=n) = pⁿ \\
+P(X\ge 1) = 1 - P(X=0) = 1 - qⁿ \\
+\\
+Recurrence: P(X=r+1)/P(X=r) = [(n-r)/(r+1)] \times  (p/q) \\
+\\
+\text{For} large n, small p (np=λ fixed) \Rightarrow  Poisson approximation: \\
+P(X=r) ≈ e^(-λ)λʳ/r!
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">13.7 Important Probability Results</div>
-          <div class="formula-block">P(A only) = P(A∩B') = P(A) - P(A∩B)
-P(B only) = P(A'∩B) = P(B) - P(A∩B)
-P(exactly one of A,B) = P(A) + P(B) - 2P(A∩B)
-P(neither A nor B) = 1 - P(A∪B) = 1 - P(A) - P(B) + P(A∩B)
-
-For three events:
-P(A∪B∪C) = P(A)+P(B)+P(C)-P(A∩B)-P(B∩C)-P(C∩A)+P(A∩B∩C)
-
-If A and B independent:
-  A and B' independent
-  A' and B independent
-  A' and B' independent
-
-P(A∩B) = P(A)P(B)  [independent]
-P(A∩B) = 0         [mutually exclusive]
-Independent ≠ mutually exclusive (unless P(A)=0 or P(B)=0)</div>
+          <div class="formula-block">
+\begin{gather*}
+P(A only) = P(A∩B') = P(A) - P(A∩B) \\
+P(B only) = P(A'∩B) = P(B) - P(A∩B) \\
+P(exactly one of A,B) = P(A) + P(B) - 2P(A∩B) \\
+P(neither A nor B) = 1 - P(A∪B) = 1 - P(A) - P(B) + P(A∩B) \\
+\\
+\text{For} three events: \\
+P(A∪B∪C) = P(A)+P(B)+P(C)-P(A∩B)-P(B∩C)-P(C∩A)+P(A∩B∩C) \\
+\\
+\text{If} A \text{and} B independent: \\
+A \text{and} B' independent \\
+A' \text{and} B independent \\
+A' \text{and} B' independent \\
+\\
+P(A∩B) = P(A)P(B)  [independent] \\
+P(A∩B) = 0         [mutually exclusive] \\
+Independent \neq  mutually exclusive (unless P(A)=0 \text{or} P(B)=0)
+\end{gather*}
+</div>
         </div>
       </div>
 
@@ -3116,30 +3813,34 @@ Independent ≠ mutually exclusive (unless P(A)=0 or P(B)=0)</div>
 
         <div class="section">
           <div class="section-title">Algebraic Expansions</div>
-          <div class="formula-block">(a+b+c)² = a²+b²+c²+2ab+2bc+2ca
-(a-b-c)² = a²+b²+c²-2ab+2bc-2ca
-(a+b-c)² = a²+b²+c²+2ab-2bc-2ca
-
-a²+b²+c² = (a+b+c)² - 2(ab+bc+ca)
-ab+bc+ca = [(a+b+c)²-(a²+b²+c²)]/2
-
-(a+b+c)³ = a³+b³+c³+3(a+b)(b+c)(c+a)
-a³+b³+c³-3abc = (a+b+c)(a²+b²+c²-ab-bc-ca)
-               = ½(a+b+c)[(a-b)²+(b-c)²+(c-a)²]
-
-If a+b+c=0: a³+b³+c³ = 3abc
-
-(a+b)⁴ = a⁴+4a³b+6a²b²+4ab³+b⁴
-(a-b)⁴ = a⁴-4a³b+6a²b²-4ab³+b⁴
-a⁴-b⁴ = (a+b)(a-b)(a²+b²)
-a⁴+b⁴ = (a²+b²)²-2a²b²
-
-Binomial: (a+b)ⁿ = Σₖ₌₀ⁿ C(n,k)aⁿ⁻ᵏbᵏ
-General term: T(r+1) = C(n,r)aⁿ⁻ʳbʳ
-Middle term: T((n/2)+1) for even n
-
-Sophie Germain Identity:
-a⁴+4b⁴ = (a²+2b²+2ab)(a²+2b²-2ab)</div>
+          <div class="formula-block">
+\begin{gather*}
+(a+b+c)^2 = a^2+b^2+c^2+2ab+2bc+2ca \\
+(a-b-c)^2 = a^2+b^2+c^2-2ab+2bc-2ca \\
+(a+b-c)^2 = a^2+b^2+c^2+2ab-2bc-2ca \\
+\\
+a^2+b^2+c^2 = (a+b+c)^2 - 2(ab+bc+ca) \\
+ab+bc+ca = [(a+b+c)^2-(a^2+b^2+c^2)]/2 \\
+\\
+(a+b+c)^3 = a^3+b^3+c^3+3(a+b)(b+c)(c+a) \\
+a^3+b^3+c^3-3abc = (a+b+c)(a^2+b^2+c^2-ab-bc-ca) \\
+= ½(a+b+c)[(a-b)^2+(b-c)^2+(c-a)^2] \\
+\\
+\text{If} a+b+c=0: a^3+b^3+c^3 = 3abc \\
+\\
+(a+b)⁴ = a⁴+4a^3b+6a^2b^2+4ab^3+b⁴ \\
+(a-b)⁴ = a⁴-4a^3b+6a^2b^2-4ab^3+b⁴ \\
+a⁴-b⁴ = (a+b)(a-b)(a^2+b^2) \\
+a⁴+b⁴ = (a^2+b^2)^2-2a^2b^2 \\
+\\
+Binomial: (a+b)ⁿ = \Sigma _k₌₀ⁿ C(n,k)aⁿ⁻ᵏbᵏ \\
+General term: T(r+1) = C(n,r)aⁿ⁻ʳbʳ \\
+Middle term: T((n/2)+1) \text{for} even n \\
+\\
+Sophie Germain Identity: \\
+a⁴+4b⁴ = (a^2+2b^2+2ab)(a^2+2b^2-2ab)
+\end{gather*}
+</div>
         </div>
       </div>
 
@@ -3152,65 +3853,89 @@ a⁴+4b⁴ = (a²+2b²+2ab)(a²+2b²-2ab)</div>
 
         <div class="section">
           <div class="section-title">Compound Angle Formulas</div>
-          <div class="formula-block">sin(A+B) = sinA cosB + cosA sinB
-sin(A-B) = sinA cosB - cosA sinB
-cos(A+B) = cosA cosB - sinA sinB
-cos(A-B) = cosA cosB + sinA sinB
-
-tan(A+B) = (tanA + tanB)/(1 - tanA tanB)
-tan(A-B) = (tanA - tanB)/(1 + tanA tanB)
-
-sin(A+B)·sin(A-B) = sin²A - sin²B = cos²B - cos²A
-cos(A+B)·cos(A-B) = cos²A - sin²B = cos²B - sin²A</div>
+          <div class="formula-block">
+\begin{gather*}
+sin(A+B) = sinA cosB + cosA sinB \\
+sin(A-B) = sinA cosB - cosA sinB \\
+cos(A+B) = cosA cosB - sinA sinB \\
+cos(A-B) = cosA cosB + sinA sinB \\
+\\
+tan(A+B) = (tanA + tanB)/(1 - tanA tanB) \\
+tan(A-B) = (tanA - tanB)/(1 + tanA tanB) \\
+\\
+sin(A+B)·sin(A-B) = sin^2A - sin^2B = cos^2B - cos^2A \\
+cos(A+B)·cos(A-B) = cos^2A - sin^2B = cos^2B - sin^2A
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">Double Angle Formulas</div>
-          <div class="formula-block">sin 2A = 2 sinA cosA = 2tanA/(1+tan²A)
-cos 2A = cos²A - sin²A = 1-2sin²A = 2cos²A-1 = (1-tan²A)/(1+tan²A)
-tan 2A = 2tanA/(1-tan²A)
-
-sin²A = (1-cos2A)/2
-cos²A = (1+cos2A)/2
-tan²A = (1-cos2A)/(1+cos2A)
-
-sin A = 2sin(A/2)cos(A/2)
-cos A = 1-2sin²(A/2) = 2cos²(A/2)-1</div>
+          <div class="formula-block">
+\begin{gather*}
+sin 2A = 2 sinA cosA = 2tanA/(1+tan^2A) \\
+cos 2A = cos^2A - sin^2A = 1-2sin^2A = 2cos^2A-1 = (1-tan^2A)/(1+tan^2A) \\
+tan 2A = 2tanA/(1-tan^2A) \\
+\\
+sin^2A = (1-cos2A)/2 \\
+cos^2A = (1+cos2A)/2 \\
+tan^2A = (1-cos2A)/(1+cos2A) \\
+\\
+sin A = 2sin(A/2)cos(A/2) \\
+cos A = 1-2sin^2(A/2) = 2cos^2(A/2)-1
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">Triple Angle Formulas</div>
-          <div class="formula-block">sin 3A = 3sinA - 4sin³A
-cos 3A = 4cos³A - 3cosA
-tan 3A = (3tanA - tan³A)/(1-3tan²A)
-
-sin³A = (3sinA - sin3A)/4
-cos³A = (3cosA + cos3A)/4</div>
+          <div class="formula-block">
+\begin{gather*}
+sin 3A = 3sinA - 4sin^3A \\
+cos 3A = 4cos^3A - 3cosA \\
+tan 3A = (3tanA - tan^3A)/(1-3tan^2A) \\
+\\
+sin^3A = (3sinA - sin3A)/4 \\
+cos^3A = (3cosA + cos3A)/4
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">Product to Sum Formulas</div>
-          <div class="formula-block">2sinA cosB = sin(A+B) + sin(A-B)
-2cosA sinB = sin(A+B) - sin(A-B)
-2cosA cosB = cos(A+B) + cos(A-B)
-2sinA sinB = cos(A-B) - cos(A+B)</div>
+          <div class="formula-block">
+\begin{gather*}
+2sinA cosB = sin(A+B) + sin(A-B) \\
+2cosA sinB = sin(A+B) - sin(A-B) \\
+2cosA cosB = cos(A+B) + cos(A-B) \\
+2sinA sinB = cos(A-B) - cos(A+B)
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">Sum to Product Formulas</div>
-          <div class="formula-block">sinC + sinD = 2sin((C+D)/2)cos((C-D)/2)
-sinC - sinD = 2cos((C+D)/2)sin((C-D)/2)
-cosC + cosD = 2cos((C+D)/2)cos((C-D)/2)
-cosC - cosD = -2sin((C+D)/2)sin((C-D)/2)</div>
+          <div class="formula-block">
+\begin{gather*}
+sinC + sinD = 2sin((C+D)/2)cos((C-D)/2) \\
+sinC - sinD = 2cos((C+D)/2)sin((C-D)/2) \\
+cosC + cosD = 2cos((C+D)/2)cos((C-D)/2) \\
+cosC - cosD = -2sin((C+D)/2)sin((C-D)/2)
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">Important Trig Values</div>
-          <div class="formula-block">sin 15° = (√6-√2)/4      cos 15° = (√6+√2)/4
-sin 18° = (√5-1)/4       cos 36° = (√5+1)/4
-sin 36° = √(10-2√5)/4    cos 18° = √(10+2√5)/4
-sin 22.5° = √((√2-1)/(2√2))
-tan 15° = 2-√3           tan 75° = 2+√3</div>
+          <div class="formula-block">
+\begin{gather*}
+sin 15° = (\sqrt{6}-\sqrt{2})/4      cos 15° = (\sqrt{6}+\sqrt{2})/4 \\
+sin 18° = (\sqrt{5}-1)/4       cos 36° = (\sqrt{5}+1)/4 \\
+sin 36° = \sqrt{10-2\sqrt{5}}/4    cos 18° = \sqrt{10+2\sqrt{5}}/4 \\
+sin 22.5° = \sqrt{(\sqrt{2}-1}/(2\sqrt{2})) \\
+tan 15° = 2-\sqrt{3}           tan 75° = 2+\sqrt{3}
+\end{gather*}
+</div>
         </div>
       </div>
 
@@ -3221,33 +3946,37 @@ tan 15° = 2-√3           tan 75° = 2+√3</div>
           <div class="chapter-title">Mensuration Advanced Formulas</div>
         </div>
 
-        <div class="formula-block">Regular polygon (n sides, side a):
-  Perimeter = na
-  Interior angle = (n-2)×180°/n
-  Exterior angle = 360°/n
-  Area = (na²/4)cot(π/n)
-  Sum of interior angles = (n-2)×180°
-
-Heron's Formula (triangle with sides a,b,c):
-  s = (a+b+c)/2  [semi-perimeter]
-  Area = √[s(s-a)(s-b)(s-c)]
-
-Area using angles (triangle):
-  Area = (1/2)ab sinC = (1/2)bc sinA = (1/2)ca sinB
-
-Circumradius R of triangle:
-  R = abc/(4 × Area) = a/(2sinA)
-
-Inradius r of triangle:
-  r = Area/s = (s-a)tan(A/2)
-
-Cosine Rule:
-  a² = b²+c²-2bc cosA
-  b² = a²+c²-2ac cosB
-  c² = a²+b²-2ab cosC
-  → cosA = (b²+c²-a²)/(2bc)
-
-Sine Rule: a/sinA = b/sinB = c/sinC = 2R</div>
+        <div class="formula-block">
+\begin{gather*}
+Regular polygon (n sides, side a): \\
+Perimeter = na \\
+Interior angle = (n-2)\times 180°/n \\
+Exterior angle = 360°/n \\
+Area = (na^2/4)cot(\pi /n) \\
+Sum of interior angles = (n-2)\times 180° \\
+\\
+Heron's Formula (triangle with sides a,b,c): \\
+s = (a+b+c)/2  [semi-perimeter] \\
+Area = √[s(s-a)(s-b)(s-c)] \\
+\\
+Area using angles (triangle): \\
+Area = (1/2)ab sinC = (1/2)bc sinA = (1/2)ca sinB \\
+\\
+Circumradius R of triangle: \\
+R = abc/(4 \times  Area) = a/(2sinA) \\
+\\
+Inradius r of triangle: \\
+r = Area/s = (s-a)tan(A/2) \\
+\\
+Cosine Rule: \\
+a^2 = b^2+c^2-2bc cosA \\
+b^2 = a^2+c^2-2ac cosB \\
+c^2 = a^2+b^2-2ab cosC \\
+\Rightarrow  cosA = (b^2+c^2-a^2)/(2bc) \\
+\\
+Sine Rule: a/sinA = b/sinB = c/sinC = 2R
+\end{gather*}
+</div>
       </div>
 
 <!-- ────────── C4 ────────── -->
@@ -3257,34 +3986,38 @@ Sine Rule: a/sinA = b/sinB = c/sinC = 2R</div>
           <div class="chapter-title">Coordinate Geometry Advanced (Class 12 Level)</div>
         </div>
 
-        <div class="formula-block">Standard curves:
-  Circle:    x²+y²+2gx+2fy+c=0
-             Center: (-g,-f),  Radius: √(g²+f²-c)
-
-  Parabola:  y²=4ax (opens right, vertex origin)
-             Directrix: x=-a, Focus: (a,0), Axis: y=0
-             y²=-4ax (opens left)
-             x²=4ay (opens up), x²=-4ay (opens down)
-
-  Ellipse:   x²/a²+y²/b²=1  (a>b>0)
-             c²=a²-b²  (c=focal distance)
-             e=c/a&lt;1  (eccentricity)
-             Foci: (±c,0), Vertices: (±a,0)
-             Directrices: x=±a/e=±a²/c
-
-  Hyperbola: x²/a²-y²/b²=1
-             b²=c²-a², e=c/a>1
-             Asymptotes: y=±(b/a)x
-             Conjugate: y²/a²-x²/b²=1
-
-Tangent to circle x²+y²=r² at (x₁,y₁): xx₁+yy₁=r²
-
-Tangent to parabola y²=4ax at (x₁,y₁): yy₁=2a(x+x₁)
-
-Tangent to ellipse x²/a²+y²/b²=1 at (x₁,y₁): xx₁/a²+yy₁/b²=1
-
-Tangent of slope m to parabola y²=4ax: y=mx+a/m
-Tangent of slope m to ellipse: y=mx±√(a²m²+b²)</div>
+        <div class="formula-block">
+\begin{gather*}
+Standard curves: \\
+Circle:    x^2+y^2+2gx+2fy+c=0 \\
+Center: (-g,-f),  Radius: \sqrt{g^2+f^2-c} \\
+\\
+Parabola:  y^2=4ax (opens right, vertex origin) \\
+Directrix: x=-a, Focus: (a,0), Axis: y=0 \\
+y^2=-4ax (opens left) \\
+x^2=4ay (opens up), x^2=-4ay (opens down) \\
+\\
+Ellipse:   x^2/a^2+y^2/b^2=1  (a>b>0) \\
+c^2=a^2-b^2  (c=focal distance) \\
+e=c/a<1  (eccentricity) \\
+Foci: (±c,0), Vertices: (±a,0) \\
+Directrices: x=±a/e=±a^2/c \\
+\\
+Hyperbola: x^2/a^2-y^2/b^2=1 \\
+b^2=c^2-a^2, e=c/a>1 \\
+Asymptotes: y=±(b/a)x \\
+Conjugate: y^2/a^2-x^2/b^2=1 \\
+\\
+Tangent to circle x^2+y^2=r^2 at (x_1,y_1): xx_1+yy_1=r^2 \\
+\\
+Tangent to parabola y^2=4ax at (x_1,y_1): yy_1=2a(x+x_1) \\
+\\
+Tangent to ellipse x^2/a^2+y^2/b^2=1 at (x_1,y_1): xx_1/a^2+yy_1/b^2=1 \\
+\\
+Tangent of slope m to parabola y^2=4ax: y=mx+a/m \\
+Tangent of slope m to ellipse: y=mx±\sqrt{a^2m^2+b^2}
+\end{gather*}
+</div>
       </div>
 
 <!-- ────────── C5 ────────── -->
@@ -3294,25 +4027,29 @@ Tangent of slope m to ellipse: y=mx±√(a²m²+b²)</div>
           <div class="chapter-title">Limits — Key Formulas</div>
         </div>
 
-        <div class="formula-block">Standard Limits:
-lim[x→0] sinx/x = 1
-lim[x→0] tanx/x = 1
-lim[x→0] (1-cosx)/x = 0
-lim[x→0] (1-cosx)/x² = 1/2
-lim[x→0] sin⁻¹x/x = 1
-lim[x→0] tan⁻¹x/x = 1
-lim[x→0] (eˣ-1)/x = 1
-lim[x→0] (aˣ-1)/x = ln a
-lim[x→0] (ln(1+x))/x = 1
-lim[x→∞] (1+1/x)ˣ = e
-lim[x→0] (1+x)^(1/x) = e
-lim[x→a] (xⁿ-aⁿ)/(x-a) = naⁿ⁻¹
-
-L'Hôpital's Rule (0/0 or ∞/∞ form):
-lim f(x)/g(x) = lim f'(x)/g'(x)
-
-Special: lim[x→∞] xⁿ/eˣ = 0  (exponential grows faster)
-         lim[x→∞] ln x/xⁿ = 0 (power grows faster than log)</div>
+        <div class="formula-block">
+\begin{gather*}
+Standard Limits: \\
+lim[x\Rightarrow 0] sinx/x = 1 \\
+lim[x\Rightarrow 0] tanx/x = 1 \\
+lim[x\Rightarrow 0] (1-cosx)/x = 0 \\
+lim[x\Rightarrow 0] (1-cosx)/x^2 = 1/2 \\
+lim[x\Rightarrow 0] sin⁻¹x/x = 1 \\
+lim[x\Rightarrow 0] tan⁻¹x/x = 1 \\
+lim[x\Rightarrow 0] (eˣ-1)/x = 1 \\
+lim[x\Rightarrow 0] (aˣ-1)/x = ln a \\
+lim[x\Rightarrow 0] (ln(1+x))/x = 1 \\
+lim[x\Rightarrow ∞] (1+1/x)ˣ = e \\
+lim[x\Rightarrow 0] (1+x)^(1/x) = e \\
+lim[x\Rightarrow a] (xⁿ-aⁿ)/(x-a) = naⁿ⁻¹ \\
+\\
+L'Hôpital's Rule (0/0 \text{or} ∞/∞ form): \\
+lim f(x)/g(x) = lim f'(x)/g'(x) \\
+\\
+Special: lim[x\Rightarrow ∞] xⁿ/eˣ = 0  (exponential grows faster) \\
+lim[x\Rightarrow ∞] ln x/xⁿ = 0 (power grows faster than log)
+\end{gather*}
+</div>
       </div>
 
 <!-- ────────── C6 ────────── -->
@@ -3324,43 +4061,55 @@ Special: lim[x→∞] xⁿ/eˣ = 0  (exponential grows faster)
 
         <div class="section">
           <div class="section-title">Geometric Progression (GP)</div>
-          <div class="formula-block">aₙ = ar^(n-1)   [nth term]
-r = common ratio = aₙ₊₁/aₙ
-
-Sum of n terms:
-Sₙ = a(rⁿ-1)/(r-1)    (r ≠ 1, r > 1 preferred)
-Sₙ = a(1-rⁿ)/(1-r)    (r ≠ 1, r &lt; 1 preferred)
-Sₙ = na                (r = 1)
-
-Sum to infinity (|r|&lt;1):
-S∞ = a/(1-r)
-
-Product of first n terms of GP:
-P = aⁿ × r^(n(n-1)/2)
-
-GM between a and b: G = √(ab)
-AM ≥ GM for positive reals: (a+b)/2 ≥ √(ab)
-HM between a and b: H = 2ab/(a+b)
-AM ≥ GM ≥ HM
-GM² = AM × HM
-
-3 terms in GP: a/r, a, ar  [product = a³]
-4 terms in GP: a/r³, a/r, ar, ar³  [product = a⁴]</div>
+          <div class="formula-block">
+\begin{gather*}
+aₙ = ar^(n-1)   [nth term] \\
+r = common ratio = aₙ₊_1/aₙ \\
+\\
+Sum of n terms: \\
+Sₙ = a(rⁿ-1)/(r-1)    (r \neq  1, r > 1 preferred) \\
+Sₙ = a(1-rⁿ)/(1-r)    (r \neq  1, r < 1 preferred) \\
+Sₙ = na                (r = 1) \\
+\\
+Sum to infinity (|r|<1): \\
+S∞ = a/(1-r) \\
+\\
+Product of first n terms of GP: \\
+P = aⁿ \times  r^(n(n-1)/2) \\
+\\
+GM between a \text{and} b: G = \sqrt{ab} \\
+AM \ge  GM \text{for} positive reals: (a+b)/2 \ge  \sqrt{ab} \\
+HM between a \text{and} b: H = 2ab/(a+b) \\
+AM \ge  GM \ge  HM \\
+GM^2 = AM \times  HM \\
+\\
+3 terms in GP: a/r, a, ar  [product = a^3] \\
+4 terms in GP: a/r^3, a/r, ar, ar^3  [product = a⁴]
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">Harmonic Progression (HP)</div>
-          <div class="formula-block">If a,b,c in HP: 1/a, 1/b, 1/c in AP
-→ 2/b = 1/a + 1/c
-→ b = 2ac/(a+c)
-
-nth term of HP: 1/(A + (n-1)D)</div>
+          <div class="formula-block">
+\begin{gather*}
+\text{If} a,b,c in HP: 1/a, 1/b, 1/c in AP \\
+\Rightarrow  2/b = 1/a + 1/c \\
+\Rightarrow  b = 2ac/(a+c) \\
+\\
+nth term of HP: 1/(A + (n-1)D)
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">AGP (Arithmetico-Geometric Progression)</div>
-          <div class="formula-block">a, (a+d)r, (a+2d)r², ...
-S∞ = a/(1-r) + dr/(1-r)²  [|r|&lt;1]</div>
+          <div class="formula-block">
+\begin{gather*}
+a, (a+d)r, (a+2d)r^2, ... \\
+S∞ = a/(1-r) + dr/(1-r)^2  [|r|<1]
+\end{gather*}
+</div>
         </div>
       </div>
 
@@ -3371,26 +4120,30 @@ S∞ = a/(1-r) + dr/(1-r)²  [|r|&lt;1]</div>
           <div class="chapter-title">Combinatorics (for Probability)</div>
         </div>
 
-        <div class="formula-block">Permutation: ⁿPᵣ = n!/(n-r)!     [order matters]
-Combination: ⁿCᵣ = n!/[r!(n-r)!] [order doesn't matter]
-
-ⁿCᵣ = ⁿCₙ₋ᵣ
-ⁿCᵣ + ⁿCᵣ₋₁ = ⁿ⁺¹Cᵣ  [Pascal's identity]
-ⁿCₒ = ⁿCₙ = 1
-ⁿC₁ = n
-ⁿC₂ = n(n-1)/2
-ⁿCᵣ = (n/r)ⁿ⁻¹Cᵣ₋₁
-
-n! = n × (n-1)!
-0! = 1
-
-Circular permutation: (n-1)!
-Necklace/bracelet: (n-1)!/2
-
-Multinomial: n!/(n₁!n₂!...nₖ!)
-
-Stars and bars: distributing n identical into k distinct:
-C(n+k-1, k-1)</div>
+        <div class="formula-block">
+\begin{gather*}
+Permutation: ⁿPᵣ = n!/(n-r)!     [order matters] \\
+Combination: ⁿCᵣ = n!/[r!(n-r)!] [order doesn't matter] \\
+\\
+ⁿCᵣ = ⁿCₙ₋ᵣ \\
+ⁿCᵣ + ⁿCᵣ₋_1 = ⁿ⁺¹Cᵣ  [Pascal's identity] \\
+ⁿCₒ = ⁿCₙ = 1 \\
+ⁿC_1 = n \\
+ⁿC_2 = n(n-1)/2 \\
+ⁿCᵣ = (n/r)ⁿ⁻¹Cᵣ₋_1 \\
+\\
+n! = n \times  (n-1)! \\
+0! = 1 \\
+\\
+Circular permutation: (n-1)! \\
+Necklace/bracelet: (n-1)!/2 \\
+\\
+Multinomial: n!/(n_1!n_2!...n_k!) \\
+\\
+Stars \text{and} bars: distributing n identical into k distinct: \\
+C(n+k-1, k-1)
+\end{gather*}
+</div>
       </div>
 
 <!-- ────────── C8 ────────── -->
@@ -3400,40 +4153,44 @@ C(n+k-1, k-1)</div>
           <div class="chapter-title">Complex Numbers</div>
         </div>
 
-        <div class="formula-block">z = a + ib  [a = real part, b = imaginary part]
-i = √(-1),  i² = -1,  i³ = -i,  i⁴ = 1
-
-Modulus:  |z| = √(a²+b²)
-Argument: arg(z) = θ = tan⁻¹(b/a)  [in correct quadrant]
-
-Conjugate: z̄ = a - ib
-  z + z̄ = 2a = 2Re(z)
-  z - z̄ = 2ib = 2i·Im(z)
-  z·z̄ = |z|² = a²+b²
-  (z̄₁+z₂) = z̄₁+z̄₂
-  (z₁z₂) = z̄₁·z̄₂
-
-Polar form: z = r(cosθ + i sinθ) = reⁱθ
-  r = |z|, θ = arg(z)
-
-De Moivre's theorem: (cosθ+i sinθ)ⁿ = cos(nθ)+i sin(nθ)
-  |z₁z₂| = |z₁||z₂|
-  arg(z₁z₂) = arg(z₁)+arg(z₂)
-
-Triangle inequality:
-  |z₁+z₂| ≤ |z₁|+|z₂|
-  |z₁-z₂| ≥ ||z₁|-|z₂||
-
-nth roots of unity: zⁿ = 1
-  zₖ = cos(2πk/n)+i sin(2πk/n)  for k=0,1,...,n-1
-  Sum of nth roots = 0
-  Product of nth roots = (-1)^(n-1)
-
-Cube roots of unity: 1, ω, ω²
-  ω = (-1+i√3)/2 = e^(2πi/3)
-  1+ω+ω² = 0
-  ω³ = 1
-  ω² = (-1-i√3)/2</div>
+        <div class="formula-block">
+\begin{gather*}
+z = a + ib  [a = real part, b = imaginary part] \\
+i = \sqrt{-1},  i^2 = -1,  i^3 = -i,  i⁴ = 1 \\
+\\
+Modulus:  |z| = \sqrt{a^2+b^2} \\
+Argument: arg(z) = \theta  = tan⁻¹(b/a)  [in correct quadrant] \\
+\\
+Conjugate: z̄ = a - ib \\
+z + z̄ = 2a = 2Re(z) \\
+z - z̄ = 2ib = 2i·Im(z) \\
+z·z̄ = |z|^2 = a^2+b^2 \\
+(z̄_1+z_2) = z̄_1+z̄_2 \\
+(z_1z_2) = z̄_1·z̄_2 \\
+\\
+Polar form: z = r(cos\theta  + i sin\theta ) = reⁱ\theta \\
+r = |z|, \theta  = arg(z) \\
+\\
+De Moivre's theorem: (cos\theta +i sin\theta )ⁿ = cos(n\theta )+i sin(n\theta ) \\
+|z_1z_2| = |z_1||z_2| \\
+arg(z_1z_2) = arg(z_1)+arg(z_2) \\
+\\
+Triangle inequality: \\
+|z_1+z_2| \le  |z_1|+|z_2| \\
+|z_1-z_2| \ge  ||z_1|-|z_2|| \\
+\\
+nth roots of unity: zⁿ = 1 \\
+z_k = cos(2\pi k/n)+i sin(2\pi k/n)  \text{for} k=0,1,...,n-1 \\
+Sum of nth roots = 0 \\
+Product of nth roots = (-1)^(n-1) \\
+\\
+Cube roots of unity: 1, ω, ω^2 \\
+ω = (-1+i\sqrt{3})/2 = e^(2\pi i/3) \\
+1+ω+ω^2 = 0 \\
+ω^3 = 1 \\
+ω^2 = (-1-i\sqrt{3})/2
+\end{gather*}
+</div>
       </div>
 
 <!-- ────────── C9 ────────── -->
@@ -3443,40 +4200,44 @@ Cube roots of unity: 1, ω, ω²
           <div class="chapter-title">Complete Derivative Table (Quick Reference)</div>
         </div>
 
-        <div class="formula-block">f(x)              f'(x)
-─────────────────────────────────────────
-c (constant)      0
-x                 1
-xⁿ                nxⁿ⁻¹
-√x                1/(2√x)
-1/x               -1/x²
-1/xⁿ              -n/x^(n+1)
-eˣ                eˣ
-eᵃˣ               aeᵃˣ
-aˣ                aˣ ln a
-ln x              1/x
-log_a x           1/(x ln a)
-sin x             cos x
-cos x             -sin x
-tan x             sec²x
-cot x             -cosec²x
-sec x             sec x tan x
-cosec x           -cosec x cot x
-sin(ax+b)         a cos(ax+b)
-cos(ax+b)         -a sin(ax+b)
-tan(ax+b)         a sec²(ax+b)
-sin⁻¹x            1/√(1-x²)
-cos⁻¹x            -1/√(1-x²)
-tan⁻¹x            1/(1+x²)
-cot⁻¹x            -1/(1+x²)
-sec⁻¹x            1/(|x|√(x²-1))
-cosec⁻¹x          -1/(|x|√(x²-1))
-sin⁻¹(x/a)        1/√(a²-x²)
-cos⁻¹(x/a)        -1/√(a²-x²)
-tan⁻¹(x/a)        a/(a²+x²)
-|x|               x/|x| = sgn(x)   (x≠0)
-xˣ                xˣ(1+ln x)
-f(g(x))           f'(g(x))·g'(x)</div>
+        <div class="formula-block">
+\begin{gather*}
+f(x)              f'(x) \\
+───────────────────────────────────────── \\
+c (constant)      0 \\
+x                 1 \\
+xⁿ                nxⁿ⁻¹ \\
+\sqrt{x}                1/(2\sqrt{x}) \\
+1/x               -1/x^2 \\
+1/xⁿ              -n/x^(n+1) \\
+eˣ                eˣ \\
+eᵃˣ               aeᵃˣ \\
+aˣ                aˣ ln a \\
+ln x              1/x \\
+log_a x           1/(x ln a) \\
+sin x             cos x \\
+cos x             -sin x \\
+tan x             sec^2x \\
+cot x             -cosec^2x \\
+sec x             sec x tan x \\
+cosec x           -cosec x cot x \\
+sin(ax+b)         a cos(ax+b) \\
+cos(ax+b)         -a sin(ax+b) \\
+tan(ax+b)         a sec^2(ax+b) \\
+sin⁻¹x            1/\sqrt{1-x^2} \\
+cos⁻¹x            -1/\sqrt{1-x^2} \\
+tan⁻¹x            1/(1+x^2) \\
+cot⁻¹x            -1/(1+x^2) \\
+sec⁻¹x            1/(|x|\sqrt{x^2-1}) \\
+cosec⁻¹x          -1/(|x|\sqrt{x^2-1}) \\
+sin⁻¹(x/a)        1/\sqrt{a^2-x^2} \\
+cos⁻¹(x/a)        -1/\sqrt{a^2-x^2} \\
+tan⁻¹(x/a)        a/(a^2+x^2) \\
+|x|               x/|x| = sgn(x)   (x\neq 0) \\
+xˣ                xˣ(1+ln x) \\
+f(g(x))           f'(g(x))·g'(x)
+\end{gather*}
+</div>
       </div>
 
 <!-- ────────── C10 ────────── -->
@@ -3486,50 +4247,54 @@ f(g(x))           f'(g(x))·g'(x)</div>
           <div class="chapter-title">Complete Integral Table (Quick Reference)</div>
         </div>
 
-        <div class="formula-block">f(x)                    ∫f(x)dx
-────────────────────────────────────────────────────────────
-xⁿ (n≠-1)              xⁿ⁺¹/(n+1) + C
-1/x                     ln|x| + C
-eˣ                      eˣ + C
-eᵃˣ                     eᵃˣ/a + C
-aˣ                      aˣ/ln a + C
-sin x                   -cos x + C
-cos x                   sin x + C
-tan x                   ln|sec x| + C
-cot x                   ln|sin x| + C
-sec x                   ln|sec x + tan x| + C
-cosec x                 ln|cosec x - cot x| + C
-sec²x                   tan x + C
-cosec²x                 -cot x + C
-sec x tan x             sec x + C
-cosec x cot x           -cosec x + C
-1/√(1-x²)              sin⁻¹x + C
--1/√(1-x²)             cos⁻¹x + C
-1/(1+x²)               tan⁻¹x + C
--1/(1+x²)              cot⁻¹x + C
-1/(x²+a²)              (1/a)tan⁻¹(x/a) + C
-1/(x²-a²)              (1/2a)ln|(x-a)/(x+a)| + C
-1/(a²-x²)              (1/2a)ln|(a+x)/(a-x)| + C
-1/√(a²-x²)             sin⁻¹(x/a) + C
-1/√(x²+a²)             ln|x+√(x²+a²)| + C
-1/√(x²-a²)             ln|x+√(x²-a²)| + C
-√(a²-x²)               (x/2)√(a²-x²)+(a²/2)sin⁻¹(x/a)+C
-√(x²+a²)               (x/2)√(x²+a²)+(a²/2)ln|x+√(x²+a²)|+C
-√(x²-a²)               (x/2)√(x²-a²)-(a²/2)ln|x+√(x²-a²)|+C
-eˣ[f(x)+f'(x)]         eˣf(x) + C
-x eˣ                   eˣ(x-1) + C
-x² eˣ                  eˣ(x²-2x+2) + C
-ln x                    x ln x - x + C
-x ln x                  (x²/2)ln x - x²/4 + C
-sin⁻¹x                 x sin⁻¹x + √(1-x²) + C
-tan⁻¹x                 x tan⁻¹x - (1/2)ln(1+x²) + C
-cos⁻¹x                 x cos⁻¹x - √(1-x²) + C
-sin²x                   x/2 - sin(2x)/4 + C
-cos²x                   x/2 + sin(2x)/4 + C
-tan²x                   tan x - x + C
-cot²x                   -cot x - x + C
-sin³x                   -cos x + cos³x/3 + C
-cos³x                   sin x - sin³x/3 + C</div>
+        <div class="formula-block">
+\begin{gather*}
+f(x)                    ∫f(x)dx \\
+──────────────────────────────────────────────────────────── \\
+xⁿ (n\neq -1)              xⁿ⁺¹/(n+1) + C \\
+1/x                     ln|x| + C \\
+eˣ                      eˣ + C \\
+eᵃˣ                     eᵃˣ/a + C \\
+aˣ                      aˣ/ln a + C \\
+sin x                   -cos x + C \\
+cos x                   sin x + C \\
+tan x                   ln|sec x| + C \\
+cot x                   ln|sin x| + C \\
+sec x                   ln|sec x + tan x| + C \\
+cosec x                 ln|cosec x - cot x| + C \\
+sec^2x                   tan x + C \\
+cosec^2x                 -cot x + C \\
+sec x tan x             sec x + C \\
+cosec x cot x           -cosec x + C \\
+1/\sqrt{1-x^2}              sin⁻¹x + C \\
+-1/\sqrt{1-x^2}             cos⁻¹x + C \\
+1/(1+x^2)               tan⁻¹x + C \\
+-1/(1+x^2)              cot⁻¹x + C \\
+1/(x^2+a^2)              (1/a)tan⁻¹(x/a) + C \\
+1/(x^2-a^2)              (1/2a)ln|(x-a)/(x+a)| + C \\
+1/(a^2-x^2)              (1/2a)ln|(a+x)/(a-x)| + C \\
+1/\sqrt{a^2-x^2}             sin⁻¹(x/a) + C \\
+1/\sqrt{x^2+a^2}             ln|x+\sqrt{x^2+a^2}| + C \\
+1/\sqrt{x^2-a^2}             ln|x+\sqrt{x^2-a^2}| + C \\
+\sqrt{a^2-x^2}               (x/2)\sqrt{a^2-x^2}+(a^2/2)sin⁻¹(x/a)+C \\
+\sqrt{x^2+a^2}               (x/2)\sqrt{x^2+a^2}+(a^2/2)ln|x+\sqrt{x^2+a^2}|+C \\
+\sqrt{x^2-a^2}               (x/2)\sqrt{x^2-a^2}-(a^2/2)ln|x+\sqrt{x^2-a^2}|+C \\
+eˣ[f(x)+f'(x)]         eˣf(x) + C \\
+x eˣ                   eˣ(x-1) + C \\
+x^2 eˣ                  eˣ(x^2-2x+2) + C \\
+ln x                    x ln x - x + C \\
+x ln x                  (x^2/2)ln x - x^2/4 + C \\
+sin⁻¹x                 x sin⁻¹x + \sqrt{1-x^2} + C \\
+tan⁻¹x                 x tan⁻¹x - (1/2)ln(1+x^2) + C \\
+cos⁻¹x                 x cos⁻¹x - \sqrt{1-x^2} + C \\
+sin^2x                   x/2 - sin(2x)/4 + C \\
+cos^2x                   x/2 + sin(2x)/4 + C \\
+tan^2x                   tan x - x + C \\
+cot^2x                   -cot x - x + C \\
+sin^3x                   -cos x + cos^3x/3 + C \\
+cos^3x                   sin x - sin^3x/3 + C
+\end{gather*}
+</div>
       </div>
 
 <!-- ────────── C11 ────────── -->
@@ -3539,34 +4304,38 @@ cos³x                   sin x - sin³x/3 + C</div>
           <div class="chapter-title">Matrices — Additional Important Results</div>
         </div>
 
-        <div class="formula-block">Trace(A) = sum of diagonal elements
-Trace(AB) = Trace(BA)
-Rank of matrix = number of non-zero rows in row echelon form
-
-For A (m×n): rank(A) ≤ min(m,n)
-A is invertible ↔ rank(A) = n (full rank)
-A is singular ↔ |A| = 0 ↔ rank(A) &lt; n
-
-Cayley-Hamilton Theorem:
-Every square matrix satisfies its own characteristic equation.
-For A 2×2 with char. eq λ²-(trA)λ+|A|=0:
-A² - (trA)A + |A|I = 0
-→ A⁻¹ = (A - (trA)I) / |A|  [for 2×2 non-singular]
-
-For 2×2 A = [a b; c d]:
-Characteristic equation: λ² - (a+d)λ + (ad-bc) = 0
-λ₁+λ₂ = a+d = Trace(A)
-λ₁·λ₂ = ad-bc = |A|
-
-Eigenvalues of diagonal matrix = diagonal elements
-Eigenvalues of triangular matrix = diagonal elements
-|A| = product of eigenvalues
-Trace = sum of eigenvalues
-
-If A is orthogonal: AAᵀ = AᵀA = I → A⁻¹ = Aᵀ
-If A is idempotent: A² = A
-If A is nilpotent: Aⁿ = O for some n
-If A is involutory: A² = I → A⁻¹ = A</div>
+        <div class="formula-block">
+\begin{gather*}
+Trace(A) = sum of diagonal elements \\
+Trace(AB) = Trace(BA) \\
+Rank of matrix = number of non-zero rows in row echelon form \\
+\\
+\text{For} A (m\times n): rank(A) \le  min(m,n) \\
+A \text{is} invertible ↔ rank(A) = n (full rank) \\
+A \text{is} singular ↔ |A| = 0 ↔ rank(A) < n \\
+\\
+Cayley-Hamilton Theorem: \\
+Every square matrix satisfies its own characteristic equation. \\
+\text{For} A 2\times 2 with char. eq λ^2-(trA)λ+|A|=0: \\
+A^2 - (trA)A + |A|I = 0 \\
+\Rightarrow  A⁻¹ = (A - (trA)I) / |A|  [\text{for} 2\times 2 non-singular] \\
+\\
+\text{For} 2\times 2 A = [a b; c d]: \\
+Characteristic equation: λ^2 - (a+d)λ + (ad-bc) = 0 \\
+λ_1+λ_2 = a+d = Trace(A) \\
+λ_1·λ_2 = ad-bc = |A| \\
+\\
+Eigenvalues of diagonal matrix = diagonal elements \\
+Eigenvalues of triangular matrix = diagonal elements \\
+|A| = product of eigenvalues \\
+Trace = sum of eigenvalues \\
+\\
+\text{If} A \text{is} orthogonal: AAᵀ = AᵀA = I \Rightarrow  A⁻¹ = Aᵀ \\
+\text{If} A \text{is} idempotent: A^2 = A \\
+\text{If} A \text{is} nilpotent: Aⁿ = O \text{for} some n \\
+\text{If} A \text{is} involutory: A^2 = I \Rightarrow  A⁻¹ = A
+\end{gather*}
+</div>
       </div>
 
 <!-- ────────── C12 ────────── -->
@@ -3578,183 +4347,223 @@ If A is involutory: A² = I → A⁻¹ = A</div>
 
         <div class="section">
           <div class="section-title">Rationalization Tricks</div>
-          <div class="formula-block">1/(a+b√c) = (a-b√c)/(a²-b²c)
-
-1/(√a+√b) = (√a-√b)/(a-b)
-
-Nested radicals: √(a+√b) = √((a+√(a²-b))/2) + √((a-√(a²-b))/2)</div>
+          <div class="formula-block">
+\begin{gather*}
+1/(a+b\sqrt{c}) = (a-b\sqrt{c})/(a^2-b^2c) \\
+\\
+1/(\sqrt{a}+\sqrt{b}) = (\sqrt{a}-\sqrt{b})/(a-b) \\
+\\
+Nested radicals: \sqrt{a+\sqrt{b}} = \sqrt{(a+√(a^2-b})/2) + \sqrt{(a-√(a^2-b})/2)
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">Telescoping Sums</div>
-          <div class="formula-block">Σ[f(k)-f(k-1)] = f(n) - f(0)  [collapses to endpoints]
-
-1/(k(k+1)) = 1/k - 1/(k+1)
-1/(k(k+1)(k+2)) = (1/2)[1/(k(k+1)) - 1/((k+1)(k+2))]
-
-Σ 1/(k(k+1)) from k=1 to n = 1 - 1/(n+1) = n/(n+1)</div>
+          <div class="formula-block">
+\begin{gather*}
+\Sigma [f(k)-f(k-1)] = f(n) - f(0)  [collapses to endpoints] \\
+\\
+1/(k(k+1)) = 1/k - 1/(k+1) \\
+1/(k(k+1)(k+2)) = (1/2)[1/(k(k+1)) - 1/((k+1)(k+2))] \\
+\\
+\Sigma  1/(k(k+1)) from k=1 to n = 1 - 1/(n+1) = n/(n+1)
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">Inequality Formulas</div>
-          <div class="formula-block">AM-GM: (a+b)/2 ≥ √(ab)  [equality when a=b]
-       (a₁+a₂+...+aₙ)/n ≥ (a₁a₂...aₙ)^(1/n)
-
-Cauchy-Schwarz: (a₁b₁+a₂b₂+...+aₙbₙ)² ≤ (a₁²+...+aₙ²)(b₁²+...+bₙ²)
-
-Triangle inequality: |a+b| ≤ |a| + |b|
-                     ||a|-|b|| ≤ |a-b|
-
-For positive x: x + 1/x ≥ 2  [min value 2 at x=1]
-                x² + 1/x² ≥ 2</div>
+          <div class="formula-block">
+\begin{gather*}
+AM-GM: (a+b)/2 \ge  \sqrt{ab}  [equality \text{when} a=b] \\
+(a_1+a_2+...+aₙ)/n \ge  (a_1a_2...aₙ)^(1/n) \\
+\\
+Cauchy-Schwarz: (a_1b_1+a_2b_2+...+aₙbₙ)^2 \le  (a_1^2+...+aₙ^2)(b_1^2+...+bₙ^2) \\
+\\
+Triangle inequality: |a+b| \le  |a| + |b| \\
+||a|-|b|| \le  |a-b| \\
+\\
+\text{For} positive x: x + 1/x \ge  2  [min value 2 at x=1] \\
+x^2 + 1/x^2 \ge  2
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">Useful Number Patterns</div>
-          <div class="formula-block">1+2+3+...+n        = n(n+1)/2
-1+3+5+...+(2n-1)   = n²
-2+4+6+...+2n       = n(n+1)
-1²+2²+...+n²       = n(n+1)(2n+1)/6
-1³+2³+...+n³       = [n(n+1)/2]²
-1×2+2×3+...+n(n+1) = n(n+1)(n+2)/3
-1×1!+2×2!+...+n×n! = (n+1)!-1</div>
+          <div class="formula-block">
+\begin{gather*}
+1+2+3+...+n        = n(n+1)/2 \\
+1+3+5+...+(2n-1)   = n^2 \\
+2+4+6+...+2n       = n(n+1) \\
+1^2+2^2+...+n^2       = n(n+1)(2n+1)/6 \\
+1^3+2^3+...+n^3       = [n(n+1)/2]^2 \\
+1\times 2+2\times 3+...+n(n+1) = n(n+1)(n+2)/3 \\
+1\times 1!+2\times 2!+...+n\times n! = (n+1)!-1
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">Important Constants and Values</div>
-          <div class="formula-block">π ≈ 3.14159265...
-e ≈ 2.71828182...
-√2 ≈ 1.41421356...
-√3 ≈ 1.73205080...
-√5 ≈ 2.23606797...
-1/√2 = √2/2 ≈ 0.7071
-√3/2 ≈ 0.8660
-ln 2 ≈ 0.6931
-ln 10 ≈ 2.3026
-log₁₀ e ≈ 0.4343
-
-Radian to degree: 1 rad = 180°/π ≈ 57.296°
-Degree to radian: 1° = π/180 rad ≈ 0.01745 rad
-
-30° = π/6 rad        45° = π/4 rad
-60° = π/3 rad        90° = π/2 rad
-120° = 2π/3 rad      135° = 3π/4 rad
-150° = 5π/6 rad      180° = π rad
-270° = 3π/2 rad      360° = 2π rad</div>
+          <div class="formula-block">
+\begin{gather*}
+\pi  ≈ 3.14159265... \\
+e ≈ 2.71828182... \\
+\sqrt{2} ≈ 1.41421356... \\
+\sqrt{3} ≈ 1.73205080... \\
+\sqrt{5} ≈ 2.23606797... \\
+1/\sqrt{2} = \sqrt{2}/2 ≈ 0.7071 \\
+\sqrt{3}/2 ≈ 0.8660 \\
+ln 2 ≈ 0.6931 \\
+ln 10 ≈ 2.3026 \\
+log_1₀ e ≈ 0.4343 \\
+\\
+Radian to degree: 1 rad = 180°/\pi  ≈ 57.296° \\
+Degree to radian: 1° = \pi /180 rad ≈ 0.01745 rad \\
+\\
+30° = \pi /6 rad        45° = \pi /4 rad \\
+60° = \pi /3 rad        90° = \pi /2 rad \\
+120° = 2\pi /3 rad      135° = 3\pi /4 rad \\
+150° = 5\pi /6 rad      180° = \pi  rad \\
+270° = 3\pi /2 rad      360° = 2\pi  rad
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">Differential Calculus — Twisted Forms</div>
-          <div class="formula-block">If y = sin(ax+b):  y' = a cos(ax+b), y'' = -a² sin(ax+b), yⁿ = aⁿ sin(ax+b+nπ/2)
-If y = cos(ax+b):  yⁿ = aⁿ cos(ax+b+nπ/2)
-If y = eᵃˣ:  yⁿ = aⁿeᵃˣ
-If y = ln x:  y' = 1/x, y'' = -1/x², yⁿ = (-1)^(n-1)(n-1)!/xⁿ
-
-Partial derivatives (for Lagrange multipliers):
-∂/∂x[f(x,y)] — treat y as constant
-
-Jacobian: J = ∂(u,v)/∂(x,y) = |∂u/∂x  ∂u/∂y|
-                                 |∂v/∂x  ∂v/∂y|
-
-Euler's theorem for homogeneous f of degree n:
-x(∂f/∂x) + y(∂f/∂y) = nf
-
-Total differential: df = (∂f/∂x)dx + (∂f/∂y)dy</div>
+          <div class="formula-block">
+\begin{gather*}
+\text{If} y = sin(ax+b):  y' = a cos(ax+b), y'' = -a^2 sin(ax+b), yⁿ = aⁿ sin(ax+b+n\pi /2) \\
+\text{If} y = cos(ax+b):  yⁿ = aⁿ cos(ax+b+n\pi /2) \\
+\text{If} y = eᵃˣ:  yⁿ = aⁿeᵃˣ \\
+\text{If} y = ln x:  y' = 1/x, y'' = -1/x^2, yⁿ = (-1)^(n-1)(n-1)!/xⁿ \\
+\\
+Partial derivatives (\text{for} Lagrange multipliers): \\
+∂/∂x[f(x,y)] - treat y as constant \\
+\\
+Jacobian: J = ∂(u,v)/∂(x,y) = |∂u/∂x  ∂u/∂y| \\
+|∂v/∂x  ∂v/∂y| \\
+\\
+Euler's theorem \text{for} homogeneous f of degree n: \\
+x(∂f/∂x) + y(∂f/∂y) = nf \\
+\\
+Total differential: df = (∂f/∂x)dx + (∂f/∂y)dy
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">3D Geometry — Extra Formulas</div>
-          <div class="formula-block">Sphere with center (h,k,l) and radius r:
-(x-h)²+(y-k)²+(z-l)² = r²
-
-General sphere: x²+y²+z²+2ux+2vy+2wz+d=0
-Center: (-u,-v,-w), Radius: √(u²+v²+w²-d)
-
-Image of point P(α,β,γ) in plane ax+by+cz+d=0:
-(x-α)/a = (y-β)/b = (z-γ)/c = -2(aα+bβ+cγ+d)/(a²+b²+c²)
-
-Centroid of tetrahedron (4 vertices):
-G = [(x₁+x₂+x₃+x₄)/4, (y₁+y₂+y₃+y₄)/4, (z₁+z₂+z₃+z₄)/4]
-
-Volume of tetrahedron with one vertex at origin, others A,B,C:
-V = (1/6)|[a⃗ b⃗ c⃗]|
-
-Distance from line to line (skew):
-d = |[(b⃗₁×b⃗₂)·(a⃗₂-a⃗₁)]| / |b⃗₁×b⃗₂|</div>
+          <div class="formula-block">
+\begin{gather*}
+Sphere with center (h,k,l) \text{and} radius r: \\
+(x-h)^2+(y-k)^2+(z-l)^2 = r^2 \\
+\\
+General sphere: x^2+y^2+z^2+2ux+2vy+2wz+d=0 \\
+Center: (-u,-v,-w), Radius: \sqrt{u^2+v^2+w^2-d} \\
+\\
+Image of point P(\alpha ,\beta ,\gamma ) in plane ax+by+cz+d=0: \\
+(x-\alpha )/a = (y-\beta )/b = (z-\gamma )/c = -2(a\alpha +b\beta +c\gamma +d)/(a^2+b^2+c^2) \\
+\\
+Centroid of tetrahedron (4 vertices): \\
+G = [(x_1+x_2+x_3+x₄)/4, (y_1+y_2+y_3+y₄)/4, (z_1+z_2+z_3+z₄)/4] \\
+\\
+Volume of tetrahedron with one vertex at origin, others A,B,C: \\
+V = (1/6)|[a⃗ b⃗ c⃗]| \\
+\\
+Distance from line to line (skew): \\
+d = |[(b⃗_1\times b⃗_2)·(a⃗_2-a⃗_1)]| / |b⃗_1\times b⃗_2|
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">Vector — Additional Identities</div>
-          <div class="formula-block">|a⃗×b⃗|² = |a⃗|²|b⃗|² - (a⃗·b⃗)²   [Lagrange's identity]
-
-(a⃗×b⃗)·(c⃗×d⃗) = (a⃗·c⃗)(b⃗·d⃗) - (a⃗·d⃗)(b⃗·c⃗)
-
-(a⃗×b⃗)×(c⃗×d⃗) = [a⃗ b⃗ d⃗]c⃗ - [a⃗ b⃗ c⃗]d⃗ = [a⃗ c⃗ d⃗]b⃗ - [b⃗ c⃗ d⃗]a⃗
-
-Area of parallelogram with diagonals d⃗₁, d⃗₂:
-Area = ½|d⃗₁×d⃗₂|
-
-Normal to plane through a⃗, b⃗, c⃗:
-n⃗ = (b⃗-a⃗)×(c⃗-a⃗)
-
-Angle bisector of a⃗ and b⃗ (unit vectors â,b̂):
-bisector direction = â + b̂  [internal]
-                   = â - b̂  [external]</div>
+          <div class="formula-block">
+\begin{gather*}
+|a⃗\times b⃗|^2 = |a⃗|^2|b⃗|^2 - (a⃗·b⃗)^2   [Lagrange's identity] \\
+\\
+(a⃗\times b⃗)·(c⃗\times d⃗) = (a⃗·c⃗)(b⃗·d⃗) - (a⃗·d⃗)(b⃗·c⃗) \\
+\\
+(a⃗\times b⃗)\times (c⃗\times d⃗) = [a⃗ b⃗ d⃗]c⃗ - [a⃗ b⃗ c⃗]d⃗ = [a⃗ c⃗ d⃗]b⃗ - [b⃗ c⃗ d⃗]a⃗ \\
+\\
+Area of parallelogram with diagonals d⃗_1, d⃗_2: \\
+Area = ½|d⃗_1\times d⃗_2| \\
+\\
+Normal to plane through a⃗, b⃗, c⃗: \\
+n⃗ = (b⃗-a⃗)\times (c⃗-a⃗) \\
+\\
+Angle bisector of a⃗ \text{and} b⃗ (unit vectors â,b̂): \\
+bisector direction = â + b̂  [internal] \\
+= â - b̂  [external]
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">Exam Strategy — Key Identity Shortcuts</div>
-          <div class="formula-block">a² + b² + c² - ab - bc - ca = ½[(a-b)² + (b-c)² + (c-a)²]
-                             ≥ 0 always
-
-(a+b+c)² = a²+b²+c² + 2(ab+bc+ca)
-
-If a+b+c=0:  a²+b²+c² = -2(ab+bc+ca)
-             ab+bc+ca = -(a²+b²+c²)/2
-             a³+b³+c³ = 3abc
-
-Determinant tricks:
-  R₁→R₁+R₂+R₃ (sum of rows): factor out the sum
-  C₁→C₁-C₂, C₂→C₂-C₃: create zeros
-  If rows in AP: middle row = average of outer rows → use R₂→2R₂-R₁-R₃
-
-Common factor:
-  |ka  kb  kc| = k × |a  b  c|
-  |d   e   f |       |d  e  f|
-  |g   h   i |       |g  h  i|</div>
+          <div class="formula-block">
+\begin{gather*}
+a^2 + b^2 + c^2 - ab - bc - ca = ½[(a-b)^2 + (b-c)^2 + (c-a)^2] \\
+\ge  0 always \\
+\\
+(a+b+c)^2 = a^2+b^2+c^2 + 2(ab+bc+ca) \\
+\\
+\text{If} a+b+c=0:  a^2+b^2+c^2 = -2(ab+bc+ca) \\
+ab+bc+ca = -(a^2+b^2+c^2)/2 \\
+a^3+b^3+c^3 = 3abc \\
+\\
+Determinant tricks: \\
+R_1\Rightarrow R_1+R_2+R_3 (sum of rows): factor out the sum \\
+C_1\Rightarrow C_1-C_2, C_2\Rightarrow C_2-C_3: create zeros \\
+\text{If} rows in AP: middle row = average of outer rows \Rightarrow  use R_2\Rightarrow 2R_2-R_1-R_3 \\
+\\
+Common factor: \\
+|ka  kb  kc| = k \times  |a  b  c| \\
+|d   e   f |       |d  e  f| \\
+|g   h   i |       |g  h  i|
+\end{gather*}
+</div>
         </div>
 
         <div class="section">
           <div class="section-title">CBSE Board Frequent Formula Combos</div>
-          <div class="formula-block">Volume related conversion:
-If a sphere of radius R is melted into n small spheres of radius r:
-(4/3)πR³ = n × (4/3)πr³
-→ n = R³/r³ = (R/r)³
-
-Cone from circle (sector folded):
-If a sector of radius L and angle θ is folded into a cone:
-Slant height of cone = L (radius of sector)
-2πr = (θ/360°) × 2πL
-→ r = θL/360°
-→ h = √(L²-r²)
-→ V = (1/3)πr²h
-
-Ratio of volumes of cone:cylinder:sphere (same r, same h=2r):
-V_cone : V_cyl : V_sph = 1 : 3 : 2  [FAMOUS RATIO]
-
-Sphere inscribed in cylinder:
-r_sphere = r_cyl = h_cyl/2
-SA_sphere/CSA_cyl = 1  [Equal surface areas!]
-
-Largest cone inscribed in cylinder:
-same base and height
-V_cone = (1/3)V_cyl
-
-Largest sphere inscribed in cube of side a:
-r = a/2
-
-Largest sphere inscribed in cone of radius R, height h:
-r = Rh/(√(R²+h²)+R) = Rh/(l+R)</div>
+          <div class="formula-block">
+\begin{gather*}
+Volume related conversion: \\
+\text{If} a sphere of radius R \text{is} melted into n small spheres of radius r: \\
+(4/3)\pi R^3 = n \times  (4/3)\pi r^3 \\
+\Rightarrow  n = R^3/r^3 = (R/r)^3 \\
+\\
+Cone from circle (sector folded): \\
+\text{If} a sector of radius L \text{and} angle \theta  \text{is} folded into a cone: \\
+Slant height of cone = L (radius of sector) \\
+2\pi r = (\theta /360°) \times  2\pi L \\
+\Rightarrow  r = \theta L/360° \\
+\Rightarrow  h = \sqrt{L^2-r^2} \\
+\Rightarrow  V = (1/3)\pi r^2h \\
+\\
+Ratio of volumes of cone:cylinder:sphere (same r, same h=2r): \\
+V_cone : V_cyl : V_sph = 1 : 3 : 2  [FAMOUS RATIO] \\
+\\
+Sphere inscribed in cylinder: \\
+r_sphere = r_cyl = h_cyl/2 \\
+SA_sphere/CSA_cyl = 1  [Equal surface areas!] \\
+\\
+Largest cone inscribed in cylinder: \\
+same base \text{and} height \\
+V_cone = (1/3)V_cyl \\
+\\
+Largest sphere inscribed in cube of side a: \\
+r = a/2 \\
+\\
+Largest sphere inscribed in cone of radius R, height h: \\
+r = Rh/(\sqrt{R^2+h^2}+R) = Rh/(l+R)
+\end{gather*}
+</div>
         </div>
       </div>
 
@@ -3766,28 +4575,32 @@ r = Rh/(√(R²+h²)+R) = Rh/(l+R)</div>
         </div>
 
         <div class="golden-rules">
-          <div class="formula-block">1. a² - b² = (a+b)(a-b)        — always factorize first!
-2. D = b²-4ac                   — discriminant rules everything
-3. sin²+cos²=1                  — most common identity
-4. AM≥GM≥HM                     — inequalities
-5. P(A)+P(Ā)=1                  — complement rule
-6. aₙ=a+(n-1)d, Sₙ=n/2[2a+(n-1)d] — AP core
-7. LCM×HCF = a×b               — always
-8. Area = ½|base×height|         — universally
-9. Chain rule: d/dx[f(g(x))]=f'(g(x))g'(x)
-10. ∫eˣ[f+f']=eˣf+C             — IBP shortcut
-
-Key Values to Remember:
-sin30=1/2, cos60=1/2, tan45=1, sin90=1, cos0=1
-√2≈1.414, √3≈1.732, π≈3.14159, e≈2.71828
-
-Key Theorems:
-- Pythagoras: H²=B²+P²
-- Thales (BPT): AD/DB=AE/EC
-- MVT: f'(c)=(f(b)-f(a))/(b-a)
-- Bayes: P(H|E)=P(H)P(E|H)/P(E)
-- Euclid: a=bq+r
-- FTA: Every composite number has unique prime factorization</div>
+          <div class="formula-block">
+\begin{gather*}
+1. a^2 - b^2 = (a+b)(a-b)        - always factorize first! \\
+2. D = b^2-4ac                   - discriminant rules everything \\
+3. sin^2+cos^2=1                  - most common identity \\
+4. AM\ge GM\ge HM                     - inequalities \\
+5. P(A)+P(Ā)=1                  - complement rule \\
+6. aₙ=a+(n-1)d, Sₙ=n/2[2a+(n-1)d] - AP core \\
+7. LCM\times HCF = a\times b               - always \\
+8. Area = ½|base\times height|         - universally \\
+9. Chain rule: d/dx[f(g(x))]=f'(g(x))g'(x) \\
+10. ∫eˣ[f+f']=eˣf+C             - IBP shortcut \\
+\\
+Key Values to Remember: \\
+sin30=1/2, cos60=1/2, tan45=1, sin90=1, cos0=1 \\
+\sqrt{2}≈1.414, \sqrt{3}≈1.732, \pi ≈3.14159, e≈2.71828 \\
+\\
+Key Theorems: \\
+- Pythagoras: H^2=B^2+P^2 \\
+- Thales (BPT): AD/DB=AE/EC \\
+- MVT: f'(c)=(f(b)-f(a))/(b-a) \\
+- Bayes: P(H|E)=P(H)P(E|H)/P(E) \\
+- Euclid: a=bq+r \\
+- FTA: Every composite number has unique prime factorization
+\end{gather*}
+</div>
         </div>
       </div>
 
